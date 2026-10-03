@@ -94,7 +94,7 @@ Automatisierung lässt sich nach verschiedenen Gesichtspunkten einteilen. **Nach
 | Art | Beschreibung | Beispiel |
 | --- | --- | --- |
 | Industrielle Automatisierung | Steuerung von Maschinen und Anlagen in Produktion und Fertigung, z. B. mit speicherprogrammierbaren Steuerungen (SPS, englisch PLC) und Robotern | Fertigungsstraße, Lagerlogistik |
-| Büroautomatisierung | Digitalisierung von Verwaltungsaufgaben wie Datenpflege und Terminplanung, unterstützt durch CRM- und ERP-Systeme | Kundendaten aus Webformular automatisch ins CRM übernehmen |
+| Büroautomatisierung | Digitalisierung von Verwaltungsaufgaben wie Datenpflege, Terminplanung und Kundenkommunikation, unterstützt durch CRM- und ERP-Systeme | Kundendaten aus Webformular automatisch ins CRM übernehmen, Chatbots beantworten Standardanfragen im Kundenservice |
 | Heim- und Gebäudeautomatisierung | Smart-Home-Technik steuert Heizung, Licht, Sicherheitssysteme und Geräte – für Komfort, Energieeffizienz und Sicherheit | Heizung senkt die Temperatur, wenn niemand zu Hause ist |
 | Prozessautomatisierung (Industrie) | Überwachung und Steuerung technischer Anlagen in Chemie, Öl und Gas oder Wasserwirtschaft | Kläranlage regelt Pumpen anhand von Messwerten |
 | IT-Automatisierung | Verwaltung und Betrieb von IT-Diensten und Infrastruktur: Netzwerk, Server, Clients, Service Desk | Software verteilen, Benutzer anlegen |
