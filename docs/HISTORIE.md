@@ -6,6 +6,7 @@
 
 ## 2026-10-03
 - Kapitel 01 „Einführung in die Systemautomatisierung“ überarbeitet: zusätzliche Inhalte (Definition, Wetter-Beispiel, 8 Arten, Übung, KI-Typen nach Funktionsweise, Batch/Workflow, Grundprinzipien, Werkzeugbeispiele Zapier/Power Automate/Ansible, Herausforderungen). Tabelle „Arten“ neu: Zeilen Aufgabenautomatisierung, BPA und Hyperautomation entfallen (BPA/RPA als Hinweis). Wissenstest 33 → 59 Fragen, Abschnitte neu nummeriert (1.8 Grundprinzipien, 1.9 Werkzeuge, 1.10 Toolauswahl, 1.11 Herausforderungen), Frage zu Hyperautomation ersetzt.
+- Wissenstest Kapitel 01: 6 weitere Fragen (65), darunter die erste Richtig/Falsch-Frage; Richtig/Falsch-Fragen werden nicht gemischt.
 - Fehler behoben: `<code>` und HTML-Entities in Quizfragen wurden als roher Text angezeigt (741 Stellen in 8 Wissenstests).
 - Vorlesen flüssiger gemacht: keine Abbrüche mehr zwischen Textstücken, Teilung nur noch bei Google-Stimmen und nur an Satzenden (vorher auch an Doppelpunkt/Semikolon und ab 220 Zeichen), Abkürzungen ausgeschrieben.
 - Neu: Vorlesen von Kapiteln über die Sprachausgabe des Browsers (F20), Tabellen zeilenweise, Code und Musterlösungen werden übersprungen.

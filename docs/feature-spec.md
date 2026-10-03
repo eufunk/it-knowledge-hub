@@ -66,7 +66,7 @@ Angelehnt an den Referenz-Screenshot der Kursansicht, aber im eigenen Design.
 - **F16** Lesefortschritt: Unter dem Kapiteltitel zeigt ein schmaler Balken, wie weit das Kapitel gelesen ist (Scrollposition).
 - **F17** Wissenstest je Kapitel:
   - Startseite mit Kapitelname, Anzahl Fragen im Pool, Ablauf und Bestehensgrenze
-  - Ein Durchlauf besteht aus 10 zufällig gezogenen Fragen aus dem Pool des Kapitels; die Antwortreihenfolge wird gemischt
+  - Ein Durchlauf besteht aus 10 zufällig gezogenen Fragen aus dem Pool des Kapitels; die Antwortreihenfolge wird gemischt, außer bei Richtig/Falsch-Fragen (Antworten „Richtig“ und „Falsch“, immer in dieser Reihenfolge)
   - Nach dem Auswählen einer Antwort sofort Rückmeldung (richtig / falsch, richtige Antwort markiert) mit Erklärung und dem Thema der Frage
   - Am Ende: Ergebnis (z. B. „8 von 10“); bestanden ab 80 % → Wissenstest gilt als erledigt; „Neuer Durchlauf“ jederzeit möglich, ein bestandener Test bleibt erledigt
 - **F18** Hinweisboxen: Blockzitate, die mit **Definition:**, **Tipp:**, **Wichtig:**, **Achtung:**, **Hinweis:**, **Merke:** oder **Kurz gesagt:** beginnen, werden als farbige Boxen mit Icon dargestellt. Musterlösungen und Lösungsvorschläge sind eingeklappt („Musterlösung anzeigen“).
@@ -156,7 +156,7 @@ Quelle: `System_und_Prozessautomatisierung_Grundlagen.docx` (Kapitel; Kapitel 01
 
 | Modul | Kapitel | Fragen |
 |---|---|---|
-| 1 Grundlagen der Automatisierung | 01 Einführung in die Systemautomatisierung · 02 Überwachen wiederkehrender Systemabläufe | 59 · 34 |
+| 1 Grundlagen der Automatisierung | 01 Einführung in die Systemautomatisierung · 02 Überwachen wiederkehrender Systemabläufe | 65 · 34 |
 | 2 Skriptsprachen: Bash und PowerShell | 03 Grundlagen von Bash und Shell-Scripting · 04 PowerShell Basics für Administratoren | 37 · 50 |
 | 3 Fortgeschrittene Linux-Skripte | 05 Aufbau fortgeschrittener Linux-Skripte | 60 |
 | 4 Prozesse und Strategien | 06 Analyse und Identifikation automatisierbarer Prozesse · 07 Entwurf von Automatisierungsstrategien | 35 · 46 |

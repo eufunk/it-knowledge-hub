@@ -40,6 +40,19 @@ describe("F17: Wissenstest", () => {
     }
   });
 
+  it("lässt Richtig/Falsch-Fragen in fester Reihenfolge", () => {
+    const trueFalse: QuizQuestion[] = [
+      { section: "1.1", question: "Stimmt A?", options: ["Richtig", "Falsch"], explanation: "Ja." },
+      { section: "1.1", question: "Stimmt B?", options: ["Falsch", "Richtig"], explanation: "Nein." },
+    ];
+    for (let seed = 1; seed <= 20; seed++) {
+      for (const question of drawQuestions(trueFalse, 2, seeded(seed))) {
+        expect(question.options).toEqual(["Richtig", "Falsch"]);
+        expect(question.options[question.correctIndex]).toBe(question.question === "Stimmt A?" ? "Richtig" : "Falsch");
+      }
+    }
+  });
+
   it("gilt ab 80 % als bestanden", () => {
     expect(isPassed(8, 10)).toBe(true);
     expect(isPassed(10, 10)).toBe(true);

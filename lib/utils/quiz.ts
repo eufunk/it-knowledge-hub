@@ -21,7 +21,14 @@ export function shuffle<T>(items: readonly T[], random: () => number = Math.rand
   return result;
 }
 
+const TRUE_FALSE = ["Richtig", "Falsch"];
+
+export function isTrueFalse(options: readonly string[]): boolean {
+  return options.length === 2 && TRUE_FALSE.every((label) => options.includes(label));
+}
+
 // Zieht zufällige Fragen und mischt die Antworten; die richtige Antwort steht in der Quelle an erster Stelle.
+// Richtig/Falsch-Fragen behalten die feste Reihenfolge „Richtig“, „Falsch“.
 export function drawQuestions(
   pool: readonly QuizQuestion[],
   count: number = QUIZ_LENGTH,
@@ -30,10 +37,10 @@ export function drawQuestions(
   return shuffle(pool, random)
     .slice(0, count)
     .map((item) => {
-      const options = shuffle(
-        item.options.map((text, index) => ({ text, correct: index === 0 })),
-        random,
-      );
+      const labelled = item.options.map((text, index) => ({ text, correct: index === 0 }));
+      const options = isTrueFalse(item.options)
+        ? TRUE_FALSE.map((label) => labelled.find((option) => option.text === label)!)
+        : shuffle(labelled, random);
       return {
         section: item.section,
         question: item.question,

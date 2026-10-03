@@ -80,6 +80,17 @@
       "explanation": "Jede Automatisierung beruht auf Regeln oder Algorithmen, die festlegen, wie eine Aufgabe ausgeführt wird. KI ist eine mögliche Erweiterung, aber keine Voraussetzung."
     },
     {
+      "section": "1.1",
+      "question": "Was ist der Hauptzweck der Automatisierung?",
+      "options": [
+        "Aufgaben und Prozesse effizienter und fehlerfreier zu machen",
+        "Prozesse zu verlangsamen, um Fehler zu minimieren",
+        "Die Anzahl der Mitarbeitenden in einem Unternehmen zu reduzieren",
+        "Die Notwendigkeit von IT-Systemen zu eliminieren"
+      ],
+      "explanation": "Automatisierung soll Aufgaben selbsttätig, schneller und gleichbleibend zuverlässig erledigen – also effizienter und mit weniger Fehlern. Personalabbau ist nicht der Zweck, sondern Entlastung für anspruchsvollere Arbeit."
+    },
+    {
       "section": "1.2",
       "question": "Um welche zwei Elemente wird das EVA-Prinzip bei Automatisierungen ergänzt?",
       "options": [
@@ -190,6 +201,17 @@
       "explanation": "Automatisierte Abläufe sammeln und werten große Datenmengen aus. Entscheidungen beruhen dann auf echten Daten statt auf Bauchgefühl."
     },
     {
+      "section": "1.3",
+      "question": "Was ist ein wesentlicher Vorteil der Automatisierung im Hinblick auf die Arbeitsbedingungen?",
+      "options": [
+        "Verbessert die Sicherheit und reduziert monotone Aufgaben",
+        "Verringert die Teamkommunikation",
+        "Ersetzt alle menschlichen Aufgaben",
+        "Erhöht die Arbeitsbelastung"
+      ],
+      "explanation": "Werden monotone oder gefährliche Tätigkeiten automatisiert, verbessern sich die Arbeitsbedingungen: Mitarbeitende sind weniger Risiken ausgesetzt und haben mehr Zeit für anspruchsvollere Aufgaben."
+    },
+    {
       "section": "1.4",
       "question": "Was zeichnet Robotic Process Automation (RPA) aus?",
       "options": [
@@ -267,6 +289,17 @@
       "explanation": "In der Industrie meint Prozessautomatisierung die Steuerung technischer Anlagen. In der IT geht es meist um Geschäftsprozesse wie Rechnungsfreigabe oder Onboarding – oft mit Workflow-Werkzeugen oder RPA."
     },
     {
+      "section": "1.4",
+      "question": "Welche der folgenden Optionen ist ein Beispiel für Büroautomatisierung?",
+      "options": [
+        "Automatisierte Kundenservice-Chatbots",
+        "Robotergesteuerte chirurgische Eingriffe",
+        "Selbstfahrende Autos",
+        "Automatisierte Montage in der Produktion"
+      ],
+      "explanation": "Chatbots beantworten Standardanfragen im Kundenservice und entlasten Verwaltung und Büro, oft angebunden an CRM-Systeme. Chirurgische Roboter gehören zur Robotik-Automatisierung, selbstfahrende Autos zu autonomen KI-Systemen und Montagelinien zur industriellen Automatisierung."
+    },
+    {
       "section": "1.5",
       "question": "Wie verhält sich regelbasierte Automatisierung im Vergleich zu KI-gestützter Automatisierung?",
       "options": [
@@ -298,6 +331,15 @@
         "Eine Programmiersprache für KI-Modelle"
       ],
       "explanation": "AIOps nutzt KI, um in Logs und Monitoring-Daten Anomalien zu erkennen, Ausfälle vorherzusagen und Ursachen einzugrenzen."
+    },
+    {
+      "section": "1.5",
+      "question": "Richtig oder falsch? Künstliche Intelligenz wird in der Automatisierung verwendet, um Aufgaben zu übernehmen, die menschliches Urteilsvermögen erfordern.",
+      "options": [
+        "Richtig",
+        "Falsch"
+      ],
+      "explanation": "Richtig. KI erweitert regelbasierte Automatisierung um Fähigkeiten wie Mustererkennung, Sprachverstehen und Entscheidungsunterstützung – Aufgaben, die bisher menschliches Urteilsvermögen erforderten (kognitive Automatisierung)."
     },
     {
       "section": "1.6",
@@ -421,6 +463,17 @@
       "explanation": "Bei der Batch-Verarbeitung werden viele Aufträge gesammelt und ohne Eingriff abgearbeitet – ideal für große Datenmengen zu Zeiten geringer Systemauslastung."
     },
     {
+      "section": "1.7",
+      "question": "Welche Technik wird typischerweise verwendet, um repetitive Aufgaben wie Dateneingabe zu automatisieren?",
+      "options": [
+        "Robotic Process Automation (RPA)",
+        "Traditionelle Programmierung",
+        "Physische Roboter",
+        "Manuelle Eingabe"
+      ],
+      "explanation": "Bei RPA bedienen Software-Roboter („Bots“) Programmoberflächen wie ein Mensch – ideal für wiederkehrende Eingaben, besonders wenn es keine Schnittstelle gibt."
+    },
+    {
       "section": "1.8",
       "question": "Welche Aufgabe eignet sich am besten als erstes Automatisierungsprojekt?",
       "options": [
@@ -463,6 +516,17 @@
         "Die Dokumentation wird gelöscht, da das Skript alles enthält"
       ],
       "explanation": "Kontinuierliche Überwachung hilft, Probleme früh zu erkennen und den Prozess weiter zu verbessern."
+    },
+    {
+      "section": "1.8",
+      "question": "Welcher Schritt ist entscheidend vor der Implementierung von Automatisierungsprozessen?",
+      "options": [
+        "Die Optimierung bestehender Prozesse",
+        "Die Einstellung neuer Mitarbeitender",
+        "Die sofortige Auswahl eines Automatisierungstools",
+        "Die Reduzierung des IT-Budgets"
+      ],
+      "explanation": "Ein Prozess muss klar verstanden und möglichst schlank sein, bevor er automatisiert wird. Wer einen schlechten Ablauf automatisiert, macht ihn nur schneller schlecht. Das Werkzeug wird erst danach passend zum Prozess gewählt."
     },
     {
       "section": "1.9",
