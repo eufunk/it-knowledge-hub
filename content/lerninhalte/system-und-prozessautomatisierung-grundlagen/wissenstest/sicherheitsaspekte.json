@@ -1,0 +1,533 @@
+{
+  "sections": {
+    "8.1": "Prinzipien der IT-Sicherheit",
+    "8.1.1": "Richtlinien und Standards",
+    "8.1.2": "Risiken bewerten",
+    "8.1.3": "Risikomanagement und Notfall",
+    "8.2": "Schutz vor unerlaubtem Zugriff",
+    "8.2.1": "Verschlüsselung und Speicherung",
+    "8.3.1": "Updates und Patches",
+    "8.4.1": "Sicherheitsprotokolle",
+    "8.4.2": "Prüfungen und Audits",
+    "8.6": "Lösung zur Übung"
+  },
+  "questions": [
+    {
+      "section": "8.1",
+      "question": "Welche drei Schutzziele bilden die Grundlage der IT-Sicherheit?",
+      "options": [
+        "Vertraulichkeit, Integrität, Verfügbarkeit",
+        "Geschwindigkeit, Stabilität, Kosten",
+        "Verschlüsselung, Firewall, Virenschutz",
+        "Planung, Umsetzung, Kontrolle"
+      ],
+      "explanation": "Nach den englischen Begriffen Confidentiality, Integrity und Availability spricht man auch von der CIA-Triade."
+    },
+    {
+      "section": "8.1",
+      "question": "Ein Skript, das als root läuft, wird von einem Unbefugten verändert. Welches Schutzziel ist verletzt?",
+      "options": [
+        "Integrität",
+        "Verfügbarkeit",
+        "Vertraulichkeit",
+        "Keines"
+      ],
+      "explanation": "Integrität bedeutet, dass Daten und Programme vollständig und unverändert sind. Schutz bieten Schreibrechte, Code-Signatur, Prüfsummen und Reviews."
+    },
+    {
+      "section": "8.1",
+      "question": "Ein Passwort steht im Klartext in einem Skript in Git. Welches Schutzziel ist vor allem gefährdet?",
+      "options": [
+        "Vertraulichkeit",
+        "Verfügbarkeit",
+        "Integrität",
+        "Nachvollziehbarkeit"
+      ],
+      "explanation": "Vertraulichkeit heißt: Nur Berechtigte können Daten lesen. Ein Passwort in Git ist für alle mit Zugriff auf das Repository lesbar."
+    },
+    {
+      "section": "8.1",
+      "question": "Was besagt das Prinzip „Least Privilege“?",
+      "options": [
+        "Jede Person und jedes Programm erhält nur die Rechte, die es wirklich braucht",
+        "Administratoren erhalten alle Rechte",
+        "Rechte werden nur für kurze Zeit vergeben",
+        "Nur die Geschäftsleitung darf Rechte vergeben"
+      ],
+      "explanation": "Für die Automatisierung heißt das z. B.: ein eigenes Dienstkonto je Skript statt eines Domänen-Admins."
+    },
+    {
+      "section": "8.1",
+      "question": "Was bedeutet „Defense in Depth“?",
+      "options": [
+        "Mehrere unabhängige Schutzschichten, damit eine einzelne Lücke nicht genügt",
+        "Eine besonders starke Firewall am Netzrand",
+        "Verteidigung ausschließlich im Rechenzentrum",
+        "Tiefe Verschlüsselung mit sehr langen Schlüsseln"
+      ],
+      "explanation": "Firewall, Rechte, Verschlüsselung, Protokollierung und Überwachung ergänzen sich."
+    },
+    {
+      "section": "8.1",
+      "question": "Was kennzeichnet den Zero-Trust-Ansatz?",
+      "options": [
+        "Kein Zugriff wird automatisch vertraut, auch nicht im internen Netz; jede Anfrage wird geprüft",
+        "Niemand erhält Zugriff auf irgendein System",
+        "Internen Systemen wird grundsätzlich vertraut",
+        "Passwörter werden abgeschafft"
+      ],
+      "explanation": "Beispiel: Jeder API-Aufruf erfolgt mit Token und über eine verschlüsselte Verbindung, auch innerhalb des Firmennetzes."
+    },
+    {
+      "section": "8.1.1",
+      "question": "Was regelt die Norm ISO/IEC 27001?",
+      "options": [
+        "Anforderungen an ein Informationssicherheits-Managementsystem (ISMS), nach denen man sich zertifizieren lassen kann",
+        "Die Verschlüsselung von WLAN-Netzen",
+        "Die Programmierung sicherer Skripte in PowerShell",
+        "Den Datenschutz in der Europäischen Union"
+      ],
+      "explanation": "Kern sind Risikomanagement und kontinuierliche Verbesserung. ISO 27002 erläutert die Maßnahmen."
+    },
+    {
+      "section": "8.1.1",
+      "question": "Welcher Standard ist besonders in deutschen Behörden verbreitet und enthält ein Kompendium mit Bausteinen?",
+      "options": [
+        "BSI IT-Grundschutz",
+        "NIST Cybersecurity Framework",
+        "CIS Controls",
+        "DORA"
+      ],
+      "explanation": "Der IT-Grundschutz besteht aus den BSI-Standards 200-1 bis 200-4 und dem IT-Grundschutz-Kompendium und lässt sich mit ISO 27001 kombinieren."
+    },
+    {
+      "section": "8.1.1",
+      "question": "Welche Regelung verpflichtet Banken und Versicherungen seit Januar 2025 zur digitalen Widerstandsfähigkeit?",
+      "options": [
+        "DORA",
+        "NIS2",
+        "DSGVO Art. 32",
+        "ISO 27002"
+      ],
+      "explanation": "DORA ist eine EU-Verordnung für den Finanzsektor. NIS2 gilt branchenübergreifend für wichtige Einrichtungen."
+    },
+    {
+      "section": "8.1.1",
+      "question": "Wie sind Sicherheitsregeln in Unternehmen typischerweise gestuft (von allgemein nach konkret)?",
+      "options": [
+        "Leitlinie → Richtlinien → Standards und Verfahren → Arbeitsanweisungen",
+        "Arbeitsanweisungen → Standards → Richtlinien → Leitlinie",
+        "Gesetz → Skript → Ticket → Log",
+        "Richtlinie → Leitlinie → Runbook → Policy"
+      ],
+      "explanation": "Die Leitlinie legt Ziele und Verantwortung fest, Arbeitsanweisungen beschreiben konkrete Schritte."
+    },
+    {
+      "section": "8.1.2",
+      "question": "Wie wird ein Risiko üblicherweise bewertet?",
+      "options": [
+        "Eintrittswahrscheinlichkeit × Schadenshöhe",
+        "Anzahl der Server × Anzahl der Benutzer",
+        "Kosten der Maßnahme − Schaden",
+        "Schadenshöhe ÷ Anzahl der Mitarbeitenden"
+      ],
+      "explanation": "Bei einer Skala von 1 bis 4 ergeben sich Werte von 1 bis 16, die in eine Risikomatrix eingeordnet werden."
+    },
+    {
+      "section": "8.1.2",
+      "question": "Wahrscheinlichkeit 3, Schaden 4. Wie wird das Risiko nach der Matrix im Kapitel eingestuft?",
+      "options": [
+        "Sehr hoch (12)",
+        "Hoch (7)",
+        "Mittel (12)",
+        "Niedrig (1)"
+      ],
+      "explanation": "3 × 4 = 12. Werte von 12 bis 16 gelten als sehr hoch, 8 bis 9 als hoch, 4 bis 6 als mittel, 1 bis 3 als niedrig."
+    },
+    {
+      "section": "8.1.2",
+      "question": "Wofür steht das „T“ in der Methode STRIDE?",
+      "options": [
+        "Tampering: Daten oder Code manipulieren",
+        "Tracing: Abläufe verfolgen",
+        "Testing: Software prüfen",
+        "Timeout: Zeitüberschreitung"
+      ],
+      "explanation": "STRIDE: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege."
+    },
+    {
+      "section": "8.1.2",
+      "question": "Was gibt der CVSS-Wert einer Schwachstelle an?",
+      "options": [
+        "Eine Bewertung des Schweregrads von 0 bis 10",
+        "Die eindeutige Kennung der Schwachstelle",
+        "Das Datum der Veröffentlichung",
+        "Den Hersteller der Software"
+      ],
+      "explanation": "Die eindeutige Kennung ist die CVE-Nummer, z. B. CVE-2021-44228."
+    },
+    {
+      "section": "8.1.3",
+      "question": "Welche Risikostrategie liegt vor, wenn ein Unternehmen eine Cyberversicherung abschließt?",
+      "options": [
+        "Übertragen",
+        "Vermeiden",
+        "Vermindern",
+        "Akzeptieren"
+      ],
+      "explanation": "Das Risiko wird ganz oder teilweise an andere abgegeben. Akzeptierte Restrisiken bestätigt die Leitung schriftlich."
+    },
+    {
+      "section": "8.1.3",
+      "question": "Was gibt das RPO (Recovery Point Objective) an?",
+      "options": [
+        "Wie viel Datenverlust höchstens hinnehmbar ist",
+        "Wie lange ein System höchstens ausfallen darf",
+        "Wie viele Backups aufbewahrt werden",
+        "Wer im Notfall verantwortlich ist"
+      ],
+      "explanation": "Ein RPO von 1 Stunde erfordert mindestens stündliche Sicherungen. Die maximale Ausfallzeit ist das RTO."
+    },
+    {
+      "section": "8.1.3",
+      "question": "Was bedeutet die „1“ für „offline oder unveränderbar“ in der 3-2-1-1-0-Regel?",
+      "options": [
+        "Eine Kopie ist vor Ransomware geschützt, weil sie nicht verändert werden kann",
+        "Es gibt nur ein einziges Backup",
+        "Das Backup läuft einmal im Monat",
+        "Ein Administrator ist für das Backup zuständig"
+      ],
+      "explanation": "3 Kopien, 2 Medien, 1 an einem anderen Standort, 1 offline oder unveränderbar, 0 Fehler bei getesteten Wiederherstellungen."
+    },
+    {
+      "section": "8.1.3",
+      "question": "Warum muss ein Notfallplan auch ohne Automatisierung funktionieren?",
+      "options": [
+        "Im Ernstfall kann gerade der Automatisierungsserver betroffen sein",
+        "Weil Automatisierung im Notfall verboten ist",
+        "Weil Skripte im Notfall zu langsam sind",
+        "Weil der Notfallplan nur auf Papier existieren darf"
+      ],
+      "explanation": "Wiederherstellungstests lassen sich automatisieren, der manuelle Weg muss trotzdem dokumentiert bleiben."
+    },
+    {
+      "section": "8.2",
+      "question": "Was ist der Unterschied zwischen Authentifizierung und Autorisierung?",
+      "options": [
+        "Authentifizierung prüft, wer jemand ist; Autorisierung legt fest, was er darf",
+        "Authentifizierung legt Rechte fest; Autorisierung prüft das Passwort",
+        "Beide Begriffe bedeuten dasselbe",
+        "Authentifizierung betrifft nur Programme, Autorisierung nur Menschen"
+      ],
+      "explanation": "Erst wird die Identität geprüft, dann werden die passenden Rechte angewendet."
+    },
+    {
+      "section": "8.2",
+      "question": "Welche Kombination ist eine echte Mehr-Faktor-Authentifizierung?",
+      "options": [
+        "Passwort und Code vom Smartphone",
+        "Passwort und Sicherheitsfrage",
+        "Zwei verschiedene Passwörter",
+        "Benutzername und Passwort"
+      ],
+      "explanation": "Die Faktoren müssen aus verschiedenen Kategorien stammen: Wissen, Besitz, Sein. Passwort und Sicherheitsfrage sind beide „Wissen“."
+    },
+    {
+      "section": "8.2",
+      "question": "Was ist der Vorteil eines gruppenverwalteten Dienstkontos (gMSA) unter Windows?",
+      "options": [
+        "Das Active Directory wechselt dessen Passwort automatisch",
+        "Es hat automatisch Domänen-Admin-Rechte",
+        "Es braucht keine Rechte",
+        "Es kann sich interaktiv anmelden"
+      ],
+      "explanation": "Niemand muss das Passwort kennen oder in einem Skript speichern."
+    },
+    {
+      "section": "8.2",
+      "question": "Was bewirkt der Eintrag <code>from=\"10.0.5.20\",command=\"/opt/skripte/backup.sh\"</code> vor einem SSH-Schlüssel in <code>authorized_keys</code>?",
+      "options": [
+        "Der Schlüssel funktioniert nur vom Rechner 10.0.5.20 aus und startet ausschließlich das Backup-Skript",
+        "Das Backup-Skript wird an 10.0.5.20 geschickt",
+        "Der Schlüssel wird nach dem Backup gelöscht",
+        "Alle Benutzer dürfen das Backup starten"
+      ],
+      "explanation": "Wird der Schlüssel gestohlen, bleibt der mögliche Schaden auf diesen einen Befehl begrenzt."
+    },
+    {
+      "section": "8.2",
+      "question": "Was passiert, wenn ein signiertes PowerShell-Skript nachträglich verändert wird?",
+      "options": [
+        "Die Signatur wird ungültig, mit der Richtlinie AllSigned verweigert PowerShell die Ausführung",
+        "Die Signatur wird automatisch erneuert",
+        "Nichts, die Signatur gilt weiter",
+        "Das Skript wird automatisch gelöscht"
+      ],
+      "explanation": "Die Signatur schützt so die Integrität des Skripts."
+    },
+    {
+      "section": "8.2.1",
+      "question": "Wie unterscheidet sich eine Hashfunktion wie SHA-256 von einer Verschlüsselung?",
+      "options": [
+        "Sie erzeugt einen Fingerabdruck, aus dem sich die Daten nicht zurückgewinnen lassen",
+        "Sie benötigt zwei Schlüssel",
+        "Sie ist schneller umkehrbar als AES",
+        "Es gibt keinen Unterschied"
+      ],
+      "explanation": "Hashes prüfen die Integrität. Verschlüsselte Daten lassen sich dagegen mit dem passenden Schlüssel wieder entschlüsseln."
+    },
+    {
+      "section": "8.2.1",
+      "question": "Ist Base64 eine geeignete Methode, um Passwörter in Skripten zu schützen?",
+      "options": [
+        "Nein, Base64 ist nur eine Kodierung und in Sekunden umkehrbar",
+        "Ja, Base64 ist eine starke Verschlüsselung",
+        "Ja, wenn das Passwort lang genug ist",
+        "Nein, weil Base64 unter Linux nicht funktioniert"
+      ],
+      "explanation": "Zugangsdaten gehören in einen Tresor oder eine verschlüsselte Datei, nicht kodiert in den Code."
+    },
+    {
+      "section": "8.2.1",
+      "question": "Warum sollten Passwörter nicht als Kommandozeilenparameter übergeben werden?",
+      "options": [
+        "Parameter sind in der Prozessliste, z. B. mit <code>ps</code>, für andere sichtbar",
+        "Weil Parameter keine Sonderzeichen enthalten dürfen",
+        "Weil Parameter zu kurz sind",
+        "Weil Skripte dann langsamer laufen"
+      ],
+      "explanation": "Besser: das Passwort im Skript aus einem Tresor oder einer geschützten Datei lesen."
+    },
+    {
+      "section": "8.2.1",
+      "question": "Wer kann eine mit <code>Export-Clixml</code> gespeicherte Anmeldeinformation wieder entschlüsseln?",
+      "options": [
+        "Nur derselbe Benutzer auf demselben Rechner",
+        "Jeder Administrator im Netzwerk",
+        "Jeder, der die Datei kopiert",
+        "Nur Microsoft"
+      ],
+      "explanation": "Export-Clixml nutzt die Windows-Datenschutz-API (DPAPI). Deshalb legt man die Datei als das Dienstkonto an, unter dem das Skript später läuft."
+    },
+    {
+      "section": "8.2.1",
+      "question": "Wozu dient die Datei <code>backup.tar.gz.enc.sha256</code> im Beispiel?",
+      "options": [
+        "Mit <code>sha256sum -c</code> lässt sich vor der Wiederherstellung prüfen, ob das Backup unverändert ist",
+        "Sie enthält den Schlüssel zum Entschlüsseln",
+        "Sie ist eine zweite Kopie des Backups",
+        "Sie komprimiert das Backup"
+      ],
+      "explanation": "Schon ein einziges geändertes Byte führt zur Meldung FAILED."
+    },
+    {
+      "section": "8.3.1",
+      "question": "Was lehrt der Fall WannaCry aus dem Jahr 2017?",
+      "options": [
+        "Das Update gegen die ausgenutzte Lücke gab es bereits zwei Monate vorher; betroffen waren vor allem ungepatchte Systeme",
+        "Gegen Ransomware helfen Updates nicht",
+        "Nur Linux-Systeme waren betroffen",
+        "Die Lücke war eine Zero-Day-Lücke ohne Update"
+      ],
+      "explanation": "Zügiges Patchen hätte viele Infektionen verhindert."
+    },
+    {
+      "section": "8.3.1",
+      "question": "Was ist eine Zero-Day-Lücke?",
+      "options": [
+        "Eine Schwachstelle, die ausgenutzt wird, bevor ein Update existiert",
+        "Eine Lücke, die am selben Tag behoben wird",
+        "Eine Lücke ohne Auswirkungen",
+        "Ein Fehler im Datum eines Programms"
+      ],
+      "explanation": "Hier helfen nur gestaffelte Schutzmaßnahmen und eine schnelle Reaktion, sobald das Update erscheint."
+    },
+    {
+      "section": "8.3.1",
+      "question": "An welchem Tag veröffentlicht Microsoft regulär Sicherheitsupdates?",
+      "options": [
+        "Am zweiten Dienstag des Monats",
+        "Am ersten Montag des Monats",
+        "Am letzten Freitag des Monats",
+        "Täglich um Mitternacht"
+      ],
+      "explanation": "Dieser Termin wird „Patch Tuesday“ genannt."
+    },
+    {
+      "section": "8.3.1",
+      "question": "Eine Lücke hat einen CVSS-Wert von 9,8. Wie wird sie eingestuft?",
+      "options": [
+        "Kritisch",
+        "Hoch",
+        "Mittel",
+        "Niedrig"
+      ],
+      "explanation": "9,0 bis 10,0 gilt als kritisch. Im Beispiel der Richtlinie muss sie innerhalb von 24 bis 72 Stunden installiert werden."
+    },
+    {
+      "section": "8.3.1",
+      "question": "Warum beginnt Patchmanagement mit einem Inventar?",
+      "options": [
+        "Ohne zu wissen, welche Systeme und Programme im Einsatz sind, kann man nicht vollständig aktualisieren",
+        "Weil Updates nur mit Inventarnummer installiert werden können",
+        "Weil das Inventar die Updates herunterlädt",
+        "Weil es gesetzlich vorgeschrieben ist, das Inventar zuerst zu drucken"
+      ],
+      "explanation": "Log4Shell zeigte, dass viele Unternehmen nicht wussten, wo die betroffene Bibliothek überall eingesetzt war."
+    },
+    {
+      "section": "8.3.1",
+      "question": "Welches Werkzeug installiert unter Debian und Ubuntu Sicherheitsupdates automatisch?",
+      "options": [
+        "<code>unattended-upgrades</code>",
+        "<code>dnf-automatic</code>",
+        "<code>Update-Module</code>",
+        "<code>Get-HotFix</code>"
+      ],
+      "explanation": "<code>dnf-automatic</code> ist das Gegenstück für Red Hat und verwandte Systeme."
+    },
+    {
+      "section": "8.4.1",
+      "question": "Welche TLS-Versionen gelten heute als sicher?",
+      "options": [
+        "TLS 1.2 und 1.3",
+        "SSL 3.0 und TLS 1.0",
+        "TLS 1.0 und 1.1",
+        "Alle Versionen sind gleich sicher"
+      ],
+      "explanation": "SSL sowie TLS 1.0 und 1.1 sind veraltet und abgekündigt."
+    },
+    {
+      "section": "8.4.1",
+      "question": "Was ist der sichere Ersatz für FTP?",
+      "options": [
+        "SFTP oder FTPS",
+        "Telnet",
+        "HTTP",
+        "SMBv1"
+      ],
+      "explanation": "Weitere Beispiele: Telnet → SSH, HTTP → HTTPS, SNMPv1/v2c → SNMPv3."
+    },
+    {
+      "section": "8.4.1",
+      "question": "Wofür wird IPsec typischerweise eingesetzt?",
+      "options": [
+        "Für VPN-Verbindungen zwischen Standorten, der gesamte IP-Verkehr wird verschlüsselt",
+        "Für die Anmeldung an einer Webseite",
+        "Für die Verschlüsselung einzelner Dateien",
+        "Für das Signieren von Skripten"
+      ],
+      "explanation": "TLS sichert dagegen einzelne Anwendungsverbindungen, z. B. HTTPS."
+    },
+    {
+      "section": "8.4.1",
+      "question": "Was sollte man in Skripten bei HTTPS-Verbindungen niemals tun?",
+      "options": [
+        "Die Zertifikatsprüfung abschalten, z. B. mit <code>curl -k</code>",
+        "Ein Token im Header mitschicken",
+        "Die TLS-Version vorgeben",
+        "Den Exit-Code prüfen"
+      ],
+      "explanation": "Ohne Zertifikatsprüfung kann sich jeder als Server ausgeben. Bei internen Zertifikaten hinterlegt man die eigene Zertifizierungsstelle."
+    },
+    {
+      "section": "8.4.1",
+      "question": "Warum verwendet man für API-Zugriffe OAuth 2.0 statt eines Passworts?",
+      "options": [
+        "Tokens sind zeitlich begrenzt und können auf minimale Berechtigungen beschränkt werden",
+        "Weil APIs keine Passwörter verstehen",
+        "Weil Tokens nie ablaufen",
+        "Weil OAuth keine Verschlüsselung braucht"
+      ],
+      "explanation": "Noch besser ist die Anmeldung der Anwendung mit einem Zertifikat statt eines geheimen Schlüssels."
+    },
+    {
+      "section": "8.4.2",
+      "question": "Was ist der Unterschied zwischen einem Schwachstellenscan und einem Penetrationstest?",
+      "options": [
+        "Der Scan sucht automatisch nach bekannten Lücken; beim Penetrationstest greifen Fachleute das System gezielt an",
+        "Beide sind identisch",
+        "Der Penetrationstest läuft täglich automatisch, der Scan einmal im Jahr",
+        "Der Scan prüft nur Passwörter"
+      ],
+      "explanation": "Scans laufen häufig, z. B. wöchentlich, Penetrationstests etwa jährlich und nach großen Änderungen."
+    },
+    {
+      "section": "8.4.2",
+      "question": "Welches Windows-Ereignis protokolliert eine fehlgeschlagene Anmeldung?",
+      "options": [
+        "4625",
+        "4624",
+        "4720",
+        "4104"
+      ],
+      "explanation": "4624 ist eine erfolgreiche Anmeldung, 4720 ein neues Benutzerkonto, 4104 ein ausgeführter PowerShell-Skriptblock."
+    },
+    {
+      "section": "8.4.2",
+      "question": "Was protokolliert das PowerShell Script Block Logging?",
+      "options": [
+        "Den Inhalt ausgeführter PowerShell-Befehle",
+        "Nur fehlgeschlagene Anmeldungen",
+        "Die CPU-Auslastung",
+        "Die Netzwerkpakete"
+      ],
+      "explanation": "Es wird per Gruppenrichtlinie aktiviert und schreibt das Ereignis 4104."
+    },
+    {
+      "section": "8.4.2",
+      "question": "Wie oft finden bei einer ISO-27001-Zertifizierung externe Audits statt?",
+      "options": [
+        "Jährliche Überwachungsaudits und alle drei Jahre eine Rezertifizierung",
+        "Nur einmal bei der ersten Zertifizierung",
+        "Jeden Monat",
+        "Alle zehn Jahre"
+      ],
+      "explanation": "Zusätzlich führt das Unternehmen selbst interne Audits durch."
+    },
+    {
+      "section": "8.4.2",
+      "question": "Was findet <code>find /opt/skripte -type f -perm -o+w</code>?",
+      "options": [
+        "Skripte, die für alle Benutzer beschreibbar sind",
+        "Skripte mit Passwörtern",
+        "Skripte ohne Ausführrecht",
+        "Skripte, die heute geändert wurden"
+      ],
+      "explanation": "Für alle beschreibbare Skripte sind ein Sicherheitsrisiko, weil jeder Code einschleusen kann."
+    },
+    {
+      "section": "8.6",
+      "question": "Welche Schwäche von HealthCare Solutions wiegt im Lösungsvorschlag am schwersten?",
+      "options": [
+        "Unverschlüsselte Backups von Gesundheitsdaten",
+        "Zwei-Faktor-Authentifizierung für alle",
+        "Phishing-Schulungen",
+        "Verschlüsselte Datenübertragung"
+      ],
+      "explanation": "Gesundheitsdaten sind nach Art. 9 DSGVO besonders schützenswert. Ein gestohlenes Backup legt alle Patientendaten offen."
+    },
+    {
+      "section": "8.6",
+      "question": "Warum ist FinServ Inc. laut Lösungsvorschlag am besten aufgestellt?",
+      "options": [
+        "Das ISMS nach ISO 27001 sorgt für systematisches Risikomanagement und regelmäßige Überprüfung",
+        "Weil es als einziges Unternehmen eine Firewall hat",
+        "Weil es die meisten Mitarbeitenden hat",
+        "Weil es keine Schwächen hat"
+      ],
+      "explanation": "Hinzu kommen HSMs für Schlüssel und tägliche Schwachstellenprüfungen. Lücken wie fehlende Angaben zu MFA fielen im ISMS-Kreislauf auf."
+    },
+    {
+      "section": "8.6",
+      "question": "Welche wichtige Maßnahme fehlt bei TechCorp vollständig?",
+      "options": [
+        "Backups und damit der Schutz der Verfügbarkeit",
+        "TLS für die Datenübertragung",
+        "Regelmäßige Updates",
+        "Firewall und Virenschutz"
+      ],
+      "explanation": "Ohne Backups ist das Unternehmen bei Ransomware oder Hardwareausfall nicht geschützt. Außerdem fehlen MFA, Richtlinien und Audits."
+    }
+  ]
+}

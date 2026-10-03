@@ -6,14 +6,14 @@ import { useCourseProgress } from "./useCourseProgress";
 
 interface MarkCompleteButtonProps {
   courseSlug: string;
-  lessonSlug: string;
-  lessonSlugs: string[];
+  stepId: string;
+  stepIds: string[];
 }
 
-// F10: Einheit als erledigt markieren (umschaltbar)
-export function MarkCompleteButton({ courseSlug, lessonSlug, lessonSlugs }: MarkCompleteButtonProps) {
-  const { completed } = useCourseProgress(courseSlug, lessonSlugs);
-  const done = completed.has(lessonSlug);
+// F10: Kapitel als erledigt markieren (umschaltbar)
+export function MarkCompleteButton({ courseSlug, stepId, stepIds }: MarkCompleteButtonProps) {
+  const { completed } = useCourseProgress(courseSlug, stepIds);
+  const done = completed.has(stepId);
 
   return (
     <div
@@ -22,12 +22,12 @@ export function MarkCompleteButton({ courseSlug, lessonSlug, lessonSlugs }: Mark
       }`}
     >
       <p className="font-semibold">
-        {done ? "Diese Einheit hast du erledigt." : "Alles verstanden? Dann markiere die Einheit als erledigt."}
+        {done ? "Dieses Kapitel hast du erledigt." : "Alles gelesen? Dann markiere das Kapitel als erledigt."}
       </p>
       <button
         type="button"
         aria-pressed={done}
-        onClick={() => setLessonCompleted(courseSlug, lessonSlug, !done)}
+        onClick={() => setLessonCompleted(courseSlug, stepId, !done)}
         className={`inline-flex items-center gap-2 rounded-xl px-5 py-2.5 font-semibold transition-colors focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent ${
           done
             ? "border border-success/40 bg-surface text-success hover:bg-success-soft"

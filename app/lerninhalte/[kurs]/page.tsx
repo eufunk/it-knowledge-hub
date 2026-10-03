@@ -1,11 +1,12 @@
-import { Clock, Layers } from "lucide-react";
+import { Clock, FileQuestionMark, Layers } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { CourseOverview } from "@/components/learning/CourseOverview";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { getAllCourses, getCourse } from "@/lib/content/courses";
-import { formatLessonCount } from "@/lib/utils/format";
+import { formatCourseSize, plural } from "@/lib/utils/format";
+import { getCourseSteps } from "@/lib/utils/steps";
 
 // Unbekannte Kurse führen zu 404 statt zu einer Seite zur Laufzeit.
 export const dynamicParams = false;
@@ -20,11 +21,14 @@ export async function generateMetadata({ params }: PageProps<"/lerninhalte/[kurs
   return course ? { title: course.title, description: course.description } : {};
 }
 
-// F6: Kursseite mit Kopfbereich, Fortschritt und Einheiten
+// F6: Kursseite mit Kopfbereich, Fortschritt und Kursinhalt nach Modulen
 export default async function KursPage({ params }: PageProps<"/lerninhalte/[kurs]">) {
   const { kurs } = await params;
   const course = getCourse(kurs);
   if (!course) notFound();
+
+  const chapters = course.modules.flatMap((module) => module.lessons);
+  const quizCount = chapters.filter((lesson) => lesson.hasQuiz).length;
 
   return (
     <>
@@ -46,8 +50,14 @@ export default async function KursPage({ params }: PageProps<"/lerninhalte/[kurs
             </span>
             <span className="inline-flex items-center gap-2 rounded-lg bg-canvas px-3 py-2">
               <Layers aria-hidden className="size-4 text-accent" />
-              {formatLessonCount(course.lessons.length)}
+              {formatCourseSize(course.modules.length, chapters.length)}
             </span>
+            {quizCount > 0 && (
+              <span className="inline-flex items-center gap-2 rounded-lg bg-canvas px-3 py-2">
+                <FileQuestionMark aria-hidden className="size-4 text-accent" />
+                {plural(quizCount, "Wissenstest", "Wissenstests")}
+              </span>
+            )}
           </div>
         </div>
         <div className="relative aspect-video overflow-hidden rounded-card bg-accent-soft">
@@ -55,7 +65,12 @@ export default async function KursPage({ params }: PageProps<"/lerninhalte/[kurs
         </div>
       </header>
 
-      <CourseOverview courseSlug={course.slug} lessons={course.lessons} />
+      <CourseOverview
+        courseSlug={course.slug}
+        modules={course.modules}
+        appendix={course.appendix}
+        steps={getCourseSteps(course)}
+      />
     </>
   );
 }

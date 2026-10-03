@@ -1,0 +1,397 @@
+{
+  "sections": {
+    "6.1": "Erkennung von Routineaufgaben",
+    "6.1.1": "Datenerfassung",
+    "6.1.2": "Analyse",
+    "6.1.3": "Planung",
+    "6.1.4": "Reflexion",
+    "6.2": "Beispiel IT-Support"
+  },
+  "questions": [
+    {
+      "section": "6.1",
+      "question": "Was kennzeichnet eine Routineaufgabe?",
+      "options": [
+        "Sie kehrt regelmäßig wieder und läuft jedes Mal nach demselben Muster ab",
+        "Sie kommt selten vor, ist aber besonders wichtig",
+        "Sie erfordert viel Erfahrung und Fingerspitzengefühl",
+        "Sie wird nur von Führungskräften erledigt"
+      ],
+      "explanation": "Routineaufgaben binden viel Zeit, sind wenig anspruchsvoll und gerade deshalb fehleranfällig. Sie sind die besten Kandidaten für eine Automatisierung."
+    },
+    {
+      "section": "6.1",
+      "question": "Welche Aufgabe eignet sich am wenigsten für eine Automatisierung?",
+      "options": [
+        "Defekte Hardware austauschen",
+        "Passwörter zurücksetzen",
+        "Benutzerkonten nach Vorgaben der Personalabteilung anlegen",
+        "Einen monatlichen Speicherplatzbericht erstellen"
+      ],
+      "explanation": "Physische Handgriffe lassen sich nicht per Skript erledigen. Weniger geeignet sind auch seltene Aufgaben, Aufgaben mit viel Ermessensspielraum und Abläufe, die sich ständig ändern."
+    },
+    {
+      "section": "6.1",
+      "question": "Woran erkennt man, dass eine Aufgabe regelbasiert ist?",
+      "options": [
+        "Jede Entscheidung lässt sich mit „wenn … dann …“ beschreiben",
+        "Sie wird durch eine Unternehmensrichtlinie vorgeschrieben",
+        "Sie muss von einer bestimmten Person erledigt werden",
+        "Sie dauert jedes Mal genau gleich lange"
+      ],
+      "explanation": "Regelbasierte Aufgaben haben kaum Ermessensspielraum. Genau solche Entscheidungen kann ein Skript zuverlässig treffen."
+    },
+    {
+      "section": "6.1",
+      "question": "In welcher Reihenfolge laufen die vier Schritte zur Erkennung und Umsetzung ab?",
+      "options": [
+        "Datenerfassung → Analyse → Planung → Reflexion",
+        "Planung → Datenerfassung → Reflexion → Analyse",
+        "Analyse → Planung → Datenerfassung → Reflexion",
+        "Reflexion → Analyse → Datenerfassung → Planung"
+      ],
+      "explanation": "Nach der Reflexion beginnt der Kreislauf von vorn, mit Verbesserungen und neuen Kandidaten."
+    },
+    {
+      "section": "6.1",
+      "question": "Welchem bekannten Modell entspricht der Kreislauf aus Datenerfassung, Analyse, Planung und Reflexion?",
+      "options": [
+        "Dem PDCA-Zyklus",
+        "Dem EVA-Prinzip",
+        "Dem Pareto-Prinzip",
+        "Der Nutzwertanalyse"
+      ],
+      "explanation": "Datenerfassung, Analyse und Planung bilden „Plan“, die Umsetzung „Do“, die Reflexion „Check“ und „Act“ (Abschnitt 2.5)."
+    },
+    {
+      "section": "6.1.1",
+      "question": "Warum verwendet man bei der Zeitmessung den Median statt des Durchschnitts?",
+      "options": [
+        "Einzelne Ausreißer verzerren den Durchschnitt, den Median kaum",
+        "Der Median ist immer kleiner als der Durchschnitt",
+        "Der Durchschnitt lässt sich nicht berechnen",
+        "Der Median zählt nur die schnellsten Fälle"
+      ],
+      "explanation": "Ein einzelner Fall mit 3 Stunden statt 20 Minuten verfälscht den Durchschnitt stark. Der Median ist der mittlere Wert der sortierten Messungen."
+    },
+    {
+      "section": "6.1.1",
+      "question": "Wie viele Durchläufe einer Aufgabe sollte man mindestens messen?",
+      "options": [
+        "Mindestens fünf",
+        "Einen einzigen",
+        "Genau zwei",
+        "Mindestens hundert"
+      ],
+      "explanation": "Mehrere Messungen gleichen Schwankungen aus. Wartezeiten werden dabei getrennt von der reinen Arbeitszeit erfasst."
+    },
+    {
+      "section": "6.1.1",
+      "question": "Welche Datenquelle zeigt auch Arbeitsschritte, die in Interviews niemand erwähnt?",
+      "options": [
+        "Die Beobachtung des tatsächlichen Ablaufs",
+        "Das Ticketsystem",
+        "Die Zeiterfassung",
+        "Vorhandene Checklisten"
+      ],
+      "explanation": "Wer einen Ablauf direkt begleitet, sieht jeden Klick und jede Umgehungslösung, die im Alltag selbstverständlich geworden ist."
+    },
+    {
+      "section": "6.1.1",
+      "question": "Was ist die wichtigste Einschränkung des Ticketsystems als Datenquelle?",
+      "options": [
+        "Es enthält nur gemeldete Fälle",
+        "Es liefert keine Zahlen",
+        "Es ist nicht objektiv",
+        "Es zeigt keine Kategorien"
+      ],
+      "explanation": "Was Mitarbeitende selbst erledigen, ohne ein Ticket zu öffnen, taucht dort nicht auf. Kategorien sollten vor der Auswertung vereinheitlicht werden."
+    },
+    {
+      "section": "6.1.1",
+      "question": "Was gehört in einen Prozesssteckbrief?",
+      "options": [
+        "Auslöser, Häufigkeit, Dauer, Schritte, Systeme, Beteiligte, Ausnahmen und Ergebnis",
+        "Nur der Name der Aufgabe und die zuständige Person",
+        "Der fertige Programmcode der Automatisierung",
+        "Die Gehälter aller Beteiligten"
+      ],
+      "explanation": "Der Steckbrief hält die wichtigsten Daten jeder Kandidatenaufgabe einheitlich fest und macht sie vergleichbar."
+    },
+    {
+      "section": "6.1.1",
+      "question": "Warum muss bei Tätigkeitsprotokollen und Ticketauswertungen gegebenenfalls der Betriebsrat beteiligt werden?",
+      "options": [
+        "Die Daten können Rückschlüsse auf Leistung oder Verhalten einzelner Personen zulassen",
+        "Weil der Betriebsrat die Skripte programmiert",
+        "Weil Ticketsysteme grundsätzlich verboten sind",
+        "Weil nur der Betriebsrat Zugriff auf die Daten hat"
+      ],
+      "explanation": "Technische Einrichtungen zur Leistungs- oder Verhaltenskontrolle sind mitbestimmungspflichtig (§ 87 Abs. 1 Nr. 6 BetrVG). Daten deshalb anonymisiert oder zusammengefasst auswerten."
+    },
+    {
+      "section": "6.1.2",
+      "question": "Was ist ein Medienbruch?",
+      "options": [
+        "Daten wechseln das Medium, z. B. werden sie aus einer E-Mail von Hand in ein System getippt",
+        "Ein Bildschirm fällt während der Arbeit aus",
+        "Ein Video lässt sich nicht abspielen",
+        "Eine Netzwerkverbindung wird unterbrochen"
+      ],
+      "explanation": "Medienbrüche kosten Zeit und verursachen Tippfehler. Ein Formular oder eine Schnittstelle übernimmt die Daten direkt."
+    },
+    {
+      "section": "6.1.2",
+      "question": "Was bedeutet der Grundsatz „Erst vereinfachen, dann automatisieren“?",
+      "options": [
+        "Überflüssige Schritte vorher streichen, sonst entsteht nur ein schneller umständlicher Ablauf",
+        "Zuerst ein einfaches Werkzeug kaufen",
+        "Nur einfache Aufgaben automatisieren",
+        "Den Programmcode möglichst kurz halten"
+      ],
+      "explanation": "Wer einen umständlichen Ablauf automatisiert, behält alle seine Schwächen, nur schneller."
+    },
+    {
+      "section": "6.1.2",
+      "question": "Eine Abteilung erledigt eine Aufgabe in fünf verschiedenen Varianten. Was ist der richtige erste Schritt?",
+      "options": [
+        "Den Ablauf vereinheitlichen und erst dann automatisieren",
+        "Fünf getrennte Skripte schreiben",
+        "Die Aufgabe sofort per RPA automatisieren",
+        "Die Aufgabe nicht weiter betrachten"
+      ],
+      "explanation": "Viele Varianten machen eine Automatisierung teuer und fehleranfällig. Ein einheitlicher Ablauf ist die Voraussetzung."
+    },
+    {
+      "section": "6.1.2",
+      "question": "Jede Aufgabe erhält für fünf Kriterien je 1 bis 5 Punkte. Ab welcher Summe gilt sie als sehr gut geeignet?",
+      "options": [
+        "Ab 18 Punkten",
+        "Ab 10 Punkten",
+        "Ab 25 Punkten",
+        "Ab 5 Punkten"
+      ],
+      "explanation": "12 bis 17 Punkte bedeuten „genauer prüfen“, unter 12 Punkten ist eine Aufgabe kaum geeignet."
+    },
+    {
+      "section": "6.1.2",
+      "question": "140 Fälle pro Monat, 80 % werden automatisiert, je Fall werden 8 Minuten gespart. Wie hoch ist die Einsparung?",
+      "options": [
+        "Rund 14,9 Stunden pro Monat",
+        "Rund 18,7 Stunden pro Monat",
+        "Rund 112 Stunden pro Monat",
+        "Rund 9 Stunden pro Monat"
+      ],
+      "explanation": "140 × 0,8 × 8 Minuten = 896 Minuten, geteilt durch 60 ergibt rund 14,9 Stunden."
+    },
+    {
+      "section": "6.1.2",
+      "question": "Was gibt die Amortisationszeit an?",
+      "options": [
+        "Nach wie vielen Monaten sich der Umsetzungsaufwand durch die eingesparte Zeit ausgeglichen hat",
+        "Wie lange die Umsetzung dauert",
+        "Wie lange ein Skript für einen Durchlauf braucht",
+        "Nach wie vielen Monaten ein Skript gelöscht wird"
+      ],
+      "explanation": "Formel: Umsetzungsaufwand ÷ (Einsparung pro Monat − Wartungsaufwand pro Monat)."
+    },
+    {
+      "section": "6.1.2",
+      "question": "Umsetzungsaufwand 40 h, Einsparung 15 h pro Monat, Wartung 1 h pro Monat. Wie lang ist die Amortisationszeit?",
+      "options": [
+        "Rund 2,9 Monate",
+        "Rund 2,7 Monate",
+        "Rund 4 Monate",
+        "Rund 0,4 Monate"
+      ],
+      "explanation": "40 ÷ (15 − 1) = 40 ÷ 14 ≈ 2,9 Monate. Ohne die Wartung käme man fälschlich auf 2,7 Monate."
+    },
+    {
+      "section": "6.1.2",
+      "question": "Was ist ein Quick Win in der Aufwand-Nutzen-Matrix?",
+      "options": [
+        "Eine Maßnahme mit hohem Nutzen und geringem Aufwand, die sofort umgesetzt wird",
+        "Eine Maßnahme mit geringem Nutzen und hohem Aufwand",
+        "Ein großes Projekt, das in Etappen umgesetzt wird",
+        "Eine Maßnahme ohne jeden Aufwand"
+      ],
+      "explanation": "Quick Wins bringen schnell sichtbare Erfolge und schaffen Vertrauen in die Automatisierung."
+    },
+    {
+      "section": "6.1.2",
+      "question": "Was empfiehlt die Aufwand-Nutzen-Matrix für „Zeitfresser“ mit geringem Nutzen und hohem Aufwand?",
+      "options": [
+        "Nicht umsetzen",
+        "Sofort umsetzen",
+        "In Etappen umsetzen",
+        "Umsetzen, wenn Zeit ist"
+      ],
+      "explanation": "Lückenfüller (geringer Nutzen, geringer Aufwand) setzt man um, wenn Zeit ist. Zeitfresser kosten mehr, als sie bringen."
+    },
+    {
+      "section": "6.1.3",
+      "question": "Wofür steht die SMART-Regel für Ziele?",
+      "options": [
+        "Spezifisch, messbar, attraktiv, realistisch, terminiert",
+        "Schnell, modern, automatisch, robust, technisch",
+        "Sicher, machbar, analysiert, reproduzierbar, testbar",
+        "Strukturiert, minimal, agil, regelbasiert, transparent"
+      ],
+      "explanation": "Beispiel: „Bis zum 31.03.2027 sinkt der manuelle Aufwand von 74 auf unter 30 Stunden pro Monat.“"
+    },
+    {
+      "section": "6.1.3",
+      "question": "Warum müssen die Ausgangswerte (Baseline) vor dem Start der Automatisierung festgehalten werden?",
+      "options": [
+        "Ohne sie lässt sich der Erfolg später nicht messen",
+        "Weil das Skript die Werte zum Starten braucht",
+        "Weil sie nach der Automatisierung gelöscht werden",
+        "Weil sie für die Lizenz benötigt werden"
+      ],
+      "explanation": "Nur der Vergleich von vorher und nachher zeigt, ob das Ziel erreicht wurde."
+    },
+    {
+      "section": "6.1.3",
+      "question": "Was bedeutet „Rückfallebene“ in der Planung?",
+      "options": [
+        "Der manuelle Weg bleibt dokumentiert, falls die Automatisierung ausfällt",
+        "Das Projekt wird bei Problemen abgebrochen",
+        "Alte Skripte werden aufbewahrt, aber nie genutzt",
+        "Das Team kehrt nach dem Projekt in die alte Abteilung zurück"
+      ],
+      "explanation": "Fällt ein Skript aus, muss die Aufgabe trotzdem erledigt werden können. Ein Runbook beschreibt den manuellen Ablauf."
+    },
+    {
+      "section": "6.1.3",
+      "question": "Wie sollte der Umfang einer Automatisierung zu Beginn gewählt werden?",
+      "options": [
+        "Mit einer kleinen, funktionierenden Version beginnen und später erweitern",
+        "Alle Sonderfälle von Anfang an abdecken",
+        "Möglichst viele Aufgaben in einem einzigen Skript bündeln",
+        "Den Umfang erst nach der Umsetzung festlegen"
+      ],
+      "explanation": "Eine kleine Version bringt schnell Nutzen und Erfahrungen, mit denen sich die Erweiterung besser planen lässt."
+    },
+    {
+      "section": "6.1.3",
+      "question": "Welche Gegenmaßnahme passt zum Risiko „Skript fällt unbemerkt aus“?",
+      "options": [
+        "Protokollierung, Alarm bei Fehlern und regelmäßige Kontrolle",
+        "Das Skript seltener ausführen",
+        "Das Skript ohne Logging betreiben, damit es schneller läuft",
+        "Auf die Rückfallebene verzichten"
+      ],
+      "explanation": "Wie in Abschnitt 2.8 gilt: Jede automatische Aktion wird protokolliert, Fehler lösen eine Benachrichtigung aus."
+    },
+    {
+      "section": "6.1.4",
+      "question": "Welche drei Fragen reichen für eine kurze Nachbesprechung meist aus?",
+      "options": [
+        "Was lief gut? Was lief schlecht und warum? Was machen wir beim nächsten Mal anders?",
+        "Wer war schuld? Wie hoch war der Schaden? Wer zahlt?",
+        "Welches Werkzeug war am teuersten? Welches am billigsten? Welches am neuesten?",
+        "Wann ist das nächste Projekt? Wer leitet es? Wie heißt es?"
+      ],
+      "explanation": "Eine Retrospektive sucht nach Ursachen und Verbesserungen, nicht nach Schuldigen."
+    },
+    {
+      "section": "6.1.4",
+      "question": "Wie oft sollten bestehende Automatisierungen überprüft werden?",
+      "options": [
+        "Regelmäßig, z. B. vierteljährlich",
+        "Nur einmal direkt nach der Einführung",
+        "Nie, solange keine Beschwerden kommen",
+        "Nur bei einem Wechsel der IT-Leitung"
+      ],
+      "explanation": "Systeme und Abläufe ändern sich. Ein Skript, das niemand mehr pflegt, wird zum Risiko."
+    },
+    {
+      "section": "6.1.4",
+      "question": "Was macht man mit Ausnahmen, die eine Automatisierung nicht abdeckt?",
+      "options": [
+        "Sammeln; häufen sie sich, lohnt sich eine Erweiterung",
+        "Ignorieren, weil sie selten sind",
+        "Sofort jede Ausnahme einzeln automatisieren",
+        "Die Automatisierung wieder abschalten"
+      ],
+      "explanation": "Die gesammelten Ausnahmen sind eine wichtige Datenquelle für den nächsten Durchlauf des Kreislaufs."
+    },
+    {
+      "section": "6.2",
+      "question": "Wie viel Routinearbeit ergab die Ticketauswertung im Beispiel aus dem IT-Support?",
+      "options": [
+        "Rund 89 Stunden pro Monat",
+        "Rund 15 Stunden pro Monat",
+        "Rund 300 Stunden pro Monat",
+        "Rund 8 Stunden pro Monat"
+      ],
+      "explanation": "Die sieben Kategorien zusammen entsprechen mehr als einer halben Vollzeitstelle."
+    },
+    {
+      "section": "6.2",
+      "question": "Warum schied die Kategorie „Hardware defekt“ im Beispiel aus?",
+      "options": [
+        "Der Austausch ist ein physischer Handgriff, die Bewertung ergab nur 11 Punkte",
+        "Sie kam zu häufig vor",
+        "Sie war bereits vollständig automatisiert",
+        "Die Personalabteilung war dagegen"
+      ],
+      "explanation": "Bei unter 12 Punkten gilt eine Aufgabe als kaum geeignet."
+    },
+    {
+      "section": "6.2",
+      "question": "Welche Maßnahmen waren im Beispiel Quick Wins?",
+      "options": [
+        "Passwort-Selbstbedienung und Selbstheilung der Druckerwarteschlange",
+        "On- und Offboarding-Skript",
+        "Self-Service-Portal für Software",
+        "Austausch defekter Hardware"
+      ],
+      "explanation": "Beide brachten hohen Nutzen bei geringem Aufwand und amortisierten sich in weniger als zwei Monaten."
+    },
+    {
+      "section": "6.2",
+      "question": "Was war im Beispiel die Hauptursache für den Mehraufwand beim Onboarding?",
+      "options": [
+        "Unvollständige Daten der Personalabteilung",
+        "Ein zu langsamer Server",
+        "Fehlende PowerShell-Kenntnisse",
+        "Zu viele neue Mitarbeitende"
+      ],
+      "explanation": "Jede vierte Meldung war unvollständig. Das Skript brach ab, und die Nacharbeit kostete Zeit."
+    },
+    {
+      "section": "6.2",
+      "question": "Warum wurde im Beispiel erst durch Beschwerden bemerkt, dass das Skript nicht lief?",
+      "options": [
+        "Ein Dienstkonto-Kennwort war abgelaufen, und für Anmeldeprobleme gab es keine Fehlerbenachrichtigung",
+        "Das Skript wurde versehentlich gelöscht",
+        "Der Helpdesk hatte Urlaub",
+        "Das Skript lief zu schnell"
+      ],
+      "explanation": "Als Verbesserung wurde die Fehlerbenachrichtigung auch für Anmeldeprobleme eingerichtet."
+    },
+    {
+      "section": "6.2",
+      "question": "Was macht das Prüfskript, das als Verbesserung im Beispiel eingeführt wurde?",
+      "options": [
+        "Es prüft den HR-Export auf fehlende Pflichtfelder und meldet unvollständige Datensätze, bevor Konten angelegt werden",
+        "Es legt Konten auch bei fehlenden Daten an",
+        "Es löscht unvollständige Datensätze automatisch",
+        "Es schickt neuen Mitarbeitenden ihr Passwort"
+      ],
+      "explanation": "Bei Fehlern gibt es eine Tabelle der betroffenen Personen aus und beendet sich mit Exit-Code 1."
+    },
+    {
+      "section": "6.2",
+      "question": "Wie entwickelte sich der manuelle Aufwand für die Routinekategorien nach drei Monaten?",
+      "options": [
+        "Von 73,9 auf 36,6 Stunden pro Monat",
+        "Von 73,9 auf 19,3 Stunden pro Monat",
+        "Von 89 auf 0 Stunden pro Monat",
+        "Er blieb unverändert"
+      ],
+      "explanation": "19,3 Stunden waren geplant. Das Zwischenziel wurde erreicht, das Endziel von unter 30 Stunden folgt mit Phase 3."
+    }
+  ]
+}

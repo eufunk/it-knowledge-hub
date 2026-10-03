@@ -35,16 +35,15 @@ Geschätzter Aufwand: ca. 6–7 Stunden. Nach jedem Block wird committet.
 
 > Ergänzt: Pflichtfelder im Frontmatter werden geprüft, Regeln für das Einlesen in der Spec (Abschnitt 5.1). Tests arbeiten mit eigenem Testinhalt unter `tests/content/fixtures/`.
 
-## Block 3 – Kursinhalt schreiben (≈ 1,5 h, parallel zu Block 4 möglich)
-> Stand: Kursgerüst mit Metadaten, Platzhalter-Kursbild (SVG) und fünf Einheiten mit Gliederung angelegt, damit die Oberfläche etwas zeigt. Die eigentlichen Texte fehlen noch.
-- [ ] `README.md` mit Kurs-Frontmatter
-- [ ] `01-einfuehrung.md` – Was ist Automatisierung, Nutzen, Risiken
-- [ ] `02-grundlagen.md` – Begriffe, Werkzeugarten (inkl. Vergleichstabelle)
-- [ ] `03-systemautomatisierung.md` – PowerShell/Bash-Beispiele, geplante Tasks
-- [ ] `04-prozessautomatisierung.md` – Prozessmodellierung, RPA, Low-Code, APIs
-- [ ] `05-uebungen.md` – 3–5 Aufgaben mit Lösungshinweisen
-- [ ] Platzhalter-Kursbild nach `public/images/kurse/` (endgültiges Bild → [todo.md](todo.md))
-- [ ] Commit: `content: Kurs System- und Prozessautomatisierung Grundlagen`
+## Block 3 – Kursinhalt ✅ erledigt 2026-10-03
+Statt selbst geschriebener Inhalte übernommen aus `System_und_Prozessautomatisierung_Grundlagen.docx` und `Quiz/Systemautomatisierung_Quiz.html`; Darstellung angelehnt an den zweiten Referenz-Screenshot (Kursansicht), im eigenen Design.
+- [x] Spec erweitert: Module, Kursplayer, Wissenstest, Hinweisboxen, Anhang (F15–F19, F7/F11/F13 angepasst)
+- [x] Word-Dokument einmalig nach Markdown umgewandelt (9 Kapitel + Glossar, Codeblöcke mit Sprache, Tabellen, Hinweisboxen, Musterlösungen eingeklappt)
+- [x] 410 Quizfragen nach `wissenstest/<slug>.json` übernommen
+- [x] 5 Module laut Entscheidung, Glossar als Anhang
+- [x] Kursplayer: Seitenleiste mit Modulen/Kapiteln, Zurück/Weiter, Lesefortschritt
+- [x] Wissenstest: 10 zufällige Fragen, Rückmeldung mit Erklärung, bestanden ab 80 %
+- [x] Tests für Module, Lernschritte, Quiz-Logik, Hinweisboxen und den Ablauf im Wissenstest
 
 ## Block 4 – Layout & Navigation (≈ 1 h) ✅ erledigt 2026-10-03
 - [x] Design-Tokens + Schrift (Outfit) in `styles/globals.css` / `app/layout.tsx`, `lang="de"`

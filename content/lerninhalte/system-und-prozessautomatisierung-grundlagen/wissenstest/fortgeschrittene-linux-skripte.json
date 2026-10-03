@@ -1,0 +1,674 @@
+{
+  "sections": {
+    "5.1": "Linux-Skripte und Unix",
+    "5.2": "Debugging mit set und trap",
+    "5.3": "Fehlerbehandlung, exit und Signale",
+    "5.4": "stderr",
+    "5.5": "Performance",
+    "5.6": "Sicherheit und Isolation",
+    "5.7": "Befehle zur Fehlersuche",
+    "5.8": "Coding Challenge (Linux)"
+  },
+  "questions": [
+    {
+      "section": "5.1",
+      "question": "Was bedeutet das Unix-Prinzip „Alles ist eine Datei“?",
+      "options": [
+        "Konfigurationen, Geräte und Prozessinformationen werden wie Dateien angesprochen, z. B. in <code>/etc</code>, <code>/dev</code> und <code>/proc</code>",
+        "Jedes Programm muss als einzelne Datei gespeichert werden",
+        "Linux kennt keine Verzeichnisse, nur Dateien",
+        "Alle Dateien gehören automatisch dem Benutzer root"
+      ],
+      "explanation": "Deshalb können Skripte mit einfachen Textwerkzeugen Konfigurationen lesen, Geräte ansprechen und Prozessdaten auswerten."
+    },
+    {
+      "section": "5.1",
+      "question": "Wann läuft ein Skript mit dem cron-Eintrag <code>0 2 * * * /opt/skripte/backup.sh</code>?",
+      "options": [
+        "Jeden Tag um 2:00 Uhr",
+        "Alle 2 Minuten",
+        "Am 2. Tag jedes Monats um 0:00 Uhr",
+        "Jeden Montag um 0:02 Uhr"
+      ],
+      "explanation": "Die fünf Felder sind Minute, Stunde, Tag im Monat, Monat und Wochentag. Ein Stern bedeutet „jeder“."
+    },
+    {
+      "section": "5.1",
+      "question": "Was legt der Standard POSIX fest?",
+      "options": [
+        "Eine gemeinsame Schnittstelle für Unix-artige Systeme, z. B. für Shell und grundlegende Befehle",
+        "Das Dateiformat für Bash-Skripte",
+        "Die Lizenz des Linux-Kernels",
+        "Die Rechte für den Benutzer root"
+      ],
+      "explanation": "Skripte, die nur POSIX-Funktionen nutzen, laufen auf Linux, macOS, BSD und kommerziellen Unix-Systemen."
+    },
+    {
+      "section": "5.1",
+      "question": "In welchem Verzeichnis liegen unter Linux die Konfigurationsdateien?",
+      "options": [
+        "<code>/etc</code>",
+        "<code>/var/log</code>",
+        "<code>/opt</code>",
+        "<code>/proc</code>"
+      ],
+      "explanation": "<code>/var/log</code> enthält Logdateien, <code>/opt</code> zusätzliche Software, <code>/proc</code> Informationen zu Prozessen und Kernel."
+    },
+    {
+      "section": "5.1",
+      "question": "Warum sollte ein Skript mit <code>[[ ]]</code> oder Arrays nicht mit <code>#!/bin/sh</code> beginnen?",
+      "options": [
+        "Auf Debian und Ubuntu ist <code>/bin/sh</code> die Shell dash, die diese Bash-Funktionen nicht kennt",
+        "<code>#!/bin/sh</code> ist eine veraltete Schreibweise und wird ignoriert",
+        "<code>/bin/sh</code> darf nur root ausführen",
+        "<code>#!/bin/sh</code> startet immer PowerShell"
+      ],
+      "explanation": "Wer Bash-Funktionen nutzt, schreibt <code>#!/bin/bash</code> oder <code>#!/usr/bin/env bash</code>."
+    },
+    {
+      "section": "5.1",
+      "question": "Was gilt unter Linux für Datei- und Pfadnamen?",
+      "options": [
+        "Groß- und Kleinschreibung wird unterschieden",
+        "Groß- und Kleinschreibung spielt keine Rolle",
+        "Pfade beginnen mit einem Laufwerksbuchstaben",
+        "Dateinamen müssen eine Endung haben"
+      ],
+      "explanation": "<code>Bericht.txt</code> und <code>bericht.txt</code> sind unter Linux zwei verschiedene Dateien, unter Windows dieselbe."
+    },
+    {
+      "section": "5.1",
+      "question": "Wer hat Unix entwickelt?",
+      "options": [
+        "Ken Thompson und Dennis Ritchie in den Bell Labs, ab 1969",
+        "Linus Torvalds im Jahr 1991",
+        "Microsoft für Windows Server",
+        "Apple für macOS"
+      ],
+      "explanation": "Unix wurde 1973 in C neu geschrieben und dadurch portabel. Linus Torvalds entwickelte 1991 den Linux-Kernel."
+    },
+    {
+      "section": "5.2",
+      "question": "Was bewirkt <code>set -x</code>?",
+      "options": [
+        "Jeder Befehl wird vor der Ausführung mit eingesetzten Werten und einem + ausgegeben",
+        "Das Skript bricht beim ersten Fehler ab",
+        "Das Skript wird nur auf Syntaxfehler geprüft",
+        "Alle Variablen werden gelöscht"
+      ],
+      "explanation": "Mit <code>set +x</code> schaltet man die Ablaufverfolgung wieder aus. <code>bash -x skript.sh</code> aktiviert sie für das ganze Skript."
+    },
+    {
+      "section": "5.2",
+      "question": "Was bewirkt <code>set -u</code>?",
+      "options": [
+        "Der Zugriff auf eine nicht gesetzte Variable ist ein Fehler",
+        "Alle Ausgaben werden in Großbuchstaben umgewandelt",
+        "Das Skript läuft als anderer Benutzer",
+        "Ungenutzte Variablen werden gelöscht"
+      ],
+      "explanation": "So fallen Tippfehler in Variablennamen sofort auf, statt still einen leeren Wert zu liefern."
+    },
+    {
+      "section": "5.2",
+      "question": "Was bewirkt <code>set -o pipefail</code>?",
+      "options": [
+        "Eine Pipe gilt als fehlgeschlagen, wenn irgendein Teil fehlschlägt",
+        "Pipes werden im Skript verboten",
+        "Nur der erste Befehl einer Pipe wird ausgeführt",
+        "Fehler in Pipes werden ignoriert"
+      ],
+      "explanation": "Ohne <code>pipefail</code> zählt nur der Exit-Code des letzten Befehls. <code>false | true</code> wäre dann erfolgreich."
+    },
+    {
+      "section": "5.2",
+      "question": "Wozu dient <code>bash -n skript.sh</code>?",
+      "options": [
+        "Syntaxprüfung: Das Skript wird gelesen, aber nicht ausgeführt",
+        "Das Skript wird ohne Ausgabe ausgeführt",
+        "Das Skript wird mit niedriger Priorität gestartet",
+        "Das Skript wird neu nummeriert"
+      ],
+      "explanation": "So findet man Syntaxfehler wie ein fehlendes <code>fi</code>, ohne dass das Skript etwas verändert."
+    },
+    {
+      "section": "5.2",
+      "question": "Wozu dient die Variable <code>PS4</code>?",
+      "options": [
+        "Sie legt fest, was bei <code>set -x</code> vor jeder Zeile steht, z. B. Dateiname und Zeilennummer",
+        "Sie enthält die Prozess-ID des Skripts",
+        "Sie legt den Pfad zur PowerShell fest",
+        "Sie speichert die vierte Eingabe des Benutzers"
+      ],
+      "explanation": "Beispiel: <code>PS4='+ ${BASH_SOURCE}:${LINENO}: '</code> zeigt bei jedem Befehl, in welcher Zeile er steht."
+    },
+    {
+      "section": "5.2",
+      "question": "Ein Skript mit <code>set -e</code> bricht bei <code>((i++))</code> ab, wenn <code>i</code> vorher 0 war. Warum?",
+      "options": [
+        "Der Ausdruck ergibt 0, deshalb liefert er den Exit-Code 1, und <code>set -e</code> bricht ab",
+        "<code>i++</code> ist in der Bash nicht erlaubt",
+        "Die Variable <code>i</code> ist schreibgeschützt",
+        "<code>set -e</code> verbietet alle Berechnungen"
+      ],
+      "explanation": "Besser <code>((++i))</code> oder <code>i=$((i + 1))</code> schreiben. Befehle, deren Fehler erlaubt ist, kennzeichnet man mit <code>|| true</code>."
+    },
+    {
+      "section": "5.2",
+      "question": "Was ist der Unterschied zwischen <code>set -v</code> und <code>set -x</code>?",
+      "options": [
+        "<code>-v</code> zeigt Zeilen so, wie sie gelesen werden; <code>-x</code> zeigt Befehle mit eingesetzten Werten",
+        "<code>-v</code> zeigt nur Variablen, <code>-x</code> nur Befehle",
+        "Es gibt keinen Unterschied",
+        "<code>-v</code> bricht bei Fehlern ab, <code>-x</code> nicht"
+      ],
+      "explanation": "Für die Fehlersuche ist meist <code>-x</code> hilfreicher, weil man sieht, welche Werte tatsächlich verwendet werden."
+    },
+    {
+      "section": "5.2",
+      "question": "Wann wird ein <code>DEBUG</code>-Trap ausgeführt?",
+      "options": [
+        "Vor jedem einzelnen Befehl",
+        "Nur beim Beenden des Skripts",
+        "Nur wenn ein Fehler auftritt",
+        "Nur wenn Strg + C gedrückt wird"
+      ],
+      "explanation": "Mit <code>trap 'read -r -p \"$BASH_COMMAND\"' DEBUG</code> lässt sich ein Skript Schritt für Schritt ausführen."
+    },
+    {
+      "section": "5.2",
+      "question": "Was bedeuten zwei Pluszeichen <code>++</code> in der Ausgabe von <code>set -x</code>?",
+      "options": [
+        "Der Befehl läuft in einer Subshell, z. B. in einer Befehlsersetzung <code>$(...)</code>",
+        "Der Befehl wurde zweimal ausgeführt",
+        "Der Befehl ist fehlgeschlagen",
+        "Der Befehl läuft mit root-Rechten"
+      ],
+      "explanation": "Jede zusätzliche Verschachtelungsebene bekommt ein weiteres Pluszeichen."
+    },
+    {
+      "section": "5.2",
+      "question": "Ein Skript enthält <code>[[ \"${DEBUG:-0}\" == 1 ]] &amp;&amp; set -x</code>. Wie startet man es mit Ablaufverfolgung?",
+      "options": [
+        "<code>DEBUG=1 ./backup.sh</code>",
+        "<code>./backup.sh -debug</code>",
+        "<code>debug ./backup.sh</code>",
+        "<code>./backup.sh DEBUG</code>"
+      ],
+      "explanation": "Die Variable wird nur für diesen Aufruf gesetzt. Ohne sie läuft das Skript normal."
+    },
+    {
+      "section": "5.3",
+      "question": "Welchen Exit-Code hat ein Skript, das mit <code>exit</code> ohne Zahl endet?",
+      "options": [
+        "Den Exit-Code des zuletzt ausgeführten Befehls",
+        "Immer 0",
+        "Immer 1",
+        "255"
+      ],
+      "explanation": "Wer einen bestimmten Code melden will, gibt ihn ausdrücklich an, z. B. <code>exit 0</code> oder <code>exit 3</code>."
+    },
+    {
+      "section": "5.3",
+      "question": "Was bedeutet der Exit-Code 127?",
+      "options": [
+        "Befehl nicht gefunden",
+        "Befehl nicht ausführbar",
+        "Abbruch mit Strg + C",
+        "Erfolg"
+      ],
+      "explanation": "126 bedeutet: gefunden, aber nicht ausführbar. 130 steht für Strg + C, 0 für Erfolg."
+    },
+    {
+      "section": "5.3",
+      "question": "Ein Skript wurde mit Strg + C abgebrochen. Welchen Exit-Code hat es?",
+      "options": [
+        "130",
+        "2",
+        "1",
+        "143"
+      ],
+      "explanation": "Bei einem Abbruch durch Signal n ist der Code 128 + n. SIGINT hat die Nummer 2, also 130. 143 entsteht durch SIGTERM."
+    },
+    {
+      "section": "5.3",
+      "question": "Womit beendet man eine Bash-Funktion mit einem Rückgabewert, ohne das ganze Skript zu beenden?",
+      "options": [
+        "<code>return n</code>",
+        "<code>exit n</code>",
+        "<code>break n</code>",
+        "<code>stop n</code>"
+      ],
+      "explanation": "<code>exit</code> innerhalb einer Funktion beendet das gesamte Skript."
+    },
+    {
+      "section": "5.3",
+      "question": "Wann läuft ein <code>EXIT</code>-Trap?",
+      "options": [
+        "Bei jedem Ende des Skripts: normal, bei <code>exit</code> und nach einem Abbruch durch <code>set -e</code>",
+        "Nur wenn das Skript ohne Fehler endet",
+        "Nur bei Strg + C",
+        "Nur bei <code>kill -9</code>"
+      ],
+      "explanation": "Deshalb eignet sich der <code>EXIT</code>-Trap zum Aufräumen. Nur <code>kill -9</code> verhindert ihn."
+    },
+    {
+      "section": "5.3",
+      "question": "Warum sollte man temporäre Dateien mit <code>mktemp</code> anlegen?",
+      "options": [
+        "Der Name ist zufällig und eindeutig, sodass sich Läufe nicht stören und Angreifer ihn nicht vorhersagen können",
+        "<code>mktemp</code> legt Dateien schneller an als <code>touch</code>",
+        "<code>mktemp</code>-Dateien werden verschlüsselt",
+        "Nur mit <code>mktemp</code> lassen sich Dateien in <code>/tmp</code> anlegen"
+      ],
+      "explanation": "Feste Namen wie <code>/tmp/daten.txt</code> könnte ein anderer Benutzer vorher als Verknüpfung auf eine wichtige Datei anlegen."
+    },
+    {
+      "section": "5.3",
+      "question": "Was bewirkt <code>trap '' INT</code>?",
+      "options": [
+        "Das Signal SIGINT wird ignoriert, Strg + C bricht nicht mehr ab",
+        "Der Trap für SIGINT wird gelöscht",
+        "Bei Strg + C wird eine leere Zeile ausgegeben",
+        "Das Skript wird sofort beendet"
+      ],
+      "explanation": "Das nutzt man für kritische Abschnitte. <code>trap - INT</code> stellt das Standardverhalten wieder her."
+    },
+    {
+      "section": "5.3",
+      "question": "Welche Signale können weder abgefangen noch ignoriert werden?",
+      "options": [
+        "SIGKILL und SIGSTOP",
+        "SIGINT und SIGTERM",
+        "SIGHUP und SIGQUIT",
+        "SIGUSR1 und SIGCONT"
+      ],
+      "explanation": "Auf <code>kill -9</code> (SIGKILL) und <code>kill -STOP</code> kann ein Prozess nicht reagieren."
+    },
+    {
+      "section": "5.3",
+      "question": "Welches Signal sendet <code>kill 1234</code> ohne weitere Option?",
+      "options": [
+        "SIGTERM (15)",
+        "SIGKILL (9)",
+        "SIGINT (2)",
+        "SIGHUP (1)"
+      ],
+      "explanation": "SIGTERM bittet den Prozess, sich zu beenden. Er kann darauf reagieren und vorher aufräumen."
+    },
+    {
+      "section": "5.3",
+      "question": "Warum schreibt man in einem Dienst-Skript <code>sleep 30 &amp; wait $!</code> statt <code>sleep 30</code>?",
+      "options": [
+        "Damit ein Trap sofort reagiert und nicht erst nach Ende der 30 Sekunden",
+        "Damit die Pause genauer eingehalten wird",
+        "Damit das Skript weniger Speicher braucht",
+        "Weil <code>sleep</code> sonst als root läuft"
+      ],
+      "explanation": "Die Bash führt Traps erst aus, wenn der Vordergrundbefehl beendet ist. <code>wait</code> wird durch das Signal sofort unterbrochen."
+    },
+    {
+      "section": "5.3",
+      "question": "Warum sollte man Prozesse nicht sofort mit <code>kill -9</code> beenden?",
+      "options": [
+        "Der Prozess kann nicht aufräumen, Traps laufen nicht, temporäre Dateien und Sperren bleiben zurück",
+        "<code>kill -9</code> startet den Rechner neu",
+        "<code>kill -9</code> wirkt erst nach 9 Sekunden",
+        "<code>kill -9</code> darf nur in Skripten verwendet werden"
+      ],
+      "explanation": "Zuerst SIGTERM senden, dem Prozess Zeit geben und <code>kill -9</code> nur als letztes Mittel verwenden."
+    },
+    {
+      "section": "5.4",
+      "question": "Welche Nummer (Dateideskriptor) hat stderr?",
+      "options": [
+        "2",
+        "0",
+        "1",
+        "3"
+      ],
+      "explanation": "0 ist stdin, 1 ist stdout, 2 ist stderr. Daher kommen Umleitungen wie <code>2&gt; fehler.log</code>."
+    },
+    {
+      "section": "5.4",
+      "question": "Was gibt eine Pipe <code>|</code> an den nächsten Befehl weiter?",
+      "options": [
+        "Nur stdout",
+        "Nur stderr",
+        "stdout und stderr",
+        "Nur den Exit-Code"
+      ],
+      "explanation": "Fehlermeldungen bleiben dadurch im Terminal und verfälschen nicht die Daten. Mit <code>|&amp;</code> gehen beide Ströme in die Pipe."
+    },
+    {
+      "section": "5.4",
+      "question": "Was ist der Unterschied zwischen <code>befehl &gt; datei 2&gt;&amp;1</code> und <code>befehl 2&gt;&amp;1 &gt; datei</code>?",
+      "options": [
+        "Die erste Form schreibt beides in die Datei, die zweite nur stdout; stderr erscheint weiter im Terminal",
+        "Beide schreiben stdout und stderr in die Datei",
+        "Die erste Form schreibt nur stderr in die Datei",
+        "Die zweite Form verwirft alle Ausgaben"
+      ],
+      "explanation": "Umleitungen werden von links nach rechts ausgewertet. <code>2&gt;&amp;1</code> zeigt auf das Ziel, das stdout in diesem Moment hat."
+    },
+    {
+      "section": "5.4",
+      "question": "Wie gibt man in einem Skript eine eigene Meldung auf stderr aus?",
+      "options": [
+        "<code>echo \"Fehler\" &gt;&amp;2</code>",
+        "<code>echo \"Fehler\" 2&gt; /dev/null</code>",
+        "<code>stderr \"Fehler\"</code>",
+        "<code>echo -e \"Fehler\"</code>"
+      ],
+      "explanation": "So landen Fehler- und Statusmeldungen getrennt von den eigentlichen Ergebnissen."
+    },
+    {
+      "section": "5.4",
+      "question": "Was enthält <code>fehler</code> nach <code>fehler=$(cp a b 2&gt;&amp;1 &gt; /dev/null)</code>?",
+      "options": [
+        "Nur die Fehlermeldung von <code>cp</code>",
+        "Nur die normale Ausgabe von <code>cp</code>",
+        "Beide Ausgaben",
+        "Den Exit-Code von <code>cp</code>"
+      ],
+      "explanation": "Zuerst wird stderr in die Variable gelenkt, danach stdout verworfen."
+    },
+    {
+      "section": "5.4",
+      "question": "Wozu dient <code>logger -t backup -p user.err \"Sicherung fehlgeschlagen\"</code>?",
+      "options": [
+        "Die Meldung wird in das Systemprotokoll geschrieben und ist z. B. mit <code>journalctl -t backup</code> abrufbar",
+        "Die Meldung wird per E-Mail verschickt",
+        "Das Backup wird neu gestartet",
+        "Die Meldung wird nur im Terminal angezeigt"
+      ],
+      "explanation": "So landen Fehler unbeaufsichtigter Skripte zentral bei den anderen Systemmeldungen."
+    },
+    {
+      "section": "5.4",
+      "question": "Was prüft <code>[[ -s fehler.log ]]</code>?",
+      "options": [
+        "Ob die Datei existiert und nicht leer ist",
+        "Ob die Datei schreibgeschützt ist",
+        "Ob die Datei eine symbolische Verknüpfung ist",
+        "Ob die Datei kleiner als 1 KB ist"
+      ],
+      "explanation": "Damit lässt sich nach einem Lauf erkennen, ob Fehlermeldungen geschrieben wurden."
+    },
+    {
+      "section": "5.5",
+      "question": "<code>time</code> zeigt: <code>real</code> ist viel größer als <code>user</code> plus <code>sys</code>. Was bedeutet das?",
+      "options": [
+        "Das Skript wartet viel, z. B. auf Netzwerk oder Festplatte",
+        "Das Skript rechnet sehr viel",
+        "Das Skript startet zu wenige Prozesse",
+        "Die Messung ist fehlerhaft"
+      ],
+      "explanation": "<code>real</code> ist die vergangene Zeit, <code>user</code> und <code>sys</code> sind Rechenzeit. Ein hoher <code>sys</code>-Wert deutet auf viele Prozessstarts hin."
+    },
+    {
+      "section": "5.5",
+      "question": "Warum ist <code>x=$(( i + 1 ))</code> in einer Schleife viel schneller als <code>x=$(expr $i + 1)</code>?",
+      "options": [
+        "Die Bash rechnet selbst und startet keinen neuen Prozess",
+        "<code>$(( ))</code> rechnet nur mit kleinen Zahlen",
+        "<code>expr</code> rechnet mit Kommazahlen",
+        "<code>$(( ))</code> läuft parallel auf mehreren Kernen"
+      ],
+      "explanation": "Jeder Aufruf eines externen Programms wie <code>expr</code> startet einen neuen Prozess. In Schleifen summiert sich das stark."
+    },
+    {
+      "section": "5.5",
+      "question": "Welchen Wertebereich hat der Nice-Wert?",
+      "options": [
+        "-20 (höchste Priorität) bis 19 (niedrigste), Standard 0",
+        "0 bis 100, Standard 50",
+        "1 bis 10, Standard 5",
+        "-19 (niedrigste) bis 20 (höchste), Standard 0"
+      ],
+      "explanation": "Je „netter“ ein Prozess, also je höher der Wert, desto mehr Rechenzeit überlässt er anderen."
+    },
+    {
+      "section": "5.5",
+      "question": "Wer darf den Nice-Wert eines Prozesses senken, also seine Priorität erhöhen?",
+      "options": [
+        "Nur root",
+        "Jeder Benutzer für eigene Prozesse",
+        "Niemand, der Wert ist fest",
+        "Nur der Benutzer, der den Prozess gestartet hat"
+      ],
+      "explanation": "Normale Benutzer dürfen den Wert nur erhöhen, also ihre Prozesse herabstufen."
+    },
+    {
+      "section": "5.5",
+      "question": "Was bewirkt <code>renice -n 10 -p 4321</code>?",
+      "options": [
+        "Der laufende Prozess 4321 erhält den Nice-Wert 10 und damit eine niedrigere Priorität",
+        "Der Prozess 4321 wird nach 10 Sekunden beendet",
+        "Der Prozess 4321 wird 10-mal neu gestartet",
+        "Der Prozess 4321 erhält 10 % mehr CPU"
+      ],
+      "explanation": "<code>nice</code> setzt den Wert beim Start, <code>renice</code> ändert ihn bei laufenden Prozessen."
+    },
+    {
+      "section": "5.5",
+      "question": "Was bedeutet ein Load Average, der dauerhaft über der Zahl der CPU-Kerne liegt?",
+      "options": [
+        "Das System ist überlastet, Prozesse müssen auf Rechenzeit warten",
+        "Das System läuft optimal",
+        "Es sind zu wenige Prozesse gestartet",
+        "Der Arbeitsspeicher ist voll"
+      ],
+      "explanation": "Die Zahl der Kerne zeigt <code>nproc</code>. Die drei Werte stehen für 1, 5 und 15 Minuten."
+    },
+    {
+      "section": "5.5",
+      "question": "Mit welcher Taste sortiert man in <code>top</code> nach Speicherverbrauch?",
+      "options": [
+        "M",
+        "P",
+        "S",
+        "k"
+      ],
+      "explanation": "P sortiert nach CPU, k beendet einen Prozess, r ändert den Nice-Wert, q beendet top."
+    },
+    {
+      "section": "5.5",
+      "question": "Was zeigt <code>ps aux --sort=-%cpu | head -6</code>?",
+      "options": [
+        "Die Kopfzeile und die fünf Prozesse mit der höchsten CPU-Last",
+        "Die sechs ältesten Prozesse",
+        "Alle Prozesse mit weniger als 6 % CPU",
+        "Die sechs Prozesse mit dem niedrigsten Nice-Wert"
+      ],
+      "explanation": "Das Minuszeichen vor <code>%cpu</code> sortiert absteigend. <code>head -6</code> nimmt die Kopfzeile plus fünf Zeilen."
+    },
+    {
+      "section": "5.6",
+      "question": "Welche Rechte sollte eine Datei mit Zugangsdaten erhalten?",
+      "options": [
+        "600 (<code>rw-------</code>): nur der Besitzer liest und schreibt",
+        "755 (<code>rwxr-xr-x</code>)",
+        "644 (<code>rw-r--r--</code>)",
+        "777 (<code>rwxrwxrwx</code>)"
+      ],
+      "explanation": "Bei 644 oder 755 könnten alle Benutzer die Zugangsdaten lesen."
+    },
+    {
+      "section": "5.6",
+      "question": "Warum darf ein Skript, das als root läuft, nur root gehören und nur für root schreibbar sein?",
+      "options": [
+        "Sonst könnte ein normaler Benutzer Befehle einfügen, die dann mit root-Rechten laufen",
+        "Sonst läuft das Skript langsamer",
+        "Weil cron nur Dateien von root ausführt",
+        "Weil <code>chmod</code> sonst nicht funktioniert"
+      ],
+      "explanation": "Typisch ist <code>sudo chown root:root skript.sh</code> und <code>sudo chmod 750 skript.sh</code>. Das gilt auch für den Ordner des Skripts."
+    },
+    {
+      "section": "5.6",
+      "question": "Welches Passwort wird bei <code>sudo</code> und welches bei <code>su</code> abgefragt?",
+      "options": [
+        "Bei sudo das eigene, bei su das des Zielbenutzers",
+        "Bei beiden das root-Passwort",
+        "Bei sudo das des Zielbenutzers, bei su das eigene",
+        "Bei beiden das eigene Passwort"
+      ],
+      "explanation": "sudo erlaubt genau festgelegte Befehle und protokolliert jeden davon. su öffnet eine ganze Shell als anderer Benutzer."
+    },
+    {
+      "section": "5.6",
+      "question": "Womit sollte man die Datei <code>/etc/sudoers</code> bearbeiten?",
+      "options": [
+        "<code>visudo</code>",
+        "<code>nano</code> mit root-Rechten",
+        "<code>chmod</code>",
+        "<code>su -c edit</code>"
+      ],
+      "explanation": "<code>visudo</code> prüft die Syntax vor dem Speichern. Ein Fehler in der Datei könnte sonst sudo komplett unbenutzbar machen."
+    },
+    {
+      "section": "5.6",
+      "question": "Ist <code>chroot</code> eine Sicherheitsgrenze?",
+      "options": [
+        "Nein: Ein Prozess mit root-Rechten kann ausbrechen, Prozesse und Netzwerk des Hosts bleiben erreichbar",
+        "Ja, chroot isoliert vollständig",
+        "Ja, aber nur für Docker-Container",
+        "Nein, chroot ändert nur die Uhrzeit des Prozesses"
+      ],
+      "explanation": "chroot ändert nur, welches Verzeichnis als Wurzel <code>/</code> erscheint. Für echte Isolation eignen sich Container besser."
+    },
+    {
+      "section": "5.6",
+      "question": "Was bewirkt <code>docker run --network none ...</code>?",
+      "options": [
+        "Der Container hat keinen Netzwerkzugriff",
+        "Der Container nutzt das Netzwerk des Hosts",
+        "Der Container startet ohne Dateisystem",
+        "Der Container darf kein Image laden"
+      ],
+      "explanation": "Weitere Schutzoptionen: <code>--read-only</code>, <code>--user 1000:1000</code>, <code>--cap-drop ALL</code> sowie Limits für Speicher und CPU."
+    },
+    {
+      "section": "5.6",
+      "question": "Was teilen sich Docker-Container mit dem Host-System?",
+      "options": [
+        "Den Kernel",
+        "Das Dateisystem",
+        "Die Prozessliste",
+        "Die Benutzerkonten"
+      ],
+      "explanation": "Dateisystem, Prozesse und Netzwerk sind getrennt (Namespaces), den Kernel nutzen alle gemeinsam. Deshalb starten Container in Sekunden."
+    },
+    {
+      "section": "5.6",
+      "question": "Was bewirkt <code>rm -rf \"${ZIEL:?ZIEL ist leer}\"/*</code>?",
+      "options": [
+        "Ist <code>ZIEL</code> leer, bricht der Befehl mit einer Meldung ab, statt <code>/*</code> zu löschen",
+        "Es löscht immer das Verzeichnis <code>ZIEL</code> selbst",
+        "Es fragt vor jeder Datei nach",
+        "Es löscht nur leere Dateien"
+      ],
+      "explanation": "Ohne diese Absicherung würde eine leere Variable zu <code>rm -rf /*</code> führen."
+    },
+    {
+      "section": "5.6",
+      "question": "Was bewirkt <code>umask 077</code> am Anfang eines Skripts?",
+      "options": [
+        "Neu angelegte Dateien sind nur für den Besitzer zugänglich",
+        "Alle vorhandenen Dateien werden schreibgeschützt",
+        "Das Skript läuft als root",
+        "Alle Dateien erhalten die Rechte 077"
+      ],
+      "explanation": "Die umask legt fest, welche Rechte neuen Dateien entzogen werden. 077 entzieht Gruppe und anderen alle Rechte."
+    },
+    {
+      "section": "5.7",
+      "question": "Mit welchem Befehl macht man Windows-Zeilenenden in einem Skript sichtbar?",
+      "options": [
+        "<code>cat -A skript.sh</code>",
+        "<code>cat -n skript.sh</code>",
+        "<code>bash -n skript.sh</code>",
+        "<code>wc -l skript.sh</code>"
+      ],
+      "explanation": "Windows-Zeilenenden erscheinen als <code>^M</code> vor dem <code>$</code>. Entfernen lassen sie sich mit <code>dos2unix</code>."
+    },
+    {
+      "section": "5.7",
+      "question": "Wozu dient <code>shellcheck</code>?",
+      "options": [
+        "Es findet typische Fehler in Shell-Skripten, bevor sie laufen",
+        "Es zeigt die Ablaufverfolgung eines Skripts",
+        "Es prüft, ob eine Shell installiert ist",
+        "Es misst die Laufzeit eines Skripts"
+      ],
+      "explanation": "<code>shellcheck</code> meldet z. B. fehlende Anführungszeichen um Variablen oder unsichere Konstrukte."
+    },
+    {
+      "section": "5.7",
+      "question": "Ein Skript läuft von Hand einwandfrei, unter cron aber nicht. Was prüft man zuerst?",
+      "options": [
+        "Die Umgebung, z. B. <code>PATH</code> und andere Variablen, mit <code>env</code> vergleichen",
+        "Die CPU-Temperatur",
+        "Die Dateiendung des Skripts",
+        "Die Zahl der angemeldeten Benutzer"
+      ],
+      "explanation": "cron startet Skripte mit einer stark reduzierten Umgebung. Vollständige Pfade oder ein gesetztes <code>PATH</code> lösen das meist."
+    },
+    {
+      "section": "5.7",
+      "question": "Was enthält <code>PIPESTATUS</code>?",
+      "options": [
+        "Die Exit-Codes aller Befehle der letzten Pipe",
+        "Die Anzahl laufender Pipes",
+        "Den Text, der durch die Pipe lief",
+        "Die Prozess-ID der Pipe"
+      ],
+      "explanation": "Nach <code>false | true</code> zeigt <code>echo \"${PIPESTATUS[@]}\"</code> die Werte <code>1 0</code>."
+    },
+    {
+      "section": "5.8",
+      "question": "Warum muss der Trap in der Musterlösung vor dem Breakpoint und der Schleife gesetzt werden?",
+      "options": [
+        "Ein Trap wirkt erst ab der Zeile, in der er gesetzt wird",
+        "Weil <code>set -eux</code> Traps danach verbietet",
+        "Weil <code>read</code> sonst nicht funktioniert",
+        "Die Reihenfolge spielt keine Rolle"
+      ],
+      "explanation": "Stünde der Trap nach der Schleife, würde Strg + C während der Schleife nicht abgefangen."
+    },
+    {
+      "section": "5.8",
+      "question": "Warum endet die Cleanup-Funktion der Musterlösung mit <code>exit 130</code>?",
+      "options": [
+        "Ohne <code>exit</code> setzt die Bash nach dem Trap das Skript fort, die Schleife liefe weiter",
+        "Weil Funktionen immer mit <code>exit</code> enden müssen",
+        "Damit die temporäre Datei gelöscht wird",
+        "Weil 130 der Erfolgscode ist"
+      ],
+      "explanation": "130 = 128 + 2 ist der übliche Code für einen Abbruch durch SIGINT."
+    },
+    {
+      "section": "5.8",
+      "question": "Wie testet man die Musterlösung automatisch, ohne am Breakpoint ENTER zu drücken?",
+      "options": [
+        "<code>echo | ./signal_cleanup.sh</code>: Das ENTER kommt über die Pipe",
+        "<code>./signal_cleanup.sh --no-break</code>",
+        "<code>bash -n signal_cleanup.sh</code>",
+        "Gar nicht, <code>read</code> wartet immer auf die Tastatur"
+      ],
+      "explanation": "Ohne Eingabe liefert <code>read</code> einen Fehler, und <code>set -e</code> bricht das Skript ab."
+    },
+    {
+      "section": "5.8",
+      "question": "Welche Option in <code>set -eux</code> sorgt dafür, dass alle Befehle vor ihrer Ausführung angezeigt werden?",
+      "options": [
+        "<code>-x</code>",
+        "<code>-e</code>",
+        "<code>-u</code>",
+        "Alle drei gemeinsam"
+      ],
+      "explanation": "<code>-e</code> bricht bei Fehlern ab, <code>-u</code> bei nicht gesetzten Variablen, <code>-x</code> zeigt die Befehle."
+    }
+  ]
+}

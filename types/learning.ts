@@ -1,4 +1,4 @@
-// Inhaltsmodell der Lernplattform (siehe docs/feature-spec.md, Abschnitt 5.4)
+// Inhaltsmodell der Lernplattform (siehe docs/feature-spec.md, Abschnitt 5)
 
 export interface LessonMeta {
   slug: string;
@@ -6,6 +6,15 @@ export interface LessonMeta {
   title: string;
   description?: string;
   duration?: string;
+  // F19: Anhang (z. B. Glossar) – ohne Wissenstest, zählt nicht zum Fortschritt
+  appendix: boolean;
+  hasQuiz: boolean;
+}
+
+export interface CourseModule {
+  number: number;
+  title: string;
+  lessons: LessonMeta[];
 }
 
 export interface Course {
@@ -15,7 +24,10 @@ export interface Course {
   duration: string;
   image: string;
   level?: string;
+  // alle Kapitel inkl. Anhänge, sortiert nach Nummernpräfix
   lessons: LessonMeta[];
+  modules: CourseModule[];
+  appendix: LessonMeta[];
 }
 
 export interface Lesson extends LessonMeta {
@@ -23,7 +35,31 @@ export interface Lesson extends LessonMeta {
   html: string;
 }
 
-export interface AdjacentLessons {
-  prev: LessonMeta | null;
-  next: LessonMeta | null;
+export interface QuizQuestion {
+  section: string;
+  question: string;
+  // die erste Antwort ist die richtige
+  options: string[];
+  explanation: string;
+}
+
+export interface Quiz {
+  sections: Record<string, string>;
+  questions: QuizQuestion[];
+}
+
+// Ein Lernschritt im Kursplayer: Kapitel lesen oder Wissenstest
+export interface CourseStep {
+  id: string;
+  kind: "lesson" | "quiz";
+  lessonSlug: string;
+  title: string;
+  href: string;
+  // false für Anhänge (zählen nicht zum Fortschritt)
+  counts: boolean;
+}
+
+export interface AdjacentSteps {
+  prev: CourseStep | null;
+  next: CourseStep | null;
 }

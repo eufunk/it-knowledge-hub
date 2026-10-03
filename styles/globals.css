@@ -13,6 +13,10 @@
   --color-accent-soft: #eef0ff;
   --color-success: #047857;
   --color-success-soft: #e6f6ef;
+  --color-warning: #b45309;
+  --color-warning-soft: #fdf3e2;
+  --color-danger: #b42318;
+  --color-danger-soft: #fdecea;
   --radius-card: 16px;
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
@@ -45,8 +49,84 @@ body {
 }
 
 .lesson-content blockquote {
-  background: var(--color-accent-soft);
+  background: var(--color-canvas);
   border-radius: 0 12px 12px 0;
   padding: 0.25rem 1.25rem;
   font-style: normal;
+}
+
+.lesson-content blockquote p:first-of-type::before,
+.lesson-content blockquote p:last-of-type::after {
+  content: none;
+}
+
+/* F18: Hinweisboxen */
+.lesson-content .callout {
+  --callout-color: var(--color-accent);
+  --callout-bg: var(--color-accent-soft);
+  border-left: 6px solid var(--callout-color);
+  background: var(--callout-bg);
+  border-radius: 0 16px 16px 0;
+  padding: 1rem 1.5rem;
+  color: var(--color-ink);
+}
+
+.lesson-content .callout > p:first-child > strong:first-child {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--callout-color);
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lesson-content .callout-definition {
+  --callout-color: var(--color-accent);
+  --callout-bg: var(--color-accent-soft);
+}
+
+.lesson-content .callout-tipp {
+  --callout-color: var(--color-success);
+  --callout-bg: var(--color-success-soft);
+}
+
+.lesson-content .callout-wichtig {
+  --callout-color: var(--color-warning);
+  --callout-bg: var(--color-warning-soft);
+}
+
+.lesson-content .callout-hinweis,
+.lesson-content .callout-merke {
+  --callout-color: var(--color-ink);
+  --callout-bg: var(--color-canvas);
+}
+
+/* F18: eingeklappte Musterlösungen */
+.lesson-content details {
+  border: 1px solid var(--color-line);
+  border-radius: 16px;
+  padding: 0 1.25rem;
+  margin: 1.5em 0;
+}
+
+.lesson-content details[open] {
+  padding-bottom: 0.5rem;
+}
+
+.lesson-content summary {
+  cursor: pointer;
+  padding: 0.9rem 0;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+/* Überschriften der Abschnitte */
+.lesson-content h2 {
+  padding-bottom: 0.4em;
+  border-bottom: 2px solid var(--color-line);
+}
+
+.lesson-content table {
+  font-size: 0.9em;
 }

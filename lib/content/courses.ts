@@ -1,13 +1,15 @@
 import fs from "node:fs";
 import path from "node:path";
 import matter from "gray-matter";
-import type { AdjacentLessons, Course, Lesson, LessonMeta } from "@/types/learning";
+import type { Course, CourseModule, Lesson, LessonMeta, Quiz, QuizQuestion } from "@/types/learning";
+import { QUIZ_LENGTH } from "@/lib/utils/quiz";
 import { markdownToHtml } from "./markdown";
 
 // F5: Kurse werden automatisch aus content/lerninhalte/* gelesen.
 export const CONTENT_DIR = path.join(process.cwd(), "content", "lerninhalte");
 
 const COURSE_FILE = "README.md";
+const QUIZ_DIR = "wissenstest";
 const SLUG = /^[a-z0-9-]+$/;
 const LESSON_FILE = /^(\d+)-([a-z0-9-]+)\.md$/;
 
@@ -34,18 +36,62 @@ function lessonFiles(courseDir: string): { name: string; order: number; slug: st
     .sort((a, b) => a.order - b.order);
 }
 
+function quizFile(courseDir: string, lessonSlug: string): string {
+  return path.join(courseDir, QUIZ_DIR, `${lessonSlug}.json`);
+}
+
 function readLessonMetas(courseDir: string): LessonMeta[] {
   return lessonFiles(courseDir).map(({ name, order, slug }) => {
     const file = path.join(courseDir, name);
     const { data } = matter(fs.readFileSync(file, "utf8"));
+    const appendix = data.anhang === true;
     return {
       slug,
       order,
       title: requireString(data, "title", file),
       description: optionalString(data, "description"),
       duration: optionalString(data, "duration"),
+      appendix,
+      hasQuiz: !appendix && fs.existsSync(quizFile(courseDir, slug)),
     };
   });
+}
+
+// Module aus dem Frontmatter; jedes Kapitel (außer Anhängen) gehört zu genau einem Modul.
+function buildModules(rawModules: unknown, lessons: LessonMeta[], file: string): CourseModule[] {
+  const chapters = lessons.filter((lesson) => !lesson.appendix);
+  if (rawModules === undefined) {
+    return chapters.length > 0 ? [{ number: 1, title: "Kursinhalt", lessons: chapters }] : [];
+  }
+  if (!Array.isArray(rawModules)) throw new Error(`"modules" muss eine Liste sein in ${file}`);
+
+  const bySlug = new Map(chapters.map((lesson) => [lesson.slug, lesson]));
+  const assigned = new Set<string>();
+
+  const modules = rawModules.map((raw: Record<string, unknown>, index): CourseModule => {
+    const title = requireString(raw ?? {}, "title", `${file} (Modul ${index + 1})`);
+    const slugs = raw.chapters;
+    if (!Array.isArray(slugs) || slugs.length === 0) {
+      throw new Error(`Modul "${title}" in ${file} braucht eine Liste "chapters"`);
+    }
+    return {
+      number: index + 1,
+      title,
+      lessons: slugs.map((slug: unknown) => {
+        const lesson = typeof slug === "string" ? bySlug.get(slug) : undefined;
+        if (!lesson) throw new Error(`Modul "${title}" in ${file} nennt unbekanntes Kapitel "${String(slug)}"`);
+        if (assigned.has(lesson.slug)) throw new Error(`Kapitel "${lesson.slug}" ist mehreren Modulen zugeordnet (${file})`);
+        assigned.add(lesson.slug);
+        return lesson;
+      }),
+    };
+  });
+
+  const missing = chapters.filter((lesson) => !assigned.has(lesson.slug));
+  if (missing.length > 0) {
+    throw new Error(`Kapitel ohne Modul in ${file}: ${missing.map((lesson) => lesson.slug).join(", ")}`);
+  }
+  return modules;
 }
 
 function isCourseDir(root: string, slug: string): boolean {
@@ -58,6 +104,7 @@ export function getCourse(slug: string, root: string = CONTENT_DIR): Course | nu
   const courseDir = path.join(root, slug);
   const file = path.join(courseDir, COURSE_FILE);
   const { data } = matter(fs.readFileSync(file, "utf8"));
+  const lessons = readLessonMetas(courseDir);
 
   return {
     slug,
@@ -66,7 +113,9 @@ export function getCourse(slug: string, root: string = CONTENT_DIR): Course | nu
     duration: requireString(data, "duration", file),
     image: requireString(data, "image", file),
     level: optionalString(data, "level"),
-    lessons: readLessonMetas(courseDir),
+    lessons,
+    modules: buildModules(data.modules, lessons, file),
+    appendix: lessons.filter((lesson) => lesson.appendix),
   };
 }
 
@@ -97,12 +146,32 @@ export async function getLesson(
   return { ...meta, courseSlug, html: await markdownToHtml(content) };
 }
 
-// F11: vorherige und nächste Einheit; am Anfang bzw. Ende null
-export function getAdjacentLessons(course: Course, lessonSlug: string): AdjacentLessons {
-  const index = course.lessons.findIndex((lesson) => lesson.slug === lessonSlug);
-  if (index === -1) return { prev: null, next: null };
+function validateQuestion(raw: unknown, file: string, index: number): QuizQuestion {
+  const q = (raw ?? {}) as Record<string, unknown>;
+  const where = `${file} (Frage ${index + 1})`;
+  const options = q.options;
+  if (!Array.isArray(options) || options.length < 2 || !options.every((o) => typeof o === "string" && o.trim())) {
+    throw new Error(`Mindestens zwei Antworten nötig in ${where}`);
+  }
   return {
-    prev: course.lessons[index - 1] ?? null,
-    next: course.lessons[index + 1] ?? null,
+    section: requireString(q, "section", where),
+    question: requireString(q, "question", where),
+    options: options as string[],
+    explanation: requireString(q, "explanation", where),
   };
+}
+
+// F17: Fragen-Pool des Wissenstests zu einem Kapitel
+export function getQuiz(courseSlug: string, lessonSlug: string, root: string = CONTENT_DIR): Quiz | null {
+  const lesson = getCourse(courseSlug, root)?.lessons.find((item) => item.slug === lessonSlug);
+  if (!lesson?.hasQuiz) return null;
+
+  const file = quizFile(path.join(root, courseSlug), lessonSlug);
+  const data = JSON.parse(fs.readFileSync(file, "utf8")) as { sections?: unknown; questions?: unknown };
+  if (!Array.isArray(data.questions) || data.questions.length < QUIZ_LENGTH) {
+    throw new Error(`Wissenstest braucht mindestens ${QUIZ_LENGTH} Fragen: ${file}`);
+  }
+  const sections =
+    data.sections && typeof data.sections === "object" ? (data.sections as Record<string, string>) : {};
+  return { sections, questions: data.questions.map((q, index) => validateQuestion(q, file, index)) };
 }

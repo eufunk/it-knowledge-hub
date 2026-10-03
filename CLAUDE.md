@@ -64,9 +64,9 @@ npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 
 | Ordner | Inhalt |
 |---|---|
-| `app/` | Routen (App Router): `page.tsx` (Home), `lerninhalte/page.tsx` (Kursübersicht), `lerninhalte/[kurs]/page.tsx` (Kursseite), `lerninhalte/[kurs]/[einheit]/page.tsx` (Lerneinheit), `ueber-uns/page.tsx` |
-| `components/` | `layout/` (AppShell), `navigation/` (Kopfleiste), `learning/` (Kurskachel, Zeitleiste, Inhaltsübersicht, Fortschritt), `ui/` (allgemeine Bausteine wie Fortschrittsbalken, Button, Breadcrumb) |
-| `content/lerninhalte/<kurs>/` | Kursinhalte: `README.md` mit Kurs-Frontmatter, Einheiten als `NN-slug.md` |
+| `app/` | Routen (App Router): `page.tsx` (Home), `lerninhalte/page.tsx` (Kursübersicht), `lerninhalte/[kurs]/page.tsx` (Kursseite), `lerninhalte/[kurs]/[einheit]/page.tsx` (Kapitel im Kursplayer), `lerninhalte/[kurs]/[einheit]/wissenstest/page.tsx` (Wissenstest), `ueber-uns/page.tsx` |
+| `components/` | `layout/` (AppShell), `navigation/` (Kopfleiste), `learning/` (Kurskachel, Kursinhalt nach Modulen, Kursplayer mit Seitenleiste `CourseNav`, Zurück/Weiter, Lesefortschritt, Wissenstest `QuizRunner`, Fortschritt), `ui/` (allgemeine Bausteine wie Fortschrittsbalken, Button, Breadcrumb) |
+| `content/lerninhalte/<kurs>/` | Kursinhalte: `README.md` mit Kurs-Frontmatter inkl. `modules`, Kapitel als `NN-slug.md` (Anhänge mit `anhang: true`), Fragen-Pools als `wissenstest/<slug>.json` (erste Antwort = richtige) |
 | `lib/` | `content/` (Einlesen und Rendern der Inhalte), `utils/` (reine Hilfsfunktionen, z. B. Fortschrittsberechnung) |
 | `types/` | gemeinsame Typen, `learning.ts` (`Course`, `LessonMeta`, `Lesson`) |
 | `styles/` | `globals.css` mit Tailwind und Design-Tokens |
@@ -84,6 +84,8 @@ npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 
 ## Tests
 
+- **Lernschritte:** Fortschritt, Zurück/Weiter und „Weiterlernen“ basieren auf `lib/utils/steps.ts` (`getCourseSteps`). Schritt-IDs sind `<kapitel>` und `<kapitel>/wissenstest`; sie sind die Werte im `localStorage`. IDs nicht umbenennen, sonst geht gespeicherter Fortschritt verloren (oder den Speicherschlüssel versionieren).
+- **Hinweisboxen:** Ein Blockzitat wird zur Box, wenn es mit `**Definition:**`, `**Tipp:**`, `**Wichtig:**`, `**Achtung:**`, `**Hinweis:**`, `**Merke:**` oder `**Kurz gesagt:**` beginnt (`lib/content/markdown.ts`, Styles in `styles/globals.css`).
 - Tests liegen in `tests/` (nicht neben den Komponenten), gegliedert in `content/` (Loader, Markdown, reine Funktionen) und `components/` (Rendering mit Testing Library). Dateinamen: `<name>.test.ts` bzw. `.test.tsx`.
 - Vor dem Anlegen einer neuen Testdatei prüfen, ob es für dieselbe Komponente schon eine gibt (Glob `tests/**/*.test.*`). Lieber ergänzen als eine zweite Datei daneben anlegen.
 - Loader-Tests arbeiten mit eigenen Testinhalten (kleiner Fixture-Ordner), nicht mit dem echten Kurs. Sonst bricht jede inhaltliche Änderung am Kurs die Tests.
@@ -106,7 +108,7 @@ npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 - **Dokumentation mitpflegen.** Reihenfolge bei fachlichen Änderungen: `docs/feature-spec.md` → Code → `docs/HISTORIE.md` (Eintrag mit Datum) → `docs/todo.md` (Status). Alles durchgehend auf Deutsch.
 - **OneDrive:** Das Repository liegt in OneDrive und bleibt dort (Verschieben ist ausgeschlossen). Ein Ausschluss einzelner Ordner ist bei einem privaten OneDrive nicht möglich, eine Junction für `node_modules` ersetzt `npm install` stillschweigend durch einen normalen Ordner. Vereinbart ist deshalb: Die Synchronisierung wird beim Entwickeln pausiert. Bei Dateisperren (`EPERM`, `EBUSY`) zuerst den Dev-Server beenden, OneDrive pausieren und den Befehl wiederholen, bevor der Code verdächtigt wird.
 - **Hydration:** Server-HTML kennt keinen `localStorage`. Fortschrittsanzeigen rendern zuerst den neutralen Zustand (0 %) und lesen den gespeicherten Wert erst in `useEffect`. Sonst gibt es Hydration-Warnungen.
-- **Markdown-HTML:** Gerendertes Markdown wird per `dangerouslySetInnerHTML` eingefügt. Das ist nur zulässig, weil die Inhalte aus dem eigenen Repository stammen. Inhalte aus fremden Quellen (später z. B. ein CMS oder Eingaben von Nutzern) müssen vorher bereinigt werden (z. B. `rehype-sanitize`).
+- **Markdown-HTML:** Gerendertes Markdown wird per `dangerouslySetInnerHTML` eingefügt, und der Renderer lässt HTML im Markdown zu (`rehype-raw`, z. B. für `<details>` bei Musterlösungen). Das ist nur zulässig, weil die Inhalte aus dem eigenen Repository stammen. Inhalte aus fremden Quellen (später z. B. ein CMS oder Eingaben von Nutzern) müssen vorher bereinigt werden (z. B. `rehype-sanitize`).
 - **Gestaltung:** Eigenes Design, keine Nachbildung des Referenz-Screenshots. Farben nur über die Tokens in `styles/globals.css` (z. B. `bg-accent`, `text-muted`, `border-line`), keine fest eingetragenen Hex-Werte in Komponenten. Neue Tokens zuerst in der Spec (Abschnitt 6) ergänzen.
 - **Bilder:** Immer über `next/image` mit sinnvollem `alt`-Text. Kein Text auf Bildern, damit der Kontrast nicht vom Bild abhängt.
 - **`hidden`-Attribut gegen eigene `display`-Regel:** Eine Klasse mit `display: …` (auch Tailwind `flex`, `grid`) hebt das `hidden`-Attribut auf. Ein- und Ausblenden deshalb über bedingtes Rendern oder `hidden`-Klassen lösen, nicht über das Attribut.

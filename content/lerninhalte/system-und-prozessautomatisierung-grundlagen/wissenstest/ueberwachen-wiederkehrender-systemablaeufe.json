@@ -1,0 +1,389 @@
+{
+  "sections": {
+    "2.1": "Erste Schritte Systemüberwachung",
+    "2.2": "Identifizierung wiederkehrender Abläufe",
+    "2.3": "Datenanalyse",
+    "2.4": "Tipps zur Überwachung",
+    "2.5": "Prozesskultur",
+    "2.6": "Umfassendes Überwachungssystem",
+    "2.7": "Prädiktive Analyse",
+    "2.8": "Automatisierte Reaktionen",
+    "2.9": "Dokumentation & Wissen"
+  },
+  "questions": [
+    {
+      "section": "2.1",
+      "question": "Was ist das Ziel der Systemüberwachung (Monitoring)?",
+      "options": [
+        "Probleme erkennen, bevor Benutzer sie bemerken, und Daten für Entscheidungen gewinnen",
+        "Benutzer bei ihrer Arbeit kontrollieren",
+        "Alle Logdateien dauerhaft archivieren",
+        "Server möglichst selten neu starten"
+      ],
+      "explanation": "Monitoring erfasst laufend Zustand, Leistung und Verfügbarkeit, um Probleme früh zu erkennen und Daten für die Automatisierung zu liefern."
+    },
+    {
+      "section": "2.1",
+      "question": "Was versteht man unter einer Baseline?",
+      "options": [
+        "Den über Tage oder Wochen gemessenen Normalzustand eines Systems",
+        "Den kritischen Schwellenwert für Alarme",
+        "Die minimale Hardwareausstattung eines Servers",
+        "Die erste Version eines Skripts"
+      ],
+      "explanation": "Erst wenn man weiß, was „normal“ ist, lassen sich sinnvolle Schwellenwerte festlegen."
+    },
+    {
+      "section": "2.1",
+      "question": "Welcher Wert gilt in der Beispieltabelle beim freien Speicherplatz als kritisch?",
+      "options": [
+        "Weniger als 10 % frei",
+        "Weniger als 20 % frei",
+        "Weniger als 50 % frei",
+        "Mehr als 95 % frei"
+      ],
+      "explanation": "Warnung bei < 20 %, kritisch bei < 10 % freiem Platz. Die richtigen Werte hängen immer von der Baseline ab."
+    },
+    {
+      "section": "2.1",
+      "question": "Ab wann wird beim Backup-Status laut Beispieltabelle gewarnt?",
+      "options": [
+        "Letzte erfolgreiche Sicherung ist älter als 24 h",
+        "Letzte Sicherung ist älter als 7 Tage",
+        "Die Sicherung dauert länger als 1 h",
+        "Letzte erfolgreiche Sicherung ist älter als 48 h"
+      ],
+      "explanation": "Warnung ab > 24 h, kritisch ab > 48 h seit der letzten erfolgreichen Sicherung."
+    },
+    {
+      "section": "2.1",
+      "question": "Welcher Grundsatz gilt beim Einstieg in die Systemüberwachung?",
+      "options": [
+        "Klein anfangen mit den wichtigsten Systemen und schrittweise ausbauen",
+        "Von Anfang an alle verfügbaren Kennzahlen erfassen",
+        "Zuerst das teuerste Werkzeug kaufen",
+        "Schwellenwerte vor der Bestandsaufnahme festlegen"
+      ],
+      "explanation": "Mit wenigen aussagekräftigen Kennzahlen und den wichtigsten Systemen starten, Erfahrungen sammeln und dann erweitern."
+    },
+    {
+      "section": "2.2",
+      "question": "Welche Methode zur Identifizierung wiederkehrender Abläufe ist objektiv und datenbasiert, erfasst aber nur gemeldete Fälle?",
+      "options": [
+        "Ticketanalyse",
+        "Interviews & Workshops",
+        "Tätigkeitsprotokoll",
+        "Beobachtung"
+      ],
+      "explanation": "Bei der Ticketanalyse werden Tickets nach Kategorie, Häufigkeit und Bearbeitungszeit ausgewertet. Was nie gemeldet wurde, taucht dort nicht auf."
+    },
+    {
+      "section": "2.2",
+      "question": "Was macht Process Mining?",
+      "options": [
+        "Spezialsoftware rekonstruiert Prozesse automatisch aus Systemdaten wie Zeitstempeln und Aktivitäten",
+        "Mitarbeitende notieren zwei Wochen lang ihre Aufgaben",
+        "Ein Software-Roboter durchsucht Dateien nach Passwörtern",
+        "Prozesse werden in Workshops neu entworfen"
+      ],
+      "explanation": "Process Mining zeigt den tatsächlichen Ist-Prozess und seine Varianten. Grenzen sind Kosten und Datenqualität."
+    },
+    {
+      "section": "2.2",
+      "question": "Welcher Satz ist ein guter Hinweis auf einen wiederkehrenden Ablauf?",
+      "options": [
+        "„Das mache ich jeden Montag.“",
+        "„Das ist einmalig passiert.“",
+        "„Das hat noch nie jemand gemacht.“",
+        "„Dafür bin ich nicht zuständig.“"
+      ],
+      "explanation": "Aussagen wie „Das mache ich jeden Montag“, „Dafür habe ich eine Checkliste“ oder „Das kommt ständig rein“ deuten auf Automatisierungskandidaten hin."
+    },
+    {
+      "section": "2.3",
+      "question": "Wie ergibt sich bei der Datenanalyse das Einsparpotenzial eines Ablaufs?",
+      "options": [
+        "Häufigkeit × Aufwand",
+        "Anzahl Mitarbeitende × Gehalt",
+        "Fehleranzahl ÷ Laufzeit",
+        "Kosten des Werkzeugs – Lizenzkosten"
+      ],
+      "explanation": "Was oft vorkommt und viel Zeit kostet, hat das größte Einsparpotenzial."
+    },
+    {
+      "section": "2.3",
+      "question": "Was besagt das Pareto-Prinzip im Zusammenhang mit wiederkehrenden Abläufen?",
+      "options": [
+        "Etwa 20 % der Ursachen verursachen etwa 80 % des Aufwands",
+        "80 % der Abläufe lassen sich vollständig automatisieren",
+        "20 % der Server erzeugen keine Fehler",
+        "Jeder Ablauf sollte zu 80 % dokumentiert sein"
+      ],
+      "explanation": "Wenige Ursachen machen den Großteil des Aufwands aus. Dort lohnt sich Automatisierung zuerst."
+    },
+    {
+      "section": "2.3",
+      "question": "Wofür wird <code>Group-Object</code> in den Analysebeispielen eingesetzt?",
+      "options": [
+        "Um gleichartige Ereignisse zusammenzufassen und zu zählen",
+        "Um Benutzergruppen im Active Directory anzulegen",
+        "Um Ereignisse dauerhaft zu löschen",
+        "Um Dateien in Ordner zu verschieben"
+      ],
+      "explanation": "<code>Group-Object</code> gruppiert z. B. nach ProviderName und Id oder nach Uhrzeit. <code>Sort-Object Count -Descending</code> zeigt dann die häufigsten zuerst."
+    },
+    {
+      "section": "2.3",
+      "question": "Eine Ticketauswertung ergibt „Passwort zurücksetzen: 120 Tickets, 1.200 Minuten pro Monat“. Was folgt daraus?",
+      "options": [
+        "Ein klarer Kandidat für Self-Service oder ein Skript",
+        "Die Tickets sollten gelöscht werden",
+        "Das Monitoring muss erweitert werden",
+        "Es besteht kein Handlungsbedarf"
+      ],
+      "explanation": "Häufig und aufwendig: genau solche Abläufe sollten zuerst automatisiert werden."
+    },
+    {
+      "section": "2.4",
+      "question": "Was ist Alarmmüdigkeit und wie vermeidet man sie?",
+      "options": [
+        "Zu viele Fehlalarme führen dazu, dass echte Alarme ignoriert werden. Man alarmiert nur, wenn jemand handeln muss.",
+        "Server werden durch zu viele Abfragen langsam. Man überwacht seltener.",
+        "Admins vergessen Passwörter. Man nutzt einen Passwortmanager.",
+        "Alarme kommen zu spät. Man senkt alle Schwellenwerte."
+      ],
+      "explanation": "Alles, was keine Handlung erfordert, gehört ins Dashboard oder in den Bericht, nicht in einen Alarm."
+    },
+    {
+      "section": "2.4",
+      "question": "Was bedeutet der Tipp „Den Wächter überwachen“?",
+      "options": [
+        "Ein regelmäßiges Lebenszeichen (Heartbeat) prüft, ob das Monitoring selbst noch läuft",
+        "Admins kontrollieren sich gegenseitig",
+        "Die Firewall wird zusätzlich überwacht",
+        "Das Monitoring wird jede Nacht neu installiert"
+      ],
+      "explanation": "Auch das Monitoring kann ausfallen. Ohne Heartbeat würde dann niemand bemerken, dass keine Alarme mehr kommen."
+    },
+    {
+      "section": "2.4",
+      "question": "Warum sollen alle Systeme per NTP synchronisiert werden?",
+      "options": [
+        "Damit Ereignisse aus verschiedenen Systemen zeitlich korrekt zugeordnet werden können",
+        "Damit die Netzwerkbandbreite steigt",
+        "Damit Updates schneller installiert werden",
+        "Damit Logs weniger Speicher benötigen"
+      ],
+      "explanation": "Nur mit einheitlicher Zeit lassen sich Ereignisse über Systeme hinweg vergleichen und korrelieren."
+    },
+    {
+      "section": "2.5",
+      "question": "Was ist das Kennzeichen einer schuldfreien Nachbesprechung (Blameless Post-Mortem)?",
+      "options": [
+        "Nach Störungen wird nach Ursachen gesucht, nicht nach Schuldigen",
+        "Störungen werden nicht besprochen",
+        "Die verantwortliche Person wird benannt und abgemahnt",
+        "Nur die Führungskraft analysiert den Fehler"
+      ],
+      "explanation": "Eine konstruktive Fehlerkultur fördert Offenheit, sodass Ursachen wirklich gefunden und behoben werden."
+    },
+    {
+      "section": "2.5",
+      "question": "Im PDCA-Zyklus wird die Anzahl der Alarme nach zwei Wochen verglichen. Welche Phase ist das?",
+      "options": [
+        "Check (Prüfen)",
+        "Plan (Planen)",
+        "Do (Umsetzen)",
+        "Act (Handeln)"
+      ],
+      "explanation": "In der Check-Phase wird das Ergebnis gemessen und bewertet. Danach folgt Act: Bewährtes standardisieren oder nachsteuern."
+    },
+    {
+      "section": "2.5",
+      "question": "Wer ist der Process Owner?",
+      "options": [
+        "Die Person, die für einen Prozess verantwortlich ist und ihn pflegt und weiterentwickelt",
+        "Der Hersteller der Automatisierungssoftware",
+        "Jede Person, die den Prozess ausführt",
+        "Der Datenschutzbeauftragte"
+      ],
+      "explanation": "Klare Verantwortlichkeiten sind ein Baustein der Prozesskultur. Jeder Prozess hat einen Process Owner."
+    },
+    {
+      "section": "2.5",
+      "question": "Welche Standardprozesse im IT-Betrieb beschreibt das Rahmenwerk ITIL laut Doku beispielsweise?",
+      "options": [
+        "Incident-, Problem- und Change-Management",
+        "Plan, Do, Check, Act",
+        "Metriken, Logs und Traces",
+        "Eingabe, Verarbeitung und Ausgabe"
+      ],
+      "explanation": "ITIL ist ein bewährtes Rahmenwerk mit Standardprozessen wie Incident-, Problem- und Change-Management."
+    },
+    {
+      "section": "2.6",
+      "question": "Ladezeiten und Verfügbarkeit werden mit synthetischen Tests aus Sicht der Anwender gemessen. Welche Überwachungsebene ist das?",
+      "options": [
+        "Benutzererfahrung",
+        "Hardware & Infrastruktur",
+        "Betriebssystem",
+        "Netzwerk"
+      ],
+      "explanation": "Die Ebene Benutzererfahrung prüft, wie Anwender das System tatsächlich erleben."
+    },
+    {
+      "section": "2.6",
+      "question": "Wofür steht SIEM?",
+      "options": [
+        "Security Information and Event Management",
+        "System Integration and Error Monitoring",
+        "Secure Infrastructure Event Mapping",
+        "Server Inventory and Endpoint Management"
+      ],
+      "explanation": "Ein SIEM sammelt und wertet Sicherheitsereignisse zentral aus."
+    },
+    {
+      "section": "2.6",
+      "question": "Welche drei Datenarten kombiniert Observability?",
+      "options": [
+        "Metriken, Logs und Traces",
+        "CPU, RAM und Speicher",
+        "Tickets, Mails und Chats",
+        "Info, Warnung und Kritisch"
+      ],
+      "explanation": "Zusammen erklären Metriken, Logs und Traces nicht nur, dass etwas falsch läuft, sondern auch warum."
+    },
+    {
+      "section": "2.6",
+      "question": "Wie können Messdaten agentenlos erfasst werden?",
+      "options": [
+        "Über Schnittstellen wie WMI/CIM, SNMP oder APIs",
+        "Nur durch manuelles Ablesen am Server",
+        "Ausschließlich über installierte Agenten",
+        "Über Screenshots der Benutzeroberfläche"
+      ],
+      "explanation": "Die Datenerfassung läuft entweder über Agenten auf den Systemen oder agentenlos über Schnittstellen wie WMI/CIM, SNMP oder APIs."
+    },
+    {
+      "section": "2.7",
+      "question": "„Die Festplatte ist bei aktuellem Wachstum in 12 Tagen voll.“ Welcher Ansatz ist das?",
+      "options": [
+        "Prädiktiv",
+        "Reaktiv",
+        "Proaktiv",
+        "Deterministisch"
+      ],
+      "explanation": "Reaktiv fragt „Was ist passiert?“, proaktiv „Was passiert gerade?“ und prädiktiv „Was wird passieren?“."
+    },
+    {
+      "section": "2.7",
+      "question": "Mit welcher einfachen Methode wird im Beispiel berechnet, wann ein Laufwerk voll ist?",
+      "options": [
+        "Trendanalyse per linearer Regression",
+        "Unüberwachtes Lernen mit neuronalen Netzen",
+        "Zufallsstichprobe der Dateigrößen",
+        "Vergleich mit dem Hersteller-Datenblatt"
+      ],
+      "explanation": "Eine Gerade wird durch die täglichen Messwerte gelegt. Ihre Steigung ist der Zuwachs pro Tag, der dann fortgeschrieben wird."
+    },
+    {
+      "section": "2.7",
+      "question": "Was ist eine Grenze der prädiktiven Analyse?",
+      "options": [
+        "Vorhersagen sind Wahrscheinlichkeiten und können durch einmalige Ereignisse verfälscht werden",
+        "Sie funktioniert nur mit KI",
+        "Sie benötigt keine historischen Daten",
+        "Sie liefert immer exakte Zeitpunkte"
+      ],
+      "explanation": "Vorhersagen sind nur so gut wie die Datenbasis. Ein großer einmaliger Datenimport kann z. B. einen Trend verfälschen."
+    },
+    {
+      "section": "2.8",
+      "question": "Nach welchem Prinzip funktionieren automatisierte Reaktionsprozesse?",
+      "options": [
+        "Ereignis → Regel → Aktion",
+        "Plan → Do → Check → Act",
+        "Eingabe → Verarbeitung → Ausgabe",
+        "Messen → Melden → Warten"
+      ],
+      "explanation": "Statt dass ein Mensch auf jeden Alarm reagiert, führt das System bei einem Ereignis anhand einer Regel eine festgelegte Aktion aus."
+    },
+    {
+      "section": "2.8",
+      "question": "Ein bekanntes Problem wird automatisch behoben, z. B. durch einen Dienstneustart. Welche Reaktionsstufe ist das?",
+      "options": [
+        "Stufe 3 – Selbstheilung",
+        "Stufe 1 – Informieren",
+        "Stufe 2 – Dokumentieren",
+        "Stufe 5 – Eskalieren"
+      ],
+      "explanation": "Die Stufen reichen von Informieren (1) über Dokumentieren (2), Selbstheilung (3) und Skalieren/Umschalten (4) bis Eskalieren (5)."
+    },
+    {
+      "section": "2.8",
+      "question": "Warum werden Wiederholungen bei automatischen Reaktionen begrenzt, z. B. auf maximal 3 Neustarts?",
+      "options": [
+        "Damit keine Endlosschleifen entstehen; danach wird eskaliert",
+        "Weil Windows nur 3 Neustarts pro Tag erlaubt",
+        "Damit die Logdatei nicht zu groß wird",
+        "Weil ein Dienst nach 3 Starts gesperrt wird"
+      ],
+      "explanation": "Hilft die Automatik nicht, muss ein Mensch eingeschaltet werden, statt dass das System endlos weiter versucht."
+    },
+    {
+      "section": "2.8",
+      "question": "Welche Aktionen sollten nur mit menschlicher Bestätigung automatisch ausgeführt werden?",
+      "options": [
+        "Löschen, Herunterfahren oder Umschalten",
+        "Eine Mail an die Zuständigen senden",
+        "Einen Eintrag ins Log schreiben",
+        "Ein Ticket mit Messwerten anlegen"
+      ],
+      "explanation": "Kritische Aktionen mit großer Auswirkung brauchen eine Freigabe. Informieren und Dokumentieren sind unkritisch."
+    },
+    {
+      "section": "2.9",
+      "question": "Was ist ein Runbook?",
+      "options": [
+        "Eine Schritt-für-Schritt-Anleitung für bekannte Störungen und Routineaufgaben",
+        "Ein Protokoll aller Serverneustarts",
+        "Ein Handbuch für Programmiersprachen",
+        "Eine Liste aller Mitarbeitenden in Bereitschaft"
+      ],
+      "explanation": "Runbooks beschreiben Auslöser, Auswirkung, Diagnose, Lösungsschritte, Automatisierung und Eskalation. Erst manuell erprobt, dann automatisiert."
+    },
+    {
+      "section": "2.9",
+      "question": "Was bedeutet „Docs as Code“?",
+      "options": [
+        "Dokumentation wird als Markdown neben den Skripten in Git versioniert",
+        "Code wird ohne Kommentare geschrieben",
+        "Die Dokumentation wird aus dem Code automatisch gelöscht",
+        "Dokumentation wird nur ausgedruckt"
+      ],
+      "explanation": "So wird Dokumentation zusammen mit dem Code geändert, geprüft und versioniert."
+    },
+    {
+      "section": "2.9",
+      "question": "Wie heißt in ITIL die Wissensdatenbank für bekannte Fehler und ihre Lösungen?",
+      "options": [
+        "Known Error Database",
+        "Configuration Management Database",
+        "Incident Log",
+        "Change Advisory Board"
+      ],
+      "explanation": "Aus Störungen lernen: Bekannte Fehler und Lösungen werden in der Known Error Database gesammelt."
+    },
+    {
+      "section": "2.9",
+      "question": "Im Beispiel-Runbook „Laufwerk C: fast voll“ ist nach der Bereinigung immer noch weniger als 10 % frei. Was passiert?",
+      "options": [
+        "Eskalation: Ticket an das Server-Team mit hoher Priorität",
+        "Das Skript löscht weitere Dateien ohne Grenze",
+        "Der Server wird automatisch heruntergefahren",
+        "Nichts, der Alarm wird ignoriert"
+      ],
+      "explanation": "Der Abschnitt Eskalation legt fest, wer übernimmt, wenn die Automatisierung nicht reicht."
+    }
+  ]
+}

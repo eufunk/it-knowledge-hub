@@ -4,7 +4,7 @@ import { Clock, Layers } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ProgressBar } from "@/components/ui/ProgressBar";
-import { formatLessonCount } from "@/lib/utils/format";
+import { formatCourseSize } from "@/lib/utils/format";
 import { ProgressBadge } from "./ProgressBadge";
 import { useCourseProgress } from "./useCourseProgress";
 
@@ -15,12 +15,24 @@ interface CourseCardProps {
   duration: string;
   image: string;
   level?: string;
-  lessonSlugs: string[];
+  moduleCount: number;
+  chapterCount: number;
+  stepIds: string[];
 }
 
 // F4: Kurskachel – Bild oben, Text darunter, Fortschritt unten
-export function CourseCard({ slug, title, description, duration, image, level, lessonSlugs }: CourseCardProps) {
-  const { percent } = useCourseProgress(slug, lessonSlugs);
+export function CourseCard({
+  slug,
+  title,
+  description,
+  duration,
+  image,
+  level,
+  moduleCount,
+  chapterCount,
+  stepIds,
+}: CourseCardProps) {
+  const { percent } = useCourseProgress(slug, stepIds);
 
   return (
     <Link
@@ -52,7 +64,7 @@ export function CourseCard({ slug, title, description, duration, image, level, l
           </span>
           <span className="inline-flex items-center gap-1.5">
             <Layers aria-hidden className="size-4" />
-            {formatLessonCount(lessonSlugs.length)}
+            {formatCourseSize(moduleCount, chapterCount)}
           </span>
         </div>
 

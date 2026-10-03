@@ -1,0 +1,40 @@
+{
+  "sections": {
+    "1.1": "Thema eins"
+  },
+  "questions": [
+    {
+      "section": "1.1",
+      "question": "Frage 1",
+      "options": [
+        "richtig",
+        "falsch a",
+        "falsch b",
+        "falsch c"
+      ],
+      "explanation": "Erklärung 1"
+    },
+    {
+      "section": "1.1",
+      "question": "Frage 2",
+      "options": [
+        "richtig",
+        "falsch a",
+        "falsch b",
+        "falsch c"
+      ],
+      "explanation": "Erklärung 2"
+    },
+    {
+      "section": "1.1",
+      "question": "Frage 3",
+      "options": [
+        "richtig",
+        "falsch a",
+        "falsch b",
+        "falsch c"
+      ],
+      "explanation": "Erklärung 3"
+    }
+  ]
+}

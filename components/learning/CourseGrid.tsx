@@ -1,3 +1,4 @@
+import { getProgressStepIds } from "@/lib/utils/steps";
 import type { Course } from "@/types/learning";
 import { CourseCard } from "./CourseCard";
 
@@ -14,7 +15,9 @@ export function CourseGrid({ courses }: { courses: Course[] }) {
             duration={course.duration}
             image={course.image}
             level={course.level}
-            lessonSlugs={course.lessons.map((lesson) => lesson.slug)}
+            moduleCount={course.modules.length}
+            chapterCount={course.modules.reduce((sum, module) => sum + module.lessons.length, 0)}
+            stepIds={getProgressStepIds(course)}
           />
         </li>
       ))}

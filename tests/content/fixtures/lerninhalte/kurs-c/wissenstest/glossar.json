@@ -1,0 +1,117 @@
+{
+  "sections": {
+    "1.1": "Thema eins"
+  },
+  "questions": [
+    {
+      "section": "1.1",
+      "question": "Frage 1",
+      "options": [
+        "richtig",
+        "falsch a",
+        "falsch b",
+        "falsch c"
+      ],
+      "explanation": "Erklärung 1"
+    },
+    {
+      "section": "1.1",
+      "question": "Frage 2",
+      "options": [
+        "richtig",
+        "falsch a",
+        "falsch b",
+        "falsch c"
+      ],
+      "explanation": "Erklärung 2"
+    },
+    {
+      "section": "1.1",
+      "question": "Frage 3",
+      "options": [
+        "richtig",
+        "falsch a",
+        "falsch b",
+        "falsch c"
+      ],
+      "explanation": "Erklärung 3"
+    },
+    {
+      "section": "1.1",
+      "question": "Frage 4",
+      "options": [
+        "richtig",
+        "falsch a",
+        "falsch b",
+        "falsch c"
+      ],
+      "explanation": "Erklärung 4"
+    },
+    {
+      "section": "1.1",
+      "question": "Frage 5",
+      "options": [
+        "richtig",
+        "falsch a",
+        "falsch b",
+        "falsch c"
+      ],
+      "explanation": "Erklärung 5"
+    },
+    {
+      "section": "1.1",
+      "question": "Frage 6",
+      "options": [
+        "richtig",
+        "falsch a",
+        "falsch b",
+        "falsch c"
+      ],
+      "explanation": "Erklärung 6"
+    },
+    {
+      "section": "1.1",
+      "question": "Frage 7",
+      "options": [
+        "richtig",
+        "falsch a",
+        "falsch b",
+        "falsch c"
+      ],
+      "explanation": "Erklärung 7"
+    },
+    {
+      "section": "1.1",
+      "question": "Frage 8",
+      "options": [
+        "richtig",
+        "falsch a",
+        "falsch b",
+        "falsch c"
+      ],
+      "explanation": "Erklärung 8"
+    },
+    {
+      "section": "1.1",
+      "question": "Frage 9",
+      "options": [
+        "richtig",
+        "falsch a",
+        "falsch b",
+        "falsch c"
+      ],
+      "explanation": "Erklärung 9"
+    },
+    {
+      "section": "1.1",
+      "question": "Frage 10",
+      "options": [
+        "richtig",
+        "falsch a",
+        "falsch b",
+        "falsch c"
+      ],
+      "explanation": "Erklärung 10"
+    }
+  ]
+}
