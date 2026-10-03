@@ -15,3 +15,22 @@ body {
   background: var(--color-background);
   color: var(--color-heading);
 }
+
+/* F9: Lerninhalte aus Markdown */
+.lesson-content {
+  --tw-prose-body: color-mix(in srgb, var(--color-heading) 85%, transparent);
+  --tw-prose-headings: var(--color-heading);
+  --tw-prose-links: var(--color-primary);
+  --tw-prose-bold: var(--color-heading);
+  --tw-prose-quote-borders: var(--color-primary);
+}
+
+.lesson-content pre {
+  border: 1px solid color-mix(in srgb, var(--color-heading) 12%, transparent);
+  border-radius: var(--radius-card);
+}
+
+.lesson-content code::before,
+.lesson-content code::after {
+  content: none;
+}

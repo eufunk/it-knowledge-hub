@@ -26,6 +26,7 @@ Erledigte Punkte werden abgehakt und mit Datum versehen, nicht gelöscht.
 - [ ] Prüfskript für die Nachverfolgbarkeit: sammelt alle Kennungen `F<n>` aus `docs/feature-spec.md` und zeigt, welche noch keinen Verweis in Code oder Tests haben (mit `--strict` für den Hook)
 - [ ] Pre-Commit-Hook (`.githooks/pre-commit` + `git config core.hooksPath .githooks`), der `npm run lint`, `npm test` und das Prüfskript ausführt
 - [ ] Automatische Testläufe auf GitHub (CI), sobald das Hosting entschieden ist
+- [ ] `npm run build` ist langsam: „Generating static pages“ dauerte am 2026-10-03 ca. 7,5 min für 12 Seiten, im Dev-Server dauert jede Seite unter 2,5 s. Ursache klären (OneDrive-Synchronisierung während des Builds? Shiki/rehype-pretty-code in den Build-Workern?).
 
 ---
 

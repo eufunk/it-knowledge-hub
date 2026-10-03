@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Outfit } from "next/font/google";
+import { AppShell } from "@/components/layout/AppShell";
 import "@/styles/globals.css";
 
 const outfit = Outfit({
@@ -8,7 +9,10 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "IT Knowledge Hub",
+  title: {
+    default: "IT Knowledge Hub",
+    template: "%s · IT Knowledge Hub",
+  },
   description:
     "Zentrale Lernplattform für IT-Inhalte mit strukturierten Lerneinheiten und praxisnahen Übungen.",
 };
@@ -16,7 +20,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="de" className={`${outfit.variable} h-full antialiased`}>
-      <body className="min-h-full font-sans">{children}</body>
+      <body className="min-h-full font-sans">
+        <AppShell>{children}</AppShell>
+      </body>
     </html>
   );
 }

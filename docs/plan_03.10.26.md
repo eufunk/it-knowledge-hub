@@ -36,6 +36,7 @@ Geschätzter Aufwand: ca. 6–7 Stunden. Nach jedem Block wird committet.
 > Ergänzt: Pflichtfelder im Frontmatter werden geprüft, Regeln für das Einlesen in der Spec (Abschnitt 5.1). Tests arbeiten mit eigenem Testinhalt unter `tests/content/fixtures/`.
 
 ## Block 3 – Kursinhalt schreiben (≈ 1,5 h, parallel zu Block 4 möglich)
+> Stand: Kursgerüst mit Metadaten, Platzhalter-Kursbild (SVG) und fünf Einheiten mit Gliederung angelegt, damit die Oberfläche etwas zeigt. Die eigentlichen Texte fehlen noch.
 - [ ] `README.md` mit Kurs-Frontmatter
 - [ ] `01-einfuehrung.md` – Was ist Automatisierung, Nutzen, Risiken
 - [ ] `02-grundlagen.md` – Begriffe, Werkzeugarten (inkl. Vergleichstabelle)
@@ -45,30 +46,34 @@ Geschätzter Aufwand: ca. 6–7 Stunden. Nach jedem Block wird committet.
 - [ ] Platzhalter-Kursbild nach `public/images/kurse/` (endgültiges Bild → [todo.md](todo.md))
 - [ ] Commit: `content: Kurs System- und Prozessautomatisierung Grundlagen`
 
-## Block 4 – Layout & Navigation (≈ 1 h)
-- [ ] Design-Tokens + Schrift (Outfit) in `styles/globals.css` / `app/layout.tsx`, `lang="de"`
-- [ ] `components/navigation/Sidebar.tsx` – Logo, Home / Lerninhalte / Über uns, aktiver Zustand via `usePathname`
-- [ ] `components/navigation/MobileNav.tsx` – Bottom-Navigation < 768 px
-- [ ] `components/layout/AppShell.tsx` – Sidebar + Inhaltsbereich
-- [ ] `app/page.tsx` (Home: kurzer Willkommenstext + Link zu Lerninhalten), `app/ueber-uns/page.tsx` (Platzhalter)
-- [ ] Commit: `feat: App-Layout mit Sidebar-Navigation`
+## Block 4 – Layout & Navigation (≈ 1 h) ✅ erledigt 2026-10-03
+- [x] Design-Tokens + Schrift (Outfit) in `styles/globals.css` / `app/layout.tsx`, `lang="de"`
+- [x] `components/navigation/Sidebar.tsx` – Logo, Home / Lerninhalte / Über uns, aktiver Zustand via `usePathname`
+- [x] `components/navigation/MobileNav.tsx` – Bottom-Navigation < 768 px
+- [x] `components/layout/AppShell.tsx` – Sidebar + Inhaltsbereich
+- [x] `app/page.tsx` (Home: kurzer Willkommenstext + Link zu Lerninhalten), `app/ueber-uns/page.tsx` (Platzhalter)
+- [x] Commit: `feat: App-Layout mit Sidebar-Navigation`
 
-## Block 5 – Kursübersicht (≈ 1 h)
-- [ ] `components/learning/ProgressBadge.tsx` – Kreis + `NN % Fortschritt` / Häkchen + `Abgeschlossen`
-- [ ] `components/learning/useCourseProgress.ts` – Hook für `localStorage` (try/catch, Fallback 0 %)
-- [ ] `components/learning/CourseCard.tsx` – Bild, Verlauf, Badge, Titel, Meta, Hover/Fokus
-- [ ] `app/lerninhalte/page.tsx` – „Deine Kurse“, responsives Grid
-- [ ] Tests: `ProgressBadge` (0 %, 22 %, 100 % → „Abgeschlossen“)
-- [ ] Commit: `feat: Kursübersicht mit Kurskacheln`
+> Vorgezogen vor Block 3, damit die Plattform früh sichtbar ist. Fortschritt über `useSyncExternalStore` (`lib/utils/progress-store.ts`), dadurch keine Hydration-Abweichung.
 
-## Block 6 – Kursseite & Lerneinheit (≈ 1,5 h)
-- [ ] `app/lerninhalte/[kurs]/page.tsx` – Kopfbereich, Fortschrittsbalken, Einheitenliste, „Starten/Weiterlernen“, `generateStaticParams`, `notFound()`
-- [ ] `app/lerninhalte/[kurs]/[einheit]/page.tsx` – Breadcrumb, gerendertes Markdown, `generateStaticParams`, `notFound()`
-- [ ] `components/learning/MarkCompleteButton.tsx` (Client)
-- [ ] `components/learning/LessonNav.tsx` – Vorherige / Nächste
-- [ ] Typografie für Markdown (`prose`-Styles via `@tailwindcss/typography`)
-- [ ] `generateMetadata` für Seitentitel
-- [ ] Commit: `feat: Kursseite und Lerneinheiten`
+## Block 5 – Kursübersicht (≈ 1 h) ✅ erledigt 2026-10-03
+- [x] `components/learning/ProgressBadge.tsx` – Kreis + `NN % Fortschritt` / Häkchen + `Abgeschlossen`
+- [x] `components/learning/useCourseProgress.ts` – Hook für `localStorage` (try/catch, Fallback 0 %)
+- [x] `components/learning/CourseCard.tsx` – Bild, Verlauf, Badge, Titel, Meta, Hover/Fokus
+- [x] `app/lerninhalte/page.tsx` – „Deine Kurse“, responsives Grid
+- [x] Tests: `ProgressBadge` (0 %, 22 %, 100 % → „Abgeschlossen“)
+- [x] Commit: `feat: Kursübersicht mit Kurskacheln`
+
+## Block 6 – Kursseite & Lerneinheit (≈ 1,5 h) ✅ erledigt 2026-10-03
+- [x] `app/lerninhalte/[kurs]/page.tsx` – Kopfbereich, Fortschrittsbalken, Einheitenliste, „Starten/Weiterlernen“, `generateStaticParams`, `notFound()`
+- [x] `app/lerninhalte/[kurs]/[einheit]/page.tsx` – Breadcrumb, gerendertes Markdown, `generateStaticParams`, `notFound()`
+- [x] `components/learning/MarkCompleteButton.tsx` (Client)
+- [x] `components/learning/LessonNav.tsx` – Vorherige / Nächste
+- [x] Typografie für Markdown (`prose`-Styles via `@tailwindcss/typography`)
+- [x] `generateMetadata` für Seitentitel
+- [x] Commit: `feat: Kursseite und Lerneinheiten`
+
+> Unbekannte Kurse/Einheiten liefern 404 über `dynamicParams = false`. Zusätzlich Tests für den Fortschrittsspeicher (F12, F14).
 
 ## Block 7 – Abnahme & Feinschliff (≈ 30 min)
 - [ ] Akzeptanzkriterien aus Spec Abschnitt 8 einzeln durchklicken
