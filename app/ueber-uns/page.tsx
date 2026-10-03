@@ -7,10 +7,11 @@ export const metadata: Metadata = {
 export default function UeberUnsPage() {
   return (
     <div className="max-w-3xl">
-      <h1 className="text-4xl font-semibold">Über uns</h1>
-      <p className="mt-4 text-lg leading-relaxed text-heading/80">
-        Der IT Knowledge Hub ist eine Lernplattform für IT-Inhalte: strukturierte Lerneinheiten, praxisnahe
-        Übungen und verständlich aufbereitete Grundlagen zu technischen und organisatorischen Themen.
+      <p className="font-mono text-sm text-accent">Über uns</p>
+      <h1 className="mt-2 text-4xl font-extrabold tracking-tight">Lernen, das hängen bleibt</h1>
+      <p className="mt-5 text-lg leading-relaxed text-muted">
+        Der IT Knowledge Hub ist eine Lernplattform für IT-Inhalte: strukturierte Lerneinheiten, praxisnahe Übungen
+        und verständlich aufbereitete Grundlagen zu technischen und organisatorischen Themen.
       </p>
     </div>
   );

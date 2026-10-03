@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CourseCard } from "@/components/learning/CourseCard";
+import { CourseGrid } from "@/components/learning/CourseGrid";
 import { getAllCourses } from "@/lib/content/courses";
 
 export const metadata: Metadata = {
@@ -12,24 +12,15 @@ export default function LerninhaltePage() {
 
   return (
     <>
-      <h1 className="text-4xl font-semibold">Deine Kurse</h1>
-      {courses.length === 0 ? (
-        <p className="mt-6 text-heading/70">Noch keine Kurse vorhanden.</p>
-      ) : (
-        <ul className="mt-10 grid grid-cols-1 gap-8 sm:grid-cols-2 xl:grid-cols-4">
-          {courses.map((course) => (
-            <li key={course.slug}>
-              <CourseCard
-                slug={course.slug}
-                title={course.title}
-                duration={course.duration}
-                image={course.image}
-                lessonSlugs={course.lessons.map((lesson) => lesson.slug)}
-              />
-            </li>
-          ))}
-        </ul>
-      )}
+      <header className="mb-10">
+        <p className="font-mono text-sm text-accent">Lerninhalte</p>
+        <h1 className="mt-2 text-4xl font-extrabold tracking-tight">Deine Kurse</h1>
+        <p className="mt-3 text-lg text-muted">
+          {courses.length === 1 ? "1 Kurs" : `${courses.length} Kurse`} – wähle einen Kurs aus und starte mit der
+          ersten Einheit.
+        </p>
+      </header>
+      {courses.length === 0 ? <p className="text-muted">Noch keine Kurse vorhanden.</p> : <CourseGrid courses={courses} />}
     </>
   );
 }

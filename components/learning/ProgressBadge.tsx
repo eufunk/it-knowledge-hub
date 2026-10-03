@@ -1,19 +1,19 @@
 import { CircleCheck } from "lucide-react";
 
-const RADIUS = 9;
+const RADIUS = 8;
 const CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
 function ProgressRing({ percent }: { percent: number }) {
   return (
-    <svg viewBox="0 0 24 24" className="size-6 -rotate-90" aria-hidden>
-      <circle cx="12" cy="12" r={RADIUS} fill="none" stroke="currentColor" strokeOpacity={0.35} strokeWidth={2.5} />
+    <svg viewBox="0 0 20 20" className="size-4 -rotate-90 text-accent" aria-hidden>
+      <circle cx="10" cy="10" r={RADIUS} fill="none" stroke="currentColor" strokeOpacity={0.2} strokeWidth={3} />
       <circle
-        cx="12"
-        cy="12"
+        cx="10"
+        cy="10"
         r={RADIUS}
         fill="none"
         stroke="currentColor"
-        strokeWidth={2.5}
+        strokeWidth={3}
         strokeLinecap="round"
         strokeDasharray={CIRCUMFERENCE}
         strokeDashoffset={CIRCUMFERENCE * (1 - percent / 100)}
@@ -24,15 +24,18 @@ function ProgressRing({ percent }: { percent: number }) {
 
 // F4: Fortschritts-Badge der Kurskachel; bei 100 % „Abgeschlossen“ mit Häkchen
 export function ProgressBadge({ percent }: { percent: number }) {
-  const done = percent >= 100;
+  if (percent >= 100) {
+    return (
+      <span className="inline-flex items-center gap-1.5 rounded-full bg-success px-3 py-1.5 text-xs font-bold text-white shadow-sm">
+        <CircleCheck aria-hidden className="size-4" strokeWidth={2.5} />
+        Abgeschlossen
+      </span>
+    );
+  }
   return (
-    <span className="inline-flex items-center gap-2 rounded-full bg-primary py-1.5 pr-4 pl-2 text-[17px] font-medium text-white shadow-sm">
-      {done ? (
-        <CircleCheck aria-hidden className="size-6 fill-white text-primary" strokeWidth={2.5} />
-      ) : (
-        <ProgressRing percent={percent} />
-      )}
-      {done ? "Abgeschlossen" : `${percent}% Fortschritt`}
+    <span className="inline-flex items-center gap-1.5 rounded-full bg-surface/95 px-3 py-1.5 text-xs font-bold text-ink shadow-sm backdrop-blur">
+      <ProgressRing percent={percent} />
+      {`${percent}% Fortschritt`}
     </span>
   );
 }

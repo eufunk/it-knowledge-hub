@@ -75,6 +75,18 @@ Geschätzter Aufwand: ca. 6–7 Stunden. Nach jedem Block wird committet.
 
 > Unbekannte Kurse/Einheiten liefern 404 über `dynamicParams = false`. Zusätzlich Tests für den Fortschrittsspeicher (F12, F14).
 
+## Block 6b – Eigenes Design ✅ erledigt 2026-10-03
+Wunsch: Layout und Farben nicht 1:1 wie im Referenz-Screenshot.
+- [x] Spec angepasst (F1–F4, F7, F11, Abschnitt 6 „Gestaltung“)
+- [x] Helle Kopfleiste statt Sidebar und Bottom-Navigation (`components/navigation/Header.tsx`)
+- [x] Neue Farben (Indigo-Akzent, Grün für erledigt), Schriften Plus Jakarta Sans + JetBrains Mono
+- [x] Kurskachel als Karte mit Bild oben, Beschreibung, Fortschrittsbalken
+- [x] Kursseite mit Zeitleiste und mitlaufender Fortschrittskarte
+- [x] Lerneinheit mit Inhaltsübersicht links (`LessonSidebar`)
+- [x] Startseite mit Hero und Kursauswahl
+
+> Die Einträge zu Sidebar und Bottom-Navigation in Block 4 sind dadurch überholt.
+
 ## Block 7 – Abnahme & Feinschliff (≈ 30 min)
 - [ ] Akzeptanzkriterien aus Spec Abschnitt 8 einzeln durchklicken
 - [ ] Mobil (375 px) und Tastaturbedienung prüfen

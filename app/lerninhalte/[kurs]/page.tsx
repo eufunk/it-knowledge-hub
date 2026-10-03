@@ -1,3 +1,4 @@
+import { Clock, Layers } from "lucide-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -26,28 +27,35 @@ export default async function KursPage({ params }: PageProps<"/lerninhalte/[kurs
   if (!course) notFound();
 
   return (
-    <div className="max-w-5xl">
+    <>
       <Breadcrumb items={[{ label: "Lerninhalte", href: "/lerninhalte" }, { label: course.title }]} />
 
-      <div className="mt-6 flex flex-col gap-8 md:flex-row md:items-start">
-        <div className="relative aspect-square w-full max-w-60 shrink-0 overflow-hidden rounded-card bg-sidebar shadow-md">
-          <Image src={course.image} alt="" fill sizes="240px" className="object-cover" priority />
-        </div>
-        <div className="min-w-0 flex-1">
+      <header className="mt-6 grid items-center gap-8 overflow-hidden rounded-[24px] border border-line bg-surface p-6 sm:p-8 lg:grid-cols-[1fr_420px]">
+        <div>
           {course.level && (
-            <span className="inline-block rounded-full bg-primary/10 px-3 py-1 text-sm font-medium text-primary">
+            <span className="inline-block rounded-full bg-accent-soft px-3 py-1 font-mono text-xs font-medium tracking-wider text-accent uppercase">
               {course.level}
             </span>
           )}
-          <h1 className="mt-3 text-4xl leading-tight font-semibold">{course.title}</h1>
-          <p className="mt-3 text-lg leading-relaxed text-heading/80">{course.description}</p>
-          <p className="mt-3 font-medium text-heading/70">
-            Dauer: {course.duration} · {formatLessonCount(course.lessons.length)}
-          </p>
+          <h1 className="mt-4 text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl">{course.title}</h1>
+          <p className="mt-4 text-lg leading-relaxed text-muted">{course.description}</p>
+          <div className="mt-6 flex flex-wrap gap-3 text-sm font-semibold">
+            <span className="inline-flex items-center gap-2 rounded-lg bg-canvas px-3 py-2">
+              <Clock aria-hidden className="size-4 text-accent" />
+              {course.duration}
+            </span>
+            <span className="inline-flex items-center gap-2 rounded-lg bg-canvas px-3 py-2">
+              <Layers aria-hidden className="size-4 text-accent" />
+              {formatLessonCount(course.lessons.length)}
+            </span>
+          </div>
         </div>
-      </div>
+        <div className="relative aspect-video overflow-hidden rounded-card bg-accent-soft">
+          <Image src={course.image} alt="" fill sizes="(min-width: 1024px) 420px, 100vw" className="object-cover" priority />
+        </div>
+      </header>
 
       <CourseOverview courseSlug={course.slug} lessons={course.lessons} />
-    </div>
+    </>
   );
 }

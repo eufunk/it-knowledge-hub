@@ -1,16 +1,14 @@
-import Link from "next/link";
+import { ButtonLink } from "@/components/ui/ButtonLink";
 
 export default function NotFound() {
   return (
-    <div className="max-w-3xl">
-      <h1 className="text-4xl font-semibold">Seite nicht gefunden</h1>
-      <p className="mt-4 text-lg text-heading/80">Diese Seite gibt es nicht oder nicht mehr.</p>
-      <Link
-        href="/lerninhalte"
-        className="mt-8 inline-flex rounded-full bg-primary px-6 py-3 font-semibold text-white transition-colors hover:bg-sidebar"
-      >
+    <div className="mx-auto max-w-xl py-10 text-center">
+      <p className="font-mono text-6xl font-bold text-accent">404</p>
+      <h1 className="mt-4 text-3xl font-extrabold tracking-tight">Seite nicht gefunden</h1>
+      <p className="mt-3 text-lg text-muted">Diese Seite gibt es nicht oder nicht mehr.</p>
+      <ButtonLink href="/lerninhalte" className="mt-8">
         Zu den Lerninhalten
-      </Link>
+      </ButtonLink>
     </div>
   );
 }

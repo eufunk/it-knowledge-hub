@@ -65,7 +65,7 @@ npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 | Ordner | Inhalt |
 |---|---|
 | `app/` | Routen (App Router): `page.tsx` (Home), `lerninhalte/page.tsx` (Kursübersicht), `lerninhalte/[kurs]/page.tsx` (Kursseite), `lerninhalte/[kurs]/[einheit]/page.tsx` (Lerneinheit), `ueber-uns/page.tsx` |
-| `components/` | `layout/` (AppShell), `navigation/` (Sidebar, mobile Navigation), `learning/` (Kurskachel, Fortschritt, Einheiten-Navigation), `ui/` (allgemeine Bausteine) |
+| `components/` | `layout/` (AppShell), `navigation/` (Kopfleiste), `learning/` (Kurskachel, Zeitleiste, Inhaltsübersicht, Fortschritt), `ui/` (allgemeine Bausteine wie Fortschrittsbalken, Button, Breadcrumb) |
 | `content/lerninhalte/<kurs>/` | Kursinhalte: `README.md` mit Kurs-Frontmatter, Einheiten als `NN-slug.md` |
 | `lib/` | `content/` (Einlesen und Rendern der Inhalte), `utils/` (reine Hilfsfunktionen, z. B. Fortschrittsberechnung) |
 | `types/` | gemeinsame Typen, `learning.ts` (`Course`, `LessonMeta`, `Lesson`) |
@@ -107,6 +107,7 @@ npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 - **OneDrive:** Das Repository liegt in OneDrive und bleibt dort (Verschieben ist ausgeschlossen). Ein Ausschluss einzelner Ordner ist bei einem privaten OneDrive nicht möglich, eine Junction für `node_modules` ersetzt `npm install` stillschweigend durch einen normalen Ordner. Vereinbart ist deshalb: Die Synchronisierung wird beim Entwickeln pausiert. Bei Dateisperren (`EPERM`, `EBUSY`) zuerst den Dev-Server beenden, OneDrive pausieren und den Befehl wiederholen, bevor der Code verdächtigt wird.
 - **Hydration:** Server-HTML kennt keinen `localStorage`. Fortschrittsanzeigen rendern zuerst den neutralen Zustand (0 %) und lesen den gespeicherten Wert erst in `useEffect`. Sonst gibt es Hydration-Warnungen.
 - **Markdown-HTML:** Gerendertes Markdown wird per `dangerouslySetInnerHTML` eingefügt. Das ist nur zulässig, weil die Inhalte aus dem eigenen Repository stammen. Inhalte aus fremden Quellen (später z. B. ein CMS oder Eingaben von Nutzern) müssen vorher bereinigt werden (z. B. `rehype-sanitize`).
-- **Bilder:** Immer über `next/image` mit sinnvollem `alt`-Text. Kurskacheln brauchen den dunklen Verlauf unter dem Text, damit der Kontrast auf jedem Bild reicht.
+- **Gestaltung:** Eigenes Design, keine Nachbildung des Referenz-Screenshots. Farben nur über die Tokens in `styles/globals.css` (z. B. `bg-accent`, `text-muted`, `border-line`), keine fest eingetragenen Hex-Werte in Komponenten. Neue Tokens zuerst in der Spec (Abschnitt 6) ergänzen.
+- **Bilder:** Immer über `next/image` mit sinnvollem `alt`-Text. Kein Text auf Bildern, damit der Kontrast nicht vom Bild abhängt.
 - **`hidden`-Attribut gegen eigene `display`-Regel:** Eine Klasse mit `display: …` (auch Tailwind `flex`, `grid`) hebt das `hidden`-Attribut auf. Ein- und Ausblenden deshalb über bedingtes Rendern oder `hidden`-Klassen lösen, nicht über das Attribut.
 - **Barrierefreiheit:** Interaktive Elemente sind per Tastatur erreichbar und haben einen sichtbaren Fokus. `<html lang="de">`.

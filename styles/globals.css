@@ -1,36 +1,52 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* Design-Tokens, abgeleitet aus dem Referenz-Screenshot (siehe docs/feature-spec.md, Abschnitt 6) */
+/* Design-Tokens (siehe docs/feature-spec.md, Abschnitt 6, „Gestaltung“) */
 @theme {
-  --color-sidebar: #0b3d4a;
-  --color-primary: #0f766e;
-  --color-heading: #0b2e3a;
-  --color-background: #ffffff;
-  --radius-card: 12px;
-  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+  --color-canvas: #f5f6fa;
+  --color-surface: #ffffff;
+  --color-ink: #151826;
+  --color-muted: #5d6479;
+  --color-line: #e3e6ee;
+  --color-accent: #4338ca;
+  --color-accent-strong: #3730a3;
+  --color-accent-soft: #eef0ff;
+  --color-success: #047857;
+  --color-success-soft: #e6f6ef;
+  --radius-card: 16px;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-heading);
+  background: var(--color-canvas);
+  color: var(--color-ink);
 }
 
 /* F9: Lerninhalte aus Markdown */
 .lesson-content {
-  --tw-prose-body: color-mix(in srgb, var(--color-heading) 85%, transparent);
-  --tw-prose-headings: var(--color-heading);
-  --tw-prose-links: var(--color-primary);
-  --tw-prose-bold: var(--color-heading);
-  --tw-prose-quote-borders: var(--color-primary);
+  --tw-prose-body: color-mix(in srgb, var(--color-ink) 88%, transparent);
+  --tw-prose-headings: var(--color-ink);
+  --tw-prose-links: var(--color-accent);
+  --tw-prose-bold: var(--color-ink);
+  --tw-prose-quote-borders: var(--color-accent);
+  --tw-prose-th-borders: var(--color-line);
+  --tw-prose-td-borders: var(--color-line);
 }
 
 .lesson-content pre {
-  border: 1px solid color-mix(in srgb, var(--color-heading) 12%, transparent);
-  border-radius: var(--radius-card);
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
 }
 
 .lesson-content code::before,
 .lesson-content code::after {
   content: none;
+}
+
+.lesson-content blockquote {
+  background: var(--color-accent-soft);
+  border-radius: 0 12px 12px 0;
+  padding: 0.25rem 1.25rem;
+  font-style: normal;
 }

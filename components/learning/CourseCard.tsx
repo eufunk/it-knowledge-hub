@@ -1,7 +1,9 @@
 "use client";
 
+import { Clock, Layers } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { ProgressBar } from "@/components/ui/ProgressBar";
 import { formatLessonCount } from "@/lib/utils/format";
 import { ProgressBadge } from "./ProgressBadge";
 import { useCourseProgress } from "./useCourseProgress";
@@ -9,38 +11,52 @@ import { useCourseProgress } from "./useCourseProgress";
 interface CourseCardProps {
   slug: string;
   title: string;
+  description: string;
   duration: string;
   image: string;
+  level?: string;
   lessonSlugs: string[];
 }
 
-// F4: Kurskachel mit Bild, Verlauf, Fortschritts-Badge, Titel und Dauer
-export function CourseCard({ slug, title, duration, image, lessonSlugs }: CourseCardProps) {
+// F4: Kurskachel – Bild oben, Text darunter, Fortschritt unten
+export function CourseCard({ slug, title, description, duration, image, level, lessonSlugs }: CourseCardProps) {
   const { percent } = useCourseProgress(slug, lessonSlugs);
 
   return (
     <Link
       href={`/lerninhalte/${slug}`}
-      className="group relative block aspect-square overflow-hidden rounded-card bg-sidebar shadow-md transition-shadow hover:shadow-xl focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-primary"
+      className="group flex h-full flex-col overflow-hidden rounded-card border border-line bg-surface transition duration-300 hover:-translate-y-1 hover:border-accent/30 hover:shadow-xl hover:shadow-accent/10 focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-accent"
     >
-      <Image
-        src={image}
-        alt=""
-        fill
-        sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw"
-        className="object-cover transition-transform duration-500 group-hover:scale-105"
-      />
-      <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/35 to-transparent" />
-
-      <div className="absolute top-5 left-5">
-        <ProgressBadge percent={percent} />
+      <div className="relative aspect-video overflow-hidden bg-accent-soft">
+        <Image
+          src={image}
+          alt=""
+          fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+          className="object-cover transition-transform duration-500 group-hover:scale-105"
+        />
+        <div className="absolute top-3 right-3">
+          <ProgressBadge percent={percent} />
+        </div>
       </div>
 
-      <div className="absolute inset-x-0 bottom-0 p-6 text-white">
-        <h2 className="text-2xl leading-snug font-semibold">{title}</h2>
-        <p className="mt-1 text-lg text-white/90">
-          Dauer: {duration} · {formatLessonCount(lessonSlugs.length)}
-        </p>
+      <div className="flex flex-1 flex-col p-5">
+        {level && <p className="font-mono text-xs font-medium tracking-wider text-accent uppercase">{level}</p>}
+        <h2 className="mt-1.5 text-xl leading-snug font-bold tracking-tight">{title}</h2>
+        <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">{description}</p>
+
+        <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm font-medium text-muted">
+          <span className="inline-flex items-center gap-1.5">
+            <Clock aria-hidden className="size-4" />
+            {duration}
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <Layers aria-hidden className="size-4" />
+            {formatLessonCount(lessonSlugs.length)}
+          </span>
+        </div>
+
+        <ProgressBar percent={percent} className="mt-auto pt-5" />
       </div>
     </Link>
   );
