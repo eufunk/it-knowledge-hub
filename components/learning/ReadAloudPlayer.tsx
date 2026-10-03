@@ -1,0 +1,283 @@
+"use client";
+
+import { Pause, Play, Settings2, SkipBack, SkipForward, Square, Volume2 } from "lucide-react";
+import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { extractSegments, type SpeechSegment } from "@/lib/utils/speech";
+import {
+  parseSettings,
+  pickVoice,
+  RATES,
+  readSettingsRaw,
+  saveSettings,
+  subscribeSettings,
+  type SpeechSettings,
+} from "@/lib/utils/speech-settings";
+
+type Status = "idle" | "playing" | "paused";
+
+const NO_VOICES: SpeechSynthesisVoice[] = [];
+let voiceCache: SpeechSynthesisVoice[] | null = null;
+
+function isSupported(): boolean {
+  return typeof window !== "undefined" && "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+}
+
+// Stimmen laden manche Browser verzögert („voiceschanged“); der Zwischenspeicher hält die Referenz stabil.
+function subscribeVoices(onChange: () => void): () => void {
+  if (!isSupported()) return () => {};
+  const synth = window.speechSynthesis;
+  const handler = () => {
+    voiceCache = synth.getVoices();
+    onChange();
+  };
+  synth.addEventListener("voiceschanged", handler);
+  return () => synth.removeEventListener("voiceschanged", handler);
+}
+
+function getVoices(): SpeechSynthesisVoice[] {
+  if (!isSupported()) return NO_VOICES;
+  if (voiceCache === null) voiceCache = window.speechSynthesis.getVoices();
+  return voiceCache;
+}
+
+const noopSubscribe = () => () => {};
+
+const iconButton =
+  "flex size-10 shrink-0 items-center justify-center rounded-xl text-muted transition-colors hover:bg-canvas hover:text-ink focus-visible:outline-2 focus-visible:outline-accent disabled:opacity-40 disabled:hover:bg-transparent";
+
+// F20: Vorlese-Player für ein Kapitel (Web Speech API)
+export function ReadAloudPlayer({ targetId }: { targetId: string }) {
+  // null = noch unbekannt (Server und erstes Rendern), dann true/false im Browser
+  const supported = useSyncExternalStore<boolean | null>(noopSubscribe, isSupported, () => null);
+  const voices = useSyncExternalStore(subscribeVoices, getVoices, () => NO_VOICES);
+  const settingsRaw = useSyncExternalStore(subscribeSettings, readSettingsRaw, () => null);
+  const settings = useMemo(() => parseSettings(settingsRaw), [settingsRaw]);
+  const voice = useMemo(() => pickVoice(voices, settings.voice), [voices, settings.voice]);
+  const germanVoices = useMemo(() => voices.filter((item) => item.lang.toLowerCase().startsWith("de")), [voices]);
+
+  const [status, setStatus] = useState<Status>("idle");
+  const [index, setIndex] = useState(0);
+  const [total, setTotal] = useState(0);
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
+  const segmentsRef = useRef<SpeechSegment[] | null>(null);
+  const positionRef = useRef({ segment: 0, chunk: 0 });
+  const tokenRef = useRef(0);
+  const highlightedRef = useRef<Element | null>(null);
+  const voiceRef = useRef<SpeechSynthesisVoice | null>(null);
+  const rateRef = useRef(settings.rate);
+
+  useEffect(() => {
+    voiceRef.current = voice;
+    rateRef.current = settings.rate;
+  });
+
+  // Beim Verlassen der Seite die Ausgabe stoppen und die Hervorhebung entfernen.
+  useEffect(() => {
+    const token = tokenRef;
+    const highlighted = highlightedRef;
+    return () => {
+      token.current++;
+      if (isSupported()) window.speechSynthesis.cancel();
+      highlighted.current?.classList.remove("speaking");
+    };
+  }, []);
+
+  const segments = (): SpeechSegment[] => {
+    if (!segmentsRef.current) {
+      const root = document.getElementById(targetId);
+      segmentsRef.current = root ? extractSegments(root) : [];
+      setTotal(segmentsRef.current.length);
+    }
+    return segmentsRef.current;
+  };
+
+  const highlight = (element: Element | null) => {
+    if (highlightedRef.current === element) return;
+    highlightedRef.current?.classList.remove("speaking");
+    highlightedRef.current = element;
+    if (element) {
+      element.classList.add("speaking");
+      element.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+  };
+
+  const finish = () => {
+    tokenRef.current++;
+    positionRef.current = { segment: 0, chunk: 0 };
+    setIndex(0);
+    setStatus("idle");
+    highlight(null);
+  };
+
+  const speakCurrent = (override?: Partial<SpeechSettings> & { voiceObject?: SpeechSynthesisVoice | null }) => {
+    const list = segments();
+    const { segment, chunk } = positionRef.current;
+    const current = list[segment];
+    if (!current) {
+      finish();
+      return;
+    }
+    highlight(current.element);
+    const token = ++tokenRef.current;
+    const chosenVoice = override?.voiceObject !== undefined ? override.voiceObject : voiceRef.current;
+    const utterance = new SpeechSynthesisUtterance(current.chunks[chunk]);
+    utterance.lang = chosenVoice?.lang ?? "de-DE";
+    if (chosenVoice) utterance.voice = chosenVoice;
+    utterance.rate = override?.rate ?? rateRef.current;
+
+    const advance = () => {
+      if (token !== tokenRef.current) return;
+      const position = positionRef.current;
+      if (position.chunk + 1 < list[position.segment].chunks.length) {
+        positionRef.current = { segment: position.segment, chunk: position.chunk + 1 };
+      } else if (position.segment + 1 < list.length) {
+        positionRef.current = { segment: position.segment + 1, chunk: 0 };
+        setIndex(position.segment + 1);
+      } else {
+        finish();
+        return;
+      }
+      speakCurrent();
+    };
+    utterance.onend = advance;
+    utterance.onerror = (event) => {
+      if (event.error === "interrupted" || event.error === "canceled") return;
+      advance();
+    };
+
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const play = () => {
+    if (segments().length === 0) return;
+    setStatus("playing");
+    speakCurrent();
+  };
+
+  const pause = () => {
+    tokenRef.current++;
+    window.speechSynthesis.cancel();
+    setStatus("paused");
+  };
+
+  const stop = () => {
+    window.speechSynthesis.cancel();
+    finish();
+  };
+
+  const jump = (delta: number) => {
+    const list = segments();
+    const target = Math.min(Math.max(positionRef.current.segment + delta, 0), list.length - 1);
+    positionRef.current = { segment: target, chunk: 0 };
+    setIndex(target);
+    if (status === "playing") speakCurrent();
+    else {
+      highlight(list[target]?.element ?? null);
+      if (status === "idle") setStatus("paused");
+    }
+  };
+
+  const changeSettings = (next: SpeechSettings) => {
+    saveSettings(next);
+    if (status === "playing") {
+      speakCurrent({ rate: next.rate, voiceObject: pickVoice(voices, next.voice) });
+    }
+  };
+
+  if (supported === null) return null;
+
+  if (!supported || (voices.length > 0 && germanVoices.length === 0)) {
+    return (
+      <p className="fixed inset-x-3 bottom-3 z-40 rounded-2xl border border-line bg-surface/95 p-3 text-sm text-muted shadow-lg backdrop-blur sm:inset-x-auto sm:right-6 sm:bottom-6 sm:max-w-xs">
+        {supported
+          ? "Vorlesen nicht möglich: In diesem Browser ist keine deutsche Stimme installiert."
+          : "Vorlesen wird von diesem Browser nicht unterstützt."}
+      </p>
+    );
+  }
+
+  const label = status === "idle" && index === 0 ? "Kapitel vorlesen" : `Abschnitt ${index + 1} von ${total}`;
+
+  return (
+    <section
+      aria-label="Vorlesen"
+      className="fixed inset-x-3 bottom-3 z-40 sm:inset-x-auto sm:right-6 sm:bottom-6"
+    >
+      {settingsOpen && (
+        <div className="mb-2 rounded-2xl border border-line bg-surface p-4 shadow-xl">
+          <p className="font-mono text-xs font-medium tracking-wider text-muted uppercase">Geschwindigkeit</p>
+          <div className="mt-2 flex gap-1" role="group" aria-label="Geschwindigkeit">
+            {RATES.map((rate) => (
+              <button
+                key={rate}
+                type="button"
+                aria-pressed={settings.rate === rate}
+                onClick={() => changeSettings({ ...settings, rate })}
+                className={`rounded-lg px-3 py-1.5 font-mono text-sm font-semibold transition-colors ${
+                  settings.rate === rate ? "bg-accent text-white" : "bg-canvas text-muted hover:text-ink"
+                }`}
+              >
+                {String(rate).replace(".", ",")}×
+              </button>
+            ))}
+          </div>
+          {germanVoices.length > 0 && (
+            <label className="mt-4 block">
+              <span className="font-mono text-xs font-medium tracking-wider text-muted uppercase">Stimme</span>
+              <select
+                value={voice?.name ?? ""}
+                onChange={(event) => changeSettings({ ...settings, voice: event.target.value })}
+                className="mt-2 block w-full rounded-lg border border-line bg-surface px-3 py-2 text-sm sm:w-72"
+              >
+                {germanVoices.map((item) => (
+                  <option key={item.name} value={item.name}>
+                    {item.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+          )}
+        </div>
+      )}
+
+      <div className="flex items-center gap-1 rounded-2xl border border-line bg-surface/95 p-2 shadow-xl backdrop-blur">
+        <span className="hidden size-10 shrink-0 items-center justify-center rounded-xl bg-accent-soft text-accent sm:flex">
+          <Volume2 aria-hidden className="size-5" />
+        </span>
+        <button type="button" onClick={() => jump(-1)} disabled={status === "idle"} aria-label="Vorheriger Abschnitt" className={iconButton}>
+          <SkipBack aria-hidden className="size-5" />
+        </button>
+        <button
+          type="button"
+          onClick={status === "playing" ? pause : play}
+          aria-label={status === "playing" ? "Pause" : "Vorlesen starten"}
+          className="flex size-11 shrink-0 items-center justify-center rounded-full bg-accent text-white shadow-sm shadow-accent/30 transition-colors hover:bg-accent-strong focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
+          {status === "playing" ? <Pause aria-hidden className="size-5" /> : <Play aria-hidden className="ml-0.5 size-5" />}
+        </button>
+        <button type="button" onClick={() => jump(1)} disabled={status === "idle"} aria-label="Nächster Abschnitt" className={iconButton}>
+          <SkipForward aria-hidden className="size-5" />
+        </button>
+        <span aria-live="polite" className="min-w-0 flex-1 truncate px-2 text-sm font-semibold sm:w-40 sm:flex-none">
+          {label}
+        </span>
+        {status !== "idle" && (
+          <button type="button" onClick={stop} aria-label="Vorlesen beenden" className={iconButton}>
+            <Square aria-hidden className="size-4" />
+          </button>
+        )}
+        <button
+          type="button"
+          onClick={() => setSettingsOpen((open) => !open)}
+          aria-expanded={settingsOpen}
+          aria-label="Einstellungen zum Vorlesen"
+          className={iconButton}
+        >
+          <Settings2 aria-hidden className="size-5" />
+        </button>
+      </div>
+    </section>
+  );
+}

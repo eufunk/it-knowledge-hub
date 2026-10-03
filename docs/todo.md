@@ -15,7 +15,8 @@ Erledigte Punkte werden abgehakt und mit Datum versehen, nicht gelöscht.
 - [ ] Notizen pro Lerneinheit (Navigationseintrag „Notizen“)
 - [ ] News-Bereich
 - [ ] Livestream-Bereich
-- [ ] Audio-Player (Widget unten rechts wie im Referenz-Screenshot)
+- [x] Audio-Player: erledigt 2026-10-03 als Vorlese-Player mit der Sprachausgabe des Browsers (F20)
+- [ ] Vorlesen mit fertigen Audiodateien von einem Sprachdienst (Azure, Google, OpenAI, ElevenLabs): gleichbleibende Stimme in allen Browsern, echte Zeitleiste zum Spulen. Braucht Konto, API-Schlüssel und Neuvertonung bei Textänderungen; Kosten vorher prüfen.
 - [ ] Suche über alle Kurse und Einheiten
 - [ ] Quiz-Komponente für Übungen
 - [ ] Login und serverseitig gespeicherter Fortschritt (statt `localStorage`)

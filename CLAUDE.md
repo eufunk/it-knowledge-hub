@@ -85,6 +85,7 @@ npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 ## Tests
 
 - **Lernschritte:** Fortschritt, Zurück/Weiter und „Weiterlernen“ basieren auf `lib/utils/steps.ts` (`getCourseSteps`). Schritt-IDs sind `<kapitel>` und `<kapitel>/wissenstest`; sie sind die Werte im `localStorage`. IDs nicht umbenennen, sonst geht gespeicherter Fortschritt verloren (oder den Speicherschlüssel versionieren).
+- **Vorlesen (F20):** `ReadAloudPlayer` nutzt `window.speechSynthesis`. Was vorgelesen wird, bestimmt `extractSegments` in `lib/utils/speech.ts`; neue Inhaltselemente (z. B. eigene Komponenten im Markdown) dort berücksichtigen. Pausieren bricht ab und setzt am aktuellen Satz neu an, weil `speechSynthesis.pause()` in Chrome unzuverlässig ist.
 - **Hinweisboxen:** Ein Blockzitat wird zur Box, wenn es mit `**Definition:**`, `**Tipp:**`, `**Wichtig:**`, `**Achtung:**`, `**Hinweis:**`, `**Merke:**` oder `**Kurz gesagt:**` beginnt (`lib/content/markdown.ts`, Styles in `styles/globals.css`).
 - Tests liegen in `tests/` (nicht neben den Komponenten), gegliedert in `content/` (Loader, Markdown, reine Funktionen) und `components/` (Rendering mit Testing Library). Dateinamen: `<name>.test.ts` bzw. `.test.tsx`.
 - Vor dem Anlegen einer neuen Testdatei prüfen, ob es für dieselbe Komponente schon eine gibt (Glob `tests/**/*.test.*`). Lieber ergänzen als eine zweite Datei daneben anlegen.
@@ -98,7 +99,7 @@ npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 |---|---|---|
 | `content/lerninhalte/` | Kursinhalte (Markdown) | **ja**, das sind die Primärdaten |
 | `public/images/` | Kursbilder (Herkunft und Lizenz in der Commit-Nachricht oder in `docs/` notieren) | ja |
-| `localStorage` im Browser | Lernfortschritt, ein Schlüssel pro Kurs | nein, nur beim jeweiligen Browser |
+| `localStorage` im Browser | Lernfortschritt, ein Schlüssel pro Kurs (`progress:v1:<kurs>`); Vorlese-Einstellungen (`vorlesen:v1`) | nein, nur beim jeweiligen Browser |
 
 - Jeder Zugriff auf `localStorage` steht in `try/catch` und fällt auf 0 % zurück (F14). Er kann in privaten Fenstern oder bei blockierten Website-Daten fehlschlagen.
 - Ändert sich das Format der gespeicherten Fortschrittsdaten, wird der Schlüssel versioniert (z. B. `progress:v2:<kurs>`), damit alte Daten nicht zu Fehlern führen.

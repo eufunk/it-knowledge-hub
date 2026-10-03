@@ -121,6 +121,20 @@ body {
   color: var(--color-accent);
 }
 
+/* F20: gerade vorgelesener Abschnitt */
+.lesson-content .speaking {
+  background: var(--color-accent-soft);
+  outline: 2px solid color-mix(in srgb, var(--color-accent) 35%, transparent);
+  outline-offset: 4px;
+  border-radius: 6px;
+  scroll-margin: 120px;
+  transition: background-color 0.2s;
+}
+
+.lesson-content tr.speaking {
+  outline-offset: -2px;
+}
+
 /* Überschriften der Abschnitte */
 .lesson-content h2 {
   padding-bottom: 0.4em;

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CoursePlayer } from "@/components/learning/CoursePlayer";
 import { MarkCompleteButton } from "@/components/learning/MarkCompleteButton";
+import { ReadAloudPlayer } from "@/components/learning/ReadAloudPlayer";
 import { ReadingProgress } from "@/components/learning/ReadingProgress";
 import { StepCards, StepTopBar } from "@/components/learning/StepNavigation";
 import { getAllCourses, getCourse, getLesson } from "@/lib/content/courses";
@@ -24,7 +25,7 @@ export async function generateMetadata({
   return lesson ? { title: lesson.title, description: lesson.description } : {};
 }
 
-// F9–F11, F15, F16: Kapitel im Kursplayer
+// F9–F11, F15, F16, F20: Kapitel im Kursplayer
 export default async function KapitelPage({ params }: PageProps<"/lerninhalte/[kurs]/[einheit]">) {
   const { kurs, einheit } = await params;
   const course = getCourse(kurs);
@@ -64,6 +65,7 @@ export default async function KapitelPage({ params }: PageProps<"/lerninhalte/[k
 
         {/* Inhalt stammt aus dem eigenen Repository (siehe CLAUDE.md, „Markdown-HTML“). */}
         <article
+          id="kapitel-text"
           className="lesson-content prose max-w-none p-6 sm:p-10 sm:prose-lg"
           dangerouslySetInnerHTML={{ __html: lesson.html }}
         />
@@ -76,6 +78,10 @@ export default async function KapitelPage({ params }: PageProps<"/lerninhalte/[k
       )}
 
       <StepCards courseHref={courseHref} {...adjacent} />
+
+      {/* Platz, damit der schwebende Vorlese-Player nichts verdeckt */}
+      <div aria-hidden className="h-20" />
+      <ReadAloudPlayer targetId="kapitel-text" />
     </CoursePlayer>
   );
 }

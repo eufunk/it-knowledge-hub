@@ -17,7 +17,6 @@ Das MVP liefert **einen vollständig nutzbaren Kurs** von der Übersicht bis zur
 - Kein Login, keine Benutzerkonten, keine Datenbank
 - Kein Livestream, keine News, kein Glossar, keine Notizen (kommen später, siehe `docs/todo.md`)
 - Kein CMS – Inhalte werden direkt als Markdown im Repo gepflegt
-- Kein Audio-Player
 
 ## 3. Nutzer & Kernszenarien
 
@@ -72,6 +71,12 @@ Angelehnt an den Referenz-Screenshot der Kursansicht, aber im eigenen Design.
   - Am Ende: Ergebnis (z. B. „8 von 10“); bestanden ab 80 % → Wissenstest gilt als erledigt; „Neuer Durchlauf“ jederzeit möglich, ein bestandener Test bleibt erledigt
 - **F18** Hinweisboxen: Blockzitate, die mit **Definition:**, **Tipp:**, **Wichtig:**, **Achtung:**, **Hinweis:**, **Merke:** oder **Kurz gesagt:** beginnen, werden als farbige Boxen mit Icon dargestellt. Musterlösungen und Lösungsvorschläge sind eingeklappt („Musterlösung anzeigen“).
 - **F19** Anhänge (z. B. Glossar) sind Kapitel ohne Wissenstest, ohne Erledigt-Button und zählen nicht zum Fortschritt.
+- **F20** Vorlesen: Auf jeder Kapitelseite gibt es einen Vorlese-Player (unten rechts schwebend, mobil am unteren Rand). Er nutzt die Sprachausgabe des Browsers (Web Speech API, kein Server, keine Kosten).
+  - Bedienung: Abspielen/Pause, vorheriger/nächster Abschnitt, Anzeige „Abschnitt N von M“, Geschwindigkeit (0,75× bis 1,5×) und Auswahl einer deutschen Stimme. Geschwindigkeit und Stimme werden im Browser gemerkt.
+  - Vorgelesen werden Überschriften, Absätze, Listenpunkte, Hinweisboxen und Tabellen. Tabellen zeilenweise: erste Spalte, dann jede weitere Zelle mit ihrer Spaltenüberschrift („Manuell. Beschreibung: … Beispiel: …“), eingeleitet mit „Tabelle mit N Zeilen“.
+  - Übersprungen werden Codeblöcke und eingeklappte Musterlösungen.
+  - Der gerade gelesene Abschnitt (bei Tabellen die Zeile) wird hervorgehoben und in den sichtbaren Bereich gescrollt.
+  - Beim Verlassen der Seite stoppt die Ausgabe. Unterstützt der Browser keine Sprachausgabe oder gibt es keine deutsche Stimme, zeigt der Player einen Hinweis statt der Bedienelemente.
 
 ### 4.5 Fortschritt
 - **F12** Fortschritt wird im Browser (`localStorage`) gespeichert, Schlüssel pro Kurs.
@@ -209,6 +214,7 @@ Eigenes Design: heller, kühler Hintergrund, weiße Karten mit feinem Rahmen, du
 - [ ] Zurück/Weiter folgt der Reihenfolge Kapitel → Wissenstest → nächstes Kapitel; am Anfang ist „Zurück“ deaktiviert
 - [ ] Unbekannter Kurs/Einheit → 404-Seite
 - [ ] Layout funktioniert bei 375 px Breite ohne horizontales Scrollen
+- [ ] Vorlesen: Kapitel wird abschnittsweise vorgelesen, Tabellen zeilenweise, Code wird übersprungen, aktueller Abschnitt ist hervorgehoben
 - [ ] `npm run build`, `npm run lint` und `npm test` laufen fehlerfrei
 
 ## 9. Ausblick (nach MVP)

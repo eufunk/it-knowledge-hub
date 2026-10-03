@@ -45,6 +45,13 @@ Statt selbst geschriebener Inhalte übernommen aus `System_und_Prozessautomatisi
 - [x] Wissenstest: 10 zufällige Fragen, Rückmeldung mit Erklärung, bestanden ab 80 %
 - [x] Tests für Module, Lernschritte, Quiz-Logik, Hinweisboxen und den Ablauf im Wissenstest
 
+## Block 3b – Vorlesen ✅ erledigt 2026-10-03
+Wunsch: Kapitel von einem „Roboter“ vorlesen lassen. Entscheidung: Variante 1 (Sprachausgabe des Browsers), Tabellen werden mit vorgelesen.
+- [x] Spec F20
+- [x] Abschnitte aus dem Kapitel auslesen, Tabellen zeilenweise, Code und Musterlösungen überspringen, lange Absätze in Sätze teilen
+- [x] Player mit Abspielen/Pause, Abschnitt vor/zurück, Geschwindigkeit, Stimme, Hervorhebung des aktuellen Abschnitts
+- [x] Tests mit simulierter Sprachausgabe
+
 ## Block 4 – Layout & Navigation (≈ 1 h) ✅ erledigt 2026-10-03
 - [x] Design-Tokens + Schrift (Outfit) in `styles/globals.css` / `app/layout.tsx`, `lang="de"`
 - [x] `components/navigation/Sidebar.tsx` – Logo, Home / Lerninhalte / Über uns, aktiver Zustand via `usePathname`
