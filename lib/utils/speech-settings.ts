@@ -47,13 +47,17 @@ export function subscribeSettings(onChange: () => void): () => void {
   return () => window.removeEventListener(CHANGE_EVENT, onChange);
 }
 
+export function isNaturalVoice(voice: { name: string }): boolean {
+  return /natural|online/i.test(voice.name);
+}
+
 // Bevorzugt natürlich klingende deutsche Stimmen (z. B. „Microsoft … Online (Natural)“ in Edge).
 export function pickVoice<T extends { name: string; lang: string }>(voices: T[], preferred: string | null): T | null {
   const german = voices.filter((voice) => voice.lang.toLowerCase().startsWith("de"));
   if (german.length === 0) return null;
   return (
     german.find((voice) => voice.name === preferred) ??
-    german.find((voice) => /natural|online/i.test(voice.name)) ??
+    german.find(isNaturalVoice) ??
     german.find((voice) => /google/i.test(voice.name)) ??
     german[0]
   );

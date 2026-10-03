@@ -5,6 +5,7 @@
 ---
 
 ## 2026-10-03
+- Vorlesen flüssiger gemacht: keine Abbrüche mehr zwischen Textstücken, Teilung nur noch bei Google-Stimmen und nur an Satzenden (vorher auch an Doppelpunkt/Semikolon und ab 220 Zeichen), Abkürzungen ausgeschrieben.
 - Neu: Vorlesen von Kapiteln über die Sprachausgabe des Browsers (F20), Tabellen zeilenweise, Code und Musterlösungen werden übersprungen.
 - Kursinhalt übernommen aus `System_und_Prozessautomatisierung_Grundlagen.docx` (9 Kapitel + Glossar) und `Systemautomatisierung_Quiz.html` (410 Fragen). Die fünf Platzhalter-Einheiten (`einfuehrung`, `grundlagen`, `systemautomatisierung`, `prozessautomatisierung`, `uebungen`) wurden entfernt; ihre Adressen liefern jetzt 404, gespeicherter Fortschritt dazu wird ignoriert.
 - Neu: Module (F15), Kursplayer mit Seitenleiste, Zurück/Weiter und Lesefortschritt (F11, F15, F16), Wissenstests (F17), Hinweisboxen und eingeklappte Musterlösungen (F18), Anhänge (F19). Fortschritt zählt jetzt Lernschritte (Kapitel + Wissenstests) statt Einheiten (F13). Die frühere Inhaltsübersicht neben der Lerneinheit (F11 alt) ist in der Seitenleiste aufgegangen.

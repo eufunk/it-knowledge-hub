@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { chunkText, extractSegments } from "@/lib/utils/speech";
+import { chunkLimit, chunkText, extractSegments, speakableText } from "@/lib/utils/speech";
 import { parseSettings, pickVoice } from "@/lib/utils/speech-settings";
 
 function article(html: string): HTMLElement {
@@ -18,7 +18,7 @@ describe("F20: Abschnitte zum Vorlesen", () => {
         <blockquote class="callout"><p><strong>Tipp:</strong> Klein anfangen.</p></blockquote>
       `),
     );
-    expect(segments.map((segment) => segment.chunks.join(" "))).toEqual([
+    expect(segments.map((segment) => segment.text)).toEqual([
       "Funktionsweise",
       "Jede Automatisierung folgt dem EVA-Prinzip.",
       "Auslöser",
@@ -38,7 +38,7 @@ describe("F20: Abschnitte zum Vorlesen", () => {
         <p>Nachher</p>
       `),
     );
-    expect(segments.map((segment) => segment.chunks.join(" "))).toEqual(["Vorher", "Nachher"]);
+    expect(segments.map((segment) => segment.text)).toEqual(["Vorher", "Nachher"]);
   });
 
   it("liest Tabellen zeilenweise mit Spaltenüberschriften", () => {
@@ -53,24 +53,40 @@ describe("F20: Abschnitte zum Vorlesen", () => {
         </table>
       `),
     );
-    expect(segments.map((segment) => segment.chunks.join(" "))).toEqual([
+    expect(segments.map((segment) => segment.text)).toEqual([
       "Tabelle mit 2 Zeilen.",
       "Manuell. Beschreibung: Ein Mensch führt jeden Schritt aus. Beispiel: Konto per Klick anlegen.",
       "Vollautomatisiert. Beschreibung: Läuft ohne Eingriff.",
     ]);
     expect(segments[1].element.tagName).toBe("TR");
   });
+});
 
-  it("teilt lange Texte an Satzgrenzen, ohne Text zu verlieren", () => {
-    const sentence = "Das ist ein Satz mit einigen Wörtern darin. ";
-    const text = sentence.repeat(12);
-    const chunks = chunkText(text, 100);
-    expect(chunks.every((chunk) => chunk.length <= 100)).toBe(true);
-    expect(chunks.join(" ").replace(/\s+/g, " ")).toBe(text.trim());
+describe("F20: flüssiges Vorlesen", () => {
+  it("schreibt Abkürzungen aus", () => {
+    expect(speakableText("Tools wie z. B. Ansible, d. h. Konfiguration bzw. Code, ggf. usw.")).toBe(
+      "Tools wie zum Beispiel Ansible, das heißt Konfiguration beziehungsweise Code, gegebenenfalls und so weiter",
+    );
+    expect(speakableText("Messen → Vergleichen")).toBe("Messen zu Vergleichen");
   });
 
-  it("teilt auch überlange Sätze ohne Satzzeichen", () => {
-    const chunks = chunkText("wort ".repeat(100), 50);
+  it("teilt bei natürlichen Stimmen gar nicht, bei Google-Stimmen an Satzenden", () => {
+    const paragraph = "Das ist ein Satz mit einigen Wörtern darin. ".repeat(12).trim();
+    expect(chunkText(paragraph, chunkLimit({ name: "Microsoft Katja Online (Natural)" }))).toEqual([paragraph]);
+
+    const chunks = chunkText(paragraph, chunkLimit({ name: "Google Deutsch" }));
+    expect(chunks.length).toBeGreaterThan(1);
+    expect(chunks.every((chunk) => chunk.length <= 200 && chunk.endsWith("."))).toBe(true);
+    expect(chunks.join(" ")).toBe(paragraph);
+  });
+
+  it("teilt nicht an Doppelpunkten oder Zahlen mit Punkt", () => {
+    expect(chunkText("Schritt 1.2: Messen, dann vergleichen.", 30)).toEqual(["Schritt 1.2: Messen, dann", "vergleichen."]);
+    expect(chunkText("Schritt 1.2: Messen.", 200)).toEqual(["Schritt 1.2: Messen."]);
+  });
+
+  it("teilt überlange Sätze ohne Satzzeichen, ohne Wörter zu verlieren", () => {
+    const chunks = chunkText("wort ".repeat(100).trim(), 50);
     expect(chunks.every((chunk) => chunk.length <= 50)).toBe(true);
     expect(chunks.join(" ").split(" ")).toHaveLength(100);
   });

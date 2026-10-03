@@ -75,6 +75,7 @@ Angelehnt an den Referenz-Screenshot der Kursansicht, aber im eigenen Design.
   - Bedienung: Abspielen/Pause, vorheriger/nächster Abschnitt, Anzeige „Abschnitt N von M“, Geschwindigkeit (0,75× bis 1,5×) und Auswahl einer deutschen Stimme. Geschwindigkeit und Stimme werden im Browser gemerkt.
   - Vorgelesen werden Überschriften, Absätze, Listenpunkte, Hinweisboxen und Tabellen. Tabellen zeilenweise: erste Spalte, dann jede weitere Zelle mit ihrer Spaltenüberschrift („Manuell. Beschreibung: … Beispiel: …“), eingeleitet mit „Tabelle mit N Zeilen“.
   - Übersprungen werden Codeblöcke und eingeklappte Musterlösungen.
+  - Flüssiges Vorlesen: Abkürzungen werden ausgeschrieben („z. B.“ → „zum Beispiel“), der nächste Abschnitt wird vorab in die Warteschlange gelegt, Text wird nur bei Stimmen mit Längenbegrenzung (Google-Stimmen in Chrome) an Satzenden geteilt. Natürliche Stimmen stehen in der Auswahl oben und sind als „empfohlen“ markiert.
   - Der gerade gelesene Abschnitt (bei Tabellen die Zeile) wird hervorgehoben und in den sichtbaren Bereich gescrollt.
   - Beim Verlassen der Seite stoppt die Ausgabe. Unterstützt der Browser keine Sprachausgabe oder gibt es keine deutsche Stimme, zeigt der Player einen Hinweis statt der Bedienelemente.
 

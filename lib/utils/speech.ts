@@ -3,44 +3,61 @@
 export interface SpeechSegment {
   // Element, das beim Vorlesen hervorgehoben wird (bei Tabellen die Zeile)
   element: Element;
-  // in Sätze zerlegt, weil manche Browser lange Äußerungen abbrechen
-  chunks: string[];
+  text: string;
 }
 
-const MAX_CHUNK = 220;
+// Abkürzungen ausschreiben, damit sie flüssig klingen und keine Satzgrenze vortäuschen
+const ABBREVIATIONS: [RegExp, string][] = [
+  [/\bz\.\s?B\./g, "zum Beispiel"],
+  [/\bd\.\s?h\./g, "das heißt"],
+  [/\bu\.\s?a\./g, "unter anderem"],
+  [/\bu\.\s?U\./g, "unter Umständen"],
+  [/\bbzw\./g, "beziehungsweise"],
+  [/\bggf\./g, "gegebenenfalls"],
+  [/\busw\./g, "und so weiter"],
+  [/\binkl\./g, "inklusive"],
+  [/\bca\./g, "circa"],
+  [/\bvgl\./g, "vergleiche"],
+  [/\bsog\./g, "sogenannte"],
+  [/\bNr\./g, "Nummer"],
+];
 
-function clean(text: string): string {
-  return text
+export function speakableText(text: string): string {
+  let result = text;
+  for (const [pattern, replacement] of ABBREVIATIONS) result = result.replace(pattern, replacement);
+  return result
     .replace(/→/g, " zu ")
     .replace(/\s+/g, " ")
     .trim();
 }
 
-// Lange Texte an Satzgrenzen teilen; einzelne überlange Sätze an Kommas bzw. Leerzeichen.
-export function chunkText(text: string, max: number = MAX_CHUNK): string[] {
-  const sentences = clean(text).match(/[^.!?:;]+[.!?:;]*\s*/g) ?? [];
+// Grenze je Stimme: Die Google-Stimmen in Chrome brechen nach etwa 15 Sekunden ab, andere nicht.
+export function chunkLimit(voice: { name: string } | null | undefined): number {
+  return voice && /google/i.test(voice.name) ? 200 : 2000;
+}
+
+// Teilt nur an Satzenden; einzelne überlange Sätze notfalls an Kommas bzw. Leerzeichen.
+export function chunkText(text: string, max: number): string[] {
+  const sentences = text.split(/(?<=[.!?])\s+/).filter(Boolean);
   const chunks: string[] = [];
   let current = "";
   const push = (part: string) => {
     if (part.trim()) chunks.push(part.trim());
   };
   for (const sentence of sentences) {
-    if ((current + sentence).length <= max) {
-      current += sentence;
+    const candidate = current ? `${current} ${sentence}` : sentence;
+    if (candidate.length <= max) {
+      current = candidate;
       continue;
     }
     push(current);
     current = "";
-    if (sentence.length <= max) {
-      current = sentence;
-      continue;
-    }
     let rest = sentence;
     while (rest.length > max) {
       const cut = Math.max(rest.lastIndexOf(", ", max), rest.lastIndexOf(" ", max));
       const at = cut > max / 2 ? cut + 1 : max;
       push(rest.slice(0, at));
-      rest = rest.slice(at);
+      rest = rest.slice(at).trim();
     }
     current = rest;
   }
@@ -49,7 +66,7 @@ export function chunkText(text: string, max: number = MAX_CHUNK): string[] {
 }
 
 function textOf(element: Element): string {
-  return clean(element.textContent ?? "");
+  return speakableText(element.textContent ?? "");
 }
 
 function withPeriod(text: string): string {
@@ -63,7 +80,7 @@ function tableSegments(table: Element): SpeechSegment[] {
   const body = rows.slice(1);
   const intro: SpeechSegment = {
     element: table,
-    chunks: [body.length === 1 ? "Tabelle mit einer Zeile." : `Tabelle mit ${body.length} Zeilen.`],
+    text: body.length === 1 ? "Tabelle mit einer Zeile." : `Tabelle mit ${body.length} Zeilen.`,
   };
 
   const rowSegments = body.map((row): SpeechSegment => {
@@ -73,15 +90,15 @@ function tableSegments(table: Element): SpeechSegment[] {
       if (index === 0 || !headers[index]) return withPeriod(cell);
       return withPeriod(`${headers[index]}: ${cell}`);
     });
-    return { element: row, chunks: chunkText(parts.filter(Boolean).join(" ")) };
+    return { element: row, text: parts.filter(Boolean).join(" ") };
   });
 
-  return [intro, ...rowSegments].filter((segment) => segment.chunks.length > 0);
+  return [intro, ...rowSegments].filter((segment) => segment.text !== "");
 }
 
 function segment(element: Element): SpeechSegment[] {
-  const chunks = chunkText(textOf(element));
-  return chunks.length > 0 ? [{ element, chunks }] : [];
+  const text = textOf(element);
+  return text ? [{ element, text }] : [];
 }
 
 // Liest Überschriften, Absätze, Listenpunkte, Hinweisboxen und Tabellen; überspringt Code und eingeklappte Lösungen.

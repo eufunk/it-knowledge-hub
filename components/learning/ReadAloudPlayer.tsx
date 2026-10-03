@@ -2,8 +2,9 @@
 
 import { Pause, Play, Settings2, SkipBack, SkipForward, Square, Volume2 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
-import { extractSegments, type SpeechSegment } from "@/lib/utils/speech";
+import { chunkLimit, chunkText, extractSegments, type SpeechSegment } from "@/lib/utils/speech";
 import {
+  isNaturalVoice,
   parseSettings,
   pickVoice,
   RATES,
@@ -53,7 +54,13 @@ export function ReadAloudPlayer({ targetId }: { targetId: string }) {
   const settingsRaw = useSyncExternalStore(subscribeSettings, readSettingsRaw, () => null);
   const settings = useMemo(() => parseSettings(settingsRaw), [settingsRaw]);
   const voice = useMemo(() => pickVoice(voices, settings.voice), [voices, settings.voice]);
-  const germanVoices = useMemo(() => voices.filter((item) => item.lang.toLowerCase().startsWith("de")), [voices]);
+  const germanVoices = useMemo(
+    () =>
+      voices
+        .filter((item) => item.lang.toLowerCase().startsWith("de"))
+        .sort((a, b) => Number(isNaturalVoice(b)) - Number(isNaturalVoice(a))),
+    [voices],
+  );
 
   const [status, setStatus] = useState<Status>("idle");
   const [index, setIndex] = useState(0);
@@ -61,7 +68,10 @@ export function ReadAloudPlayer({ targetId }: { targetId: string }) {
   const [settingsOpen, setSettingsOpen] = useState(false);
 
   const segmentsRef = useRef<SpeechSegment[] | null>(null);
-  const positionRef = useRef({ segment: 0, chunk: 0 });
+  // Abschnitt, der gerade gesprochen wird bzw. bei dem fortgesetzt wird
+  const currentRef = useRef(0);
+  // höchster bereits in die Warteschlange gelegter Abschnitt
+  const queuedRef = useRef(-1);
   const tokenRef = useRef(0);
   const highlightedRef = useRef<Element | null>(null);
   const voiceRef = useRef<SpeechSynthesisVoice | null>(null);
@@ -104,58 +114,74 @@ export function ReadAloudPlayer({ targetId }: { targetId: string }) {
 
   const finish = () => {
     tokenRef.current++;
-    positionRef.current = { segment: 0, chunk: 0 };
+    currentRef.current = 0;
+    queuedRef.current = -1;
     setIndex(0);
     setStatus("idle");
     highlight(null);
   };
 
-  const speakCurrent = (override?: Partial<SpeechSettings> & { voiceObject?: SpeechSynthesisVoice | null }) => {
+  // Legt alle Textstücke eines Abschnitts in die Warteschlange. Sobald das letzte Stück beginnt,
+  // folgt der nächste Abschnitt – so entstehen keine Pausen zwischen den Stücken.
+  const enqueue = (segmentIndex: number, token: number) => {
     const list = segments();
-    const { segment, chunk } = positionRef.current;
-    const current = list[segment];
-    if (!current) {
-      finish();
-      return;
-    }
-    highlight(current.element);
+    const segment = list[segmentIndex];
+    if (!segment || queuedRef.current >= segmentIndex) return;
+    queuedRef.current = segmentIndex;
+
+    const chosenVoice = voiceRef.current;
+    const chunks = chunkText(segment.text, chunkLimit(chosenVoice));
+    chunks.forEach((text, chunkIndex) => {
+      const isFirst = chunkIndex === 0;
+      const isLast = chunkIndex === chunks.length - 1;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = chosenVoice?.lang ?? "de-DE";
+      if (chosenVoice) utterance.voice = chosenVoice;
+      utterance.rate = rateRef.current;
+
+      utterance.onstart = () => {
+        if (token !== tokenRef.current) return;
+        if (isFirst) {
+          currentRef.current = segmentIndex;
+          setIndex(segmentIndex);
+          highlight(segment.element);
+        }
+        if (isLast) enqueue(segmentIndex + 1, token);
+      };
+      utterance.onend = () => {
+        if (token !== tokenRef.current) return;
+        if (isLast && segmentIndex === list.length - 1) finish();
+      };
+      utterance.onerror = (event) => {
+        if (token !== tokenRef.current || event.error === "interrupted" || event.error === "canceled") return;
+        // Fehler bei einem Stück: mit dem nächsten Abschnitt weitermachen statt stehen zu bleiben
+        if (isLast) {
+          if (segmentIndex === list.length - 1) finish();
+          else enqueue(segmentIndex + 1, token);
+        }
+      };
+      window.speechSynthesis.speak(utterance);
+    });
+  };
+
+  const startAt = (segmentIndex: number) => {
     const token = ++tokenRef.current;
-    const chosenVoice = override?.voiceObject !== undefined ? override.voiceObject : voiceRef.current;
-    const utterance = new SpeechSynthesisUtterance(current.chunks[chunk]);
-    utterance.lang = chosenVoice?.lang ?? "de-DE";
-    if (chosenVoice) utterance.voice = chosenVoice;
-    utterance.rate = override?.rate ?? rateRef.current;
-
-    const advance = () => {
-      if (token !== tokenRef.current) return;
-      const position = positionRef.current;
-      if (position.chunk + 1 < list[position.segment].chunks.length) {
-        positionRef.current = { segment: position.segment, chunk: position.chunk + 1 };
-      } else if (position.segment + 1 < list.length) {
-        positionRef.current = { segment: position.segment + 1, chunk: 0 };
-        setIndex(position.segment + 1);
-      } else {
-        finish();
-        return;
-      }
-      speakCurrent();
-    };
-    utterance.onend = advance;
-    utterance.onerror = (event) => {
-      if (event.error === "interrupted" || event.error === "canceled") return;
-      advance();
-    };
-
     window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utterance);
+    queuedRef.current = segmentIndex - 1;
+    currentRef.current = segmentIndex;
+    setIndex(segmentIndex);
+    highlight(segments()[segmentIndex]?.element ?? null);
+    enqueue(segmentIndex, token);
   };
 
   const play = () => {
     if (segments().length === 0) return;
     setStatus("playing");
-    speakCurrent();
+    startAt(currentRef.current);
   };
 
+  // Pausieren bricht ab und setzt später am Anfang des aktuellen Abschnitts neu an,
+  // weil speechSynthesis.pause() in Chrome unzuverlässig ist.
   const pause = () => {
     tokenRef.current++;
     window.speechSynthesis.cancel();
@@ -169,20 +195,23 @@ export function ReadAloudPlayer({ targetId }: { targetId: string }) {
 
   const jump = (delta: number) => {
     const list = segments();
-    const target = Math.min(Math.max(positionRef.current.segment + delta, 0), list.length - 1);
-    positionRef.current = { segment: target, chunk: 0 };
-    setIndex(target);
-    if (status === "playing") speakCurrent();
-    else {
-      highlight(list[target]?.element ?? null);
-      if (status === "idle") setStatus("paused");
+    const target = Math.min(Math.max(currentRef.current + delta, 0), list.length - 1);
+    if (status === "playing") {
+      startAt(target);
+      return;
     }
+    currentRef.current = target;
+    setIndex(target);
+    highlight(list[target]?.element ?? null);
+    if (status === "idle") setStatus("paused");
   };
 
   const changeSettings = (next: SpeechSettings) => {
     saveSettings(next);
     if (status === "playing") {
-      speakCurrent({ rate: next.rate, voiceObject: pickVoice(voices, next.voice) });
+      rateRef.current = next.rate;
+      voiceRef.current = pickVoice(voices, next.voice);
+      startAt(currentRef.current);
     }
   };
 
@@ -233,7 +262,7 @@ export function ReadAloudPlayer({ targetId }: { targetId: string }) {
               >
                 {germanVoices.map((item) => (
                   <option key={item.name} value={item.name}>
-                    {item.name}
+                    {isNaturalVoice(item) ? `${item.name} – empfohlen` : item.name}
                   </option>
                 ))}
               </select>
