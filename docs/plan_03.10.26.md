@@ -52,6 +52,12 @@ Wunsch: Kapitel von einem „Roboter“ vorlesen lassen. Entscheidung: Variante 
 - [x] Player mit Abspielen/Pause, Abschnitt vor/zurück, Geschwindigkeit, Stimme, Hervorhebung des aktuellen Abschnitts
 - [x] Tests mit simulierter Sprachausgabe
 
+## Block 3c – Kapitel 01 überarbeitet ✅ erledigt 2026-10-03
+- [x] Neue Inhalte mit bestehendem Kapitel 01 zusammengeführt, als Word-Entwurf zur Freigabe erstellt
+- [x] Nach Freigabe als Lerneinheit übernommen
+- [x] Wissenstest auf 59 Fragen erweitert, veraltete Frage ersetzt
+- [x] Darstellung von `<code>` und Sonderzeichen im Wissenstest korrigiert, Inhaltsprüfung aller Wissenstests als Test
+
 ## Block 4 – Layout & Navigation (≈ 1 h) ✅ erledigt 2026-10-03
 - [x] Design-Tokens + Schrift (Outfit) in `styles/globals.css` / `app/layout.tsx`, `lang="de"`
 - [x] `components/navigation/Sidebar.tsx` – Logo, Home / Lerninhalte / Über uns, aktiver Zustand via `usePathname`

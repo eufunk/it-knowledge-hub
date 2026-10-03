@@ -7,6 +7,7 @@ import { setLessonCompleted } from "@/lib/utils/progress-store";
 import { drawQuestions, isPassed, PASS_RATIO, QUIZ_LENGTH, type PreparedQuestion } from "@/lib/utils/quiz";
 import { quizStepId } from "@/lib/utils/steps";
 import type { Quiz } from "@/types/learning";
+import { QuizText } from "./QuizText";
 import { useCourseProgress } from "./useCourseProgress";
 
 interface QuizRunnerProps {
@@ -115,9 +116,13 @@ export function QuizRunner({ courseSlug, lessonSlug, lessonTitle, lessonHref, st
                   <CircleX aria-label="falsch" className="mt-0.5 size-5 shrink-0 text-danger" />
                 )}
                 <span>
-                  <span className="font-semibold">{question.question}</span>
+                  <span className="font-semibold">
+                    <QuizText text={question.question} />
+                  </span>
                   {!right && (
-                    <span className="mt-1 block text-muted">Richtig: {question.options[question.correctIndex]}</span>
+                    <span className="mt-1 block text-muted">
+                      Richtig: <QuizText text={question.options[question.correctIndex]} />
+                    </span>
                   )}
                 </span>
               </li>
@@ -187,7 +192,9 @@ export function QuizRunner({ courseSlug, lessonSlug, lessonTitle, lessonHref, st
       </div>
 
       <p className="mt-6 text-sm text-muted">Thema: {quiz.sections[question.section] ?? question.section}</p>
-      <h2 className="mt-1 text-2xl leading-snug font-bold tracking-tight">{question.question}</h2>
+      <h2 className="mt-1 text-2xl leading-snug font-bold tracking-tight">
+        <QuizText text={question.question} />
+      </h2>
 
       <ul className="mt-6 space-y-3">
         {question.options.map((option, optionIndex) => {
@@ -211,7 +218,9 @@ export function QuizRunner({ courseSlug, lessonSlug, lessonTitle, lessonHref, st
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-canvas font-mono text-sm font-bold">
                   {LETTERS[optionIndex]}
                 </span>
-                <span className="flex-1">{option}</span>
+                <span className="flex-1">
+                  <QuizText text={option} />
+                </span>
                 {answered && isCorrect && <Check aria-label="richtige Antwort" className="size-5 shrink-0 text-success" />}
                 {answered && isChosen && !isCorrect && <X aria-label="deine Antwort" className="size-5 shrink-0 text-danger" />}
               </button>
@@ -228,7 +237,9 @@ export function QuizRunner({ courseSlug, lessonSlug, lessonTitle, lessonHref, st
           }`}
         >
           <p className="font-bold">{answer === question.correctIndex ? "Richtig!" : "Leider falsch."}</p>
-          <p className="mt-1">{question.explanation}</p>
+          <p className="mt-1">
+            <QuizText text={question.explanation} />
+          </p>
         </div>
       )}
 

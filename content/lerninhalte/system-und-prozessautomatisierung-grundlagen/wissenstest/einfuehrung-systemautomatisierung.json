@@ -7,8 +7,10 @@
     "1.5": "Rolle von KI",
     "1.6": "Hauptarten der KI",
     "1.7": "Grundlegende Techniken",
-    "1.8": "Automatisierungswerkzeuge",
-    "1.9": "Toolauswahl"
+    "1.8": "Grundprinzipien",
+    "1.9": "Automatisierungswerkzeuge",
+    "1.10": "Toolauswahl",
+    "1.11": "Herausforderungen"
   },
   "questions": [
     {
@@ -56,6 +58,28 @@
       "explanation": "Das System erkennt die Situation selbst und wählt eine passende Maßnahme, teils KI-gestützt. Das ist autonom / intelligent."
     },
     {
+      "section": "1.1",
+      "question": "Welche Ziele verfolgt Automatisierung laut Definition?",
+      "options": [
+        "Effizienz und Produktivität steigern, Fehler reduzieren und Kosten senken",
+        "Menschliche Arbeit vollständig abschaffen",
+        "Möglichst viele Systeme gleichzeitig betreiben",
+        "Software ohne Regeln selbstständig lernen lassen"
+      ],
+      "explanation": "Automatisierung überträgt Steuerung, Überwachung und Ausführung auf Maschinen oder Software, um effizienter und produktiver zu arbeiten, Fehler zu vermeiden und Kosten zu senken."
+    },
+    {
+      "section": "1.1",
+      "question": "Was bildet immer die Grundlage einer Automatisierung – vom E-Mail-Sortieren bis zur Autofertigung?",
+      "options": [
+        "Ein Satz von Regeln oder Algorithmen",
+        "Eine künstliche Intelligenz",
+        "Ein Industrieroboter",
+        "Eine Cloud-Plattform"
+      ],
+      "explanation": "Jede Automatisierung beruht auf Regeln oder Algorithmen, die festlegen, wie eine Aufgabe ausgeführt wird. KI ist eine mögliche Erweiterung, aber keine Voraussetzung."
+    },
+    {
       "section": "1.2",
       "question": "Um welche zwei Elemente wird das EVA-Prinzip bei Automatisierungen ergänzt?",
       "options": [
@@ -100,6 +124,17 @@
       "explanation": "<code>-WhatIf</code> simuliert die Aktion. Um wirklich zu löschen, muss der Parameter entfernt werden."
     },
     {
+      "section": "1.2",
+      "question": "Im Wetter-Beispiel prüft der Ablauf: „Ist die Temperatur höher als 30 °C?“ Welcher Schritt des erweiterten EVA-Prinzips ist das?",
+      "options": [
+        "Verarbeitung",
+        "Auslöser (Trigger)",
+        "Eingabe",
+        "Rückmeldung"
+      ],
+      "explanation": "In der Verarbeitung werden Regeln und Logik angewendet, z. B. Bedingungen. Der Auslöser startet den Ablauf, die Eingabe liefert den Messwert, die Rückmeldung protokolliert das Ergebnis."
+    },
+    {
       "section": "1.3",
       "question": "Welches Beispiel passt zum Vorteil „Skalierbarkeit“?",
       "options": [
@@ -131,6 +166,28 @@
         "Rund-um-die-Uhr-Betrieb"
       ],
       "explanation": "Logs dokumentieren lückenlos, wer wann was geändert hat. Das unterstützt Nachvollziehbarkeit und Compliance."
+    },
+    {
+      "section": "1.3",
+      "question": "Ungenutzte Server und VMs werden nachts automatisch heruntergefahren. Welcher Vorteil der Automatisierung zeigt sich hier besonders?",
+      "options": [
+        "Nachhaltigkeit",
+        "Wissenssicherung",
+        "Nachvollziehbarkeit und Compliance",
+        "Bessere Arbeitsbedingungen"
+      ],
+      "explanation": "Optimierte, automatisierte Abläufe senken den Energieverbrauch und schonen Ressourcen – ein Beitrag zur Nachhaltigkeit."
+    },
+    {
+      "section": "1.3",
+      "question": "Welcher Vorteil ist gemeint, wenn automatisch gesammelte Auslastungsdaten zeigen, wann neue Hardware nötig ist?",
+      "options": [
+        "Datengestützte Entscheidungen",
+        "Skalierbarkeit",
+        "Verfügbarkeit",
+        "Fehlerreduktion"
+      ],
+      "explanation": "Automatisierte Abläufe sammeln und werten große Datenmengen aus. Entscheidungen beruhen dann auf echten Daten statt auf Bauchgefühl."
     },
     {
       "section": "1.4",
@@ -167,14 +224,47 @@
     },
     {
       "section": "1.4",
-      "question": "Wofür steht die Kombination aus RPA, Workflows und KI, mit der möglichst viele Prozesse durchgängig automatisiert werden?",
+      "question": "Eingehende Rechnungen werden per KI ausgelesen und verbucht. Zu welcher Art von Automatisierung gehört das?",
       "options": [
-        "Intelligente Automatisierung / Hyperautomation",
+        "Kognitive Automatisierung",
         "Industrielle Automatisierung",
-        "Aufgabenautomatisierung",
-        "Feste Automatisierung"
+        "Heim- und Gebäudeautomatisierung",
+        "Software-Automatisierung"
       ],
-      "explanation": "Hyperautomation kombiniert RPA, Workflows und KI, z. B. um eingehende Rechnungen per KI auszulesen und zu verbuchen."
+      "explanation": "Kognitive Automatisierung nutzt KI und maschinelles Lernen für Aufgaben, die Urteilsvermögen erfordern – etwa Dokumente verstehen, Muster erkennen oder Sprache verarbeiten."
+    },
+    {
+      "section": "1.4",
+      "question": "Die Heizung senkt automatisch die Temperatur, wenn niemand zu Hause ist. Welche Art von Automatisierung ist das?",
+      "options": [
+        "Heim- und Gebäudeautomatisierung",
+        "Büroautomatisierung",
+        "Prozessautomatisierung (Industrie)",
+        "Robotik-Automatisierung"
+      ],
+      "explanation": "Smart-Home-Technik, die Heizung, Licht oder Sicherheitssysteme steuert, gehört zur Heim- und Gebäudeautomatisierung. Ziele sind Komfort, Energieeffizienz und Sicherheit."
+    },
+    {
+      "section": "1.4",
+      "question": "Jede Code-Änderung wird automatisch getestet und ausgeliefert (CI/CD). Zu welcher Art gehört das?",
+      "options": [
+        "Software-Automatisierung",
+        "IT-Automatisierung",
+        "Kognitive Automatisierung",
+        "Büroautomatisierung"
+      ],
+      "explanation": "Software-Automatisierung umfasst Werkzeuge und Verfahren, die Entwicklung, Test und Auslieferung von Software automatisieren, z. B. CI/CD-Pipelines und Testautomatisierung."
+    },
+    {
+      "section": "1.4",
+      "question": "Was ist mit „Prozessautomatisierung“ in der IT und in diesem Kurs meist gemeint?",
+      "options": [
+        "Geschäftsprozessautomatisierung: mehrstufige Abläufe über Abteilungen und Systeme hinweg",
+        "Die Steuerung technischer Anlagen in Chemie, Öl und Gas",
+        "Die Automatisierung von Hausgeräten",
+        "Das automatische Starten von Betriebssystem-Prozessen"
+      ],
+      "explanation": "In der Industrie meint Prozessautomatisierung die Steuerung technischer Anlagen. In der IT geht es meist um Geschäftsprozesse wie Rechnungsfreigabe oder Onboarding – oft mit Workflow-Werkzeugen oder RPA."
     },
     {
       "section": "1.5",
@@ -243,6 +333,28 @@
       "explanation": "Beim überwachten Lernen lernt das Modell aus Beispielen mit bekannter richtiger Antwort (gelabelte Daten)."
     },
     {
+      "section": "1.6",
+      "question": "IBMs Schachcomputer Deep Blue reagierte nur auf die aktuelle Stellung und lernte nicht aus früheren Partien. Welcher KI-Typ ist das?",
+      "options": [
+        "Reaktive Maschine",
+        "Begrenzte Erinnerung",
+        "Theorie des Geistes",
+        "Selbstbewusste KI"
+      ],
+      "explanation": "Reaktive Maschinen reagieren nur auf die aktuelle Eingabe und können nicht aus Erfahrung lernen."
+    },
+    {
+      "section": "1.6",
+      "question": "Zu welchem KI-Typ nach Funktionsweise gehören die meisten heutigen Systeme, z. B. selbstfahrende Autos?",
+      "options": [
+        "Begrenzte Erinnerung",
+        "Reaktive Maschinen",
+        "Theorie des Geistes",
+        "Selbstbewusste KI"
+      ],
+      "explanation": "Systeme mit begrenzter Erinnerung speichern Beobachtungen vorübergehend und lernen daraus. „Theorie des Geistes“ ist noch Forschung, selbstbewusste KI rein theoretisch."
+    },
+    {
       "section": "1.7",
       "question": "Was beschreibt die Technik „Konfigurationsmanagement (Desired State)“?",
       "options": [
@@ -298,7 +410,62 @@
       "explanation": "Selbstheilung behebt erkannte Probleme automatisch, z. B. durch einen Dienstneustart oder eine Speicherbereinigung."
     },
     {
+      "section": "1.7",
+      "question": "Was kennzeichnet die Batch-Verarbeitung?",
+      "options": [
+        "Eine Serie von Aufträgen läuft ohne manuelle Eingabe nacheinander ab, oft nachts oder bei geringer Last",
+        "Ein Ereignis wie eine neue Datei löst sofort eine Aktion aus",
+        "Software-Roboter bedienen Benutzeroberflächen wie ein Mensch",
+        "Der gewünschte Zielzustand eines Systems wird beschrieben und aufrechterhalten"
+      ],
+      "explanation": "Bei der Batch-Verarbeitung werden viele Aufträge gesammelt und ohne Eingriff abgearbeitet – ideal für große Datenmengen zu Zeiten geringer Systemauslastung."
+    },
+    {
       "section": "1.8",
+      "question": "Welche Aufgabe eignet sich am besten als erstes Automatisierungsprojekt?",
+      "options": [
+        "Eine regelmäßige, klar geregelte Aufgabe, bei der ein Fehler wenig Schaden anrichtet",
+        "Der komplexeste Prozess im Unternehmen, weil dort der größte Nutzen liegt",
+        "Eine einmalige Aufgabe, die nie wieder vorkommt",
+        "Ein Prozess, dessen Ablauf noch niemand genau kennt"
+      ],
+      "explanation": "Gute Kandidaten sind wiederholbar, folgen einem festen Muster und sind gut verstanden. Ein kleiner, risikoarmer Erfolg schafft Erfahrung und Vertrauen."
+    },
+    {
+      "section": "1.8",
+      "question": "Warum sollte Automatisierung schrittweise eingeführt werden?",
+      "options": [
+        "Um Erfahrungen zu sammeln, Risiken zu begrenzen und den Nutzen vor größeren Umstellungen zu bewerten",
+        "Weil Automatisierungswerkzeuge nur kleine Aufgaben beherrschen",
+        "Weil große Projekte grundsätzlich nicht automatisierbar sind",
+        "Damit Mitarbeitende nichts von der Umstellung merken"
+      ],
+      "explanation": "Kleine, überschaubare Projekte zuerst: So lassen sich Fehler früh erkennen, der Nutzen messen und Anpassungen vornehmen, bevor größere Systeme umgestellt werden."
+    },
+    {
+      "section": "1.8",
+      "question": "Was gehört laut den Grundprinzipien zur Einbindung der Mitarbeitenden?",
+      "options": [
+        "Schulungen anbieten und Ängste vor Veränderungen offen ansprechen",
+        "Die Automatisierung erst nach der Einführung bekannt geben",
+        "Nur die IT-Abteilung informieren",
+        "Auf Schulungen verzichten, weil automatisierte Systeme selbsterklärend sind"
+      ],
+      "explanation": "Alle Beteiligten sollten verstehen, wie die Systeme funktionieren und welchen Nutzen sie bringen. Offene Kommunikation und Beteiligung bauen Ängste ab."
+    },
+    {
+      "section": "1.8",
+      "question": "Was sollte nach dem Start einer Automatisierung geschehen?",
+      "options": [
+        "Der Ablauf wird laufend überwacht und bei Bedarf optimiert",
+        "Nichts mehr – automatisierte Abläufe laufen von selbst fehlerfrei",
+        "Der Ablauf wird sofort auf alle Abteilungen ausgerollt",
+        "Die Dokumentation wird gelöscht, da das Skript alles enthält"
+      ],
+      "explanation": "Kontinuierliche Überwachung hilft, Probleme früh zu erkennen und den Prozess weiter zu verbessern."
+    },
+    {
+      "section": "1.9",
       "question": "Zu welcher Kategorie gehören Terraform / OpenTofu, Bicep und Pulumi?",
       "options": [
         "Infrastructure as Code",
@@ -309,7 +476,7 @@
       "explanation": "Mit IaC-Werkzeugen werden Cloud- und VM-Ressourcen als Code beschrieben und bereitgestellt."
     },
     {
-      "section": "1.8",
+      "section": "1.9",
       "question": "Welche Werkzeuge gehören zur Kategorie Monitoring?",
       "options": [
         "Prometheus, Grafana, Zabbix, PRTG",
@@ -320,7 +487,7 @@
       "explanation": "Monitoring-Werkzeuge übernehmen Überwachung und Alarmierung und dienen als Auslöser für Self-Healing."
     },
     {
-      "section": "1.8",
+      "section": "1.9",
       "question": "Wofür werden GitHub Actions, GitLab CI, Azure DevOps und Jenkins typischerweise eingesetzt?",
       "options": [
         "CI/CD: Code testen, bauen und ausliefern",
@@ -332,6 +499,72 @@
     },
     {
       "section": "1.9",
+      "question": "Woraus besteht ein „Zap“ in Zapier?",
+      "options": [
+        "Aus einem Trigger (Auslöser) und einer oder mehreren Aktionen",
+        "Aus einem YAML-Playbook mit Tasks",
+        "Aus einem PowerShell-Skript mit Parametern",
+        "Aus einer grafischen Prozesslandkarte mit Genehmigungsstufen"
+      ],
+      "explanation": "Ein Zap startet durch einen Trigger, z. B. eine neue Tabellenzeile, und führt dann Aktionen aus, z. B. eine E-Mail senden – ganz ohne Programmierung."
+    },
+    {
+      "section": "1.9",
+      "question": "Was solltest Du vor dem Einsatz eines Cloud-Dienstes wie Zapier im Unternehmen prüfen?",
+      "options": [
+        "Datenschutz und interne Richtlinien, da Daten über einen externen Cloud-Dienst laufen",
+        "Ob die Mitarbeitenden programmieren können",
+        "Ob auf allen Servern SSH aktiviert ist",
+        "Ob ein Ansible-Playbook vorhanden ist"
+      ],
+      "explanation": "Bei Cloud-Diensten werden Daten außerhalb des eigenen Netzes verarbeitet, bei Zapier in den USA. Datenschutz (DSGVO) und interne Vorgaben müssen deshalb vorher geklärt sein."
+    },
+    {
+      "section": "1.9",
+      "question": "Für welches Szenario ist Microsoft Power Automate besonders geeignet?",
+      "options": [
+        "Genehmigungsprozesse in einer Microsoft-365-Umgebung automatisieren",
+        "Linux-Server per SSH einheitlich konfigurieren",
+        "Container-Anwendungen skalieren",
+        "Code bei jeder Änderung bauen und testen"
+      ],
+      "explanation": "Power Automate ist tief in Microsoft 365 integriert und eignet sich für Workflows wie Genehmigungen, Datenabgleich zwischen Geschäftsanwendungen oder das Sammeln von Feedback."
+    },
+    {
+      "section": "1.9",
+      "question": "Was bedeutet es, dass Ansible „agentenlos“ arbeitet?",
+      "options": [
+        "Auf den Zielsystemen muss keine zusätzliche Software installiert werden; Ansible verbindet sich per SSH bzw. WinRM",
+        "Ansible arbeitet ohne Benutzerkonten",
+        "Ansible benötigt keine Netzwerkverbindung",
+        "Ansible führt Aufgaben ohne Konfigurationsdateien aus"
+      ],
+      "explanation": "Viele Konfigurationsmanagement-Werkzeuge brauchen einen Agenten auf jedem Zielsystem. Ansible nutzt vorhandene Zugänge: SSH für Linux, WinRM für Windows."
+    },
+    {
+      "section": "1.9",
+      "question": "Ein Ansible-Playbook wird dreimal hintereinander ausgeführt. Was bedeutet „idempotent“ dabei?",
+      "options": [
+        "Jede Ausführung führt zum selben Systemzustand – bereits Erledigtes wird nicht erneut verändert",
+        "Das Playbook installiert die Software dreimal",
+        "Nur die erste Ausführung funktioniert, weitere brechen ab",
+        "Jede Ausführung erzeugt eine neue Version des Systems"
+      ],
+      "explanation": "Idempotenz heißt: Mehrfaches Ausführen ändert nichts mehr, wenn der Zielzustand bereits erreicht ist. Das macht Automatisierung sicher wiederholbar."
+    },
+    {
+      "section": "1.9",
+      "question": "In welcher Sprache werden Ansible-Playbooks geschrieben?",
+      "options": [
+        "YAML",
+        "PowerShell",
+        "JSON Schema",
+        "Bash"
+      ],
+      "explanation": "Playbooks beschreiben den gewünschten Zustand in der leicht lesbaren Auszeichnungssprache YAML."
+    },
+    {
+      "section": "1.10",
       "question": "Wie werden bei einer Nutzwertanalyse die Kriterien gewichtet?",
       "options": [
         "Die Gewichte ergeben zusammen 100 %",
@@ -342,7 +575,7 @@
       "explanation": "Die Gewichte summieren sich zu 100 %. Jedes Werkzeug erhält pro Kriterium 1 bis 5 Punkte, danach werden die gewichteten Punkte addiert."
     },
     {
-      "section": "1.9",
+      "section": "1.10",
       "question": "Ein Werkzeug erhält beim Kriterium „Kompatibilität“ (Gewicht 30 %) 4 Punkte. Welchen Beitrag liefert das zur gewichteten Summe?",
       "options": [
         "1,2",
@@ -353,7 +586,7 @@
       "explanation": "4 Punkte × 0,30 = 1,2."
     },
     {
-      "section": "1.9",
+      "section": "1.10",
       "question": "Warum gewinnt PowerShell im Beispiel „Dateiverwaltung auf Windows-PCs automatisieren“?",
       "options": [
         "Es ist auf Windows vorhanden, kostet nichts und ist eng mit dem Betriebssystem verzahnt",
@@ -364,7 +597,7 @@
       "explanation": "PowerShell erreicht 4,50 Punkte vor Python (4,35) und Power Automate (3,55). Bei einer anderen Aufgabe oder Umgebung kann das Ergebnis anders ausfallen."
     },
     {
-      "section": "1.9",
+      "section": "1.10",
       "question": "Welche Leitfrage gehört zum Auswahlkriterium „Zukunftssicherheit“?",
       "options": [
         "Wird das Werkzeug weiterentwickelt und wie stark ist die Abhängigkeit vom Hersteller?",
@@ -373,6 +606,61 @@
         "Wo werden die Daten verarbeitet?"
       ],
       "explanation": "Zukunftssicherheit fragt nach Weiterentwicklung und Herstellerabhängigkeit. Die anderen Fragen gehören zu Sicherheit, Know-how und Datenschutz."
+    },
+    {
+      "section": "1.10",
+      "question": "Worum geht es beim Kriterium „Bedienbarkeit vs. Funktionsumfang“?",
+      "options": [
+        "Mächtige Werkzeuge haben oft eine steile Lernkurve – es gilt, die passende Balance für das Team zu finden",
+        "Das Werkzeug mit den meisten Funktionen ist immer die beste Wahl",
+        "Das einfachste Werkzeug ist immer die beste Wahl",
+        "Es geht nur um die Lizenzkosten"
+      ],
+      "explanation": "Ein umfangreiches Werkzeug kann mehr, braucht aber mehr Einarbeitung. Entscheidend ist, was das Team beherrscht und was die Aufgabe wirklich erfordert."
+    },
+    {
+      "section": "1.11",
+      "question": "Mitarbeitende fürchten, dass die Automatisierung ihre Arbeitsplätze bedroht. Was ist ein sinnvoller Lösungsansatz?",
+      "options": [
+        "Offen kommunizieren, den Nutzen für die eigene Arbeit zeigen und Schulungen anbieten",
+        "Die Automatisierung ohne Ankündigung einführen",
+        "Das Projekt sofort abbrechen",
+        "Nur externe Fachleute mit der Bedienung betrauen"
+      ],
+      "explanation": "Widerstand im Team lässt sich durch Kommunikation, Beteiligung und Weiterbildung abbauen. Automatisierung kann monotone Arbeit abnehmen und neue Aufgaben ermöglichen."
+    },
+    {
+      "section": "1.11",
+      "question": "Der Aufwand für ein Automatisierungsprojekt wurde unterschätzt. Wie lässt sich das künftig vermeiden?",
+      "options": [
+        "Realistische Zeit- und Budgetpläne mit Puffer erstellen und schrittweise vorgehen",
+        "Mehr Funktionen auf einmal umsetzen, damit es schneller geht",
+        "Auf Tests verzichten, um Zeit zu sparen",
+        "Den Zeitplan erst nach Projektende festlegen"
+      ],
+      "explanation": "Komplexität und Zeitbedarf werden oft unterschätzt. Puffer, realistische Planung und ein schrittweiser Ansatz mit kleinen Projekten helfen."
+    },
+    {
+      "section": "1.11",
+      "question": "Bestehende Systeme sind veraltet und nicht mit dem gewünschten Automatisierungswerkzeug kompatibel. Was ist der erste sinnvolle Schritt?",
+      "options": [
+        "Die vorhandene IT-Landschaft gründlich analysieren und Kompatibilitätsprobleme früh identifizieren",
+        "Das Werkzeug trotzdem einführen und Fehler später beheben",
+        "Alle Systeme sofort ersetzen",
+        "Auf Automatisierung grundsätzlich verzichten"
+      ],
+      "explanation": "Technische Einschränkungen sollten früh erkannt werden. Danach kann gezielt entschieden werden, wo Updates oder neue Systeme nötig sind."
+    },
+    {
+      "section": "1.11",
+      "question": "Wann sollten Sicherheitsaspekte bei der Einführung von Automatisierung berücksichtigt werden?",
+      "options": [
+        "Von Anfang an, bereits in der Planung – in enger Zusammenarbeit mit IT-Sicherheitsfachleuten",
+        "Erst nach der Einführung, wenn alles läuft",
+        "Nur bei Cloud-Werkzeugen",
+        "Nur wenn ein Sicherheitsvorfall eingetreten ist"
+      ],
+      "explanation": "Neue Technik erhöht die Anforderungen an Datenschutz und Sicherheit. Sicherheit gehört deshalb von Beginn an in die Planung."
     }
   ]
 }

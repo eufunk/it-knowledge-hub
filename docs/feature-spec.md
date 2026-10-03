@@ -146,17 +146,17 @@ anhang: false          # optional; true z. B. für das Glossar
   ]
 }
 ```
-Die **erste** Antwort in `options` ist die richtige; beim Anzeigen wird gemischt. `section` verweist auf den Abschnitt im Kapitel, `sections` liefert dessen Kurztitel für die Rückmeldung.
+Die **erste** Antwort in `options` ist die richtige; beim Anzeigen wird gemischt. Texte dürfen `<code>…</code>`, `<br>` und HTML-Entities (z. B. `&gt;`) enthalten; sie werden sicher dargestellt, ohne HTML einzufügen. Andere Tags werden entfernt. `section` verweist auf den Abschnitt im Kapitel, `sections` liefert dessen Kurztitel für die Rückmeldung.
 
 ### 5.5 Typen (`types/learning.ts`)
 Wichtigste Typen: `Course` (mit `modules: CourseModule[]`, `lessons`, `appendix`), `LessonMeta` (mit `hasQuiz`, `appendix`), `Lesson`, `Quiz`, `QuizQuestion` und `CourseStep` (ein Lernschritt: Kapitel oder Wissenstest, mit `id` für den Fortschritt).
 
 ### 5.6 Inhalt des ersten Kurses
-Quelle: `System_und_Prozessautomatisierung_Grundlagen.docx` (Kapitel) und `Systemautomatisierung_Quiz.html` (410 Fragen), einmalig nach Markdown bzw. JSON übernommen. Danach sind die Dateien im Repository die maßgebliche Quelle.
+Quelle: `System_und_Prozessautomatisierung_Grundlagen.docx` (Kapitel; Kapitel 01 am 2026-10-03 überarbeitet und erweitert, Freigabe-Entwurf `Kapitel01_Einfuehrung_Systemautomatisierung_Entwurf.docx`) und `Systemautomatisierung_Quiz.html` (410 Fragen), einmalig nach Markdown bzw. JSON übernommen. Danach sind die Dateien im Repository die maßgebliche Quelle.
 
 | Modul | Kapitel | Fragen |
 |---|---|---|
-| 1 Grundlagen der Automatisierung | 01 Einführung in die Systemautomatisierung · 02 Überwachen wiederkehrender Systemabläufe | 33 · 34 |
+| 1 Grundlagen der Automatisierung | 01 Einführung in die Systemautomatisierung · 02 Überwachen wiederkehrender Systemabläufe | 59 · 34 |
 | 2 Skriptsprachen: Bash und PowerShell | 03 Grundlagen von Bash und Shell-Scripting · 04 PowerShell Basics für Administratoren | 37 · 50 |
 | 3 Fortgeschrittene Linux-Skripte | 05 Aufbau fortgeschrittener Linux-Skripte | 60 |
 | 4 Prozesse und Strategien | 06 Analyse und Identifikation automatisierbarer Prozesse · 07 Entwurf von Automatisierungsstrategien | 35 · 46 |
