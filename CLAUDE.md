@@ -17,9 +17,12 @@ Die Ablage der Dokumentation ist so aufgeteilt:
 | `docs/feature-spec.md` | nur der **Ist- bzw. Soll-Zustand** des aktuellen Umfangs |
 | `docs/HISTORIE.md` | reine Historie: wann sich was geändert hat, frühere Verhaltensweisen, entfernte oder umbenannte Funktionen und Kennungen |
 | `docs/todo.md` | alles, was **noch nicht umgesetzt** ist, aber irgendwann umgesetzt werden muss: offene Entscheidungen, spätere Features, Platzhalter, technische Schulden |
-| `docs/plan-*.md` | Umsetzungspläne für einzelne Arbeitstage oder Vorhaben |
+| `docs/plan_TT.MM.JJ.md` | Umsetzungsplan für einen Arbeitstag, benannt nach dem Datum (z. B. `plan_03.10.26.md`) |
+| `docs/Archiv/` | abgeschlossene Pläne |
 
 Was verschoben, nur als Platzhalter umgesetzt oder offen gelassen wird, kommt **sofort** in `docs/todo.md`. Specs und Pläne verweisen darauf, statt eigene Listen zu führen. Erledigte Punkte werden dort abgehakt und mit Datum versehen, nicht gelöscht.
+
+Ist ein Plan vollständig umgesetzt (alle Blöcke erledigt oder bewusst in `docs/todo.md` verschoben), wird er mit `git mv` nach `docs/Archiv/` verschoben und im selben Commit festgehalten. Im Ordner `docs/` liegt damit immer nur der laufende Plan.
 
 ### Nachverfolgbarkeit der Anforderungen
 
@@ -69,7 +72,7 @@ npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 | `styles/` | `globals.css` mit Tailwind und Design-Tokens |
 | `public/` | `images/`, `icons/`, `documents/` |
 | `tests/` | `components/`, `content/` |
-| `docs/` | Spec, Pläne, ToDo, Historie |
+| `docs/` | Spec, laufender Plan, ToDo, Historie, `Archiv/` mit abgeschlossenen Plänen |
 
 **Routen sind dynamisch.** Kurse werden über `[kurs]` und `[einheit]` abgebildet, nicht über feste Ordner pro Kurs. Ein neuer Kurs braucht nur einen neuen Ordner unter `content/lerninhalte/`, keinen neuen Code. Alle Seiten werden statisch erzeugt (`generateStaticParams`). Unbekannte Kurse oder Einheiten führen zu `notFound()`.
 
