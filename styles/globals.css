@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Design-Tokens, abgeleitet aus dem Referenz-Screenshot (siehe docs/feature-spec.md, Abschnitt 6) */
+@theme {
+  --color-sidebar: #0b3d4a;
+  --color-primary: #0f766e;
+  --color-heading: #0b2e3a;
+  --color-background: #ffffff;
+  --radius-card: 12px;
+  --font-sans: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-heading);
+}

@@ -5,17 +5,19 @@ Geschätzter Aufwand: ca. 6–7 Stunden. Nach jedem Block wird committet.
 
 ---
 
-## Block 1 – Projekt-Setup (≈ 45 min)
-- [ ] Next.js-Projekt im bestehenden Repo anlegen:
+## Block 1 – Projekt-Setup (≈ 45 min) ✅ erledigt 2026-10-03
+- [x] Next.js-Projekt im bestehenden Repo anlegen:
       `npx create-next-app@latest . --ts --tailwind --eslint --app --no-src-dir --import-alias "@/*"`
       (vorhandene `README.md` / `.gitignore` behalten)
-- [ ] `globals.css` nach `styles/globals.css` verschieben, Import in `app/layout.tsx` anpassen
-- [ ] Abhängigkeiten: `gray-matter remark remark-gfm remark-rehype rehype-stringify rehype-pretty-code shiki lucide-react`
-- [ ] Dev-Abhängigkeiten: `vitest @vitejs/plugin-react @testing-library/react @testing-library/jest-dom jsdom`
-- [ ] Ordner anlegen: `components/{layout,navigation,learning,ui}`, `lib/{content,utils}`, `types`, `public/{images,icons,documents}`, `tests/{components,content}`
-- [ ] Scripts in `package.json`: `test`, `test:watch`
-- [ ] ✅ Check: `npm run dev` startet, Startseite erreichbar
-- [ ] Commit: `chore: Next.js-Projekt aufsetzen`
+- [x] `globals.css` nach `styles/globals.css` verschieben, Import in `app/layout.tsx` anpassen
+- [x] Abhängigkeiten: `gray-matter remark remark-gfm remark-rehype rehype-stringify rehype-pretty-code shiki lucide-react`
+- [x] Dev-Abhängigkeiten: `vitest @vitejs/plugin-react @testing-library/react @testing-library/jest-dom jsdom`
+- [x] Ordner anlegen: `components/{layout,navigation,learning,ui}`, `lib/{content,utils}`, `types`, `public/{images,icons,documents}`, `tests/{components,content}`
+- [x] Scripts in `package.json`: `test`, `test:watch`
+- [x] ✅ Check: `npm run dev` startet, Startseite erreichbar
+- [x] Commit: `Next.js-Projekt aufsetzen`
+
+> Abweichungen: Next.js 16 statt 15 (aktuelle Version von create-next-app). Gerüst im temporären Ordner erzeugt und übernommen, weil create-next-app in einen Ordner mit README.md/CLAUDE.md nicht schreibt. `@types/node` auf 24 angehoben (passend zu Node 24, sonst Konflikt mit vitest 5). Zusätzlich `@tailwindcss/typography` und `@testing-library/dom` installiert.
 
 > ⚠️ Das Repo liegt in OneDrive. `node_modules` und `.next` sollten von der Synchronisierung ausgeschlossen werden (oder das Repo außerhalb von OneDrive liegen), sonst wird die Installation langsam und es kann zu Dateisperren kommen.
 

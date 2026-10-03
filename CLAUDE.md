@@ -2,7 +2,9 @@
 
 Arbeitskonventionen und Hinweise für Claude Code (claude.ai/code) in diesem Repository.
 
-IT Knowledge Hub: Lernplattform mit Next.js (App Router, TypeScript), auf der Kurse als Kacheln angezeigt werden und aus Lerneinheiten bestehen, die als Markdown im Repository liegen. Der Lernfortschritt wird im MVP nur im Browser gespeichert (`localStorage`). Es gibt kein Backend und keine Datenbank. Erster Kurs: `system-und-prozessautomatisierung-grundlagen`. Projektsprache ist Deutsch: Oberflächentexte, Kursinhalte, Dokumentation, Commit-Nachrichten und Code-Kommentare.
+@AGENTS.md
+
+IT Knowledge Hub: Lernplattform mit Next.js 16 (App Router, TypeScript), auf der Kurse als Kacheln angezeigt werden und aus Lerneinheiten bestehen, die als Markdown im Repository liegen. Der Lernfortschritt wird im MVP nur im Browser gespeichert (`localStorage`). Es gibt kein Backend und keine Datenbank. Erster Kurs: `system-und-prozessautomatisierung-grundlagen`. Projektsprache ist Deutsch: Oberflächentexte, Kursinhalte, Dokumentation, Commit-Nachrichten und Code-Kommentare.
 
 ## Fachliche Referenz
 
@@ -72,6 +74,8 @@ npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 **Routen sind dynamisch.** Kurse werden über `[kurs]` und `[einheit]` abgebildet, nicht über feste Ordner pro Kurs. Ein neuer Kurs braucht nur einen neuen Ordner unter `content/lerninhalte/`, keinen neuen Code. Alle Seiten werden statisch erzeugt (`generateStaticParams`). Unbekannte Kurse oder Einheiten führen zu `notFound()`.
 
 **Inhalte:** Der Slug einer Einheit ist der Dateiname ohne Nummernpräfix und Endung (`01-einfuehrung.md` → `einfuehrung`). Die Reihenfolge ergibt sich aus dem Präfix. Kurs- und Einheiten-Metadaten stehen im YAML-Frontmatter (Felder siehe `docs/feature-spec.md`, Abschnitt 5). Inhalte werden ausschließlich über `lib/content/` gelesen. Keine Komponente liest selbst Dateien aus `content/`.
+
+**Next.js 16:** Vor dem Schreiben von Routen- oder Konfigurationscode die mitgelieferte Doku unter `node_modules/next/dist/docs/` lesen (siehe `AGENTS.md`), besonders `01-app/02-guides/upgrading/version-16.md`. Wichtig hier: `params` in Seiten, Layouts und `generateMetadata` ist ein **Promise** und wird mit `await` gelesen. Seiten- und Layout-Props werden mit den globalen Typen `PageProps<"/route">` bzw. `LayoutProps<"/route">` typisiert. `AGENTS.md` wird von `next dev` gepflegt und nicht von Hand geändert.
 
 **Server- und Client-Komponenten:** Seiten und alles, was Inhalte liest, sind Server-Komponenten. Nur Bausteine, die `localStorage` oder Browser-Ereignisse brauchen (Fortschritt, „Als erledigt markieren“, aktiver Navigationspunkt), sind Client-Komponenten mit `"use client"`. Diese Grenze möglichst weit unten im Komponentenbaum ziehen.
 

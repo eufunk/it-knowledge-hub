@@ -138,7 +138,7 @@ export interface Lesson extends LessonMeta {
 
 | Thema | Entscheidung | Begründung |
 |---|---|---|
-| Framework | Next.js 15 (App Router) + TypeScript | Statische Generierung, Datei-basiertes Routing |
+| Framework | Next.js 16 (App Router) + TypeScript | Statische Generierung, Datei-basiertes Routing |
 | Styling | Tailwind CSS v4 über `styles/globals.css` | Schnell, Design-Tokens als CSS-Variablen |
 | Markdown | `gray-matter` + `remark` / `remark-gfm` / `rehype-pretty-code` | Frontmatter + GFM-Tabellen + Code-Highlighting |
 | Icons | `lucide-react` | Entspricht dem Linien-Stil im Screenshot |
