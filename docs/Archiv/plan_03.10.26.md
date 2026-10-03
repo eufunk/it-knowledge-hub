@@ -1,6 +1,8 @@
 # Umsetzungsplan – 2026-10-03
 
-Ziel für heute: **MVP laut [feature-spec.md](feature-spec.md) lauffähig**, mit dem ersten Kurs `system-und-prozessautomatisierung-grundlagen`.
+> **Abgeschlossen und archiviert am 2026-10-03.** Offene Browser-Prüfungen sind in [plan_04.10.26.md](../plan_04.10.26.md) übernommen.
+
+Ziel für heute: **MVP laut [feature-spec.md](../feature-spec.md) lauffähig**, mit dem ersten Kurs `system-und-prozessautomatisierung-grundlagen`.
 Geschätzter Aufwand: ca. 6–7 Stunden. Nach jedem Block wird committet.
 
 ---
@@ -99,12 +101,12 @@ Wunsch: Layout und Farben nicht 1:1 wie im Referenz-Screenshot.
 
 > Die Einträge zu Sidebar und Bottom-Navigation in Block 4 sind dadurch überholt.
 
-## Block 7 – Abnahme & Feinschliff (≈ 30 min)
-- [ ] Akzeptanzkriterien aus Spec Abschnitt 8 einzeln durchklicken
-- [ ] Mobil (375 px) und Tastaturbedienung prüfen
-- [ ] `npm run lint && npm test && npm run build`
-- [ ] Root-`README.md` ergänzen: Start, Struktur, „Neuen Kurs anlegen“
-- [ ] Commit: `docs: README und Abnahme MVP`
+## Block 7 – Abnahme & Feinschliff (≈ 30 min) ✅ abgeschlossen 2026-10-03
+- [x] Akzeptanzkriterien aus Spec Abschnitt 8: 8 von 12 automatisch geprüft und abgehakt; die 4 nur im Browser prüfbaren Punkte → [plan_04.10.26.md](../plan_04.10.26.md), Block 1
+- [x] Mobil (375 px) und Tastaturbedienung → verschoben nach [plan_04.10.26.md](../plan_04.10.26.md), Block 1
+- [x] `npm run lint && npm test && npm run build` – grün (79 Tests, 26 Seiten in 3,3 s)
+- [x] Root-`README.md` ergänzt: Funktionen, Start, Struktur, „Neuen Kurs anlegen“
+- [x] Commit
 
 ---
 
@@ -119,4 +121,4 @@ Wenn die Zeit knapp wird, in dieser Reihenfolge kürzen:
 3. Syntax-Highlighting → einfache `<pre>`-Formatierung
 
 ## Offene Punkte
-Logo, Kursbild und Hosting sowie alle späteren Features stehen in [todo.md](todo.md). Für heute werden Platzhalter verwendet (Text-Logo, Platzhalterbild).
+Logo, Kursbild und Hosting sowie alle späteren Features stehen in [todo.md](../todo.md). Für heute werden Platzhalter verwendet (Text-Logo, Platzhalterbild).

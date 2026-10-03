@@ -205,18 +205,18 @@ Eigenes Design: heller, kühler Hintergrund, weiße Karten mit feinem Rahmen, du
 - **Sprache:** Oberfläche komplett Deutsch, `<html lang="de">`
 
 ## 8. Akzeptanzkriterien (MVP fertig, wenn …)
-- [ ] `/lerninhalte` zeigt die Kachel des Kurses mit Bild, Titel, Beschreibung, „1 Woche“, „5 Module · 9 Kapitel“ und „0% Fortschritt“
-- [ ] Klick auf die Kachel öffnet die Kursseite mit 5 Modulen, 9 Kapiteln in richtiger Reihenfolge und dem Glossar als Anhang
+- [x] `/lerninhalte` zeigt die Kachel des Kurses mit Bild, Titel, Beschreibung, „1 Woche“, „5 Module · 9 Kapitel“ und „0% Fortschritt“ – automatisch geprüft 2026-10-03 (HTML)
+- [x] Klick auf die Kachel öffnet die Kursseite mit 5 Modulen, 9 Kapiteln in richtiger Reihenfolge und dem Glossar als Anhang – automatisch geprüft 2026-10-03 (Loader-Tests, HTML)
 - [ ] Seitenleiste im Kursplayer zeigt Module und Kapitel mit „Kapitel lesen“ und „Wissenstest“, aktueller Eintrag hervorgehoben
-- [ ] Wissenstest: 10 Fragen, Rückmeldung mit Erklärung, bei mindestens 8 richtigen gilt er als erledigt
-- [ ] Jedes Kapitel rendert Markdown inkl. Tabelle, Codeblock, Hinweisbox und eingeklappter Musterlösung korrekt
+- [x] Wissenstest: 10 Fragen, Rückmeldung mit Erklärung, bei mindestens 8 richtigen gilt er als erledigt – automatisch geprüft 2026-10-03 (Komponententest)
+- [x] Jedes Kapitel rendert Markdown inkl. Tabelle, Codeblock, Hinweisbox und eingeklappter Musterlösung korrekt – automatisch geprüft 2026-10-03 (Tests, HTML)
 - [ ] „Als erledigt markieren“ in 1 von 18 Lernschritten → Kachel zeigt „6% Fortschritt“, auch nach Neuladen
 - [ ] Alle 18 Lernschritte erledigt → Kachel zeigt „Abgeschlossen“ mit Häkchen
-- [ ] Zurück/Weiter folgt der Reihenfolge Kapitel → Wissenstest → nächstes Kapitel; am Anfang ist „Zurück“ deaktiviert
-- [ ] Unbekannter Kurs/Einheit → 404-Seite
+- [x] Zurück/Weiter folgt der Reihenfolge Kapitel → Wissenstest → nächstes Kapitel; am Anfang ist „Zurück“ deaktiviert – automatisch geprüft 2026-10-03 (Tests)
+- [x] Unbekannter Kurs/Einheit → 404-Seite – automatisch geprüft 2026-10-03 (HTTP 404)
 - [ ] Layout funktioniert bei 375 px Breite ohne horizontales Scrollen
-- [ ] Vorlesen: Kapitel wird abschnittsweise vorgelesen, Tabellen zeilenweise, Code wird übersprungen, aktueller Abschnitt ist hervorgehoben
-- [ ] `npm run build`, `npm run lint` und `npm test` laufen fehlerfrei
+- [x] Vorlesen: Kapitel wird abschnittsweise vorgelesen, Tabellen zeilenweise, Code wird übersprungen, aktueller Abschnitt ist hervorgehoben – automatisch geprüft 2026-10-03 mit simulierter Sprachausgabe; echte Stimme noch im Browser prüfen
+- [x] `npm run build`, `npm run lint` und `npm test` laufen fehlerfrei – automatisch geprüft 2026-10-03 (79 Tests)
 
 ## 9. Ausblick (nach MVP)
 Alle späteren Features und offenen Entscheidungen werden in [todo.md](todo.md) gepflegt.

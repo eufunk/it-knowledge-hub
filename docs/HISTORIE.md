@@ -5,6 +5,7 @@
 ---
 
 ## 2026-10-03
+- Tagesplan abgeschlossen und nach `docs/Archiv/plan_03.10.26.md` verschoben; Plan für den 2026-10-04 angelegt.
 - Kapitel 01 „Einführung in die Systemautomatisierung“ überarbeitet: zusätzliche Inhalte (Definition, Wetter-Beispiel, 8 Arten, Übung, KI-Typen nach Funktionsweise, Batch/Workflow, Grundprinzipien, Werkzeugbeispiele Zapier/Power Automate/Ansible, Herausforderungen). Tabelle „Arten“ neu: Zeilen Aufgabenautomatisierung, BPA und Hyperautomation entfallen (BPA/RPA als Hinweis). Wissenstest 33 → 59 Fragen, Abschnitte neu nummeriert (1.8 Grundprinzipien, 1.9 Werkzeuge, 1.10 Toolauswahl, 1.11 Herausforderungen), Frage zu Hyperautomation ersetzt.
 - Kapitel 01: Büroautomatisierung um Kundenkommunikation und Chatbots im Kundenservice ergänzt (passend zur Wissenstest-Frage).
 - Wissenstest Kapitel 01: 6 weitere Fragen (65), darunter die erste Richtig/Falsch-Frage; Richtig/Falsch-Fragen werden nicht gemischt.

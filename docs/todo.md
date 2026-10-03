@@ -30,6 +30,9 @@ Erledigte Punkte werden abgehakt und mit Datum versehen, nicht gelöscht.
 - [ ] Prüfskript für die Nachverfolgbarkeit: sammelt alle Kennungen `F<n>` aus `docs/feature-spec.md` und zeigt, welche noch keinen Verweis in Code oder Tests haben (mit `--strict` für den Hook)
 - [ ] Pre-Commit-Hook (`.githooks/pre-commit` + `git config core.hooksPath .githooks`), der `npm run lint`, `npm test` und das Prüfskript ausführt
 - [ ] Import-Skript für Kurse aus Word (`.docx`) und Quiz-HTML ins Repository übernehmen, falls weitere Kurse so geliefert werden. Der Import vom 2026-10-03 lief einmalig mit `mammoth` und `cheerio` außerhalb des Repos.
+- [ ] `npm audit` meldet seit dem Setup Warnungen – prüfen und sichere Updates einspielen (siehe plan_04.10.26.md)
+- [ ] Automatische Browser-Tests mit Playwright (Klickpfade, Screenshots mobil/Desktop), damit die Optik ohne manuelles Prüfen abgesichert ist
+- [ ] Regelmäßig nach GitHub pushen (bisher nur lokale Commits – keine Sicherung außerhalb von OneDrive)
 - [ ] Automatische Testläufe auf GitHub (CI), sobald das Hosting entschieden ist
 - [x] `npm run build` war am 2026-10-03 einmal langsam (7,5 min für 12 Seiten). Erneuter Build am selben Tag mit 26 Seiten: 28 s. Markdown-Rendern ist schnell (< 1 s je Kapitel), Ursache war vermutlich die OneDrive-Synchronisierung. Bei erneutem Auftreten zuerst OneDrive pausieren.
 
