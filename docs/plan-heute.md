@@ -21,17 +21,19 @@ Geschätzter Aufwand: ca. 6–7 Stunden. Nach jedem Block wird committet.
 
 > ⚠️ Das Repo liegt in OneDrive. Während der Arbeit die OneDrive-Synchronisierung pausieren (Taskleiste → OneDrive → Zahnrad → „Synchronisierung anhalten“), sonst kann es bei `npm install` und `npm run build` zu Dateisperren kommen.
 
-## Block 2 – Inhaltsmodell & Content-Loader (≈ 1 h)
-- [ ] `types/learning.ts` mit `Course`, `LessonMeta`, `Lesson` (siehe Spec 5.4)
-- [ ] `lib/content/courses.ts`:
+## Block 2 – Inhaltsmodell & Content-Loader (≈ 1 h) ✅ erledigt 2026-10-03
+- [x] `types/learning.ts` mit `Course`, `LessonMeta`, `Lesson` (siehe Spec 5.4)
+- [x] `lib/content/courses.ts`:
   - `getAllCourses(): Course[]` – liest alle Ordner in `content/lerninhalte`
   - `getCourse(slug): Course | null`
   - `getLesson(courseSlug, lessonSlug): Promise<Lesson | null>`
   - `getAdjacentLessons(course, lessonSlug)` → `{ prev, next }`
-- [ ] `lib/content/markdown.ts`: `markdownToHtml()` (remark-gfm + rehype-pretty-code)
-- [ ] `lib/utils/progress.ts`: reine Funktion `calcProgress(done, total)` → Prozent
-- [ ] Tests in `tests/content/`: Sortierung nach Nummernpräfix, Slug-Bildung, unbekannter Slug → `null`, `calcProgress` (0, 20, 100, total = 0)
-- [ ] Commit: `feat: Content-Loader für Kurse und Lerneinheiten`
+- [x] `lib/content/markdown.ts`: `markdownToHtml()` (remark-gfm + rehype-pretty-code)
+- [x] `lib/utils/progress.ts`: reine Funktion `calcProgress(done, total)` → Prozent
+- [x] Tests in `tests/content/`: Sortierung nach Nummernpräfix, Slug-Bildung, unbekannter Slug → `null`, `calcProgress` (0, 20, 100, total = 0)
+- [x] Commit: `Content-Loader für Kurse und Lerneinheiten`
+
+> Ergänzt: Pflichtfelder im Frontmatter werden geprüft, Regeln für das Einlesen in der Spec (Abschnitt 5.1). Tests arbeiten mit eigenem Testinhalt unter `tests/content/fixtures/`.
 
 ## Block 3 – Kursinhalt schreiben (≈ 1,5 h, parallel zu Block 4 möglich)
 - [ ] `README.md` mit Kurs-Frontmatter

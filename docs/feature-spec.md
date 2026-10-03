@@ -79,6 +79,12 @@ content/lerninhalte/system-und-prozessautomatisierung-grundlagen/
 ```
 Slug der Einheit = Dateiname ohne Nummer und Endung (`01-einfuehrung.md` → `einfuehrung`). Reihenfolge = Nummernpräfix.
 
+Regeln für das Einlesen:
+- Nur Ordner mit `README.md` sind Kurse, andere Ordner werden ignoriert.
+- Nur Dateien nach dem Muster `NN-slug.md` (Kleinbuchstaben, Ziffern, Bindestriche) sind Einheiten, andere Dateien werden ignoriert.
+- Kurse werden nach Slug sortiert, Einheiten numerisch nach Präfix (`10-…` nach `02-…`).
+- Fehlt ein Pflichtfeld im Frontmatter (Kurs: `title`, `description`, `duration`, `image`; Einheit: `title`), bricht der Build mit einer Fehlermeldung ab, die die Datei nennt.
+
 ### 5.2 Frontmatter Kurs (`README.md`)
 ```yaml
 ---
