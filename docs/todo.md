@@ -22,7 +22,7 @@ Erledigte Punkte werden abgehakt und mit Datum versehen, nicht gelöscht.
 - [ ] Weitere Kurse
 
 ## Technik / Qualität
-- [ ] `node_modules` und `.next` von der OneDrive-Synchronisierung ausschließen (oder Repo außerhalb von OneDrive verschieben)
+- [x] OneDrive und `node_modules`/`.next`: entschieden 2026-10-03 – Repo bleibt in OneDrive, Synchronisierung wird beim Entwickeln pausiert (Ausschluss nicht möglich, Junction von npm überschrieben, siehe CLAUDE.md)
 - [ ] Prüfskript für die Nachverfolgbarkeit: sammelt alle Kennungen `F<n>` aus `docs/feature-spec.md` und zeigt, welche noch keinen Verweis in Code oder Tests haben (mit `--strict` für den Hook)
 - [ ] Pre-Commit-Hook (`.githooks/pre-commit` + `git config core.hooksPath .githooks`), der `npm run lint`, `npm test` und das Prüfskript ausführt
 - [ ] Automatische Testläufe auf GitHub (CI), sobald das Hosting entschieden ist

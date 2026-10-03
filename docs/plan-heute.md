@@ -19,7 +19,7 @@ Geschätzter Aufwand: ca. 6–7 Stunden. Nach jedem Block wird committet.
 
 > Abweichungen: Next.js 16 statt 15 (aktuelle Version von create-next-app). Gerüst im temporären Ordner erzeugt und übernommen, weil create-next-app in einen Ordner mit README.md/CLAUDE.md nicht schreibt. `@types/node` auf 24 angehoben (passend zu Node 24, sonst Konflikt mit vitest 5). Zusätzlich `@tailwindcss/typography` und `@testing-library/dom` installiert.
 
-> ⚠️ Das Repo liegt in OneDrive. `node_modules` und `.next` sollten von der Synchronisierung ausgeschlossen werden (oder das Repo außerhalb von OneDrive liegen), sonst wird die Installation langsam und es kann zu Dateisperren kommen.
+> ⚠️ Das Repo liegt in OneDrive. Während der Arbeit die OneDrive-Synchronisierung pausieren (Taskleiste → OneDrive → Zahnrad → „Synchronisierung anhalten“), sonst kann es bei `npm install` und `npm run build` zu Dateisperren kommen.
 
 ## Block 2 – Inhaltsmodell & Content-Loader (≈ 1 h)
 - [ ] `types/learning.ts` mit `Course`, `LessonMeta`, `Lesson` (siehe Spec 5.4)
