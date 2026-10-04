@@ -25,12 +25,19 @@ Erledigte Punkte werden abgehakt und mit Datum versehen, nicht gelöscht.
 - [ ] Notizen im Kursplayer (Reiter „Kurs | Notizen“ und „Notiz erstellen“ wie im Referenz-Screenshot der Kursansicht)
 - [ ] Übungsmaterial aus `IT_Administration_und_Automatisierung/System_und_Prozessautomatisierung_Grundlagen/Uebungen_*` (Skripte, Aufgabenstellungen, Testanleitungen) im Kurs bereitstellen, z. B. als Downloads unter `public/documents/`
 
+## Konto (nach Login-MVP)
+- [ ] Passwort ändern und vergessenes Passwort zurücksetzen
+- [ ] Konto löschen (inkl. Fortschritt) – Datenschutz
+- [ ] Schutz gegen massenhaftes Raten von Passwörtern (Begrenzung der Anmeldeversuche)
+- [ ] Abgelaufene Sitzungen regelmäßig aus der Datenbank löschen
+- [ ] Rollen/Administration (z. B. Konten verwalten), falls benötigt
+
 ## Technik / Qualität
 - [x] OneDrive und `node_modules`/`.next`: entschieden 2026-10-03 – Repo bleibt in OneDrive, Synchronisierung wird beim Entwickeln pausiert (Ausschluss nicht möglich, Junction von npm überschrieben, siehe CLAUDE.md)
 - [ ] Prüfskript für die Nachverfolgbarkeit: sammelt alle Kennungen `F<n>` aus `docs/feature-spec.md` und zeigt, welche noch keinen Verweis in Code oder Tests haben (mit `--strict` für den Hook)
 - [ ] Pre-Commit-Hook (`.githooks/pre-commit` + `git config core.hooksPath .githooks`), der `npm run lint`, `npm test` und das Prüfskript ausführt
 - [ ] Import-Skript für Kurse aus Word (`.docx`) und Quiz-HTML ins Repository übernehmen, falls weitere Kurse so geliefert werden. Der Import vom 2026-10-03 lief einmalig mit `mammoth` und `cheerio` außerhalb des Repos.
-- [ ] Windows blockiert seit 2026-10-04 per Application-Control-Richtlinie (vermutlich „Intelligente App-Steuerung“) die native Next.js-Datei `node_modules/@next/swc-win32-x64-msvc/next-swc.win32-x64-msvc.node`. Folge: `next dev` mit Turbopack startet nicht. Übergangslösung: `npx next dev --webpack`. Klären: Ausnahme in Windows-Sicherheit möglich? Läuft `npm run build` noch?
+- [ ] Windows blockiert seit 2026-10-04 per Application-Control-Richtlinie (vermutlich „Intelligente App-Steuerung“) die native Next.js-Datei `node_modules/@next/swc-win32-x64-msvc/next-swc.win32-x64-msvc.node`. Folge: `next dev` mit Turbopack startet nicht. Übergangslösung: `npx next dev --webpack`. Klären: Ausnahme in Windows-Sicherheit möglich? `npm run build` läuft weiterhin mit Turbopack (geprüft 2026-10-04) – betroffen ist nur der Dev-Server.
 - [ ] `npm audit` meldet seit dem Setup Warnungen – prüfen und sichere Updates einspielen (siehe plan_04.10.26.md)
 - [ ] Automatische Browser-Tests mit Playwright (Klickpfade, Screenshots mobil/Desktop), damit die Optik ohne manuelles Prüfen abgesichert ist
 - [ ] Regelmäßig nach GitHub pushen (bisher nur lokale Commits – keine Sicherung außerhalb von OneDrive)

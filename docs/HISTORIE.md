@@ -4,6 +4,10 @@
 
 ---
 
+## 2026-10-04
+- Neu: Registrierung, Anmeldung und Abmelden (F21, F22); Fortschritt angemeldeter Nutzer in SQLite (F23); Browser-Fortschritt wird beim Anmelden/Registrieren übernommen (F24); Sicherheitsanforderungen (F25). „Kein Login“ aus den Nicht-Zielen der Spec entfernt. Die Plattform braucht damit einen Node-Server (kein reiner statischer Export mehr).
+- Testkonto `testuser` per `npm run db:seed` angelegt.
+
 ## 2026-10-03
 - Tagesplan abgeschlossen und nach `docs/Archiv/plan_03.10.26.md` verschoben; Plan für den 2026-10-04 angelegt.
 - Kapitel 01 „Einführung in die Systemautomatisierung“ überarbeitet: zusätzliche Inhalte (Definition, Wetter-Beispiel, 8 Arten, Übung, KI-Typen nach Funktionsweise, Batch/Workflow, Grundprinzipien, Werkzeugbeispiele Zapier/Power Automate/Ansible, Herausforderungen). Tabelle „Arten“ neu: Zeilen Aufgabenautomatisierung, BPA und Hyperautomation entfallen (BPA/RPA als Hinweis). Wissenstest 33 → 59 Fragen, Abschnitte neu nummeriert (1.8 Grundprinzipien, 1.9 Werkzeuge, 1.10 Toolauswahl, 1.11 Herausforderungen), Frage zu Hyperautomation ersetzt.

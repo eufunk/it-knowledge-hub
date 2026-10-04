@@ -1,18 +1,25 @@
-// F12/F14: Fortschritt im localStorage, ein Schlüssel pro Kurs.
-// Jeder Zugriff ist abgesichert – ohne Speicher gilt der Kurs als nicht begonnen.
+// F12/F14/F23: Fortschritt – ohne Anmeldung im localStorage, angemeldet im Konto (Datenbank).
+// Jeder Zugriff auf den localStorage ist abgesichert – ohne Speicher gilt der Kurs als nicht begonnen.
+import { ensureAccountLoaded, getAccountState, remoteProgressRaw, saveRemoteStep, subscribeAccount } from "./account-store";
 
 const CHANGE_EVENT = "progress-change";
+const KEY_PREFIX = "progress:v1:";
 
 export function progressKey(courseSlug: string): string {
-  return `progress:v1:${courseSlug}`;
+  return `${KEY_PREFIX}${courseSlug}`;
 }
 
-export function readProgressRaw(courseSlug: string): string | null {
+function readLocalRaw(courseSlug: string): string | null {
   try {
     return window.localStorage.getItem(progressKey(courseSlug));
   } catch {
     return null;
   }
+}
+
+export function readProgressRaw(courseSlug: string): string | null {
+  if (getAccountState().status === "user") return remoteProgressRaw(courseSlug);
+  return readLocalRaw(courseSlug);
 }
 
 export function parseCompleted(raw: string | null): string[] {
@@ -26,7 +33,17 @@ export function parseCompleted(raw: string | null): string[] {
 }
 
 export function setLessonCompleted(courseSlug: string, lessonSlug: string, completed: boolean): void {
-  const current = new Set(parseCompleted(readProgressRaw(courseSlug)));
+  const { status } = getAccountState();
+  // Anmeldestatus wird noch geladen: erst danach entscheiden, ob Konto oder Browser gilt
+  if (status === "loading") {
+    void ensureAccountLoaded().then(() => setLessonCompleted(courseSlug, lessonSlug, completed));
+    return;
+  }
+  if (status === "user") {
+    void saveRemoteStep(courseSlug, lessonSlug, completed);
+    return;
+  }
+  const current = new Set(parseCompleted(readLocalRaw(courseSlug)));
   if (completed) current.add(lessonSlug);
   else current.delete(lessonSlug);
   try {
@@ -37,12 +54,30 @@ export function setLessonCompleted(courseSlug: string, lessonSlug: string, compl
   window.dispatchEvent(new Event(CHANGE_EVENT));
 }
 
-// Für useSyncExternalStore: reagiert auf Änderungen in diesem und in anderen Tabs.
+// F24: gesamter Browser-Fortschritt aller Kurse, z. B. zur Übernahme ins Konto beim Anmelden
+export function collectLocalProgress(): Record<string, string[]> {
+  const result: Record<string, string[]> = {};
+  try {
+    for (let i = 0; i < window.localStorage.length; i++) {
+      const key = window.localStorage.key(i);
+      if (!key?.startsWith(KEY_PREFIX)) continue;
+      const steps = parseCompleted(window.localStorage.getItem(key));
+      if (steps.length > 0) result[key.slice(KEY_PREFIX.length)] = steps;
+    }
+  } catch {
+    // Speicher blockiert: nichts zu übernehmen
+  }
+  return result;
+}
+
+// Für useSyncExternalStore: reagiert auf Änderungen in diesem und in anderen Tabs sowie auf An-/Abmelden.
 export function subscribeProgress(onChange: () => void): () => void {
   window.addEventListener(CHANGE_EVENT, onChange);
   window.addEventListener("storage", onChange);
+  const unsubscribeAccount = subscribeAccount(onChange);
   return () => {
     window.removeEventListener(CHANGE_EVENT, onChange);
     window.removeEventListener("storage", onChange);
+    unsubscribeAccount();
   };
 }

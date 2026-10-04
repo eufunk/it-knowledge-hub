@@ -14,7 +14,7 @@ Das MVP liefert **einen vollständig nutzbaren Kurs** von der Übersicht bis zur
 
 ## 2. Nicht-Ziele (MVP)
 
-- Kein Login, keine Benutzerkonten, keine Datenbank
+- Kein Zurücksetzen vergessener Passwörter, keine E-Mail-Bestätigung, keine Rollen oder Administration (siehe `docs/todo.md`)
 - Kein Livestream, keine News, kein Glossar, keine Notizen (kommen später, siehe `docs/todo.md`)
 - Kein CMS – Inhalte werden direkt als Markdown im Repo gepflegt
 
@@ -84,6 +84,20 @@ Angelehnt an den Referenz-Screenshot der Kursansicht, aber im eigenen Design.
 - **F13** Fortschritt = erledigte Lernschritte / alle Lernschritte, gerundet auf ganze Prozent. Lernschritte sind jedes Kapitel (außer Anhängen) und jeder Wissenstest.
 - **F14** Ohne gespeicherte Daten (oder wenn `localStorage` blockiert ist) wird 0 % angezeigt – die Seite darf nicht abstürzen.
 
+### 4.6 Konto und Anmeldung
+- **F21** Registrierung `/registrieren`: Jede Person kann ein Konto anlegen. Felder: Benutzername, Passwort, Passwort wiederholen.
+  - Benutzername: 3–32 Zeichen, nur Buchstaben a–z, Ziffern, Punkt, Bindestrich und Unterstrich; Groß-/Kleinschreibung wird nicht unterschieden (gespeichert in Kleinbuchstaben); bereits vergebene Namen werden abgelehnt.
+  - Passwort: mindestens 8, höchstens 200 Zeichen; beide Eingaben müssen übereinstimmen.
+  - Fehler werden am Formular angezeigt, Eingaben (außer Passwörtern) bleiben erhalten. Nach Erfolg ist die Person angemeldet.
+- **F22** Anmeldung `/anmelden` und Abmelden: Bei falschem Namen oder Passwort erscheint dieselbe allgemeine Meldung („Benutzername oder Passwort ist falsch.“). Eine Sitzung gilt 30 Tage. Die Kopfleiste zeigt angemeldet den Benutzernamen und „Abmelden“, sonst „Anmelden“. Nach dem Anmelden geht es zur vorher besuchten Seite bzw. zu den Lerninhalten.
+- **F23** Fortschritt mit Konto: Angemeldet werden erledigte Kapitel und bestandene Wissenstests in der Datenbank gespeichert und auf allen Seiten und Geräten von dort gelesen. Ohne Anmeldung gilt weiter der Fortschritt im Browser (F12).
+- **F24** Übernahme des Browser-Fortschritts: Beim Anmelden und Registrieren wird der im Browser gespeicherte Fortschritt aller Kurse mit dem Konto zusammengeführt (Vereinigung – es geht nichts verloren).
+- **F25** Sicherheit:
+  - Passwörter nur als Hash mit zufälligem Salz (`scrypt`), Vergleich in konstanter Zeit.
+  - Sitzungs-Token zufällig (256 Bit); in der Datenbank nur dessen Hash. Cookie `httpOnly`, `SameSite=Lax`, in Produktion `Secure`.
+  - Änderungen am Fortschritt werden nur von derselben Herkunft (Origin) angenommen und nur für angemeldete Nutzer.
+  - Ein Testkonto (`testuser`) wird nur über das Entwicklungsskript `npm run db:seed` angelegt, nie automatisch.
+
 ## 5. Inhaltsmodell
 
 ### 5.1 Ordnerstruktur
@@ -151,7 +165,16 @@ Die **erste** Antwort in `options` ist die richtige; beim Anzeigen wird gemischt
 ### 5.5 Typen (`types/learning.ts`)
 Wichtigste Typen: `Course` (mit `modules: CourseModule[]`, `lessons`, `appendix`), `LessonMeta` (mit `hasQuiz`, `appendix`), `Lesson`, `Quiz`, `QuizQuestion` und `CourseStep` (ein Lernschritt: Kapitel oder Wissenstest, mit `id` für den Fortschritt).
 
-### 5.6 Inhalt des ersten Kurses
+### 5.6 Datenbank
+| Tabelle | Spalten |
+|---|---|
+| `users` | `id`, `username` (eindeutig, Kleinbuchstaben), `password_hash`, `created_at` |
+| `sessions` | `token_hash` (Primärschlüssel), `user_id`, `created_at`, `expires_at` |
+| `progress` | `user_id`, `course_slug`, `step_id`, `completed_at` – Primärschlüssel aus den ersten drei |
+
+Schritt-IDs sind dieselben wie im Browser (`<kapitel>` bzw. `<kapitel>/wissenstest`). Das Schema wird beim ersten Zugriff angelegt.
+
+### 5.7 Inhalt des ersten Kurses
 Quelle: `System_und_Prozessautomatisierung_Grundlagen.docx` (Kapitel; Kapitel 01 am 2026-10-03 überarbeitet und erweitert, Freigabe-Entwurf `Kapitel01_Einfuehrung_Systemautomatisierung_Entwurf.docx`) und `Systemautomatisierung_Quiz.html` (410 Fragen), einmalig nach Markdown bzw. JSON übernommen. Danach sind die Dateien im Repository die maßgebliche Quelle.
 
 | Modul | Kapitel | Fragen |
@@ -172,8 +195,10 @@ Quelle: `System_und_Prozessautomatisierung_Grundlagen.docx` (Kapitel; Kapitel 01
 | Markdown | `gray-matter` + `remark` / `remark-gfm` / `rehype-pretty-code` | Frontmatter + GFM-Tabellen + Code-Highlighting |
 | Icons | `lucide-react` | Einheitlicher Linien-Stil, große Auswahl |
 | Schrift | Plus Jakarta Sans für Text, JetBrains Mono für kleine technische Beschriftungen (via `next/font/google`) | Gut lesbar, Mono-Akzente passen zum IT-Thema |
-| Rendering | Statisch (`generateStaticParams`) | Kein Server nötig, schnell, hostbar auf Vercel |
-| Fortschritt | Client-Komponente + `localStorage` | Kein Backend im MVP |
+| Rendering | Inhaltsseiten statisch (`generateStaticParams`); Anmeldung, Registrierung und Schnittstellen dynamisch | Inhalte bleiben schnell; Konten brauchen einen Node-Server |
+| Fortschritt | Ohne Anmeldung `localStorage`, mit Anmeldung Datenbank; Sitzung und Fortschritt lädt der Browser über `/api/sitzung` | Inhaltsseiten bleiben statisch, Konto-Daten kommen nachträglich |
+| Datenbank | SQLite über das in Node eingebaute `node:sqlite`, Datei `data/it-knowledge-hub.db` | Keine Zusatzdienste; kein natives Paket (Windows-Application-Control) |
+| Anmeldung | Eigene Umsetzung: Server Actions, `scrypt`, Sitzungen in der Datenbank | Keine externen Abhängigkeiten, überschaubarer Umfang |
 | Tests | Vitest + Testing Library | Schnell, gute Next.js-Integration |
 
 **Abweichung von der vorgeschlagenen Ordnerstruktur:** Statt einer festen Seite `app/lerninhalte/system-und-prozessautomatisierung-grundlagen/page.tsx` werden dynamische Routen `app/lerninhalte/[kurs]/page.tsx` und `app/lerninhalte/[kurs]/[einheit]/page.tsx` verwendet. So braucht jeder weitere Kurs nur einen neuen Content-Ordner. Die URL bleibt identisch.
@@ -215,6 +240,8 @@ Eigenes Design: heller, kühler Hintergrund, weiße Karten mit feinem Rahmen, du
 - [x] Zurück/Weiter folgt der Reihenfolge Kapitel → Wissenstest → nächstes Kapitel; am Anfang ist „Zurück“ deaktiviert – automatisch geprüft 2026-10-03 (Tests)
 - [x] Unbekannter Kurs/Einheit → 404-Seite – automatisch geprüft 2026-10-03 (HTTP 404)
 - [ ] Layout funktioniert bei 375 px Breite ohne horizontales Scrollen
+- [ ] Registrieren, Anmelden und Abmelden funktionieren; Fehlermeldungen bei ungültigen Eingaben und falschem Passwort
+- [ ] Angemeldet als `testuser`: Fortschritt bleibt nach Abmelden/Anmelden und in einem anderen Browser erhalten; vorhandener Browser-Fortschritt wurde übernommen
 - [x] Vorlesen: Kapitel wird abschnittsweise vorgelesen, Tabellen zeilenweise, Code wird übersprungen, aktueller Abschnitt ist hervorgehoben – automatisch geprüft 2026-10-03 mit simulierter Sprachausgabe; echte Stimme noch im Browser prüfen
 - [x] `npm run build`, `npm run lint` und `npm test` laufen fehlerfrei – automatisch geprüft 2026-10-03 (79 Tests)
 

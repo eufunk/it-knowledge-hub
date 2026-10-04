@@ -20,7 +20,7 @@ Die Punkte aus [feature-spec.md](feature-spec.md), Abschnitt 8, die nur im Brows
 
 > Optional: Playwright für automatische Browser-Tests einrichten (Screenshots bei 375 px und 1280 px, Klickpfad Kapitel → Wissenstest). Dann kann Claude die Optik künftig selbst prüfen.
 
-## Block 2 – Login, Registrierung und Fortschritt in der Datenbank (≈ 3–4 h)
+## Block 2 – Login, Registrierung und Fortschritt in der Datenbank (≈ 3–4 h) ✅ erledigt 2026-10-04
 Wunsch: Der Lernfortschritt soll unter dem eigenen Login gespeichert werden (Testkonto `testuser` / `testuser123`). Datenbank: SQLite.
 
 **Technische Leitplanken**
@@ -31,19 +31,21 @@ Wunsch: Der Lernfortschritt soll unter dem eigenen Login gespeichert werden (Tes
 - Ohne Login funktioniert die Plattform weiter wie bisher (Fortschritt im Browser).
 
 **Schritte**
-- [ ] Spec anpassen: „Kein Login“ aus den Nicht-Zielen streichen, neue Anforderungen für Registrierung, Anmeldung, Abmeldung und serverseitigen Fortschritt; Abschnitt 6 (Rendering: Seiten mit Login brauchen einen Node-Server)
-- [ ] Datenbank-Schicht: Tabellen `users`, `sessions`, `progress` (Nutzer, Kurs, Lernschritt, erledigt am); Schema wird beim Start angelegt
-- [ ] Seite `/registrieren`: Benutzername, Passwort, Passwort wiederholen; Prüfung auf Pflichtfelder, Mindestlänge und vergebene Namen
-- [ ] Seite `/anmelden` und Abmelden; Anmeldestatus und Abmelden in der Kopfleiste
-- [ ] Fortschritt mit Konto: Erledigt-Markierungen und bestandene Wissenstests werden in der Datenbank gespeichert und auf allen Seiten von dort gelesen
-- [ ] **Vorhandenen Fortschritt übernehmen:** Beim ersten Anmelden wird der im Browser gespeicherte Fortschritt in das Konto übernommen (zusammengeführt, nichts geht verloren)
-- [ ] Testkonto `testuser` / `testuser123` per Startskript (`npm run db:seed`) anlegen – nur für die Entwicklung, nicht für eine öffentliche Installation
-- [ ] Tests: Passwort-Hash, Registrierung (doppelter Name, zu kurzes Passwort), Anmeldung (falsches Passwort), Sitzung, Fortschritt speichern/lesen, Zusammenführen mit Browser-Fortschritt – mit temporärer Datenbank
-- [ ] CLAUDE.md, README, Historie nachziehen
+- [x] Spec anpassen: „Kein Login“ aus den Nicht-Zielen streichen, neue Anforderungen für Registrierung, Anmeldung, Abmeldung und serverseitigen Fortschritt; Abschnitt 6 (Rendering: Seiten mit Login brauchen einen Node-Server)
+- [x] Datenbank-Schicht: Tabellen `users`, `sessions`, `progress` (Nutzer, Kurs, Lernschritt, erledigt am); Schema wird beim Start angelegt
+- [x] Seite `/registrieren`: Benutzername, Passwort, Passwort wiederholen; Prüfung auf Pflichtfelder, Mindestlänge und vergebene Namen
+- [x] Seite `/anmelden` und Abmelden; Anmeldestatus und Abmelden in der Kopfleiste
+- [x] Fortschritt mit Konto: Erledigt-Markierungen und bestandene Wissenstests werden in der Datenbank gespeichert und auf allen Seiten von dort gelesen
+- [x] **Vorhandenen Fortschritt übernehmen:** Beim ersten Anmelden wird der im Browser gespeicherte Fortschritt in das Konto übernommen (zusammengeführt, nichts geht verloren)
+- [x] Testkonto `testuser` / `testuser123` per Startskript (`npm run db:seed`) anlegen – nur für die Entwicklung, nicht für eine öffentliche Installation
+- [x] Tests: Passwort-Hash, Registrierung (doppelter Name, zu kurzes Passwort), Anmeldung (falsches Passwort), Sitzung, Fortschritt speichern/lesen, Zusammenführen mit Browser-Fortschritt – mit temporärer Datenbank
+- [x] CLAUDE.md, README, Historie nachziehen
 
-**Zu klären**
-- Darf sich jede Person registrieren, oder legt nur eine Administratorin Konten an?
-- Folge für das Hosting (Block 5): Ein reiner statischer Export (GitHub Pages) reicht nicht mehr; Vercel speichert keine SQLite-Datei dauerhaft. Infrage kommen z. B. ein kleiner Server/VPS, Render, Fly.io oder Railway mit Volume.
+> Ergebnis: 98 automatische Tests grün; zusätzlich Browser-Test mit Edge (12 Prüfungen: falsches Passwort, Anmelden, Registrieren, Übernahme des Browser-Fortschritts, Erledigt-Markierung im Konto, Abmelden, anderer Browser, Weiterleitung, 375 px). Dabei gefunden und behoben: Ein Klick auf „Als erledigt markieren“, während der Anmeldestatus noch lud, landete nur im Browser. Testkonto `testuser` angelegt; Testdaten danach aus der Datenbank entfernt.
+
+**Geklärt / offen**
+- [x] Jede Person darf sich selbst registrieren (Entscheidung 2026-10-04).
+- Folge für das Hosting (Block 5, offen): Ein reiner statischer Export (GitHub Pages) reicht nicht mehr; Vercel speichert keine SQLite-Datei dauerhaft. Infrage kommen z. B. ein kleiner Server/VPS, Render, Fly.io oder Railway mit Volume.
 
 ## Block 3 – Entscheidung Vorlesen (≈ 30 min)
 - [ ] Ergebnis aus Block 1 (Edge) bewerten

@@ -11,7 +11,8 @@ Erster Kurs: **System- und Prozessautomatisierung** – 5 Module, 9 Kapitel, Glo
 - Kursplayer mit Seitenleiste, Zurück/Weiter und Lesefortschritt
 - Wissenstest je Kapitel: 10 zufällige Fragen, Rückmeldung mit Erklärung, bestanden ab 80 %
 - Vorlesen von Kapiteln über die Sprachausgabe des Browsers
-- Fortschritt wird im Browser gespeichert (kein Konto, kein Server nötig)
+- Konto mit Registrierung und Anmeldung: Fortschritt in einer SQLite-Datenbank, auf allen Geräten verfügbar
+- Ohne Anmeldung wird der Fortschritt im Browser gespeichert und beim Anmelden ins Konto übernommen
 
 ## Starten
 
@@ -20,7 +21,10 @@ Voraussetzung: Node.js 24.
 ```bash
 npm install
 npm run dev            # http://localhost:3000
+npm run db:seed        # Testkonto testuser / testuser123 anlegen (nur Entwicklung)
 ```
+
+Die Datenbank liegt in `data/it-knowledge-hub.db` und wird beim ersten Zugriff angelegt.
 
 Weitere Befehle:
 

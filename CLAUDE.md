@@ -4,7 +4,7 @@ Arbeitskonventionen und Hinweise für Claude Code (claude.ai/code) in diesem Rep
 
 @AGENTS.md
 
-IT Knowledge Hub: Lernplattform mit Next.js 16 (App Router, TypeScript), auf der Kurse als Kacheln angezeigt werden und aus Lerneinheiten bestehen, die als Markdown im Repository liegen. Der Lernfortschritt wird im MVP nur im Browser gespeichert (`localStorage`). Es gibt kein Backend und keine Datenbank. Erster Kurs: `system-und-prozessautomatisierung-grundlagen`. Projektsprache ist Deutsch: Oberflächentexte, Kursinhalte, Dokumentation, Commit-Nachrichten und Code-Kommentare.
+IT Knowledge Hub: Lernplattform mit Next.js 16 (App Router, TypeScript), auf der Kurse als Kacheln angezeigt werden und aus Lerneinheiten bestehen, die als Markdown im Repository liegen. Ohne Anmeldung wird der Lernfortschritt im Browser gespeichert (`localStorage`), mit Konto in einer SQLite-Datenbank (`node:sqlite`). Die Inhaltsseiten sind statisch; Anmeldung, Registrierung und die Schnittstellen unter `app/api/` laufen auf dem Node-Server. Erster Kurs: `system-und-prozessautomatisierung-grundlagen`. Projektsprache ist Deutsch: Oberflächentexte, Kursinhalte, Dokumentation, Commit-Nachrichten und Code-Kommentare.
 
 ## Fachliche Referenz
 
@@ -51,6 +51,7 @@ npm run build          # Produktions-Build (prüft auch Typen und statische Seit
 npm run lint           # ESLint
 npm test               # alle Tests (Vitest, einmaliger Lauf)
 npm run test:watch     # Tests im Beobachtungsmodus
+npm run db:seed        # Testkonto testuser / testuser123 anlegen (nur Entwicklung)
 npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 ```
 
@@ -65,7 +66,7 @@ npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 
 | Ordner | Inhalt |
 |---|---|
-| `app/` | Routen (App Router): `page.tsx` (Home), `lerninhalte/page.tsx` (Kursübersicht), `lerninhalte/[kurs]/page.tsx` (Kursseite), `lerninhalte/[kurs]/[einheit]/page.tsx` (Kapitel im Kursplayer), `lerninhalte/[kurs]/[einheit]/wissenstest/page.tsx` (Wissenstest), `ueber-uns/page.tsx` |
+| `app/` | Routen (App Router): `page.tsx` (Home), `lerninhalte/page.tsx` (Kursübersicht), `lerninhalte/[kurs]/page.tsx` (Kursseite), `lerninhalte/[kurs]/[einheit]/page.tsx` (Kapitel im Kursplayer), `lerninhalte/[kurs]/[einheit]/wissenstest/page.tsx` (Wissenstest), `anmelden/`, `registrieren/`, `konto/actions.ts` (Server Actions), `api/sitzung` und `api/fortschritt` (Route Handler), `ueber-uns/page.tsx` |
 | `components/` | `layout/` (AppShell), `navigation/` (Kopfleiste), `learning/` (Kurskachel, Kursinhalt nach Modulen, Kursplayer mit Seitenleiste `CourseNav`, Zurück/Weiter, Lesefortschritt, Wissenstest `QuizRunner`, Fortschritt), `ui/` (allgemeine Bausteine wie Fortschrittsbalken, Button, Breadcrumb) |
 | `content/lerninhalte/<kurs>/` | Kursinhalte: `README.md` mit Kurs-Frontmatter inkl. `modules`, Kapitel als `NN-slug.md` (Anhänge mit `anhang: true`), Fragen-Pools als `wissenstest/<slug>.json` (erste Antwort = richtige) |
 | `lib/` | `content/` (Einlesen und Rendern der Inhalte), `utils/` (reine Hilfsfunktionen, z. B. Fortschrittsberechnung) |
@@ -81,6 +82,8 @@ npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 
 **Next.js 16:** Vor dem Schreiben von Routen- oder Konfigurationscode die mitgelieferte Doku unter `node_modules/next/dist/docs/` lesen (siehe `AGENTS.md`), besonders `01-app/02-guides/upgrading/version-16.md`. Wichtig hier: `params` in Seiten, Layouts und `generateMetadata` ist ein **Promise** und wird mit `await` gelesen. Seiten- und Layout-Props werden mit den globalen Typen `PageProps<"/route">` bzw. `LayoutProps<"/route">` typisiert. `AGENTS.md` wird von `next dev` gepflegt und nicht von Hand geändert.
 
+**Konten und Datenbank (F21–F25):** Alles Serverseitige liegt in `lib/server/`: `db.ts` (Verbindung, Schema), `password.ts` (scrypt), `accounts.ts` (Konten, Sitzungen), `progress.ts` (Fortschritt), `progress-input.ts` (Prüfung gegen die Kursinhalte), `session.ts` (Cookie, nur in Server Actions/Route Handlern). `db.ts`, `password.ts`, `accounts.ts` und `progress.ts` importieren nur `node:*` und sich gegenseitig mit relativer `.ts`-Endung, damit `scripts/db-seed.ts` sie direkt mit Node ausführen kann – dort keine `@/`-Importe verwenden. Der Datenbankpfad kommt aus `databasePath()` und lässt sich mit `IKH_DB_PATH` umlenken (Tests). Im Browser hält `lib/utils/account-store.ts` Anmeldestatus und Konto-Fortschritt; `progress-store.ts` entscheidet, ob Browser oder Konto gilt. Seiten, die Konto-Daten brauchen, lesen sie im Browser über `/api/sitzung` – keine `cookies()` in Layouts oder Inhaltsseiten, sonst werden sie dynamisch.
+
 **Server- und Client-Komponenten:** Seiten und alles, was Inhalte liest, sind Server-Komponenten. Nur Bausteine, die `localStorage` oder Browser-Ereignisse brauchen (Fortschritt, „Als erledigt markieren“, aktiver Navigationspunkt), sind Client-Komponenten mit `"use client"`. Diese Grenze möglichst weit unten im Komponentenbaum ziehen.
 
 ## Tests
@@ -88,7 +91,7 @@ npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 - **Lernschritte:** Fortschritt, Zurück/Weiter und „Weiterlernen“ basieren auf `lib/utils/steps.ts` (`getCourseSteps`). Schritt-IDs sind `<kapitel>` und `<kapitel>/wissenstest`; sie sind die Werte im `localStorage`. IDs nicht umbenennen, sonst geht gespeicherter Fortschritt verloren (oder den Speicherschlüssel versionieren).
 - **Vorlesen (F20):** `ReadAloudPlayer` nutzt `window.speechSynthesis`. Was vorgelesen wird, bestimmt `extractSegments` in `lib/utils/speech.ts`; neue Inhaltselemente (z. B. eigene Komponenten im Markdown) dort berücksichtigen. Pausieren bricht ab und setzt am aktuellen Satz neu an, weil `speechSynthesis.pause()` in Chrome unzuverlässig ist.
 - **Hinweisboxen:** Ein Blockzitat wird zur Box, wenn es mit `**Definition:**`, `**Tipp:**`, `**Wichtig:**`, `**Achtung:**`, `**Hinweis:**`, `**Merke:**` oder `**Kurz gesagt:**` beginnt (`lib/content/markdown.ts`, Styles in `styles/globals.css`).
-- Tests liegen in `tests/` (nicht neben den Komponenten), gegliedert in `content/` (Loader, Markdown, reine Funktionen) und `components/` (Rendering mit Testing Library). Dateinamen: `<name>.test.ts` bzw. `.test.tsx`.
+- Tests liegen in `tests/` (nicht neben den Komponenten), gegliedert in `content/` (Loader, Markdown, reine Funktionen), `components/` (Rendering mit Testing Library) und `server/` (Datenbank, Konten – jeweils mit temporärer Datenbank über `IKH_DB_PATH`). Dateinamen: `<name>.test.ts` bzw. `.test.tsx`.
 - Vor dem Anlegen einer neuen Testdatei prüfen, ob es für dieselbe Komponente schon eine gibt (Glob `tests/**/*.test.*`). Lieber ergänzen als eine zweite Datei daneben anlegen.
 - Loader-Tests arbeiten mit eigenen Testinhalten (kleiner Fixture-Ordner), nicht mit dem echten Kurs. Sonst bricht jede inhaltliche Änderung am Kurs die Tests.
 - Fortschrittslogik als reine Funktion testen (`calcProgress(done, total)`), inkl. Randfällen: 0 Einheiten, alle erledigt, Rundung.
@@ -100,7 +103,8 @@ npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 |---|---|---|
 | `content/lerninhalte/` | Kursinhalte (Markdown) | **ja**, das sind die Primärdaten |
 | `public/images/` | Kursbilder (Herkunft und Lizenz in der Commit-Nachricht oder in `docs/` notieren) | ja |
-| `localStorage` im Browser | Lernfortschritt, ein Schlüssel pro Kurs (`progress:v1:<kurs>`); Vorlese-Einstellungen (`vorlesen:v1`) | nein, nur beim jeweiligen Browser |
+| `localStorage` im Browser | Lernfortschritt ohne Anmeldung, ein Schlüssel pro Kurs (`progress:v1:<kurs>`); Vorlese-Einstellungen (`vorlesen:v1`) | nein, nur beim jeweiligen Browser |
+| `data/it-knowledge-hub.db` | Konten (Passwort-Hashes), Sitzungen, Fortschritt angemeldeter Nutzer | **nein** (gitignored) – Primärdaten, vor Schemaänderungen sichern |
 
 - Jeder Zugriff auf `localStorage` steht in `try/catch` und fällt auf 0 % zurück (F14). Er kann in privaten Fenstern oder bei blockierten Website-Daten fehlschlagen.
 - Ändert sich das Format der gespeicherten Fortschrittsdaten, wird der Schlüssel versioniert (z. B. `progress:v2:<kurs>`), damit alte Daten nicht zu Fehlern führen.

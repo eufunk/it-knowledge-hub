@@ -151,3 +151,6 @@ vite.config.ts.timestamp-*
 # Next.js
 .vercel
 next-env.d.ts
+
+# Datenbank (Konten, Fortschritt)
+/data/
