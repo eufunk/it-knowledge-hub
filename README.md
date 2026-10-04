@@ -12,7 +12,8 @@ Erster Kurs: **System- und Prozessautomatisierung** – 5 Module, 9 Kapitel, Glo
 - Wissenstest je Kapitel: 10 zufällige Fragen, Rückmeldung mit Erklärung, bestanden ab 80 %
 - Vorlesen von Kapiteln über die Sprachausgabe des Browsers
 - Konto mit Registrierung und Anmeldung: Fortschritt in einer SQLite-Datenbank, auf allen Geräten verfügbar
-- Ohne Anmeldung wird der Fortschritt im Browser gespeichert und beim Anmelden ins Konto übernommen
+- Lerninhalte nur mit Anmeldung; offen sind Startseite, „Über uns“, Anmelden und Registrieren
+- Fortschritt, der früher ohne Anmeldung im Browser gespeichert wurde, wird beim Anmelden ins Konto übernommen
 
 ## Starten
 

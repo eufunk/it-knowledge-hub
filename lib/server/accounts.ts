@@ -3,6 +3,7 @@ import { createHash, randomBytes } from "node:crypto";
 import { getDb } from "./db.ts";
 import { hashPassword, verifyPassword } from "./password.ts";
 
+export const SESSION_COOKIE = "ikh_sitzung";
 export const SESSION_DAYS = 30;
 export const USERNAME_PATTERN = /^[a-z0-9._-]{3,32}$/;
 export const PASSWORD_MIN = 8;

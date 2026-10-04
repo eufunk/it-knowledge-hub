@@ -5,6 +5,7 @@
 ---
 
 ## 2026-10-04
+- Zugangsschutz (F26): Lerninhalte nur noch mit Anmeldung, offen bleiben Startseite, „Über uns“, Anmelden, Registrieren. Fortschritt ohne Anmeldung (F12) ist damit nur noch Rückfall; F23/F24 angepasst.
 - Neu: Registrierung, Anmeldung und Abmelden (F21, F22); Fortschritt angemeldeter Nutzer in SQLite (F23); Browser-Fortschritt wird beim Anmelden/Registrieren übernommen (F24); Sicherheitsanforderungen (F25). „Kein Login“ aus den Nicht-Zielen der Spec entfernt. Die Plattform braucht damit einen Node-Server (kein reiner statischer Export mehr).
 - Testkonto `testuser` per `npm run db:seed` angelegt.
 

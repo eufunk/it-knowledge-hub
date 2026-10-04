@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { SignInHint } from "@/components/konto/SignInHint";
 import { CourseGrid } from "@/components/learning/CourseGrid";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { getAllCourses } from "@/lib/content/courses";
@@ -47,6 +48,7 @@ export default function Home() {
               Alle anzeigen
             </ButtonLink>
           </div>
+          <SignInHint />
           <CourseGrid courses={courses} />
         </section>
       )}

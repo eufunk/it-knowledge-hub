@@ -1,8 +1,8 @@
 // F22/F25: Sitzungs-Cookie (nur in Server Actions und Route Handlern verwenden)
 import { cookies } from "next/headers";
-import { createSession, deleteSession, getUserBySession, type User } from "./accounts";
+import { createSession, deleteSession, getUserBySession, SESSION_COOKIE, type User } from "./accounts";
 
-export const SESSION_COOKIE = "ikh_sitzung";
+export { SESSION_COOKIE };
 
 export async function getCurrentUser(): Promise<User | null> {
   const store = await cookies();

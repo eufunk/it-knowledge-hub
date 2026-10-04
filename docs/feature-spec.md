@@ -90,13 +90,14 @@ Angelehnt an den Referenz-Screenshot der Kursansicht, aber im eigenen Design.
   - Passwort: mindestens 8, höchstens 200 Zeichen; beide Eingaben müssen übereinstimmen.
   - Fehler werden am Formular angezeigt, Eingaben (außer Passwörtern) bleiben erhalten. Nach Erfolg ist die Person angemeldet.
 - **F22** Anmeldung `/anmelden` und Abmelden: Bei falschem Namen oder Passwort erscheint dieselbe allgemeine Meldung („Benutzername oder Passwort ist falsch.“). Eine Sitzung gilt 30 Tage. Die Kopfleiste zeigt angemeldet den Benutzernamen und „Abmelden“, sonst „Anmelden“. Nach dem Anmelden geht es zur vorher besuchten Seite bzw. zu den Lerninhalten.
-- **F23** Fortschritt mit Konto: Angemeldet werden erledigte Kapitel und bestandene Wissenstests in der Datenbank gespeichert und auf allen Seiten und Geräten von dort gelesen. Ohne Anmeldung gilt weiter der Fortschritt im Browser (F12).
-- **F24** Übernahme des Browser-Fortschritts: Beim Anmelden und Registrieren wird der im Browser gespeicherte Fortschritt aller Kurse mit dem Konto zusammengeführt (Vereinigung – es geht nichts verloren).
+- **F23** Fortschritt mit Konto: Erledigte Kapitel und bestandene Wissenstests werden in der Datenbank gespeichert und auf allen Seiten und Geräten von dort gelesen. Der Browser-Speicher (F12) dient nur noch als Rückfall, falls die Sitzung während des Lernens abläuft oder der Server nicht erreichbar ist.
+- **F24** Übernahme des Browser-Fortschritts: Beim Anmelden und Registrieren wird der im Browser gespeicherte Fortschritt aller Kurse (z. B. aus der Zeit vor dem Zugangsschutz) mit dem Konto zusammengeführt (Vereinigung – es geht nichts verloren).
 - **F25** Sicherheit:
   - Passwörter nur als Hash mit zufälligem Salz (`scrypt`), Vergleich in konstanter Zeit.
   - Sitzungs-Token zufällig (256 Bit); in der Datenbank nur dessen Hash. Cookie `httpOnly`, `SameSite=Lax`, in Produktion `Secure`.
   - Änderungen am Fortschritt werden nur von derselben Herkunft (Origin) angenommen und nur für angemeldete Nutzer.
   - Ein Testkonto (`testuser`) wird nur über das Entwicklungsskript `npm run db:seed` angelegt, nie automatisch.
+- **F26** Zugangsschutz: Ohne Anmeldung sind nur Startseite (`/`), „Über uns“, Anmelden und Registrieren erreichbar. Alle Seiten unter `/lerninhalte` (Kursübersicht, Kursseite, Kapitel, Wissenstests) verlangen eine gültige Sitzung; sonst geht es zu `/anmelden?weiter=<aufgerufene Seite>` und nach der Anmeldung zurück. Die Prüfung erfolgt zentral in `proxy.ts`; Schnittstellen und Server Actions prüfen die Anmeldung zusätzlich selbst. Nach dem Abmelden auf einer geschützten Seite geht es zur Startseite. Die Startseite zeigt die Kurse als Vorschau mit Hinweis auf Anmeldung/Registrierung.
 
 ## 5. Inhaltsmodell
 
@@ -241,6 +242,7 @@ Eigenes Design: heller, kühler Hintergrund, weiße Karten mit feinem Rahmen, du
 - [x] Unbekannter Kurs/Einheit → 404-Seite – automatisch geprüft 2026-10-03 (HTTP 404)
 - [ ] Layout funktioniert bei 375 px Breite ohne horizontales Scrollen
 - [ ] Registrieren, Anmelden und Abmelden funktionieren; Fehlermeldungen bei ungültigen Eingaben und falschem Passwort
+- [ ] Ohne Anmeldung führt jede Seite unter `/lerninhalte` zur Anmeldung und danach zurück zur gewünschten Seite
 - [ ] Angemeldet als `testuser`: Fortschritt bleibt nach Abmelden/Anmelden und in einem anderen Browser erhalten; vorhandener Browser-Fortschritt wurde übernommen
 - [x] Vorlesen: Kapitel wird abschnittsweise vorgelesen, Tabellen zeilenweise, Code wird übersprungen, aktueller Abschnitt ist hervorgehoben – automatisch geprüft 2026-10-03 mit simulierter Sprachausgabe; echte Stimme noch im Browser prüfen
 - [x] `npm run build`, `npm run lint` und `npm test` laufen fehlerfrei – automatisch geprüft 2026-10-03 (79 Tests)

@@ -2,7 +2,7 @@
 
 import { CircleUser, LogIn, LogOut } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { logoutAction } from "@/app/konto/actions";
 import { ensureAccountLoaded, getAccountState, LOADING_STATE, loadAccount, subscribeAccount } from "@/lib/utils/account-store";
@@ -14,6 +14,7 @@ const itemClass =
 export function AccountMenu() {
   const account = useSyncExternalStore(subscribeAccount, getAccountState, () => LOADING_STATE);
   const pathname = usePathname();
+  const router = useRouter();
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
@@ -28,6 +29,8 @@ export function AccountMenu() {
       await logoutAction();
       await loadAccount();
       setBusy(false);
+      // F26: geschützte Seiten nach dem Abmelden verlassen
+      if (pathname.startsWith("/lerninhalte")) router.push("/");
     };
     return (
       <div className="flex items-center gap-1 border-l border-line pl-2">
