@@ -1,11 +1,14 @@
 {
   "sections": {
-    "3.1": "Einführung in die Skriptsprachen",
-    "3.2": "Merkmale und Komponenten",
-    "3.3": "Kommandos und Funktionen",
-    "3.4": "Tastenkombinationen und Shortcuts",
-    "3.5": "Struktur und Syntax von Bash-Skripten",
-    "3.6": "Coding Challenge (Bash)"
+    "3.1": "Einführung in Skriptsprachen",
+    "3.2": "Auffrischung der Grundlagen",
+    "3.3": "Merkmale und Komponenten",
+    "3.4": "Interaktion mit der Befehlszeile",
+    "3.5": "Kommandos und Funktionen",
+    "3.6": "Tastenkombinationen und Shortcuts",
+    "3.7": "Struktur und Syntax von Bash-Skripten",
+    "3.8": "Mehrzeilige Bash-Skripte",
+    "3.9": "Übung und Coding Challenge"
   },
   "questions": [
     {
@@ -75,7 +78,203 @@
       "explanation": "Apple hat mit macOS 10.15 auf zsh umgestellt. Sie ist weitgehend Bash-kompatibel."
     },
     {
+      "section": "3.1",
+      "question": "Wie wird der Code einer Skriptsprache meist ausgeführt?",
+      "options": [
+        "Ein Interpreter liest ihn zur Laufzeit und führt ihn direkt aus",
+        "Er wird vorab vollständig in Maschinencode kompiliert",
+        "Er wird von der Grafikkarte übersetzt",
+        "Er muss vor jeder Ausführung manuell in Binärcode umgeschrieben werden"
+      ],
+      "explanation": "Skripte werden meist interpretiert: Ein Interpreter liest den Quelltext zur Laufzeit und führt ihn aus. Änderungen wirken dadurch sofort, ohne Kompilierungsschritt."
+    },
+    {
+      "section": "3.1",
+      "question": "Welche der folgenden Sprachen ist keine typische Skriptsprache?",
+      "options": [
+        "C",
+        "Python",
+        "Bash",
+        "JavaScript"
+      ],
+      "explanation": "C wird vorab kompiliert. Python, Bash, JavaScript, PowerShell, Ruby und PHP sind typische Skriptsprachen."
+    },
+    {
+      "section": "3.1",
+      "question": "Warum nennt man Skriptsprachen auch „Klebstoff-Sprachen“?",
+      "options": [
+        "Weil sie vorhandene Programme und Befehle miteinander verbinden",
+        "Weil ihr Code besonders schwer zu ändern ist",
+        "Weil sie nur zum Kopieren von Dateien dienen",
+        "Weil sie fest im Betriebssystemkern verankert sind"
+      ],
+      "explanation": "Skripte verbinden vorhandene Programme, Befehle und Systeme miteinander – sie „kleben“ sie zu einem automatisierten Ablauf zusammen."
+    },
+    {
       "section": "3.2",
+      "question": "Welcher Datentyp kann nur die zwei Zustände wahr oder falsch annehmen?",
+      "options": [
+        "Boolescher Wert (boolean)",
+        "Ganzzahl (integer)",
+        "Zeichenkette (string)",
+        "Fließkommazahl (float)"
+      ],
+      "explanation": "Ein boolescher Wert kennt nur wahr (true) und falsch (false). Er ist das Ergebnis jeder Bedingung."
+    },
+    {
+      "section": "3.2",
+      "question": "Was ist eine Variable?",
+      "options": [
+        "Eine benannte Speicherstelle, in der ein Programm während der Ausführung Daten ablegt",
+        "Ein fest eingebauter Befehl des Betriebssystems",
+        "Eine Datei, die beim Programmstart gelöscht wird",
+        "Ein Kommentar, der vom Interpreter ignoriert wird"
+      ],
+      "explanation": "Variablen sind benannte Speicherstellen. Über ihren Namen wird der gespeicherte Wert im Code angesprochen, und der Wert kann sich ändern."
+    },
+    {
+      "section": "3.2",
+      "question": "Wie lange läuft eine <code>while</code>-Schleife?",
+      "options": [
+        "Solange ihre Bedingung wahr ist",
+        "Genau einmal",
+        "Solange ihre Bedingung falsch ist",
+        "Immer genau zehnmal"
+      ],
+      "explanation": "Eine <code>while</code>-Schleife wiederholt ihren Block, solange die Bedingung wahr ist. Das Gegenstück in der Bash ist <code>until</code>: Sie läuft, solange die Bedingung falsch ist."
+    },
+    {
+      "section": "3.2",
+      "question": "Wozu dient ein <code>try ... catch</code>-Konstrukt?",
+      "options": [
+        "Fehler während der Ausführung abzufangen und kontrolliert darauf zu reagieren",
+        "Eine Schleife schneller laufen zu lassen",
+        "Variablen einen Datentyp zuzuweisen",
+        "Ein Skript in Maschinencode zu übersetzen"
+      ],
+      "explanation": "Mit <code>try ... catch</code> (in Python <code>try ... except</code>) werden Ausnahmen abgefangen. Das Programm bricht nicht abrupt ab, sondern kann z. B. eine Meldung ausgeben oder aufräumen."
+    },
+    {
+      "section": "3.2",
+      "question": "Welches Prinzip gilt für einen Stack?",
+      "options": [
+        "LIFO – Last in, first out",
+        "FIFO – First in, first out",
+        "Zufällige Reihenfolge",
+        "Sortierung nach Schlüssel"
+      ],
+      "explanation": "Bei einem Stack (Stapel) wird das zuletzt abgelegte Element zuerst entfernt – wie bei einem Tellerstapel. Operationen: <code>push</code>, <code>pop</code>, <code>peek</code>."
+    },
+    {
+      "section": "3.2",
+      "question": "Welche Datenstruktur eignet sich, um Druckaufträge in der Reihenfolge ihres Eingangs abzuarbeiten?",
+      "options": [
+        "Queue (Warteschlange)",
+        "Stack (Stapel)",
+        "Dictionary",
+        "Boolescher Wert"
+      ],
+      "explanation": "Eine Queue arbeitet nach FIFO: Wer zuerst kommt, wird zuerst bearbeitet. Neue Aufträge werden hinten angestellt (<code>enqueue</code>), vorne entnommen (<code>dequeue</code>)."
+    },
+    {
+      "section": "3.2",
+      "question": "Welche Datenstruktur eignet sich besonders, um Operationen rückgängig zu machen?",
+      "options": [
+        "Stack",
+        "Queue",
+        "Array mit fester Größe",
+        "Zeichenkette"
+      ],
+      "explanation": "Beim Rückgängigmachen wird immer der zuletzt ausgeführte Schritt zuerst zurückgenommen – genau das LIFO-Prinzip eines Stacks."
+    },
+    {
+      "section": "3.2",
+      "question": "Was zeichnet ein Dictionary (Hashmap) aus?",
+      "options": [
+        "Es speichert Schlüssel-Wert-Paare, jeder Schlüssel ist eindeutig",
+        "Es speichert Elemente nur in der Reihenfolge ihres Eingangs",
+        "Es kann nur Zahlen speichern",
+        "Es hat immer eine feste Größe von zehn Elementen"
+      ],
+      "explanation": "Ein Dictionary verknüpft eindeutige Schlüssel mit Werten. Zugriff, Einfügen und Löschen über den Schlüssel sind sehr schnell – ideal z. B. zum Zwischenspeichern von Ergebnissen."
+    },
+    {
+      "section": "3.2",
+      "question": "Was ist eine API?",
+      "options": [
+        "Eine Schnittstelle, über die Programme mit anderen Programmen oder Diensten zusammenarbeiten",
+        "Ein Texteditor für Bash-Skripte",
+        "Eine Datenstruktur nach dem LIFO-Prinzip",
+        "Ein Befehl zum Anlegen von Verzeichnissen"
+      ],
+      "explanation": "API steht für Application Programming Interface. Sie legt Methoden und Datenformate fest, ohne dass man die interne Funktionsweise des anderen Programms kennen muss."
+    },
+    {
+      "section": "3.2",
+      "question": "Was solltest Du tun, bevor Du eine fremde API in Dein Skript einbaust?",
+      "options": [
+        "Ihre Dokumentation lesen",
+        "Den Quellcode des Anbieters herunterladen",
+        "Die API ohne Test produktiv einsetzen",
+        "Den API-Schlüssel öffentlich teilen"
+      ],
+      "explanation": "Die Dokumentation zeigt, welche Funktionen es gibt, wie Anfragen aufgebaut sein müssen und welche Antworten zurückkommen – oft mit Beispielen."
+    },
+    {
+      "section": "3.2",
+      "question": "Warum musst Du bei externen APIs auf Rate Limits achten?",
+      "options": [
+        "Weil APIs die Zahl der Anfragen begrenzen und zu viele Anfragen abgewiesen werden",
+        "Weil Rate Limits die Zeilenzahl eines Skripts begrenzen",
+        "Weil sonst der Interpreter nicht startet",
+        "Weil Rate Limits nur für Datenbanken gelten"
+      ],
+      "explanation": "Viele APIs erlauben nur eine bestimmte Zahl von Anfragen pro Zeiteinheit. Caching und sparsame Abfragen verhindern, dass das Skript gesperrt wird oder die API überlastet."
+    },
+    {
+      "section": "3.2",
+      "question": "Wozu dient ein Paketmanager wie <code>pip</code>, <code>npm</code> oder <code>apt</code>?",
+      "options": [
+        "Bibliotheken samt Abhängigkeiten zu installieren und zu verwalten",
+        "Netzwerkpakete zu verschlüsseln",
+        "Dateien in Pakete für den Versand zu packen",
+        "Den Bildschirm des Terminals zu leeren"
+      ],
+      "explanation": "Ein Paketmanager installiert Bibliotheken und Programme, löst ihre Abhängigkeiten auf und hält sie aktuell."
+    },
+    {
+      "section": "3.2",
+      "question": "Richtig oder falsch? API-Schlüssel und Tokens können direkt im Skript stehen, solange das Skript nur intern genutzt wird.",
+      "options": [
+        "Falsch",
+        "Richtig"
+      ],
+      "explanation": "Falsch. Zugangsdaten gehören nie direkt in den Code – auch interne Skripte werden kopiert, versioniert oder weitergegeben. Besser sind Umgebungsvariablen oder ein Passwort-Tresor (siehe Kapitel 8)."
+    },
+    {
+      "section": "3.2",
+      "question": "Was ist aus Sicht des Betriebssystems ein Prozess?",
+      "options": [
+        "Ein laufendes Programm, dem das System Ressourcen wie CPU-Zeit und Arbeitsspeicher zuteilt",
+        "Eine Datei auf der Festplatte",
+        "Eine Netzwerkverbindung zu einem DNS-Server",
+        "Ein Verzeichnis im Dateisystem"
+      ],
+      "explanation": "Jede ausführbare Anwendung läuft als Prozess. Das Betriebssystem startet, überwacht und beendet Prozesse und teilt ihnen Ressourcen zu."
+    },
+    {
+      "section": "3.2",
+      "question": "Welche Einstellungen gehören zur Netzwerkkonfiguration?",
+      "options": [
+        "IP-Adresse, Netzmaske, Gateway und DNS-Server",
+        "Dateiberechtigungen und Besitzer",
+        "CPU-Takt und Arbeitsspeicher",
+        "Shebang-Zeile und Kommentare"
+      ],
+      "explanation": "Die Netzwerkkonfiguration umfasst IP-Adressen, Netzmasken, Gateways und DNS-Server. Sie ist die Grundlage für Skripte, die Netzwerkressourcen nutzen oder überwachen."
+    },
+    {
+      "section": "3.3",
       "question": "Was bedeutet der Exit-Code 0 eines Befehls?",
       "options": [
         "Der Befehl war erfolgreich",
@@ -86,40 +285,7 @@
       "explanation": "0 steht für Erfolg, jeder andere Wert für einen Fehler. Den Exit-Code des letzten Befehls enthält <code>$?</code>."
     },
     {
-      "section": "3.2",
-      "question": "Warum funktioniert die Zuweisung <code>name = \"Anna\"</code> in der Bash nicht?",
-      "options": [
-        "Wegen der Leerzeichen um das = hält die Bash „name“ für einen Befehl",
-        "Variablennamen müssen großgeschrieben werden",
-        "Texte dürfen nicht in Anführungszeichen stehen",
-        "Vor dem Namen fehlt ein $"
-      ],
-      "explanation": "Richtig ist <code>name=\"Anna\"</code> ohne Leerzeichen. Das $ braucht man nur beim Lesen der Variable."
-    },
-    {
-      "section": "3.2",
-      "question": "Was gibt <code>echo 'Hallo $name'</code> aus, wenn <code>name=\"Anna\"</code> gesetzt ist?",
-      "options": [
-        "Hallo $name",
-        "Hallo Anna",
-        "Hallo",
-        "Eine Fehlermeldung"
-      ],
-      "explanation": "In einfachen Anführungszeichen bleibt alles wörtlich. Nur doppelte Anführungszeichen ersetzen Variablen."
-    },
-    {
-      "section": "3.2",
-      "question": "Warum sollte man Variablen meist in doppelte Anführungszeichen setzen, z. B. <code>\"$datei\"</code>?",
-      "options": [
-        "Damit Werte mit Leerzeichen nicht in mehrere Wörter zerfallen",
-        "Damit die Variable schneller gelesen wird",
-        "Damit der Wert in Großbuchstaben erscheint",
-        "Weil die Bash sonst die Variable löscht"
-      ],
-      "explanation": "Ohne Anführungszeichen wird „meine notizen.txt“ zu zwei Argumenten: „meine“ und „notizen.txt“."
-    },
-    {
-      "section": "3.2",
+      "section": "3.3",
       "question": "Was bewirkt <code>heute=$(date +%F)</code>?",
       "options": [
         "Die Ausgabe des Befehls date wird in der Variable heute gespeichert",
@@ -130,18 +296,104 @@
       "explanation": "Das ist Befehlsersetzung: <code>$(...)</code> führt einen Befehl aus und setzt seine Ausgabe als Wert ein."
     },
     {
-      "section": "3.2",
-      "question": "Was enthält die Variable <code>$#</code> in einem Bash-Skript?",
+      "section": "3.3",
+      "question": "Welcher Nachteil kann sich aus der dynamischen Typisierung ergeben?",
       "options": [
-        "Die Anzahl der übergebenen Argumente",
-        "Den Namen des Skripts",
-        "Alle Argumente als Liste",
-        "Die Prozess-ID des Skripts"
+        "Unerwartete Fehler zur Laufzeit",
+        "Der Code muss vor jeder Ausführung kompiliert werden",
+        "Variablen können nie geändert werden",
+        "Skripte laufen nur unter Windows"
       ],
-      "explanation": "<code>$#</code> ist die Anzahl, <code>$@</code> sind alle Argumente, <code>$0</code> ist der Skriptname und <code>$$</code> die Prozess-ID."
+      "explanation": "Bei dynamischer Typisierung wird der Typ erst zur Laufzeit bestimmt. Das macht den Code flexibel, Typfehler fallen aber oft erst bei der Ausführung auf."
     },
     {
       "section": "3.3",
+      "question": "Wodurch laufen viele Skripte ohne Änderung auf verschiedenen Betriebssystemen?",
+      "options": [
+        "Der Interpreter bzw. die Laufzeitumgebung verbirgt die Unterschiede zwischen den Systemen",
+        "Skripte werden für jedes System neu kompiliert",
+        "Alle Betriebssysteme verwenden dieselben Befehle",
+        "Die Shebang-Zeile übersetzt das Skript automatisch"
+      ],
+      "explanation": "Der Interpreter gleicht die Unterschiede aus. Ein Skript ist allerdings nur so portabel wie die Befehle, die es aufruft."
+    },
+    {
+      "section": "3.3",
+      "question": "Wofür nutzen Skriptsprachen ihre umfangreiche Standardbibliothek?",
+      "options": [
+        "Um häufige Aufgaben wie Dateioperationen, Netzwerkverbindungen und Textverarbeitung zu vereinfachen",
+        "Um den Interpreter zu ersetzen",
+        "Um Skripte in Maschinencode zu übersetzen",
+        "Um das Betriebssystem neu zu installieren"
+      ],
+      "explanation": "Eingebaute Funktionen und Module nehmen Standardaufgaben ab, sodass man mit wenig eigenem Code auskommt."
+    },
+    {
+      "section": "3.4",
+      "question": "Was ist die Befehlszeile (Kommandozeile, Terminal)?",
+      "options": [
+        "Eine textbasierte Schnittstelle, über die Du dem Betriebssystem Befehle eingibst",
+        "Ein grafisches Programm zum Malen",
+        "Die erste Zeile eines Skripts",
+        "Ein Bereich im Arbeitsspeicher"
+      ],
+      "explanation": "In der Befehlszeile gibst Du Kommandos als Text ein, statt mit der Maus zu klicken. Unter Windows heißt sie Eingabeaufforderung oder PowerShell, unter macOS und Linux Terminal."
+    },
+    {
+      "section": "3.4",
+      "question": "Wann ist eine IDE einer reinen Shell meist überlegen?",
+      "options": [
+        "Bei komplexeren Skripten und größeren Projekten",
+        "Bei einem schnellen einmaligen Befehl auf dem Server",
+        "Beim Ausprobieren eines einzelnen Kommandos",
+        "Wenn kein Bildschirm vorhanden ist"
+      ],
+      "explanation": "IDEs wie Visual Studio Code bieten Syntax-Hervorhebung, Code-Vervollständigung, Debugger und Git-Integration – ideal für größere Projekte. Für schnelle Einzelaufgaben ist die Shell oft praktischer."
+    },
+    {
+      "section": "3.4",
+      "question": "Was ist im Befehl <code>cp datei1.txt datei2.txt</code> das Kommando?",
+      "options": [
+        "<code>cp</code>",
+        "<code>datei1.txt</code>",
+        "<code>datei2.txt</code>",
+        "Der ganze Befehl ist ein Argument"
+      ],
+      "explanation": "<code>cp</code> ist das Kommando (kopieren). <code>datei1.txt</code> und <code>datei2.txt</code> sind die Argumente: Quelle und Ziel."
+    },
+    {
+      "section": "3.4",
+      "question": "Wie zeigst Du die ausführliche Hilfe zum Befehl <code>ls</code> an?",
+      "options": [
+        "<code>man ls</code>",
+        "<code>help me ls</code>",
+        "<code>ls --delete</code>",
+        "<code>info-ls.exe</code>"
+      ],
+      "explanation": "<code>man ls</code> öffnet die Handbuchseite mit allen Optionen. Eine Kurzhilfe liefert meist <code>ls --help</code>."
+    },
+    {
+      "section": "3.4",
+      "question": "Was verrät Dir <code>echo $?</code> direkt nach einem Befehl?",
+      "options": [
+        "Den Exit-Code des letzten Befehls – 0 bedeutet Erfolg",
+        "Den Namen des aktuellen Verzeichnisses",
+        "Die Anzahl der Dateien im Verzeichnis",
+        "Die Versionsnummer der Bash"
+      ],
+      "explanation": "<code>$?</code> enthält den Exit-Code des zuletzt ausgeführten Befehls. 0 heißt Erfolg, jeder andere Wert einen Fehler."
+    },
+    {
+      "section": "3.4",
+      "question": "Richtig oder falsch? Fehlermeldungen in der Befehlszeile sind wertvolle Rückmeldungen und sollten vollständig gelesen werden.",
+      "options": [
+        "Richtig",
+        "Falsch"
+      ],
+      "explanation": "Richtig. Fehlermeldungen wie „No such file or directory“ oder „Permission denied“ sagen meist genau, was fehlt oder schiefgelaufen ist."
+    },
+    {
+      "section": "3.5",
       "question": "Was ist der Unterschied zwischen <code>&gt;</code> und <code>&gt;&gt;</code>?",
       "options": [
         "<code>&gt;</code> überschreibt die Datei, <code>&gt;&gt;</code> hängt an",
@@ -152,7 +404,7 @@
       "explanation": "<code>ls &gt; liste.txt</code> ersetzt den Inhalt, <code>echo \"Start\" &gt;&gt; lauf.log</code> fügt eine Zeile hinzu."
     },
     {
-      "section": "3.3",
+      "section": "3.5",
       "question": "Was passiert bei <code>mkdir neu &amp;&amp; cd neu</code>?",
       "options": [
         "cd wird nur ausgeführt, wenn mkdir erfolgreich war",
@@ -163,7 +415,7 @@
       "explanation": "<code>&amp;&amp;</code> verknüpft Befehle bei Erfolg, <code>||</code> bei Fehler, <code>;</code> immer."
     },
     {
-      "section": "3.3",
+      "section": "3.5",
       "question": "Mit welchem Befehl verfolgt man neue Zeilen einer Logdatei live?",
       "options": [
         "<code>tail -f app.log</code>",
@@ -174,7 +426,7 @@
       "explanation": "<code>tail -f</code> zeigt das Ende der Datei und gibt jede neue Zeile sofort aus."
     },
     {
-      "section": "3.3",
+      "section": "3.5",
       "question": "Was bewirkt <code>2&gt; /dev/null</code> hinter einem Befehl?",
       "options": [
         "Fehlermeldungen werden verworfen",
@@ -185,7 +437,7 @@
       "explanation": "<code>2&gt;</code> leitet den Fehlerkanal um. <code>/dev/null</code> ist ein „Papierkorb“, der alles verschluckt."
     },
     {
-      "section": "3.3",
+      "section": "3.5",
       "question": "Welcher Befehl durchsucht Zeilen nach einem Muster, z. B. nach „error“?",
       "options": [
         "<code>grep</code>",
@@ -196,7 +448,7 @@
       "explanation": "<code>grep -i \"error\" app.log</code> findet alle Zeilen mit „error“, ohne auf Groß- und Kleinschreibung zu achten. <code>find</code> sucht dagegen Dateien."
     },
     {
-      "section": "3.3",
+      "section": "3.5",
       "question": "Was sollte man beim Befehl <code>rm</code> beachten?",
       "options": [
         "Er löscht ohne Papierkorb, gelöschte Dateien sind weg",
@@ -207,7 +459,51 @@
       "explanation": "Vorsicht besonders bei <code>rm -r</code>: Ordner werden samt Inhalt endgültig gelöscht."
     },
     {
-      "section": "3.4",
+      "section": "3.5",
+      "question": "Welcher Befehl zeigt Dir, in welchem Verzeichnis Du Dich gerade befindest?",
+      "options": [
+        "<code>pwd</code>",
+        "<code>ls</code>",
+        "<code>cd</code>",
+        "<code>mkdir</code>"
+      ],
+      "explanation": "<code>pwd</code> steht für „print working directory“ und gibt den Pfad des aktuellen Verzeichnisses aus."
+    },
+    {
+      "section": "3.5",
+      "question": "Mit welchem Befehl legst Du eine neue, leere Datei <code>notizen.txt</code> an?",
+      "options": [
+        "<code>touch notizen.txt</code>",
+        "<code>mkdir notizen.txt</code>",
+        "<code>cd notizen.txt</code>",
+        "<code>pwd notizen.txt</code>"
+      ],
+      "explanation": "<code>touch</code> legt eine leere Datei an (oder aktualisiert den Zeitstempel einer vorhandenen). <code>mkdir</code> legt dagegen ein Verzeichnis an."
+    },
+    {
+      "section": "3.5",
+      "question": "Was bewirkt <code>mkdir MeineProjekte</code>?",
+      "options": [
+        "Es legt ein neues Verzeichnis namens MeineProjekte an",
+        "Es wechselt in das Verzeichnis MeineProjekte",
+        "Es löscht das Verzeichnis MeineProjekte",
+        "Es listet den Inhalt von MeineProjekte auf"
+      ],
+      "explanation": "<code>mkdir</code> steht für „make directory“. In ein Verzeichnis wechselst Du mit <code>cd</code>, den Inhalt zeigt <code>ls</code>."
+    },
+    {
+      "section": "3.5",
+      "question": "Was zeigt <code>ls -l</code> zusätzlich zu einem einfachen <code>ls</code> an?",
+      "options": [
+        "Eine ausführliche Liste mit Details wie Rechten, Besitzer, Größe und Datum",
+        "Nur versteckte Dateien",
+        "Nur Verzeichnisse",
+        "Den Inhalt jeder Datei"
+      ],
+      "explanation": "Die Option <code>-l</code> (long) liefert das Langformat mit detaillierten Informationen. <code>-a</code> zeigt zusätzlich versteckte Dateien."
+    },
+    {
+      "section": "3.6",
       "question": "Was bewirkt die Tastenkombination Strg + R in der Bash?",
       "options": [
         "Den Befehlsverlauf rückwärts durchsuchen",
@@ -218,7 +514,7 @@
       "explanation": "Man tippt einen Teil des Befehls ein, die Bash zeigt den letzten Treffer. Erneut Strg + R springt zum nächsten."
     },
     {
-      "section": "3.4",
+      "section": "3.6",
       "question": "Was passiert bei Strg + C im Terminal?",
       "options": [
         "Der laufende Befehl wird abgebrochen",
@@ -229,7 +525,7 @@
       "explanation": "Strg + C sendet das Signal SIGINT. Zum Kopieren nutzt man in vielen Linux-Terminals Strg + Umschalt + C."
     },
     {
-      "section": "3.4",
+      "section": "3.6",
       "question": "Was bewirkt <code>sudo !!</code>?",
       "options": [
         "Den letzten Befehl mit Administratorrechten wiederholen",
@@ -240,7 +536,7 @@
       "explanation": "<code>!!</code> steht für den letzten Befehl. Praktisch, wenn ein Befehl wegen fehlender Rechte gescheitert ist."
     },
     {
-      "section": "3.4",
+      "section": "3.6",
       "question": "Das Terminal reagiert nach einem versehentlichen Strg + S nicht mehr. Was hilft?",
       "options": [
         "Strg + Q",
@@ -251,7 +547,7 @@
       "explanation": "Strg + S hält die Ausgabe an, Strg + Q gibt sie wieder frei."
     },
     {
-      "section": "3.4",
+      "section": "3.6",
       "question": "Wozu dient die Tab-Taste in der Bash?",
       "options": [
         "Befehle, Datei- und Verzeichnisnamen automatisch vervollständigen",
@@ -262,7 +558,93 @@
       "explanation": "Zweimal Tab zeigt alle möglichen Vervollständigungen an. Das spart Zeit und vermeidet Tippfehler."
     },
     {
-      "section": "3.5",
+      "section": "3.6",
+      "question": "Was bewirkt Strg + Z im Terminal?",
+      "options": [
+        "Es hält den laufenden Prozess an; mit <code>bg</code> läuft er im Hintergrund weiter, mit <code>fg</code> im Vordergrund",
+        "Es macht die letzte Eingabe rückgängig",
+        "Es beendet die Shell",
+        "Es leert den Bildschirm"
+      ],
+      "explanation": "Strg + Z stoppt den Prozess vorübergehend. Mit <code>bg</code> wird er im Hintergrund, mit <code>fg</code> im Vordergrund fortgesetzt."
+    },
+    {
+      "section": "3.6",
+      "question": "Was passiert, wenn Du in einer leeren Zeile Strg + D drückst?",
+      "options": [
+        "Die Shell wird beendet, wie mit <code>exit</code>",
+        "Die aktuelle Datei wird gelöscht",
+        "Der Befehlsverlauf wird durchsucht",
+        "Der Cursor springt an den Zeilenanfang"
+      ],
+      "explanation": "Strg + D signalisiert das Ende der Eingabe. In einer leeren Zeile beendet das die Shell."
+    },
+    {
+      "section": "3.6",
+      "question": "Welche Tastenkombination leert den Terminal-Bildschirm wie der Befehl <code>clear</code>?",
+      "options": [
+        "Strg + L",
+        "Strg + C",
+        "Strg + R",
+        "Strg + E"
+      ],
+      "explanation": "Strg + L leert den Bildschirm. Im macOS-Terminal geht zusätzlich ⌘ + K."
+    },
+    {
+      "section": "3.6",
+      "question": "Mit welchen Tastenkombinationen springt der Cursor an den Anfang bzw. das Ende der Zeile?",
+      "options": [
+        "Strg + A und Strg + E",
+        "Strg + U und Strg + K",
+        "Alt + B und Alt + F",
+        "Strg + C und Strg + Z"
+      ],
+      "explanation": "Strg + A springt an den Anfang, Strg + E ans Ende. Strg + U und Strg + K löschen dagegen bis zum Anfang bzw. Ende, Alt + B / Alt + F springen wortweise."
+    },
+    {
+      "section": "3.6",
+      "question": "Richtig oder falsch? Auf dem Mac bricht man einen laufenden Befehl im Terminal mit ⌘ + C ab.",
+      "options": [
+        "Falsch",
+        "Richtig"
+      ],
+      "explanation": "Falsch. Auch auf dem Mac nutzt das Terminal die control-Taste: control + C bricht ab. ⌘ + C kopiert markierten Text."
+    },
+    {
+      "section": "3.7",
+      "question": "Warum funktioniert die Zuweisung <code>name = \"Anna\"</code> in der Bash nicht?",
+      "options": [
+        "Wegen der Leerzeichen um das = hält die Bash „name“ für einen Befehl",
+        "Variablennamen müssen großgeschrieben werden",
+        "Texte dürfen nicht in Anführungszeichen stehen",
+        "Vor dem Namen fehlt ein $"
+      ],
+      "explanation": "Richtig ist <code>name=\"Anna\"</code> ohne Leerzeichen. Das $ braucht man nur beim Lesen der Variable."
+    },
+    {
+      "section": "3.7",
+      "question": "Was gibt <code>echo 'Hallo $name'</code> aus, wenn <code>name=\"Anna\"</code> gesetzt ist?",
+      "options": [
+        "Hallo $name",
+        "Hallo Anna",
+        "Hallo",
+        "Eine Fehlermeldung"
+      ],
+      "explanation": "In einfachen Anführungszeichen bleibt alles wörtlich. Nur doppelte Anführungszeichen ersetzen Variablen."
+    },
+    {
+      "section": "3.7",
+      "question": "Warum sollte man Variablen meist in doppelte Anführungszeichen setzen, z. B. <code>\"$datei\"</code>?",
+      "options": [
+        "Damit Werte mit Leerzeichen nicht in mehrere Wörter zerfallen",
+        "Damit die Variable schneller gelesen wird",
+        "Damit der Wert in Großbuchstaben erscheint",
+        "Weil die Bash sonst die Variable löscht"
+      ],
+      "explanation": "Ohne Anführungszeichen wird „meine notizen.txt“ zu zwei Argumenten: „meine“ und „notizen.txt“."
+    },
+    {
+      "section": "3.7",
       "question": "Was steht in der ersten Zeile eines Bash-Skripts?",
       "options": [
         "Die Shebang-Zeile <code>#!/bin/bash</code>, die den Interpreter festlegt",
@@ -273,29 +655,7 @@
       "explanation": "Die Shebang-Zeile sagt dem System, mit welchem Programm das Skript ausgeführt wird."
     },
     {
-      "section": "3.5",
-      "question": "Was bewirkt <code>chmod +x skript.sh</code>?",
-      "options": [
-        "Das Skript erhält das Ausführrecht und kann mit <code>./skript.sh</code> gestartet werden",
-        "Das Skript wird ausgeführt",
-        "Das Skript wird für andere gesperrt",
-        "Das Skript wird auf Fehler geprüft"
-      ],
-      "explanation": "Ohne Ausführrecht kann man das Skript nur mit <code>bash skript.sh</code> starten."
-    },
-    {
-      "section": "3.5",
-      "question": "Wozu dient <code>set -euo pipefail</code> am Anfang eines Skripts?",
-      "options": [
-        "Das Skript bricht bei Fehlern, nicht gesetzten Variablen und Fehlern in Pipes ab",
-        "Das Skript zeigt jede Zeile vor der Ausführung an",
-        "Das Skript ignoriert alle Fehler",
-        "Das Skript läuft im Hintergrund weiter"
-      ],
-      "explanation": "Ohne diese Optionen läuft ein Bash-Skript nach einem Fehler einfach weiter, was Folgefehler verursachen kann."
-    },
-    {
-      "section": "3.5",
+      "section": "3.7",
       "question": "Mit welchem Schlüsselwort wird ein <code>if</code>-Block in der Bash abgeschlossen?",
       "options": [
         "<code>fi</code>",
@@ -306,7 +666,7 @@
       "explanation": "<code>if</code> endet mit <code>fi</code>, <code>case</code> mit <code>esac</code>, Schleifen enden mit <code>done</code>."
     },
     {
-      "section": "3.5",
+      "section": "3.7",
       "question": "Welche Prüfung ist wahr, wenn ein Verzeichnis existiert?",
       "options": [
         "<code>[[ -d \"$pfad\" ]]</code>",
@@ -317,7 +677,7 @@
       "explanation": "<code>-d</code> prüft auf ein Verzeichnis, <code>-f</code> auf eine reguläre Datei, <code>-z</code> auf einen leeren Text und <code>-x</code> auf Ausführbarkeit."
     },
     {
-      "section": "3.5",
+      "section": "3.7",
       "question": "Mit welchem Operator prüft man in der Bash, ob eine Zahl größer ist als eine andere?",
       "options": [
         "<code>-gt</code>",
@@ -328,7 +688,159 @@
       "explanation": "<code>-gt</code> bedeutet „greater than“. <code>-ge</code> ist größer gleich, <code>-lt</code> kleiner. <code>==</code> vergleicht Texte."
     },
     {
-      "section": "3.5",
+      "section": "3.7",
+      "question": "Wofür steht „bin“ im Pfad <code>/bin/bash</code>?",
+      "options": [
+        "binary – ausführbare Programme",
+        "binding – Verknüpfungen",
+        "bin – Papierkorb",
+        "binär gespeicherte Textdateien"
+      ],
+      "explanation": "<code>/bin</code> enthält wichtige ausführbare Programme (Binaries), darunter Interpreter wie die Bash."
+    },
+    {
+      "section": "3.7",
+      "question": "Was bewirkt die Shebang-Zeile <code>#!/usr/bin/env python3</code>?",
+      "options": [
+        "Das Programm <code>env</code> sucht <code>python3</code> in den Verzeichnissen der Umgebungsvariable <code>PATH</code>",
+        "Python wird aus dem aktuellen Verzeichnis gestartet",
+        "Die Zeile ist nur ein Kommentar ohne Wirkung",
+        "Das Skript wird in Bash-Code umgewandelt"
+      ],
+      "explanation": "<code>env</code> findet den Interpreter über <code>PATH</code>. Das macht das Skript portabler, weil <code>python3</code> auf verschiedenen Systemen an unterschiedlichen Orten liegen kann."
+    },
+    {
+      "section": "3.7",
+      "question": "Welcher der folgenden Pfade ist ein absoluter Pfad?",
+      "options": [
+        "<code>/home/benutzer/dokumente/datei.txt</code>",
+        "<code>dokumente/datei.txt</code>",
+        "<code>../datei.txt</code>",
+        "<code>./skript.sh</code>"
+      ],
+      "explanation": "Ein absoluter Pfad beginnt beim Wurzelverzeichnis (<code>/</code> unter Linux, z. B. <code>C:\\</code> unter Windows) und funktioniert unabhängig vom aktuellen Verzeichnis."
+    },
+    {
+      "section": "3.7",
+      "question": "Wovon hängt ein relativer Pfad ab?",
+      "options": [
+        "Vom aktuellen Arbeitsverzeichnis",
+        "Von der Uhrzeit",
+        "Vom angemeldeten Netzwerk",
+        "Von der Größe der Datei"
+      ],
+      "explanation": "Ein relativer Pfad beschreibt den Weg ausgehend vom aktuellen Verzeichnis – wie eine Wegbeschreibung von Deinem jetzigen Standort aus."
+    },
+    {
+      "section": "3.7",
+      "question": "Welcher Operator prüft in <code>[ ... ]</code>, ob zwei Zahlen ungleich sind?",
+      "options": [
+        "<code>-ne</code>",
+        "<code>-eq</code>",
+        "<code>-le</code>",
+        "<code>-ge</code>"
+      ],
+      "explanation": "<code>-ne</code> steht für „not equal“. <code>-eq</code> heißt gleich, <code>-le</code> kleiner oder gleich, <code>-ge</code> größer oder gleich."
+    },
+    {
+      "section": "3.7",
+      "question": "Warum ist <code>[[ 9 &gt; 10 ]]</code> in der Bash wahr?",
+      "options": [
+        "Weil <code>&gt;</code> in <code>[[ ... ]]</code> Zeichenketten alphabetisch vergleicht",
+        "Weil die Bash falsch rechnet",
+        "Weil 9 eine Primzahl ist",
+        "Weil <code>&gt;</code> in der Bash „kleiner als“ bedeutet"
+      ],
+      "explanation": "In <code>[[ ... ]]</code> vergleichen <code>&lt;</code> und <code>&gt;</code> alphabetisch: „9“ steht hinter „1“. Für Zahlen <code>-gt</code>/<code>-lt</code> oder <code>(( ... ))</code> verwenden, z. B. ist <code>(( 9 &gt; 10 ))</code> falsch."
+    },
+    {
+      "section": "3.7",
+      "question": "In welcher Schreibweise kannst Du Zahlen mit <code>&gt;=</code> vergleichen?",
+      "options": [
+        "<code>(( zahl &gt;= 10 ))</code>",
+        "<code>[ $zahl &gt;= 10 ]</code>",
+        "<code>{ zahl &gt;= 10 }</code>",
+        "<code>&lt; zahl &gt;= 10 &gt;</code>"
+      ],
+      "explanation": "In doppelten runden Klammern <code>(( ... ))</code> rechnet die Bash arithmetisch und versteht <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code> und <code>&gt;=</code>."
+    },
+    {
+      "section": "3.7",
+      "question": "Was macht eine <code>until</code>-Schleife?",
+      "options": [
+        "Sie läuft, solange die Bedingung falsch ist",
+        "Sie läuft, solange die Bedingung wahr ist",
+        "Sie läuft genau einmal pro Datei",
+        "Sie läuft nie"
+      ],
+      "explanation": "<code>until</code> ist das Gegenstück zu <code>while</code>: Die Schleife wiederholt sich, bis die Bedingung wahr wird – z. B. bis ein Server antwortet."
+    },
+    {
+      "section": "3.7",
+      "question": "Wann ist eine <code>for</code>-Schleife besonders geeignet?",
+      "options": [
+        "Wenn über eine Liste von Elementen oder einen bekannten Zahlenbereich gelaufen werden soll",
+        "Wenn auf ein unbestimmtes Ereignis gewartet wird",
+        "Wenn eine Datei gelöscht werden soll",
+        "Wenn das Skript keine Befehle enthält"
+      ],
+      "explanation": "<code>for</code> führt Befehle einmal für jeden Wert einer Liste aus, z. B. für Server, Dateien oder <code>{1..5}</code>."
+    },
+    {
+      "section": "3.7",
+      "question": "Was passiert mit allem, was in einer Bash-Zeile nach <code>#</code> steht?",
+      "options": [
+        "Es wird als Kommentar ignoriert",
+        "Es wird als Befehl ausgeführt",
+        "Es wird in eine Datei geschrieben",
+        "Es wird als Variable gespeichert"
+      ],
+      "explanation": "Nach <code>#</code> beginnt ein Kommentar, den die Bash nicht ausführt. Sonderfall ist die Shebang-Zeile <code>#!</code> ganz am Anfang des Skripts."
+    },
+    {
+      "section": "3.7",
+      "question": "Richtig oder falsch? In <code>[ $zahl -gt 10 ]</code> dürfen die Leerzeichen innerhalb der eckigen Klammern weggelassen werden.",
+      "options": [
+        "Falsch",
+        "Richtig"
+      ],
+      "explanation": "Falsch. <code>[</code> ist in der Bash ein Befehl, die Leerzeichen sind Pflicht. <code>[$zahl -gt 10]</code> führt zu einem Fehler wie „command not found“."
+    },
+    {
+      "section": "3.8",
+      "question": "Was enthält die Variable <code>$#</code> in einem Bash-Skript?",
+      "options": [
+        "Die Anzahl der übergebenen Argumente",
+        "Den Namen des Skripts",
+        "Alle Argumente als Liste",
+        "Die Prozess-ID des Skripts"
+      ],
+      "explanation": "<code>$#</code> ist die Anzahl, <code>$@</code> sind alle Argumente, <code>$0</code> ist der Skriptname und <code>$$</code> die Prozess-ID."
+    },
+    {
+      "section": "3.8",
+      "question": "Was bewirkt <code>chmod +x skript.sh</code>?",
+      "options": [
+        "Das Skript erhält das Ausführrecht und kann mit <code>./skript.sh</code> gestartet werden",
+        "Das Skript wird ausgeführt",
+        "Das Skript wird für andere gesperrt",
+        "Das Skript wird auf Fehler geprüft"
+      ],
+      "explanation": "Ohne Ausführrecht kann man das Skript nur mit <code>bash skript.sh</code> starten."
+    },
+    {
+      "section": "3.8",
+      "question": "Wozu dient <code>set -euo pipefail</code> am Anfang eines Skripts?",
+      "options": [
+        "Das Skript bricht bei Fehlern, nicht gesetzten Variablen und Fehlern in Pipes ab",
+        "Das Skript zeigt jede Zeile vor der Ausführung an",
+        "Das Skript ignoriert alle Fehler",
+        "Das Skript läuft im Hintergrund weiter"
+      ],
+      "explanation": "Ohne diese Optionen läuft ein Bash-Skript nach einem Fehler einfach weiter, was Folgefehler verursachen kann."
+    },
+    {
+      "section": "3.8",
       "question": "Ein unter Windows gespeichertes Skript meldet unter Linux <code>$'\\r': command not found</code>. Was ist die Ursache?",
       "options": [
         "Windows-Zeilenenden (CRLF): Die Datei muss auf LF umgestellt werden, z. B. mit dos2unix",
@@ -339,7 +851,7 @@
       "explanation": "Das <code>\\r</code> stammt vom Windows-Zeilenende. Im Editor auf LF umstellen oder <code>dos2unix skript.sh</code> ausführen."
     },
     {
-      "section": "3.5",
+      "section": "3.8",
       "question": "Was bewirkt <code>bash -x skript.sh</code>?",
       "options": [
         "Debug-Modus: Jede ausgeführte Zeile wird angezeigt",
@@ -350,7 +862,7 @@
       "explanation": "Damit sieht man, welche Befehle mit welchen Werten tatsächlich laufen."
     },
     {
-      "section": "3.5",
+      "section": "3.8",
       "question": "Was liefert <code>${2:-7}</code>?",
       "options": [
         "Den Wert des zweiten Arguments oder 7, falls es leer ist",
@@ -361,7 +873,7 @@
       "explanation": "So legt man Standardwerte für optionale Parameter fest."
     },
     {
-      "section": "3.5",
+      "section": "3.8",
       "question": "Was bewirkt <code>local</code> vor einer Variablen in einer Bash-Funktion?",
       "options": [
         "Die Variable gilt nur innerhalb der Funktion",
@@ -372,7 +884,29 @@
       "explanation": "Ohne <code>local</code> wären Variablen in Funktionen global und könnten andere Teile des Skripts verändern."
     },
     {
-      "section": "3.6",
+      "section": "3.8",
+      "question": "Wo werden Funktionen in einem gut strukturierten Bash-Skript definiert?",
+      "options": [
+        "Vor dem Hauptprogramm, das sie aufruft",
+        "Nach dem <code>exit</code>-Befehl",
+        "In der Shebang-Zeile",
+        "Nur in einer separaten Datei"
+      ],
+      "explanation": "Die Bash liest das Skript von oben nach unten. Eine Funktion muss definiert sein, bevor sie aufgerufen wird – deshalb stehen Funktionen vor dem Hauptprogramm."
+    },
+    {
+      "section": "3.8",
+      "question": "Was gehört in den Kopfkommentar eines Skripts?",
+      "options": [
+        "Zweck, Aufruf, Parameter, Autor und Datum",
+        "Das Passwort für den Server",
+        "Die Ausgabe des letzten Laufs",
+        "Eine Kopie aller Logdateien"
+      ],
+      "explanation": "Der Kopfkommentar beschreibt, was das Skript tut und wie man es aufruft. Zugangsdaten gehören nie ins Skript."
+    },
+    {
+      "section": "3.9",
       "question": "Was liefert <code>basename \"/home/benutzer/dokumente/bericht.txt\"</code>?",
       "options": [
         "<code>bericht.txt</code>",
@@ -383,7 +917,7 @@
       "explanation": "<code>basename</code> entfernt den Verzeichnispfad. Gleichwertig ohne externes Programm ist <code>${datei##*/}</code>."
     },
     {
-      "section": "3.6",
+      "section": "3.9",
       "question": "Wozu dient in der Musterlösung die Zeile <code>[[ -f \"$datei\" ]] || continue</code>?",
       "options": [
         "Einträge, die keine reguläre Datei sind, z. B. Unterordner, werden übersprungen",
@@ -394,7 +928,7 @@
       "explanation": "<code>continue</code> springt zum nächsten Schleifendurchlauf. Das fängt auch ein leeres Verzeichnis ab, in dem <code>*</code> unverändert stehen bleibt."
     },
     {
-      "section": "3.6",
+      "section": "3.9",
       "question": "Wird die Datei <code>notizen.TXT</code> von der Musterlösung als Textdatei erkannt?",
       "options": [
         "Nein, der Vergleich unterscheidet Groß- und Kleinschreibung",
@@ -405,7 +939,7 @@
       "explanation": "Mit <code>shopt -s nocasematch</code> vor der Schleife würde auch .TXT erkannt."
     },
     {
-      "section": "3.6",
+      "section": "3.9",
       "question": "Mit welcher Bedingung prüft die Musterlösung, ob ein Dateiname auf .txt endet?",
       "options": [
         "<code>[[ \"$name\" == *.txt ]]</code>",
@@ -414,6 +948,28 @@
         "<code>[[ \"$name\" = \".txt\" ]]</code>"
       ],
       "explanation": "<code>==</code> mit einem Muster rechts ist ein Mustervergleich. Das Muster darf dafür nicht in Anführungszeichen stehen."
+    },
+    {
+      "section": "3.9",
+      "question": "Welche Ausgabe erzeugt das Übungsskript mit <code>zahl=3</code>?",
+      "options": [
+        "Die Zahl ist kleiner als 10.",
+        "Die Zahl ist größer als 10.",
+        "Die Zahl ist gleich 10.",
+        "Es gibt keine Ausgabe."
+      ],
+      "explanation": "3 ist weder größer als 10 (<code>if</code>) noch gleich 10 (<code>elif</code>). Deshalb wird der <code>else</code>-Zweig ausgeführt."
+    },
+    {
+      "section": "3.9",
+      "question": "Welche Ausgabe erzeugt dasselbe Skript mit <code>zahl=10</code>?",
+      "options": [
+        "Die Zahl ist gleich 10.",
+        "Die Zahl ist größer als 10.",
+        "Die Zahl ist kleiner als 10.",
+        "Eine Fehlermeldung"
+      ],
+      "explanation": "<code>10 -gt 10</code> ist falsch, <code>10 -eq 10</code> ist wahr – der <code>elif</code>-Zweig gibt „Die Zahl ist gleich 10.“ aus."
     }
   ]
 }

@@ -176,12 +176,12 @@ Wichtigste Typen: `Course` (mit `modules: CourseModule[]`, `lessons`, `appendix`
 Schritt-IDs sind dieselben wie im Browser (`<kapitel>` bzw. `<kapitel>/wissenstest`). Das Schema wird beim ersten Zugriff angelegt.
 
 ### 5.7 Inhalt des ersten Kurses
-Quelle: `System_und_Prozessautomatisierung_Grundlagen.docx` (Kapitel; Kapitel 01 am 2026-10-03 und Kapitel 02 am 2026-10-04 überarbeitet und erweitert, Freigabe-Entwürfe `Kapitel01_…_Entwurf.docx` und `Kapitel02_…_Entwurf.docx`) und `Systemautomatisierung_Quiz.html` (410 Fragen), einmalig nach Markdown bzw. JSON übernommen. Danach sind die Dateien im Repository die maßgebliche Quelle.
+Quelle: `System_und_Prozessautomatisierung_Grundlagen.docx` (Kapitel; Kapitel 01 am 2026-10-03, Kapitel 02 und 03 am 2026-10-04 überarbeitet und erweitert, Freigabe-Entwürfe `Kapitel01_…_Entwurf.docx` bis `Kapitel03_…_Entwurf.docx`) und `Systemautomatisierung_Quiz.html` (410 Fragen), einmalig nach Markdown bzw. JSON übernommen. Danach sind die Dateien im Repository die maßgebliche Quelle.
 
 | Modul | Kapitel | Fragen |
 |---|---|---|
 | 1 Grundlagen der Automatisierung | 01 Einführung in die Systemautomatisierung · 02 Überwachen wiederkehrender Systemabläufe | 65 · 69 |
-| 2 Skriptsprachen: Bash und PowerShell | 03 Grundlagen von Bash und Shell-Scripting · 04 PowerShell Basics für Administratoren | 37 · 50 |
+| 2 Skriptsprachen: Bash und PowerShell | 03 Grundlagen von Bash und Shell-Scripting · 04 PowerShell Basics für Administratoren | 88 · 50 |
 | 3 Fortgeschrittene Linux-Skripte | 05 Aufbau fortgeschrittener Linux-Skripte | 60 |
 | 4 Prozesse und Strategien | 06 Analyse und Identifikation automatisierbarer Prozesse · 07 Entwurf von Automatisierungsstrategien | 35 · 46 |
 | 5 Sicherheit und Fehlerbehandlung | 08 Sicherheitsaspekte bei der Automatisierung · 09 Erkennung und Handling von Fehlern in Skripten | 47 · 68 |
