@@ -61,7 +61,7 @@ Material aus `IT_Administration_und_Automatisierung/System_und_Prozessautomatisi
 ## Block 5 – Offene Entscheidungen (≈ 30 min, Nutzerin)
 - [ ] Logo / Name der Plattform: Text-Logo behalten oder eigenes Logo?
 - [ ] Kursbild: eigenes Bild, Stockfoto oder SVG-Platzhalter behalten?
-- [ ] Hosting: Vercel oder GitHub Pages (statischer Export)? Danach Deployment und ggf. CI einrichten
+- [ ] Hosting: Mit Login und SQLite (Block 2) wird ein Node-Server mit dauerhaftem Speicher gebraucht – z. B. kleiner Server/VPS, Render, Fly.io oder Railway mit Volume. Danach Deployment und ggf. CI einrichten
 
 ## Block 6 – Technik und Qualität (≈ 1–1,5 h, nach Zeit)
 - [ ] `npm audit`: Warnungen ansehen und bewerten, sichere Updates einspielen (kein `--force` ohne Prüfung)
