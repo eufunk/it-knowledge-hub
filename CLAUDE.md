@@ -56,6 +56,7 @@ npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 
 - Neue Abhängigkeiten immer mit `npm install <paket>` (bzw. `-D` für Entwicklungswerkzeuge), damit `package.json` und `package-lock.json` im selben Schritt aktualisiert werden. `package-lock.json` wird mitcommittet.
 - **Unter Windows kann ein alter Dev-Server den Port 3000 belegen.** Next.js weicht dann still auf 3001 aus. Nach dem Start die ausgegebene Adresse prüfen. Belegte Ports zeigt `netstat -ano | grep ":3000 "` (ein deutsches Windows zeigt `ABHÖREN` statt `LISTEN`).
+- **Windows Application Control:** Blockiert Windows die native Datei `next-swc.win32-x64-msvc.node` („An Application Control policy has blocked this file“), startet Turbopack nicht. Dann `npx next dev --webpack -p 3001` verwenden (siehe `docs/todo.md`).
 - Prüfskripte und Bildschirmfotos (z. B. mit Playwright) gehören ins temporäre Arbeitsverzeichnis der Sitzung, nie ins Repository.
 
 ## Architektur im Überblick
