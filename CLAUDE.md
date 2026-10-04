@@ -56,6 +56,19 @@ npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 ```
 
 - Neue Abhängigkeiten immer mit `npm install <paket>` (bzw. `-D` für Entwicklungswerkzeuge), damit `package.json` und `package-lock.json` im selben Schritt aktualisiert werden. `package-lock.json` wird mitcommittet.
+- **Dev-Server starten (Vereinbarung mit der Nutzerin, gilt dauerhaft):** Den Dev-Server für dieses Projekt **nicht** als Hintergrundaufgabe von Claude Code starten – `run_in_background` endet nach höchstens 2 Stunden und hinterlässt verwaiste Prozesse. Stattdessen als **eigenständigen Prozess in einem eigenen PowerShell-Fenster** auf **Port 3001** starten (über das PowerShell-Werkzeug):
+
+  ```powershell
+  $dir = "C:\Users\funke\OneDrive\Skills_Update\it-knowledge-hub"
+  $cmd = "`$Host.UI.RawUI.WindowTitle = 'IT Knowledge Hub - Dev-Server (Port 3001)'; Set-Location '$dir'; npx next dev --webpack -p 3001"
+  Start-Process -FilePath "powershell.exe" -ArgumentList @("-NoExit", "-NoProfile", "-Command", $cmd) -WorkingDirectory $dir
+  ```
+
+  - Vorher prüfen, ob Port 3001 schon belegt ist (`Get-NetTCPConnection -LocalPort 3001 -State Listen`). Läuft dort bereits der Server dieses Projekts, nicht doppelt starten.
+  - Danach mit einem Abruf von `http://localhost:3001/` prüfen, dass er antwortet.
+  - Neustart: alte Instanz beenden (nur `node.exe`-Prozesse, deren Befehlszeile `it-knowledge-hub` enthält), dann neu starten. Dev-Server anderer Projekte nie beenden.
+  - Das Fenster läuft unabhängig von Claude Code weiter, auch nach Sitzungsende; beenden durch Schließen des Fensters bzw. `Strg + C`.
+  - `--webpack` ist nötig, solange Windows die native Next.js-Datei blockiert (siehe „Windows Application Control“).
 - **Unter Windows kann ein alter Dev-Server den Port 3000 belegen.** Next.js weicht dann still auf 3001 aus. Nach dem Start die ausgegebene Adresse prüfen. Belegte Ports zeigt `netstat -ano | grep ":3000 "` (ein deutsches Windows zeigt `ABHÖREN` statt `LISTEN`).
 - **Windows Application Control:** Blockiert Windows die native Datei `next-swc.win32-x64-msvc.node` („An Application Control policy has blocked this file“), startet Turbopack nicht. Dann `npx next dev --webpack -p 3001` verwenden (siehe `docs/todo.md`).
 - Prüfskripte und Bildschirmfotos (z. B. mit Playwright) gehören ins temporäre Arbeitsverzeichnis der Sitzung, nie ins Repository.
