@@ -123,6 +123,61 @@
       "explanation": "Ein kontrolliert herbeigeführter Fehler zeigt, ob Erkennung, Alarm und Weiterleitung wie geplant funktionieren."
     },
     {
+      "section": "2.1",
+      "question": "Was ist ein kritischer, erster Schritt, bevor Du mit der Systemüberwachung beginnst?",
+      "options": [
+        "Bestandsaufnahme Deiner Systemlandschaft",
+        "Eine Party planen",
+        "Eine Kaffeepause einlegen",
+        "Die Auswahl von Desktop-Hintergründen"
+      ],
+      "explanation": "Erst wenn Komponenten, Prozesse, Abhängigkeiten und geschäftskritische Systeme bekannt sind, lässt sich festlegen, was überwacht werden muss."
+    },
+    {
+      "section": "2.1",
+      "question": "Warum ist die Überwachung von Systemprozessen wichtig?",
+      "options": [
+        "Um die Leistung und Verfügbarkeit von Systemen sicherzustellen",
+        "Um die Farbe der Benutzeroberfläche anzupassen",
+        "Um die Internetgeschwindigkeit zu erhöhen",
+        "Um neue Mitarbeitende einzuarbeiten"
+      ],
+      "explanation": "Überwachung erkennt Engpässe, Fehler und Ausfälle früh – oft bevor Nutzende sie bemerken – und sichert so Leistung und Verfügbarkeit."
+    },
+    {
+      "section": "2.1",
+      "question": "Wofür ist die Implementierung von Schwellenwerten wichtig?",
+      "options": [
+        "Um Benachrichtigungen bei kritischen Werten auszulösen",
+        "Um die Bürobeleuchtung zu regulieren",
+        "Um die Kaffeemaschine zu steuern",
+        "Um die Temperatur im Serverraum zu erhöhen"
+      ],
+      "explanation": "Schwellenwerte legen fest, ab wann ein Messwert als Warnung oder kritisch gilt. Wird er überschritten, löst die Überwachung einen Alarm aus."
+    },
+    {
+      "section": "2.1",
+      "question": "Wofür sind Business Intelligence (BI) und Datenvisualisierung besonders nützlich?",
+      "options": [
+        "Zur Visualisierung komplexer Datenmengen",
+        "Zur Verbesserung der Datensicherheit",
+        "Zur Automatisierung von Marketingaufgaben",
+        "Zur Erhöhung der CPU-Auslastung"
+      ],
+      "explanation": "BI- und Visualisierungswerkzeuge wie Power BI, Tableau oder Grafana stellen Daten als Berichte und Dashboards dar und machen Muster und Trends sichtbar."
+    },
+    {
+      "section": "2.1",
+      "question": "Was solltest Du definieren, bevor Du mit der Überwachung beginnst?",
+      "options": [
+        "Klare Überwachungsziele",
+        "Das Menü für das Mittagessen",
+        "Deine Lieblingsfarbe",
+        "Die Playlist für die Bürohintergrundmusik"
+      ],
+      "explanation": "Ohne klare Ziele entsteht eine Flut von Daten und Alarmen mit wenig Nutzen. Gute Ziele sind SMART und legen fest, was überwacht wird und wozu."
+    },
+    {
       "section": "2.2",
       "question": "Welche Methode zur Identifizierung wiederkehrender Abläufe ist objektiv und datenbasiert, erfasst aber nur gemeldete Fälle?",
       "options": [
@@ -297,6 +352,17 @@
         "Ausschließlich auf Deep Learning setzen"
       ],
       "explanation": "Die Kombination mehrerer Methoden erhöht Genauigkeit und Zuverlässigkeit von Prognosen."
+    },
+    {
+      "section": "2.3",
+      "question": "Welche Methode hilft, Muster über einen bestimmten Zeitraum zu erkennen?",
+      "options": [
+        "Zeitreihenanalyse",
+        "Mindmapping",
+        "Brainstorming",
+        "Brainwriting"
+      ],
+      "explanation": "Die Zeitreihenanalyse untersucht Messwerte über die Zeit und erkennt Trends und saisonale Schwankungen. Mindmapping, Brainstorming und Brainwriting sind Kreativtechniken, keine Analysemethoden."
     },
     {
       "section": "2.4",
@@ -519,6 +585,17 @@
       "explanation": "Prädiktive Wartung vermeidet unnötige Unterbrechungen und zu frühen Teiletausch, braucht aber gute Daten und Analysen."
     },
     {
+      "section": "2.7",
+      "question": "Was ist ein Vorteil der prädiktiven Wartung?",
+      "options": [
+        "Sie hilft, Wartungsarbeiten zu planen, bevor Komponenten ausfallen",
+        "Sie erhöht die Anzahl der Fehler",
+        "Sie macht regelmäßige Updates unnötig",
+        "Sie reduziert die Notwendigkeit von Überwachungstools"
+      ],
+      "explanation": "Prädiktive Wartung wertet Messdaten aus und sagt voraus, wann ein Ausfall droht. So kann gewartet werden, bevor es zum Ausfall kommt – ohne unnötige Unterbrechungen. Updates und Überwachung bleiben weiterhin nötig."
+    },
+    {
       "section": "2.8",
       "question": "Nach welchem Prinzip funktionieren automatisierte Reaktionsprozesse?",
       "options": [
@@ -574,6 +651,17 @@
       "explanation": "Automatische Skalierung hält die Leistung stabil, z. B. indem bei hoher Last eine zusätzliche VM gestartet wird."
     },
     {
+      "section": "2.8",
+      "question": "Welche Aussage beschreibt den Nutzen automatisierter Reaktionsmechanismen?",
+      "options": [
+        "Sie helfen, schnell auf erkannte Probleme zu reagieren",
+        "Sie ersetzen das IT-Personal",
+        "Sie erhöhen die Arbeitsbelastung",
+        "Sie reduzieren die Notwendigkeit von Kaffeepausen"
+      ],
+      "explanation": "Automatische Reaktionen wie Benachrichtigung, Skalierung oder Selbstheilung verkürzen die Zeit bis zur Gegenmaßnahme. Bei unbekannten oder kritischen Problemen wird weiterhin ein Mensch eingeschaltet."
+    },
+    {
       "section": "2.9",
       "question": "Welche drei Fragen muss ein Notfallplan mindestens beantworten?",
       "options": [
@@ -616,6 +704,17 @@
         "Weil dabei die Hardware getestet wird"
       ],
       "explanation": "Übungen, z. B. ein simulierter Ausfall pro Quartal, decken Lücken im Plan auf und machen das Team sicher im Ablauf."
+    },
+    {
+      "section": "2.9",
+      "question": "Was ist ein wesentlicher Bestandteil zur Minimierung von Systemausfällen?",
+      "options": [
+        "Die Durchführung regelmäßiger Stresstests",
+        "Die tägliche Durchführung von Feueralarmtests",
+        "Die regelmäßige Reinigung der Bürotische",
+        "Die Auswahl von ergonomischen Bürostühlen"
+      ],
+      "explanation": "Stresstests simulieren Extremsituationen, decken Schwachstellen auf, bevor sie im Betrieb zum Ausfall führen, und trainieren das Team für den Ernstfall."
     },
     {
       "section": "2.10",
