@@ -5,6 +5,7 @@
 ---
 
 ## 2026-10-04
+- Wissenstest Kapitel 03: 5 Fragen aus der Vorlage aufgenommen (Shebang, Variablen, `pwd`, `echo`); die fast gleiche eigene `pwd`-Frage dafür entfernt (92).
 - Kapitel 03 „Grundlagen von Bash und Shell-Scripting“ überarbeitet (Freigabe per Word-Entwurf): neuer Abschnitt „Auffrischung der Grundlagen“ (Programmiergrundlagen, Datenstrukturen, APIs und Bibliotheken, Betriebssystemkenntnisse), „Interaktion mit der Befehlszeile“ (Shell und IDE, Eingabe/Ausgabe/Rückmeldung), Pfade, Vergleichsoperatoren, drei `if`-Beispiele, Schleifen, Kommentare, eigener Abschnitt „Mehrzeilige Bash-Skripte“ und Übung „Verständnis bestehender Skripte“ mit Lösung. Korrigiert gegenüber der Vorlage: Mac-Tastenkürzel (control statt ⌘), Zeichen-Vergleichsoperatoren nur in `(( … ))` bzw. alphabetisch in `[[ … ]]`, `env` in der Shebang-Zeile. Wissenstest 37 → 88 Fragen, Abschnitte neu gegliedert (3.1–3.9).
 - Wissenstest Kapitel 02: 9 weitere Fragen aus der Vorlage (69).
 - Kapitel 02 „Überwachen wiederkehrender Systemabläufe“ überarbeitet (Freigabe per Word-Entwurf): 6 Schritte der Systemüberwachung mit Werkzeugkategorien, Übung mit 4 Szenarien und Lösungsvorschlag, Mustererkennung und Vorhersage-Methoden, 6 Fallstricke, Frühwarnsysteme, prädiktive Wartung, neuer Abschnitt „Vorbereitung auf den Ernstfall“ (Notfallplan, Penetrations- und Stresstests), „Fazit zu Modul 1“. Wissenstest 34 → 60 Fragen; Abschnitt Dokumentation von 2.9 auf 2.10 verschoben, 2.9 ist jetzt „Vorbereitung auf den Ernstfall“.

@@ -460,17 +460,6 @@
     },
     {
       "section": "3.5",
-      "question": "Welcher Befehl zeigt Dir, in welchem Verzeichnis Du Dich gerade befindest?",
-      "options": [
-        "<code>pwd</code>",
-        "<code>ls</code>",
-        "<code>cd</code>",
-        "<code>mkdir</code>"
-      ],
-      "explanation": "<code>pwd</code> steht für „print working directory“ und gibt den Pfad des aktuellen Verzeichnisses aus."
-    },
-    {
-      "section": "3.5",
       "question": "Mit welchem Befehl legst Du eine neue, leere Datei <code>notizen.txt</code> an?",
       "options": [
         "<code>touch notizen.txt</code>",
@@ -501,6 +490,17 @@
         "Den Inhalt jeder Datei"
       ],
       "explanation": "Die Option <code>-l</code> (long) liefert das Langformat mit detaillierten Informationen. <code>-a</code> zeigt zusätzlich versteckte Dateien."
+    },
+    {
+      "section": "3.5",
+      "question": "Welches Kommando zeigt den Pfad des aktuellen Verzeichnisses an?",
+      "options": [
+        "<code>pwd</code>",
+        "<code>ls</code>",
+        "<code>cd</code>",
+        "<code>mkdir</code>"
+      ],
+      "explanation": "<code>pwd</code> steht für „print working directory“. <code>ls</code> listet den Inhalt auf, <code>cd</code> wechselt das Verzeichnis, <code>mkdir</code> legt ein neues an."
     },
     {
       "section": "3.6",
@@ -805,6 +805,50 @@
         "Richtig"
       ],
       "explanation": "Falsch. <code>[</code> ist in der Bash ein Befehl, die Leerzeichen sind Pflicht. <code>[$zahl -gt 10]</code> führt zu einem Fehler wie „command not found“."
+    },
+    {
+      "section": "3.7",
+      "question": "Welches Zeichen wird verwendet, um den Anfang eines Bash-Skripts zu kennzeichnen?",
+      "options": [
+        "<code>#!</code>",
+        "<code>//</code>",
+        "<code>#@</code>",
+        "<code>/*</code>"
+      ],
+      "explanation": "Die Shebang-Zeile beginnt mit <code>#!</code>, gefolgt vom Pfad zum Interpreter, z. B. <code>#!/bin/bash</code>. <code>//</code> und <code>/*</code> leiten in Sprachen wie C oder JavaScript Kommentare ein."
+    },
+    {
+      "section": "3.7",
+      "question": "Welche Aussage über Variablen in Bash ist korrekt?",
+      "options": [
+        "Zum Zugriff auf den Wert einer Variable wird das Dollarzeichen (<code>$</code>) vorangestellt.",
+        "Variablennamen dürfen mit einer Zahl beginnen.",
+        "Variablenwerte müssen immer in Anführungszeichen gesetzt werden.",
+        "Variablen müssen vor der Verwendung deklariert werden."
+      ],
+      "explanation": "Den Wert liest man mit <code>$name</code>. Variablennamen dürfen nicht mit einer Ziffer beginnen, eine Deklaration ist nicht nötig, und Anführungszeichen sind nur bei Werten mit Leerzeichen oder Sonderzeichen Pflicht – empfohlen sind sie beim Verwenden aber fast immer."
+    },
+    {
+      "section": "3.7",
+      "question": "Wie wird eine Variable in einem Bash-Skript definiert?",
+      "options": [
+        "<code>meinName='Max Mustermann'</code>",
+        "<code>set meinName='Max Mustermann'</code>",
+        "<code>let meinName='Max Mustermann'</code>",
+        "<code>var meinName='Max Mustermann'</code>"
+      ],
+      "explanation": "In der Bash genügt <code>Name=Wert</code> ohne Schlüsselwort und ohne Leerzeichen um das Gleichheitszeichen. <code>var</code> und <code>let</code> kennt man aus JavaScript; in der Bash dient <code>let</code> zum Rechnen und <code>set</code> zum Setzen von Shell-Optionen."
+    },
+    {
+      "section": "3.7",
+      "question": "Was bewirkt der Befehl <code>echo \"Hallo $name!\"</code>, wenn die Variable <code>name</code> den Wert <code>'Welt'</code> hat?",
+      "options": [
+        "Gibt <code>Hallo Welt!</code> aus",
+        "Gibt <code>Hallo $name!</code> aus",
+        "Gibt <code>Hallo</code> aus",
+        "Gibt einen Fehler aus, da <code>name</code> nicht definiert ist"
+      ],
+      "explanation": "In doppelten Anführungszeichen ersetzt die Bash <code>$name</code> durch den Wert der Variable. Nur in einfachen Anführungszeichen (<code>'Hallo $name!'</code>) bliebe der Text wörtlich stehen."
     },
     {
       "section": "3.8",
