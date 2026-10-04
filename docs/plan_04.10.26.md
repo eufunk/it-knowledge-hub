@@ -48,6 +48,11 @@ Wunsch: Der Lernfortschritt soll unter dem eigenen Login gespeichert werden (Tes
 - [x] Lerninhalte nur mit Anmeldung (Entscheidung 2026-10-04) – umgesetzt als Zugangsschutz F26 in `proxy.ts`; Browser-Test um Weiterleitung, Rückkehr zur Zielseite und Abmelden erweitert (16 Prüfungen grün).
 - Folge für das Hosting (Block 5, offen): Ein reiner statischer Export (GitHub Pages) reicht nicht mehr; Vercel speichert keine SQLite-Datei dauerhaft. Infrage kommen z. B. ein kleiner Server/VPS, Render, Fly.io oder Railway mit Volume.
 
+## Zusatz – Kapitel 02 überarbeitet ✅ erledigt 2026-10-04
+- [x] Neue Inhalte mit bestehendem Kapitel 02 zusammengeführt, Word-Entwurf zur Freigabe
+- [x] Nach Freigabe als Lerneinheit übernommen
+- [x] Wissenstest auf 60 Fragen erweitert, Abschnitte neu nummeriert
+
 ## Block 3 – Entscheidung Vorlesen (≈ 30 min)
 - [ ] Ergebnis aus Block 1 (Edge) bewerten
 - [ ] Falls nicht ausreichend: Anbieter für fertige Audiodateien vergleichen (Azure, Google, OpenAI, ElevenLabs) – Stimmen, Preis für ca. 250.000 Zeichen, Lizenz für Lernplattform

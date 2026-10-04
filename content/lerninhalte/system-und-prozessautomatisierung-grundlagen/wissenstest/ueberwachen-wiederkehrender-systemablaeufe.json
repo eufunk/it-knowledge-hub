@@ -8,7 +8,8 @@
     "2.6": "Umfassendes Überwachungssystem",
     "2.7": "Prädiktive Analyse",
     "2.8": "Automatisierte Reaktionen",
-    "2.9": "Dokumentation & Wissen"
+    "2.9": "Vorbereitung auf den Ernstfall",
+    "2.10": "Dokumentation & Wissen"
   },
   "questions": [
     {
@@ -67,6 +68,61 @@
       "explanation": "Mit wenigen aussagekräftigen Kennzahlen und den wichtigsten Systemen starten, Erfahrungen sammeln und dann erweitern."
     },
     {
+      "section": "2.1",
+      "question": "Wofür steht das „M“ in SMART-Zielen für die Überwachung?",
+      "options": [
+        "Messbar",
+        "Manuell",
+        "Modular",
+        "Maximal"
+      ],
+      "explanation": "SMART-Ziele sind spezifisch, messbar, erreichbar, relevant und terminiert – z. B. „Ausfälle des Mailservers werden innerhalb von 5 Minuten erkannt.“"
+    },
+    {
+      "section": "2.1",
+      "question": "Warum gehören die Abhängigkeiten zwischen Systemen in die Bestandsaufnahme?",
+      "options": [
+        "Weil der Ausfall eines Dienstes andere mitreißen kann, z. B. die Anwendung bei ausgefallener Datenbank",
+        "Weil Überwachungswerkzeuge sonst nicht installiert werden können",
+        "Weil nur abhängige Systeme überwacht werden müssen",
+        "Weil Abhängigkeiten die Lizenzkosten bestimmen"
+      ],
+      "explanation": "Wer weiß, welcher Dienst welchen anderen braucht, erkennt Fehlerursachen schneller und überwacht die richtigen Komponenten."
+    },
+    {
+      "section": "2.1",
+      "question": "Zu welcher Werkzeugart gehören Splunk, Loggly und der ELK Stack?",
+      "options": [
+        "Log-Management",
+        "Business Intelligence",
+        "Workflow-Management",
+        "Konfigurationsmanagement"
+      ],
+      "explanation": "Log-Management-Werkzeuge sammeln, speichern und durchsuchen große Mengen Logdaten – ideal, um wiederkehrende Fehler und Warnungen zu finden."
+    },
+    {
+      "section": "2.1",
+      "question": "Wofür eignen sich Apache Airflow und Luigi besonders?",
+      "options": [
+        "Wiederkehrende Datenverarbeitungen planen, ausführen und deren Ablauf überwachen",
+        "Logdateien in Echtzeit durchsuchen",
+        "Dashboards für die Geschäftsleitung gestalten",
+        "Server-Hardware auf Temperatur überwachen"
+      ],
+      "explanation": "Workflow-Management-Systeme steuern Aufgaben nach Zeitplänen oder Bedingungen und überwachen dabei den Ablauf."
+    },
+    {
+      "section": "2.1",
+      "question": "Wie lässt sich in Schritt 5 („Testen und anpassen“) prüfen, ob die Alarmierung funktioniert?",
+      "options": [
+        "Einen Testdienst gezielt stoppen und prüfen, ob der Alarm bei den richtigen Personen ankommt",
+        "Abwarten, bis ein echter Ausfall passiert",
+        "Alle Schwellenwerte auf 0 setzen",
+        "Das Überwachungswerkzeug neu installieren"
+      ],
+      "explanation": "Ein kontrolliert herbeigeführter Fehler zeigt, ob Erkennung, Alarm und Weiterleitung wie geplant funktionieren."
+    },
+    {
       "section": "2.2",
       "question": "Welche Methode zur Identifizierung wiederkehrender Abläufe ist objektiv und datenbasiert, erfasst aber nur gemeldete Fälle?",
       "options": [
@@ -98,6 +154,39 @@
         "„Dafür bin ich nicht zuständig.“"
       ],
       "explanation": "Aussagen wie „Das mache ich jeden Montag“, „Dafür habe ich eine Checkliste“ oder „Das kommt ständig rein“ deuten auf Automatisierungskandidaten hin."
+    },
+    {
+      "section": "2.2",
+      "question": "Ein Administrator startet jede Nacht um 3 Uhr manuell das Backup. Wie gut eignet sich das für die Automatisierung?",
+      "options": [
+        "Sehr gut – fester Zeitpunkt, immer gleicher Ablauf, keine Entscheidung nötig",
+        "Gar nicht – Backups müssen immer von Hand gestartet werden",
+        "Nur teilweise – die Bewertung der Daten bleibt menschlich",
+        "Nur mit künstlicher Intelligenz"
+      ],
+      "explanation": "Der Ablauf ist regelmäßig und regelbasiert. Zeitgesteuert starten, Ergebnis protokollieren und bei Fehlern alarmieren."
+    },
+    {
+      "section": "2.2",
+      "question": "Welche Merkmale haben gute Kandidaten für eine Automatisierung?",
+      "options": [
+        "Regelmäßig, regelbasiert, gleichbleibende Schritte und spürbarer Zeitaufwand",
+        "Einmalig, kreativ und mit vielen Ermessensentscheidungen",
+        "Selten, aber sehr dringend",
+        "Nur Aufgaben, die nachts stattfinden"
+      ],
+      "explanation": "Je regelmäßiger und regelbasierter ein Ablauf ist, desto besser lässt er sich automatisieren. Viele Ermessensentscheidungen sprechen eher für eine Teilautomatisierung."
+    },
+    {
+      "section": "2.2",
+      "question": "Die wöchentliche Inventur dauert mehrere Stunden. Was ist ein sinnvoller Automatisierungsansatz?",
+      "options": [
+        "Teilautomatisierung: Barcode- oder RFID-Scanner buchen direkt ins Lagersystem, die physische Kontrolle bleibt teilweise menschlich",
+        "Die Inventur abschaffen",
+        "Die Daten weiterhin manuell eintippen, aber schneller",
+        "Die Inventur auf einmal im Jahr verschieben"
+      ],
+      "explanation": "Die zeitaufwendige Dateneingabe lässt sich ersetzen, Bestandsabgleich und Nachbestellvorschläge können automatisch laufen."
     },
     {
       "section": "2.3",
@@ -144,6 +233,72 @@
       "explanation": "Häufig und aufwendig: genau solche Abläufe sollten zuerst automatisiert werden."
     },
     {
+      "section": "2.3",
+      "question": "Welche Technik teilt Datenpunkte nach Ähnlichkeit in Gruppen ein, z. B. Tickets mit ähnlichem Text?",
+      "options": [
+        "Clustering",
+        "Zeitreihenanalyse",
+        "Regressionsanalyse",
+        "Monte-Carlo-Simulation"
+      ],
+      "explanation": "Clustering deckt natürliche Gruppierungen in Daten auf – etwa Themenbereiche, zu denen besonders viele Tickets eingehen."
+    },
+    {
+      "section": "2.3",
+      "question": "Ungewöhnlich viele fehlgeschlagene Anmeldungen um 3 Uhr nachts fallen auf. Welche Technik erkennt so etwas?",
+      "options": [
+        "Anomalieerkennung",
+        "Clustering",
+        "Markov-Modell",
+        "Datenbereinigung"
+      ],
+      "explanation": "Die Anomalieerkennung findet Ausreißer, die vom üblichen Verhalten abweichen – wichtig, um Fehler oder Angriffe früh zu bemerken."
+    },
+    {
+      "section": "2.3",
+      "question": "Welche Annahme liegt Markov-Modellen zugrunde?",
+      "options": [
+        "Der nächste Zustand hängt nur vom aktuellen Zustand ab, nicht vom Weg dorthin",
+        "Alle Zustände treten gleich häufig auf",
+        "Die Zukunft lässt sich nur mit neuronalen Netzen vorhersagen",
+        "Messwerte steigen immer linear an"
+      ],
+      "explanation": "Markov-Modelle beschreiben Übergänge zwischen Zuständen, z. B. normal – belastet – gestört, nur abhängig vom gegenwärtigen Zustand."
+    },
+    {
+      "section": "2.3",
+      "question": "Wozu dient eine Monte-Carlo-Simulation?",
+      "options": [
+        "Sie simuliert mit Zufallswerten sehr viele mögliche Verläufe und zeigt, wie wahrscheinlich welche Ergebnisse sind",
+        "Sie entfernt doppelte Einträge aus Logdateien",
+        "Sie legt eine Trendgerade durch Messwerte",
+        "Sie gruppiert Kunden nach Kaufverhalten"
+      ],
+      "explanation": "Monte-Carlo-Simulationen eignen sich für Situationen mit Unsicherheit, etwa um das Risiko einer verzögerten Migration abzuschätzen."
+    },
+    {
+      "section": "2.3",
+      "question": "Was gehört zur Datenbereinigung?",
+      "options": [
+        "Duplikate entfernen, Fehler korrigieren, Lücken behandeln und Formate vereinheitlichen",
+        "Alle Daten älter als eine Woche löschen",
+        "Daten möglichst bunt visualisieren",
+        "Nur die Daten behalten, die das gewünschte Ergebnis zeigen"
+      ],
+      "explanation": "Ohne saubere Daten liefert auch die beste Analyse falsche Ergebnisse. Die Bereinigung kommt deshalb direkt nach dem Sammeln."
+    },
+    {
+      "section": "2.3",
+      "question": "Was empfiehlt die Merke-Box für verlässliche Vorhersagen?",
+      "options": [
+        "Mehrere Ansätze kombinieren – jede Vorhersage ist nur so gut wie ihre Daten",
+        "Immer nur eine einzige Methode verwenden",
+        "Vorhersagen grundsätzlich nicht prüfen",
+        "Ausschließlich auf Deep Learning setzen"
+      ],
+      "explanation": "Die Kombination mehrerer Methoden erhöht Genauigkeit und Zuverlässigkeit von Prognosen."
+    },
+    {
       "section": "2.4",
       "question": "Was ist Alarmmüdigkeit und wie vermeidet man sie?",
       "options": [
@@ -175,6 +330,28 @@
         "Damit Logs weniger Speicher benötigen"
       ],
       "explanation": "Nur mit einheitlicher Zeit lassen sich Ereignisse über Systeme hinweg vergleichen und korrelieren."
+    },
+    {
+      "section": "2.4",
+      "question": "Welche Folge hat eine Überwachung ohne klare Ziele typischerweise?",
+      "options": [
+        "Eine Flut von Daten und Alarmen mit wenig Nutzen",
+        "Zu wenige Messwerte",
+        "Geringere Lizenzkosten",
+        "Automatisch bessere Dokumentation"
+      ],
+      "explanation": "Ohne festgelegte Ziele wird alles gemessen und gemeldet – wichtige Signale gehen im Rauschen unter."
+    },
+    {
+      "section": "2.4",
+      "question": "Wie schützt man das Überwachungswerkzeug selbst, damit es nicht zum Angriffspunkt wird?",
+      "options": [
+        "Starke Authentifizierung, minimale Rechte und Verschlüsselung der Daten bei Übertragung und Speicherung",
+        "Indem man es nur nachts betreibt",
+        "Indem man alle Alarme deaktiviert",
+        "Indem man ihm Administratorrechte auf allen Systemen gibt"
+      ],
+      "explanation": "Überwachungswerkzeuge haben weitreichende Zugriffe und sehen viele Daten. Deshalb müssen sie selbst besonders gut abgesichert sein."
     },
     {
       "section": "2.5",
@@ -221,6 +398,17 @@
       "explanation": "ITIL ist ein bewährtes Rahmenwerk mit Standardprozessen wie Incident-, Problem- und Change-Management."
     },
     {
+      "section": "2.5",
+      "question": "Was bedeutet die Grundhaltung „proaktiv statt reaktiv“?",
+      "options": [
+        "Probleme verhindern, bevor sie entstehen, statt nur auf Störungen zu reagieren",
+        "Möglichst schnell auf jeden Alarm reagieren",
+        "Alle Prozesse vollständig automatisieren",
+        "Nur bei Ausfällen Dokumentation erstellen"
+      ],
+      "explanation": "Proaktive Teams überwachen, warten und verbessern vorausschauend, statt immer nur Brände zu löschen."
+    },
+    {
       "section": "2.6",
       "question": "Ladezeiten und Verfügbarkeit werden mit synthetischen Tests aus Sicht der Anwender gemessen. Welche Überwachungsebene ist das?",
       "options": [
@@ -265,6 +453,28 @@
       "explanation": "Die Datenerfassung läuft entweder über Agenten auf den Systemen oder agentenlos über Schnittstellen wie WMI/CIM, SNMP oder APIs."
     },
     {
+      "section": "2.6",
+      "question": "Auf welchen drei Säulen ruht ein umfassendes Überwachungssystem?",
+      "options": [
+        "Leistungs-, Fehler- und Verfügbarkeitsüberwachung",
+        "Hardware, Software und Lizenzen",
+        "Backup, Restore und Archiv",
+        "Planung, Umsetzung und Abrechnung"
+      ],
+      "explanation": "Leistungsüberwachung erkennt Engpässe, Fehlerüberwachung erfasst Ausnahmen, Verfügbarkeitsüberwachung prüft die Erreichbarkeit."
+    },
+    {
+      "section": "2.6",
+      "question": "Warum sind Rückmeldungen der Nutzenden für ein Frühwarnsystem wertvoll?",
+      "options": [
+        "Sie liefern Hinweise wie „heute ist alles langsam“, die Messwerte ergänzen",
+        "Sie ersetzen technische Messwerte vollständig",
+        "Sie sind die einzige zuverlässige Datenquelle",
+        "Sie sind für die Überwachung ohne Bedeutung"
+      ],
+      "explanation": "Nicht jedes Problem zeigt sich sofort in einer Kennzahl. Meldungen der Anwender sind oft ein frühes Signal."
+    },
+    {
       "section": "2.7",
       "question": "„Die Festplatte ist bei aktuellem Wachstum in 12 Tagen voll.“ Welcher Ansatz ist das?",
       "options": [
@@ -296,6 +506,17 @@
         "Sie liefert immer exakte Zeitpunkte"
       ],
       "explanation": "Vorhersagen sind nur so gut wie die Datenbasis. Ein großer einmaliger Datenimport kann z. B. einen Trend verfälschen."
+    },
+    {
+      "section": "2.7",
+      "question": "Was unterscheidet prädiktive von präventiver Wartung?",
+      "options": [
+        "Prädiktiv wird gewartet, wenn Messwerte einen nahenden Ausfall anzeigen – präventiv nach festem Zeitplan",
+        "Prädiktiv wird erst nach dem Ausfall gewartet",
+        "Präventiv nutzt maschinelles Lernen, prädiktiv nicht",
+        "Es gibt keinen Unterschied"
+      ],
+      "explanation": "Prädiktive Wartung vermeidet unnötige Unterbrechungen und zu frühen Teiletausch, braucht aber gute Daten und Analysen."
     },
     {
       "section": "2.8",
@@ -342,7 +563,62 @@
       "explanation": "Kritische Aktionen mit großer Auswirkung brauchen eine Freigabe. Informieren und Dokumentieren sind unkritisch."
     },
     {
+      "section": "2.8",
+      "question": "Was ist automatische Skalierung?",
+      "options": [
+        "Bei steigender Last werden automatisch zusätzliche Ressourcen bereitgestellt",
+        "Messwerte werden automatisch in Diagramme umgerechnet",
+        "Alarme werden automatisch nach Wichtigkeit sortiert",
+        "Server werden nachts automatisch abgeschaltet"
+      ],
+      "explanation": "Automatische Skalierung hält die Leistung stabil, z. B. indem bei hoher Last eine zusätzliche VM gestartet wird."
+    },
+    {
       "section": "2.9",
+      "question": "Welche drei Fragen muss ein Notfallplan mindestens beantworten?",
+      "options": [
+        "Wer ist zuständig? Was ist in welcher Reihenfolge zu tun? Wie wird kommuniziert?",
+        "Wie teuer ist der Ausfall? Wer ist schuld? Wann kommt das nächste Update?",
+        "Welche Hardware wird gekauft? Wer schreibt den Bericht? Wann ist Urlaub?",
+        "Welche Software ist installiert? Wie alt sind die Server? Wer hat Admin-Rechte?"
+      ],
+      "explanation": "Zuständigkeiten, Handlungsablauf mit Prioritäten und eine Kommunikationsstrategie (intern und gegenüber der Kundschaft) sind das Grundgerüst."
+    },
+    {
+      "section": "2.9",
+      "question": "Was ist ein Penetrationstest?",
+      "options": [
+        "Ein systematischer, autorisierter Angriffsversuch, um Schwachstellen aufzudecken",
+        "Ein Test der maximalen Netzwerkbandbreite",
+        "Ein Leistungstest für Festplatten",
+        "Eine Schulung für neue Mitarbeitende"
+      ],
+      "explanation": "Penetrationstests prüfen die IT-Sicherheit aus Sicht eines Angreifers – mit Erlaubnis und klar festgelegtem Rahmen."
+    },
+    {
+      "section": "2.9",
+      "question": "Welchen Zweck haben Stresstests?",
+      "options": [
+        "Extremsituationen simulieren, Schwachstellen vor dem Ernstfall finden und das Team trainieren",
+        "Die Belastung der Mitarbeitenden messen",
+        "Den Stromverbrauch der Server senken",
+        "Alte Logdateien löschen"
+      ],
+      "explanation": "Stresstests zeigen die Grenzen eines Systems unter hoher Last oder bei Angriffen und dienen zugleich als Übung für das Team."
+    },
+    {
+      "section": "2.9",
+      "question": "Warum sollte ein Notfallplan regelmäßig geübt werden?",
+      "options": [
+        "Weil ein nie geübter Plan im Ernstfall selten funktioniert",
+        "Weil Notfallpläne sonst automatisch ablaufen",
+        "Weil Übungen gesetzlich jede Woche vorgeschrieben sind",
+        "Weil dabei die Hardware getestet wird"
+      ],
+      "explanation": "Übungen, z. B. ein simulierter Ausfall pro Quartal, decken Lücken im Plan auf und machen das Team sicher im Ablauf."
+    },
+    {
+      "section": "2.10",
       "question": "Was ist ein Runbook?",
       "options": [
         "Eine Schritt-für-Schritt-Anleitung für bekannte Störungen und Routineaufgaben",
@@ -353,7 +629,7 @@
       "explanation": "Runbooks beschreiben Auslöser, Auswirkung, Diagnose, Lösungsschritte, Automatisierung und Eskalation. Erst manuell erprobt, dann automatisiert."
     },
     {
-      "section": "2.9",
+      "section": "2.10",
       "question": "Was bedeutet „Docs as Code“?",
       "options": [
         "Dokumentation wird als Markdown neben den Skripten in Git versioniert",
@@ -364,7 +640,7 @@
       "explanation": "So wird Dokumentation zusammen mit dem Code geändert, geprüft und versioniert."
     },
     {
-      "section": "2.9",
+      "section": "2.10",
       "question": "Wie heißt in ITIL die Wissensdatenbank für bekannte Fehler und ihre Lösungen?",
       "options": [
         "Known Error Database",
@@ -375,7 +651,7 @@
       "explanation": "Aus Störungen lernen: Bekannte Fehler und Lösungen werden in der Known Error Database gesammelt."
     },
     {
-      "section": "2.9",
+      "section": "2.10",
       "question": "Im Beispiel-Runbook „Laufwerk C: fast voll“ ist nach der Bereinigung immer noch weniger als 10 % frei. Was passiert?",
       "options": [
         "Eskalation: Ticket an das Server-Team mit hoher Priorität",
@@ -384,6 +660,17 @@
         "Nichts, der Alarm wird ignoriert"
       ],
       "explanation": "Der Abschnitt Eskalation legt fest, wer übernimmt, wenn die Automatisierung nicht reicht."
+    },
+    {
+      "section": "2.10",
+      "question": "Wie lässt sich der Wissenstransfer im Team fördern?",
+      "options": [
+        "Störungen gemeinsam bearbeiten, Einarbeitungspläne nutzen und kurze interne Vorträge halten",
+        "Wissen nur der Teamleitung zugänglich machen",
+        "Auf Dokumentation verzichten, um Zeit zu sparen",
+        "Jede Person dokumentiert nur für sich selbst"
+      ],
+      "explanation": "Damit Wissen nicht nur in einzelnen Köpfen steckt, muss es aktiv weitergegeben und zentral auffindbar sein."
     }
   ]
 }

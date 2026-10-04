@@ -5,6 +5,7 @@
 ---
 
 ## 2026-10-04
+- Kapitel 02 „Überwachen wiederkehrender Systemabläufe“ überarbeitet (Freigabe per Word-Entwurf): 6 Schritte der Systemüberwachung mit Werkzeugkategorien, Übung mit 4 Szenarien und Lösungsvorschlag, Mustererkennung und Vorhersage-Methoden, 6 Fallstricke, Frühwarnsysteme, prädiktive Wartung, neuer Abschnitt „Vorbereitung auf den Ernstfall“ (Notfallplan, Penetrations- und Stresstests), „Fazit zu Modul 1“. Wissenstest 34 → 60 Fragen; Abschnitt Dokumentation von 2.9 auf 2.10 verschoben, 2.9 ist jetzt „Vorbereitung auf den Ernstfall“.
 - Zugangsschutz (F26): Lerninhalte nur noch mit Anmeldung, offen bleiben Startseite, „Über uns“, Anmelden, Registrieren. Fortschritt ohne Anmeldung (F12) ist damit nur noch Rückfall; F23/F24 angepasst.
 - Neu: Registrierung, Anmeldung und Abmelden (F21, F22); Fortschritt angemeldeter Nutzer in SQLite (F23); Browser-Fortschritt wird beim Anmelden/Registrieren übernommen (F24); Sicherheitsanforderungen (F25). „Kein Login“ aus den Nicht-Zielen der Spec entfernt. Die Plattform braucht damit einen Node-Server (kein reiner statischer Export mehr).
 - Testkonto `testuser` per `npm run db:seed` angelegt.
