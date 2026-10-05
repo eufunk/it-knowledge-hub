@@ -7,7 +7,8 @@ Erledigte Punkte werden abgehakt und mit Datum versehen, nicht gelöscht.
 
 ## Offene Entscheidungen
 - [ ] **Logo / Name der Plattform** – Ist „IT Knowledge Hub“ als Text-Logo in Ordnung oder wird ein eigenes Logo (SVG) erstellt? *(Bis dahin: Text-Logo als Platzhalter)*
-- [ ] **Kursbild** für `system-und-prozessautomatisierung-grundlagen` – eigenes Bild oder Stockfoto (z. B. Unsplash, Quelle und Lizenz notieren)? *(Bis dahin: Platzhalterbild)*
+- [ ] **Kursbilder** für `system-und-prozessautomatisierung-grundlagen` und `netzwerkautomatisierung-und-tools` – eigene Bilder oder Stockfotos (z. B. Unsplash, Quelle und Lizenz notieren)? *(Bis dahin: Platzhalterbilder in Indigo bzw. Grün)*
+- [ ] **Kurs „Netzwerkautomatisierung und Tools“: weitere Module** – bisher nur Modul 1 „Automatisierung lokaler Wartungsaufgaben“; weitere Module übernehmen, sobald `Netzwerkautomatisierung_und_Tools.docx` sie enthält
 - [ ] **Hosting** – Vercel oder GitHub Pages (statischer Export via `output: "export"`)? Danach Deployment einrichten.
 
 ## Features (nach dem MVP)

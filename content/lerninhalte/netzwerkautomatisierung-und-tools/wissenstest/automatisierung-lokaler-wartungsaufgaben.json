@@ -1,0 +1,675 @@
+{
+  "sections": {
+    "1.1": "Grundprinzipien der Automatisierung",
+    "1.2": "RPA und IPA",
+    "1.3": "Vorteile und Herausforderungen",
+    "1.4": "Planung und Implementierung",
+    "1.5": "Automatisierung im Alltag",
+    "1.6": "Coding Challenge (Python)"
+  },
+  "questions": [
+    {
+      "section": "1.1",
+      "question": "Was bezeichnet Automatisierung?",
+      "options": [
+        "Den Einsatz von Technologie, um Prozesse und Aufgaben ohne menschliches Eingreifen auszuführen",
+        "Die vollständige Abschaffung menschlicher Kontrolle über IT-Systeme",
+        "Das manuelle Abarbeiten von Checklisten",
+        "Den Kauf neuer Hardware"
+      ],
+      "explanation": "Automatisierung führt Abläufe per Software, Roboter oder mechanischen Systemen aus – mit dem Ziel, Effizienz zu steigern, Fehler zu vermeiden und gleichbleibende Ergebnisse zu erreichen."
+    },
+    {
+      "section": "1.1",
+      "question": "Welches Grundprinzip besagt, dass gleiche Eingaben zum gleichen Ergebnis führen?",
+      "options": [
+        "Wiederholbarkeit",
+        "Auslöser",
+        "Rückmeldung",
+        "Menschliche Kontrolle"
+      ],
+      "explanation": "Wiederholbarkeit macht Automatisierung verlässlich: Der einmal festgelegte Ablauf liefert bei gleichen Eingaben immer dasselbe Ergebnis."
+    },
+    {
+      "section": "1.1",
+      "question": "Was kann eine Automatisierung auslösen?",
+      "options": [
+        "Ein Zeitpunkt, ein Ereignis oder ein Aufruf",
+        "Nur ein Neustart des Rechners",
+        "Ausschließlich ein Mausklick",
+        "Nur ein Stromausfall"
+      ],
+      "explanation": "Auslöser starten den Ablauf, z. B. täglich um 18 Uhr (Zeitpunkt), beim Anmelden (Ereignis) oder per Skriptaufruf."
+    },
+    {
+      "section": "1.1",
+      "question": "Richtig oder falsch? Bei Automatisierung braucht es keine menschliche Kontrolle mehr.",
+      "options": [
+        "Falsch",
+        "Richtig"
+      ],
+      "explanation": "Falsch. Der Mensch legt die Regeln fest, überwacht die Ausführung und greift bei Ausnahmen ein."
+    },
+    {
+      "section": "1.1",
+      "question": "Was gibt die Roboterdichte an?",
+      "options": [
+        "Die Zahl der Industrieroboter je 10.000 Beschäftigte im Verarbeitenden Gewerbe",
+        "Das Gewicht eines Industrieroboters",
+        "Die Zahl der Roboter pro Quadratkilometer",
+        "Den Anteil der Roboter am Umsatz"
+      ],
+      "explanation": "Die Roboterdichte zeigt, wie weit die Automatisierung in der Industrie fortgeschritten ist."
+    },
+    {
+      "section": "1.1",
+      "question": "Welches Land hatte 2022 die höchste Roboterdichte?",
+      "options": [
+        "Südkorea",
+        "Deutschland",
+        "China",
+        "USA"
+      ],
+      "explanation": "Südkorea lag 2022 mit 1.012 Robotern je 10.000 Beschäftigte vorn, Deutschland folgte mit 415 auf Platz zwei."
+    },
+    {
+      "section": "1.1",
+      "question": "In welchem Land ist die Roboterdichte zwischen 2017 und 2022 am stärksten gewachsen?",
+      "options": [
+        "China",
+        "Frankreich",
+        "Kanada",
+        "Italien"
+      ],
+      "explanation": "In China stieg sie von 97 auf 392 – sie hat sich etwa vervierfacht."
+    },
+    {
+      "section": "1.1",
+      "question": "Mit welchem Werkzeug führt man unter Linux Aufgaben zeitgesteuert aus?",
+      "options": [
+        "<code>cron</code> oder systemd-Timer",
+        "<code>chkdsk</code>",
+        "<code>logrotate</code>",
+        "Windows Update"
+      ],
+      "explanation": "Unter Linux planen <code>cron</code> und systemd-Timer wiederkehrende Aufgaben, unter Windows die Aufgabenplanung."
+    },
+    {
+      "section": "1.1",
+      "question": "Welches Linux-Werkzeug begrenzt die Größe von Logdateien?",
+      "options": [
+        "<code>logrotate</code>",
+        "<code>rsync</code>",
+        "<code>smartctl</code>",
+        "<code>winget</code>"
+      ],
+      "explanation": "<code>logrotate</code> rotiert, komprimiert und löscht alte Logdateien automatisch. <code>rsync</code> sichert Daten, <code>smartctl</code> prüft Datenträger."
+    },
+    {
+      "section": "1.2",
+      "question": "Wofür steht RPA?",
+      "options": [
+        "Robotic Process Automation",
+        "Remote Process Access",
+        "Rapid Program Assembly",
+        "Routine Protocol Analysis"
+      ],
+      "explanation": "RPA setzt Software-Roboter ein, die regelbasierte, sich wiederholende Aufgaben ausführen."
+    },
+    {
+      "section": "1.2",
+      "question": "Wie arbeiten RPA-Software-Roboter?",
+      "options": [
+        "Sie bedienen die Oberflächen von Anwendungen wie ein Mensch: klicken, tippen, Daten übertragen",
+        "Sie bauen die bestehenden Systeme komplett neu",
+        "Sie arbeiten nur mit physischen Robotern in der Fertigung",
+        "Sie treffen ausschließlich Entscheidungen auf Basis von KI"
+      ],
+      "explanation": "RPA automatisiert Aufgaben über die Oberflächen, ohne die bestehenden Systeme zu verändern."
+    },
+    {
+      "section": "1.2",
+      "question": "Welches Werkzeug ist ein typisches RPA-Werkzeug?",
+      "options": [
+        "UiPath",
+        "Prometheus",
+        "pytest",
+        "logrotate"
+      ],
+      "explanation": "UiPath, Blue Prism und Automation Anywhere sind bekannte RPA-Werkzeuge."
+    },
+    {
+      "section": "1.2",
+      "question": "Was unterscheidet IPA von RPA?",
+      "options": [
+        "IPA verbindet RPA mit KI, maschinellem Lernen, Sprachverarbeitung und Bilderkennung",
+        "IPA kann nur strukturierte Formulare verarbeiten",
+        "IPA arbeitet ohne Software",
+        "IPA ist nur ein anderer Name für RPA"
+      ],
+      "explanation": "Dadurch bewältigt IPA auch komplexe und weniger strukturierte Aufgaben, für die bisher menschliches Urteilsvermögen nötig war."
+    },
+    {
+      "section": "1.2",
+      "question": "Welche Aufgabe ist ein typisches Beispiel für IPA?",
+      "options": [
+        "Unstrukturierte E-Mails und gescannte Dokumente auslesen und klassifizieren",
+        "Daten aus einem festen Formular in eine Tabelle übertragen",
+        "Eine Datei nach festem Zeitplan kopieren",
+        "Den Bildschirm sperren"
+      ],
+      "explanation": "IPA verarbeitet auch unstrukturierte Daten wie E-Mails, Scans oder Sprache. Feste Formulare sind ein klassischer Fall für RPA."
+    },
+    {
+      "section": "1.2",
+      "question": "Welche Eingabedaten verarbeitet RPA typischerweise?",
+      "options": [
+        "Strukturierte Daten, z. B. Formulare und Tabellen",
+        "Gesprochene Sprache",
+        "Unsortierte Fotos",
+        "Handschriftliche Notizen"
+      ],
+      "explanation": "RPA folgt festen Regeln und braucht deshalb strukturierte Eingaben."
+    },
+    {
+      "section": "1.2",
+      "question": "Richtig oder falsch? Ein RPA-Roboter passt sich selbstständig an, wenn sich die Oberfläche einer Anwendung ändert.",
+      "options": [
+        "Falsch",
+        "Richtig"
+      ],
+      "explanation": "Falsch. RPA arbeitet nach festen Regeln und muss bei Änderungen neu eingerichtet werden. Anpassungsfähig ist eher IPA."
+    },
+    {
+      "section": "1.2",
+      "question": "Wie viele Unternehmen messen der Prozessautomatisierung laut Befragung eine große oder sehr große Bedeutung zu?",
+      "options": [
+        "Knapp drei Viertel (73 Prozent)",
+        "Etwa ein Zehntel",
+        "Genau die Hälfte",
+        "Alle Unternehmen"
+      ],
+      "explanation": "73 Prozent der befragten Unternehmen halten Prozessautomatisierung für wichtig, vielerorts ist sie in den strategischen Zielen verankert."
+    },
+    {
+      "section": "1.3",
+      "question": "Was bedeutet Skalierbarkeit als Vorteil der Automatisierung?",
+      "options": [
+        "Die Kapazität lässt sich durch zusätzliche Ressourcen erhöhen, ohne Schulung oder Einarbeitung",
+        "Die Software wird mit der Zeit langsamer",
+        "Automatisierung funktioniert nur für kleine Datenmengen",
+        "Jede Änderung erfordert neue Mitarbeitende"
+      ],
+      "explanation": "Beispiel: Cloud-Dienste wachsen bei steigender Nachfrage schnell mit."
+    },
+    {
+      "section": "1.3",
+      "question": "Warum reduziert Automatisierung Fehler?",
+      "options": [
+        "Automatisierte Systeme arbeiten nach festen Regeln und werden nicht müde oder unaufmerksam",
+        "Weil Fehler automatisch gelöscht werden",
+        "Weil Automatisierung nie getestet werden muss",
+        "Weil Menschen nicht mehr eingreifen dürfen"
+      ],
+      "explanation": "Ein Beispiel ist die Rechtschreibprüfung, die Tippfehler sofort erkennt."
+    },
+    {
+      "section": "1.3",
+      "question": "Welche Herausforderung beschreibt, dass Einsparungen oft erst später eintreten?",
+      "options": [
+        "Hohe Anfangsinvestitionen",
+        "Skalierbarkeit",
+        "Fehlerreduktion",
+        "Verbesserte Qualität"
+      ],
+      "explanation": "Hardware, Software und Schulungen kosten zunächst Geld, die Einsparungen kommen erst später."
+    },
+    {
+      "section": "1.3",
+      "question": "Was zeigte der Angriff auf das ukrainische Stromnetz im Dezember 2015?",
+      "options": [
+        "Dass vernetzte automatisierte Systeme angegriffen und manipuliert werden können",
+        "Dass Automatisierung Stromkosten immer senkt",
+        "Dass Stromnetze nicht automatisiert sind",
+        "Dass RPA Stromausfälle verhindert"
+      ],
+      "explanation": "Angreifer übernahmen Steuerungssysteme und verursachten einen großflächigen Stromausfall – ein Beispiel für Sicherheitsrisiken."
+    },
+    {
+      "section": "1.3",
+      "question": "Was beschreibt die Herausforderung „Abhängigkeit von Technologie“?",
+      "options": [
+        "Fällt ein automatisiertes System aus, entstehen erhebliche Störungen",
+        "Technologie wird nie veraltet",
+        "Automatisierung braucht keinen Strom",
+        "Mitarbeitende werden unabhängiger"
+      ],
+      "explanation": "Beispiel: Fallen automatisierte Kassensysteme aus, entstehen Warteschlangen und Umsatzeinbußen."
+    },
+    {
+      "section": "1.3",
+      "question": "Wofür steht ERP?",
+      "options": [
+        "Enterprise Resource Planning",
+        "Error Recovery Protocol",
+        "External Robot Process",
+        "Electronic Report Printing"
+      ],
+      "explanation": "Ein ERP-System verbindet alle Geschäftsprozesse – seine Einführung ist ein Beispiel für die Komplexität der Implementierung."
+    },
+    {
+      "section": "1.4",
+      "question": "Was ist der erste der fünf Schritte bei der Planung einer Automatisierung?",
+      "options": [
+        "Klare Zielsetzung und Planung",
+        "Werkzeuge kaufen",
+        "Produktivsystem umstellen",
+        "Monitoring einrichten"
+      ],
+      "explanation": "Erst wenn klar ist, was und warum automatisiert wird, lassen sich die richtigen Werkzeuge auswählen."
+    },
+    {
+      "section": "1.4",
+      "question": "Was prüft eine Machbarkeitsstudie?",
+      "options": [
+        "Ob technische Voraussetzungen, Ressourcen und Kenntnisse vorhanden sind",
+        "Wie viele Fehler ein Skript enthält",
+        "Welche Farbe das Dashboard hat",
+        "Wie schnell das Internet ist"
+      ],
+      "explanation": "Die Machbarkeitsstudie klärt vor dem Start, ob das Vorhaben realistisch umsetzbar ist."
+    },
+    {
+      "section": "1.4",
+      "question": "Welche Werkzeugart passt zu Konfigurationsverwaltung und Serverbereitstellung?",
+      "options": [
+        "Automatisierungsplattformen wie Ansible, Puppet oder Chef",
+        "RPA-Werkzeuge wie UiPath",
+        "Tabellenkalkulationen",
+        "E-Mail-Filter"
+      ],
+      "explanation": "Ansible, Puppet und Chef verwalten Konfigurationen, stellen Server bereit und konfigurieren Netzwerke."
+    },
+    {
+      "section": "1.4",
+      "question": "Wofür eignet sich die Python-Bibliothek PyAutoGUI?",
+      "options": [
+        "Maus und Tastatur steuern",
+        "E-Mails verschlüsseln",
+        "Datenbanken sichern",
+        "Logdateien rotieren"
+      ],
+      "explanation": "PyAutoGUI automatisiert Eingaben an der Oberfläche. Für Web-Schnittstellen nutzt man z. B. Requests."
+    },
+    {
+      "section": "1.4",
+      "question": "Warum testet man Automatisierungen in einer isolierten Testumgebung?",
+      "options": [
+        "Damit das Produktivsystem nicht gefährdet wird",
+        "Weil Tests dort schneller fehlschlagen",
+        "Weil Produktivsysteme keine Skripte ausführen",
+        "Damit niemand die Ergebnisse sieht"
+      ],
+      "explanation": "Fehler in der Testumgebung richten keinen Schaden an echten Daten oder Diensten an."
+    },
+    {
+      "section": "1.4",
+      "question": "Was bedeutet inkrementelles Testen?",
+      "options": [
+        "In kleinen Schritten testen, um Fehler früh zu erkennen",
+        "Nur am Ende einmal alles testen",
+        "Tests ausschließlich manuell durchführen",
+        "Nur die Benutzeroberfläche testen"
+      ],
+      "explanation": "Dazu teilt man die Automatisierung in kleine, wiederverwendbare Module auf, z. B. für Extraktion, Verarbeitung und Export."
+    },
+    {
+      "section": "1.4",
+      "question": "Welches Python-Modul übernimmt die Protokollierung?",
+      "options": [
+        "<code>logging</code>",
+        "<code>smtplib</code>",
+        "<code>shutil</code>",
+        "<code>requests</code>"
+      ],
+      "explanation": "<code>logging</code> schreibt Meldungen mit Zeitstempel und Stufe in eine Datei. <code>log.exception()</code> speichert zusätzlich die vollständige Fehlerspur."
+    },
+    {
+      "section": "1.4",
+      "question": "Warum steht im <code>logging</code>-Beispiel <code>encoding=\"utf-8\"</code>?",
+      "options": [
+        "Sonst erscheinen Umlaute unter Windows falsch",
+        "Damit die Logdatei verschlüsselt wird",
+        "Weil Python sonst nicht startet",
+        "Damit die Datei kleiner wird"
+      ],
+      "explanation": "Ohne Angabe nutzt Windows oft eine andere Zeichenkodierung, und Umlaute werden falsch gespeichert."
+    },
+    {
+      "section": "1.4",
+      "question": "Woher kommt im E-Mail-Beispiel das SMTP-Passwort?",
+      "options": [
+        "Aus einer Umgebungsvariable",
+        "Direkt aus dem Quellcode",
+        "Aus dem Betreff der E-Mail",
+        "Aus der Logdatei"
+      ],
+      "explanation": "<code>os.environ[\"SMTP_PASSWORT\"]</code> liest das Passwort aus der Umgebung. Zugangsdaten gehören nie in den Code."
+    },
+    {
+      "section": "1.4",
+      "question": "Was bewirkt <code>server.starttls()</code> im E-Mail-Beispiel?",
+      "options": [
+        "Es verschlüsselt die Verbindung zum Mailserver",
+        "Es startet den Mailserver neu",
+        "Es löscht alte E-Mails",
+        "Es prüft die Rechtschreibung"
+      ],
+      "explanation": "STARTTLS schaltet eine bestehende Verbindung auf TLS-Verschlüsselung um, bevor Anmeldedaten gesendet werden."
+    },
+    {
+      "section": "1.4",
+      "question": "Was ist ein Slack-Webhook?",
+      "options": [
+        "Eine geheime Adresse, an die ein Skript Nachrichten für einen Kanal schickt",
+        "Ein Virenscanner für Slack",
+        "Ein Kabel zum Server",
+        "Ein Passwort-Tresor"
+      ],
+      "explanation": "Wer die Webhook-Adresse kennt, kann in den Kanal posten – deshalb gehört sie wie ein Passwort nicht in den Code."
+    },
+    {
+      "section": "1.4",
+      "question": "Richtig oder falsch? Zugangsdaten wie Webhook-Adressen dürfen im Code stehen, wenn das Skript nur intern genutzt wird.",
+      "options": [
+        "Falsch",
+        "Richtig"
+      ],
+      "explanation": "Falsch. Wer sie kennt, kann in Deinem Namen Nachrichten senden. Sichere Alternativen sind Umgebungsvariablen, geschützte Konfigurationsdateien oder ein Passwort-Tresor."
+    },
+    {
+      "section": "1.4",
+      "question": "Warum wartet die Funktion <code>mit_wiederholung</code> zwischen den Versuchen immer länger?",
+      "options": [
+        "Damit das System bei vorübergehenden Fehlern nicht überlastet wird",
+        "Damit das Skript möglichst lange läuft",
+        "Weil Python sonst abstürzt",
+        "Damit die Logdatei größer wird"
+      ],
+      "explanation": "Begrenzte Versuche mit wachsenden Pausen (5, 10, … Sekunden) geben z. B. einem kurz gestörten Netzwerk Zeit, sich zu erholen."
+    },
+    {
+      "section": "1.4",
+      "question": "Was passiert in <code>mit_wiederholung</code>, wenn auch der letzte Versuch scheitert?",
+      "options": [
+        "Der Fehler wird mit <code>raise</code> weitergegeben",
+        "Das Skript versucht es endlos weiter",
+        "Der Fehler wird stillschweigend ignoriert",
+        "Der Rechner wird neu gestartet"
+      ],
+      "explanation": "Nach dem letzten Versuch gilt die Aufgabe als endgültig gescheitert – der Aufrufer muss reagieren, z. B. mit einer Benachrichtigung."
+    },
+    {
+      "section": "1.4",
+      "question": "Was prüfen Integrationstests?",
+      "options": [
+        "Das Zusammenspiel mehrerer Teile",
+        "Nur eine einzelne Funktion",
+        "Nur die Rechtschreibung",
+        "Die Hardware des Servers"
+      ],
+      "explanation": "Unit-Tests prüfen einzelne Funktionen, Integrationstests das Zusammenspiel, End-to-End-Tests den gesamten Ablauf."
+    },
+    {
+      "section": "1.4",
+      "question": "Welches Werkzeug eignet sich zum Testen von Python-Skripten?",
+      "options": [
+        "pytest",
+        "Selenium",
+        "Nagios",
+        "Blue Prism"
+      ],
+      "explanation": "pytest ist das verbreitete Testwerkzeug für Python. Selenium testet Webanwendungen, Nagios überwacht Systeme."
+    },
+    {
+      "section": "1.4",
+      "question": "Wofür wurde Prometheus speziell entwickelt?",
+      "options": [
+        "Für das Monitoring dynamischer Umgebungen wie Container und Cloud",
+        "Für die Textverarbeitung",
+        "Für RPA in Buchhaltungssystemen",
+        "Für E-Mail-Filter"
+      ],
+      "explanation": "Prometheus sammelt Messwerte und löst Alarme aus. Nagios ist ein Open-Source-Werkzeug zur Überwachung von Netzwerken und Systemen."
+    },
+    {
+      "section": "1.4",
+      "question": "Wonach werden Risiken in einer Risikomatrix eingeordnet?",
+      "options": [
+        "Nach Eintrittswahrscheinlichkeit und Auswirkungen",
+        "Nach Alphabet",
+        "Nach dem Datum der Entdeckung",
+        "Nach der Zahl betroffener Dateien"
+      ],
+      "explanation": "So lassen sich die größten Risiken zuerst behandeln."
+    },
+    {
+      "section": "1.4",
+      "question": "Was besagt das Least-Privilege-Prinzip?",
+      "options": [
+        "Jede Person erhält nur die Rechte, die sie für ihre Arbeit braucht",
+        "Alle erhalten Administratorrechte",
+        "Rechte werden nie überprüft",
+        "Nur Gäste dürfen Skripte ausführen"
+      ],
+      "explanation": "Wenige Rechte begrenzen den Schaden bei Fehlern oder Angriffen. Rechte sollten regelmäßig überprüft werden."
+    },
+    {
+      "section": "1.4",
+      "question": "Welches Verschlüsselungsprotokoll ist heute Standard für sichere Kommunikation?",
+      "options": [
+        "TLS",
+        "SSL 2.0",
+        "FTP",
+        "Telnet"
+      ],
+      "explanation": "TLS ist der Standard. Das ältere SSL gilt als unsicher, FTP und Telnet übertragen unverschlüsselt."
+    },
+    {
+      "section": "1.4",
+      "question": "Was bedeuten redundante Systeme?",
+      "options": [
+        "Fällt ein Gerät aus, übernimmt ein anderes",
+        "Systeme werden doppelt bezahlt",
+        "Daten werden nur einmal gespeichert",
+        "Updates werden nie eingespielt"
+      ],
+      "explanation": "Redundanz verhindert, dass ein einzelner Ausfall den ganzen Dienst lahmlegt."
+    },
+    {
+      "section": "1.5",
+      "question": "Welche Aktion kann ein E-Mail-Filter ausführen?",
+      "options": [
+        "Nachrichten in einen Ordner verschieben, markieren, weiterleiten oder löschen",
+        "Den Computer formatieren",
+        "Das WLAN-Passwort ändern",
+        "Neue E-Mail-Konten erstellen"
+      ],
+      "explanation": "Filter prüfen eingehende Nachrichten nach Absender, Betreff oder Schlüsselwörtern und führen dann eine festgelegte Aktion aus."
+    },
+    {
+      "section": "1.5",
+      "question": "Was sichert ein inkrementelles Backup?",
+      "options": [
+        "Nur die Änderungen seit dem letzten Backup",
+        "Immer alle Daten",
+        "Nur die Änderungen seit dem letzten Vollbackup",
+        "Nur Systemdateien"
+      ],
+      "explanation": "Ein differenzielles Backup sichert dagegen die Änderungen seit dem letzten Vollbackup, ein Vollbackup alle Daten."
+    },
+    {
+      "section": "1.5",
+      "question": "Was sichert ein differenzielles Backup?",
+      "options": [
+        "Die Änderungen seit dem letzten Vollbackup",
+        "Nur die Änderungen seit dem letzten Backup",
+        "Immer alle Daten",
+        "Nur Dateien mit der Endung .txt"
+      ],
+      "explanation": "Differenzielle Backups wachsen bis zum nächsten Vollbackup, die Wiederherstellung braucht nur das Vollbackup und das letzte differenzielle Backup."
+    },
+    {
+      "section": "1.5",
+      "question": "Wie viele Befragte haben in den letzten zwölf Monaten kein einziges Mal ihre Daten gesichert?",
+      "options": [
+        "16 Prozent",
+        "1 Prozent",
+        "50 Prozent",
+        "90 Prozent"
+      ],
+      "explanation": "16 Prozent sicherten gar nicht, ein Viertel nur ein- oder zweimal – ein starkes Argument für automatische Backups."
+    },
+    {
+      "section": "1.5",
+      "question": "Was ist das Internet der Dinge (IoT)?",
+      "options": [
+        "Ein Netzwerk physischer Geräte mit Sensoren, Software und Netzwerkanschluss, die Daten austauschen",
+        "Ein soziales Netzwerk für Unternehmen",
+        "Eine Programmiersprache",
+        "Ein Virenscanner"
+      ],
+      "explanation": "Smarte Haushaltsgeräte wie Saugroboter oder Thermostate gehören zum IoT."
+    },
+    {
+      "section": "1.5",
+      "question": "Welche Maßnahme schützt smarte Geräte im Haushalt?",
+      "options": [
+        "Standardpasswörter ändern, Updates einspielen und die Geräte in einem eigenen WLAN betreiben",
+        "Die Geräte nie aktualisieren",
+        "Alle Geräte ins Hauptnetz mit dem Arbeitsrechner hängen",
+        "Das Standardpasswort aufschreiben und am Gerät aufkleben"
+      ],
+      "explanation": "Jedes vernetzte Gerät ist ein möglicher Angriffspunkt. Ein Gastnetz trennt es von wichtigen Rechnern."
+    },
+    {
+      "section": "1.5",
+      "question": "Was ist ein Makro?",
+      "options": [
+        "Eine festgelegte Folge von Anweisungen, die auf Knopfdruck automatisch abläuft",
+        "Ein besonders großes Dokument",
+        "Ein Virenscanner in Excel",
+        "Eine Datenbank"
+      ],
+      "explanation": "Makros lassen sich aufzeichnen, bearbeiten und ausführen, z. B. in Excel oder Google Sheets."
+    },
+    {
+      "section": "1.5",
+      "question": "Richtig oder falsch? Makros in Dokumenten aus unbekannten Quellen sollte man vorsichtshalber aktivieren.",
+      "options": [
+        "Falsch",
+        "Richtig"
+      ],
+      "explanation": "Falsch. Makros sind ein häufiger Weg für Schadsoftware. Nur Makros aus vertrauenswürdigen Quellen aktivieren."
+    },
+    {
+      "section": "1.5",
+      "question": "Welche Werkzeuge eignen sich für automatisierte Berichte?",
+      "options": [
+        "Microsoft Power BI oder Tableau",
+        "Saugroboter",
+        "logrotate",
+        "Telnet"
+      ],
+      "explanation": "Sie werden mit Datenquellen verbunden, füllen Vorlagen automatisch und versenden Berichte regelmäßig."
+    },
+    {
+      "section": "1.6",
+      "question": "Was bewirkt <code>ziel.mkdir(parents=True, exist_ok=True)</code> in der Musterlösung?",
+      "options": [
+        "Es legt das Zielverzeichnis samt fehlender Elternordner an und meldet keinen Fehler, wenn es schon existiert",
+        "Es löscht das Zielverzeichnis",
+        "Es kopiert alle Dateien",
+        "Es prüft die Logdatei"
+      ],
+      "explanation": "<code>parents=True</code> legt auch fehlende Zwischenordner an, <code>exist_ok=True</code> verhindert einen Fehler bei vorhandenem Ordner."
+    },
+    {
+      "section": "1.6",
+      "question": "Warum öffnet die Funktion <code>log()</code> die Logdatei mit dem Modus <code>\"a\"</code>?",
+      "options": [
+        "Damit neue Meldungen angehängt statt die Datei überschrieben wird",
+        "Damit die Datei nur gelesen wird",
+        "Damit die Datei gelöscht wird",
+        "Weil <code>\"a\"</code> für ASCII steht"
+      ],
+      "explanation": "<code>\"a\"</code> steht für append (anhängen). So bleiben die Einträge früherer Läufe erhalten."
+    },
+    {
+      "section": "1.6",
+      "question": "Was kopiert <code>shutil.copy2()</code> zusätzlich zum Dateiinhalt?",
+      "options": [
+        "Den Zeitstempel der letzten Änderung",
+        "Den gesamten Ordner mit Unterordnern",
+        "Die Logdatei",
+        "Nichts, es verschiebt die Datei"
+      ],
+      "explanation": "<code>copy2</code> übernimmt Metadaten wie den Änderungszeitpunkt, <code>copy</code> nur den Inhalt."
+    },
+    {
+      "section": "1.6",
+      "question": "Welchen Exit-Code liefert die Musterlösung, wenn einzelne Dateien nicht kopiert werden konnten?",
+      "options": [
+        "2",
+        "0",
+        "1",
+        "-1"
+      ],
+      "explanation": "0 bedeutet alles gut, 1 Quelle fehlt, 2 einzelne Dateien fehlgeschlagen. Aufgabenplanung und Monitoring können darauf reagieren."
+    },
+    {
+      "section": "1.6",
+      "question": "Was passiert, wenn während des Backups eine Datei von einem anderen Programm gesperrt ist?",
+      "options": [
+        "Der Fehler wird im Log festgehalten, die übrigen Dateien werden weiter kopiert",
+        "Das ganze Backup bricht sofort ab",
+        "Die gesperrte Datei wird gelöscht",
+        "Das Skript wartet endlos"
+      ],
+      "explanation": "Der <code>try</code>-<code>except OSError</code>-Block fängt den Fehler pro Datei ab, sodass das Backup mit den übrigen Dateien weiterläuft."
+    },
+    {
+      "section": "1.6",
+      "question": "Wie behandelt die Musterlösung Unterordner im Quellverzeichnis?",
+      "options": [
+        "Sie überspringt sie mit <code>is_file()</code>",
+        "Sie kopiert sie vollständig",
+        "Sie löscht sie",
+        "Sie bricht mit Fehler ab"
+      ],
+      "explanation": "Für Unterordner müsste man <code>rglob(\"*\")</code> verwenden und die Ordnerstruktur im Ziel nachbauen."
+    },
+    {
+      "section": "1.6",
+      "question": "Warum verwendet die Musterlösung <code>pathlib.Path</code>?",
+      "options": [
+        "Damit Pfade plattformunabhängig behandelt werden und das Skript unter Windows und Linux läuft",
+        "Weil Python ohne pathlib keine Dateien öffnen kann",
+        "Um Dateien zu verschlüsseln",
+        "Um E-Mails zu senden"
+      ],
+      "explanation": "<code>Path</code> kümmert sich um die unterschiedlichen Pfadtrenner und bietet bequeme Methoden wie <code>iterdir()</code> oder <code>mkdir()</code>."
+    },
+    {
+      "section": "1.6",
+      "question": "Wie startet man <code>backup.py</code> unter Linux täglich um 18 Uhr?",
+      "options": [
+        "Mit einem cron-Eintrag <code>0 18 * * * /usr/bin/python3 /opt/skripte/backup.py …</code>",
+        "Mit <code>chkdsk /f</code>",
+        "Mit einem E-Mail-Filter",
+        "Mit <code>logrotate -d</code>"
+      ],
+      "explanation": "Die fünf Felder bedeuten Minute, Stunde, Tag, Monat, Wochentag. Unter Windows übernimmt das <code>schtasks</code> bzw. die Aufgabenplanung."
+    }
+  ]
+}

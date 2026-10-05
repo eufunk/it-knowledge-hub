@@ -187,6 +187,13 @@ Quelle: `System_und_Prozessautomatisierung_Grundlagen.docx` (Kapitel; Kapitel 01
 | 5 Sicherheit und Fehlerbehandlung | 08 Sicherheitsaspekte bei der Automatisierung · 09 Erkennung und Handling von Fehlern in Skripten | 47 · 68 |
 | Anhang | 10 Glossar | – |
 
+### 5.8 Inhalt des zweiten Kurses
+Kurs `netzwerkautomatisierung-und-tools` („Netzwerkautomatisierung und Tools“). Quelle: `Netzwerkautomatisierung_und_Tools.docx` (Stand Oktober 2026), am 2026-10-05 nach Markdown übernommen; den Wissenstest gibt es im Dokument nicht, er wurde neu geschrieben. Die beiden Statista-Grafiken des Dokuments sind als Tabellen mit Quellenangabe übernommen, nicht als Bild (fremdes Material, Text im Bild). Weitere Module folgen, sobald das Dokument sie enthält.
+
+| Modul | Kapitel | Fragen |
+|---|---|---|
+| 1 Automatisierung lokaler Wartungsaufgaben | 01 Automatisierung lokaler Wartungsaufgaben | 61 |
+
 ## 6. Technische Entscheidungen
 
 | Thema | Entscheidung | Begründung |
