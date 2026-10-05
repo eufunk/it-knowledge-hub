@@ -188,11 +188,12 @@ Quelle: `System_und_Prozessautomatisierung_Grundlagen.docx` (Kapitel; Kapitel 01
 | Anhang | 10 Glossar | – |
 
 ### 5.8 Inhalt des zweiten Kurses
-Kurs `netzwerkautomatisierung-und-tools` („Netzwerkautomatisierung und Tools“). Quelle: `Netzwerkautomatisierung_und_Tools.docx` (Stand Oktober 2026), am 2026-10-05 nach Markdown übernommen; den Wissenstest gibt es im Dokument nicht, er wurde neu geschrieben. Die beiden Statista-Grafiken des Dokuments sind als Tabellen mit Quellenangabe übernommen, nicht als Bild (fremdes Material, Text im Bild). Weitere Module folgen, sobald das Dokument sie enthält.
+Kurs `netzwerkautomatisierung-und-tools` („Netzwerkautomatisierung und Tools“). Quelle: `Netzwerkautomatisierung_und_Tools.docx` (Stand Oktober 2026), Kapitel 1 und 2 am 2026-10-05 nach Markdown übernommen; Wissenstests gibt es im Dokument nicht, sie wurden neu geschrieben. Der Lösungsvorschlag zur Übung in Kapitel 2 (im Dokument eigener Abschnitt 2.8) steht eingeklappt direkt unter der Übung. Die beiden Statista-Grafiken des Dokuments sind als Tabellen mit Quellenangabe übernommen, nicht als Bild (fremdes Material, Text im Bild). Weitere Module folgen, sobald das Dokument sie enthält.
 
 | Modul | Kapitel | Fragen |
 |---|---|---|
 | 1 Automatisierung lokaler Wartungsaufgaben | 01 Automatisierung lokaler Wartungsaufgaben | 61 |
+| 2 Automatisierung in Netzwerken und bei Remote-Aufgaben | 02 Automatisierung in Netzwerken und bei Remote-Aufgaben | 59 |
 
 ## 6. Technische Entscheidungen
 

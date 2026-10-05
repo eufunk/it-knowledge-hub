@@ -1,0 +1,656 @@
+{
+  "sections": {
+    "2.1": "Einführung in die Netzwerkautomatisierung",
+    "2.2": "Technologien zur Netzwerkautomatisierung",
+    "2.3": "Sicherheit in der Netzwerkautomatisierung",
+    "2.4": "Einführung in die Remote-Automatisierung",
+    "2.5": "Praktische Beispiele",
+    "2.6": "Erfolgsfaktoren und Fallstricke",
+    "2.7": "Übung und Fazit"
+  },
+  "questions": [
+    {
+      "section": "2.1",
+      "question": "Was ist Netzwerkautomatisierung?",
+      "options": [
+        "Der Einsatz von Software, um Konfiguration, Verwaltung, Überwachung und Wartung von Netzwerkgeräten zu automatisieren",
+        "Das manuelle Verkabeln neuer Switches",
+        "Der Kauf schnellerer Router",
+        "Das Abschalten nicht genutzter Netzwerkdosen"
+      ],
+      "explanation": "Ziel ist, Netzwerkprozesse effizienter, einheitlicher und schneller zu machen und menschliche Fehler zu verringern."
+    },
+    {
+      "section": "2.1",
+      "question": "Welches Grundprinzip sorgt für eine einheitliche, konsistente Verwaltung der Netzwerkressourcen?",
+      "options": [
+        "Zentrale Steuerung über eine Plattform oder einen Controller",
+        "Jedes Gerät einzeln über seine Kommandozeile konfigurieren",
+        "Konfigurationen per E-Mail verschicken",
+        "Geräte nur bei Störungen anfassen"
+      ],
+      "explanation": "Eine zentrale Plattform verwaltet alle Netzwerkressourcen. So gelten überall dieselben Einstellungen."
+    },
+    {
+      "section": "2.1",
+      "question": "Welches Problem löst Netzwerkautomatisierung bei hundert Switches?",
+      "options": [
+        "Eine Änderung muss nicht hundertmal von Hand eingegeben werden",
+        "Die Switches brauchen keinen Strom mehr",
+        "Die Switches werden automatisch ersetzt",
+        "Das Netzwerk braucht keine IP-Adressen mehr"
+      ],
+      "explanation": "Die gewünschte Konfiguration wird einmal beschrieben und auf alle Geräte verteilt – statt hundert Anmeldungen und hundert Gelegenheiten für Tippfehler."
+    },
+    {
+      "section": "2.1",
+      "question": "Womit werden Netzwerkkonfigurationen als Code beschrieben?",
+      "options": [
+        "Mit Programmiersprachen wie Python oder Werkzeugen wie Ansible und Puppet",
+        "Mit Tabellen in einem Textverarbeitungsprogramm",
+        "Mit handschriftlichen Notizen",
+        "Mit Screenshots der Geräteoberfläche"
+      ],
+      "explanation": "Konfiguration als Code lässt sich versionieren, prüfen und beliebig oft gleich ausführen."
+    },
+    {
+      "section": "2.2",
+      "question": "Was trennt Software-Defined Networking (SDN)?",
+      "options": [
+        "Die Steuerungsebene (Control Plane) von der Datenebene (Data Plane)",
+        "Das Internet vom Intranet",
+        "Die Hardware vom Stromnetz",
+        "Gäste vom Büronetz"
+      ],
+      "explanation": "Ein zentraler Controller entscheidet, wohin Daten fließen. Die Switches und Router leiten die Pakete nur noch weiter."
+    },
+    {
+      "section": "2.2",
+      "question": "Wo liegt bei SDN die Steuerungsebene?",
+      "options": [
+        "Zentral im SDN-Controller",
+        "In jedem einzelnen Switch",
+        "Beim Internetanbieter",
+        "In der Firewall jedes Clients"
+      ],
+      "explanation": "Die Datenebene bleibt in den einzelnen Geräten, die Entscheidungen trifft der Controller."
+    },
+    {
+      "section": "2.2",
+      "question": "Was leistet die Datenebene (Data Plane)?",
+      "options": [
+        "Sie leitet die Datenpakete tatsächlich weiter",
+        "Sie entscheidet über die Wege im gesamten Netz",
+        "Sie speichert Backups",
+        "Sie verschlüsselt Passwörter"
+      ],
+      "explanation": "Die Datenebene führt die Weiterleitung aus, die Steuerungsebene legt die Wege fest."
+    },
+    {
+      "section": "2.2",
+      "question": "Was macht Network Function Virtualization (NFV)?",
+      "options": [
+        "Sie führt Netzwerkfunktionen wie Firewalls und Router als Software auf Standard-Servern aus",
+        "Sie verlegt Glasfaserkabel",
+        "Sie ersetzt alle Server durch Spezialgeräte",
+        "Sie schaltet das WLAN ab"
+      ],
+      "explanation": "Statt für jede Funktion ein Spezialgerät zu kaufen, laufen Firewall, Load Balancer oder Router als virtuelle Maschinen oder Container."
+    },
+    {
+      "section": "2.2",
+      "question": "Warum sind neue Netzwerkdienste mit NFV in Minuten verfügbar?",
+      "options": [
+        "Weil keine Hardware installiert werden muss",
+        "Weil NFV keine Konfiguration braucht",
+        "Weil NFV nur kleine Netzwerke unterstützt",
+        "Weil die Dienste schon vorinstalliert sind"
+      ],
+      "explanation": "Eine virtuelle Netzwerkfunktion wird einfach gestartet – Lieferung und Einbau eines Geräts entfallen."
+    },
+    {
+      "section": "2.2",
+      "question": "Richtig oder falsch? SDN und NFV schließen sich gegenseitig aus.",
+      "options": [
+        "Falsch",
+        "Richtig"
+      ],
+      "explanation": "Falsch. Sie ergänzen sich: SDN trennt die Steuerung von den Geräten, NFV trennt die Netzwerkfunktion von der Hardware. Beides macht das Netzwerk per Software steuerbar."
+    },
+    {
+      "section": "2.2",
+      "question": "Wofür nutzt man KI und maschinelles Lernen in Netzwerken?",
+      "options": [
+        "Für Anomalieerkennung, automatisierte Fehlerbehebung und Optimierung des Verkehrs",
+        "Um Kabel zu verlegen",
+        "Um Passwörter im Klartext zu speichern",
+        "Um Router auszuschalten"
+      ],
+      "explanation": "KI analysiert große Mengen an Netzwerkdaten und erkennt Muster, z. B. ungewöhnlichen Verkehr bei einem Angriff."
+    },
+    {
+      "section": "2.2",
+      "question": "Was bedeutet Orchestrierung bei Automatisierungsframeworks?",
+      "options": [
+        "Komplexe Abläufe koordinieren, sodass alle Schritte in der richtigen Reihenfolge ausgeführt werden",
+        "Musik im Rechenzentrum abspielen",
+        "Geräte nach Farbe sortieren",
+        "Nur einen einzigen Befehl ausführen"
+      ],
+      "explanation": "Orchestrierung steuert das Zusammenspiel vieler Schritte und Systeme, z. B. erst sichern, dann ändern, dann prüfen."
+    },
+    {
+      "section": "2.2",
+      "question": "Welches Framework braucht auf den Zielsystemen keinen Agenten und verbindet sich per SSH?",
+      "options": [
+        "Ansible",
+        "Puppet",
+        "Chef",
+        "Kubernetes"
+      ],
+      "explanation": "Ansible beschreibt Aufgaben in YAML-Playbooks und ist deshalb besonders für Netzwerkgeräte verbreitet, auf denen man keine Agenten installieren kann."
+    },
+    {
+      "section": "2.2",
+      "question": "In welchem Format schreibt man Ansible-Playbooks?",
+      "options": [
+        "YAML",
+        "Ruby",
+        "C++",
+        "Binärcode"
+      ],
+      "explanation": "YAML ist gut lesbar. Chef nutzt dagegen eine auf Ruby basierende Sprache."
+    },
+    {
+      "section": "2.2",
+      "question": "Wie beschreibt Puppet die Konfiguration?",
+      "options": [
+        "Deklarativ: als gewünschten Zielzustand, den Puppet dauerhaft sicherstellt",
+        "Als Folge von Mausklicks",
+        "Ausschließlich in Python",
+        "Gar nicht, Puppet ist ein Monitoring-Werkzeug"
+      ],
+      "explanation": "Deklarativ heißt: Man beschreibt, wie das System aussehen soll, nicht jeden einzelnen Schritt dorthin."
+    },
+    {
+      "section": "2.2",
+      "question": "Wofür ist SaltStack (Salt) besonders bekannt?",
+      "options": [
+        "Hohe Geschwindigkeit und Skalierbarkeit",
+        "Grafische Fernsteuerung von Windows",
+        "Videoübertragung",
+        "Rechtschreibprüfung"
+      ],
+      "explanation": "Salt dient dem Konfigurationsmanagement und der Orchestrierung auch sehr großer Umgebungen."
+    },
+    {
+      "section": "2.2",
+      "question": "Was macht das Ansible-Playbook im Beispiel, bevor es die NTP-Server einträgt?",
+      "options": [
+        "Es sichert die bestehende Konfiguration jedes Routers",
+        "Es startet alle Router neu",
+        "Es löscht die alte Konfiguration",
+        "Es fragt per E-Mail nach einer Freigabe"
+      ],
+      "explanation": "<code>backup: true</code> legt vor der Änderung eine Sicherung an – so lässt sich bei Problemen zurückkehren."
+    },
+    {
+      "section": "2.2",
+      "question": "Was passiert, wenn man das NTP-Playbook ein zweites Mal ausführt?",
+      "options": [
+        "Nichts – die Zeilen sind schon vorhanden, nichts wird geändert",
+        "Die NTP-Server werden doppelt eingetragen",
+        "Alle Router werden zurückgesetzt",
+        "Das Playbook bricht mit Fehler ab"
+      ],
+      "explanation": "Das nennt man Idempotenz: Ein Playbook beschreibt den Zielzustand und darf beliebig oft laufen."
+    },
+    {
+      "section": "2.2",
+      "question": "Mit welcher Option startet man einen Probelauf eines Ansible-Playbooks?",
+      "options": [
+        "<code>--check</code>",
+        "<code>--force</code>",
+        "<code>--delete</code>",
+        "<code>--reboot</code>"
+      ],
+      "explanation": "<code>ansible-playbook -i inventar.ini ntp.yml --check</code> zeigt, was sich ändern würde, ohne etwas zu ändern."
+    },
+    {
+      "section": "2.2",
+      "question": "Wie heißt das SDN-basierte Weitverkehrsnetz, mit dem Google seine Rechenzentren verbindet?",
+      "options": [
+        "B4",
+        "Spinnaker",
+        "Chaos Monkey",
+        "Zabbix"
+      ],
+      "explanation": "Ein zentrales System verteilt den Verkehr in B4 automatisch auf die verfügbaren Leitungen (Traffic Engineering)."
+    },
+    {
+      "section": "2.3",
+      "question": "Warum ist ein zentraler Automatisierungsserver ein lohnendes Ziel für Angreifer?",
+      "options": [
+        "Weil er alle Geräte konfigurieren darf",
+        "Weil er besonders wenig Speicher hat",
+        "Weil er nie überwacht wird",
+        "Weil er keine Netzwerkverbindung hat"
+      ],
+      "explanation": "Wer den Automatisierungsserver übernimmt, kontrolliert das gesamte Netzwerk."
+    },
+    {
+      "section": "2.3",
+      "question": "Was ist Authentifizierung?",
+      "options": [
+        "Die Überprüfung der Identität einer Person oder eines Systems",
+        "Das Verschlüsseln einer Festplatte",
+        "Das Aufteilen des Netzwerks in Zonen",
+        "Das Aufzeichnen aller Ereignisse"
+      ],
+      "explanation": "Die Zugriffskontrolle entscheidet danach, worauf die geprüfte Identität zugreifen darf."
+    },
+    {
+      "section": "2.3",
+      "question": "Welcher zweite Faktor gilt bei MFA als schwächste Variante?",
+      "options": [
+        "SMS-Codes",
+        "Hardware-Sicherheitsschlüssel",
+        "Authenticator-Apps",
+        "Biometrie auf einem gesicherten Gerät"
+      ],
+      "explanation": "SMS-Codes sind besser als nur ein Passwort, können aber umgeleitet oder abgefangen werden."
+    },
+    {
+      "section": "2.3",
+      "question": "Was bedeutet Datenintegrität?",
+      "options": [
+        "Daten bleiben bei Übertragung und Speicherung unverändert und unbeschädigt",
+        "Daten werden besonders schnell übertragen",
+        "Daten werden mehrfach gelöscht",
+        "Daten sind für alle lesbar"
+      ],
+      "explanation": "Verschlüsselung und Prüfverfahren wie bei TLS stellen sicher, dass Daten weder mitgelesen noch unbemerkt verändert werden."
+    },
+    {
+      "section": "2.3",
+      "question": "Welches Protokoll ersetzt Telnet für die Verwaltung von Netzwerkgeräten?",
+      "options": [
+        "SSH",
+        "FTP",
+        "HTTP",
+        "SMTP"
+      ],
+      "explanation": "SSH verschlüsselt die Verbindung, Telnet überträgt alles im Klartext – auch Passwörter."
+    },
+    {
+      "section": "2.3",
+      "question": "Was ist das Ziel der Netzwerksegmentierung?",
+      "options": [
+        "Ein Sicherheitsvorfall bleibt auf ein Segment begrenzt",
+        "Das Netzwerk wird schneller",
+        "Alle Geräte erreichen sich gegenseitig ungehindert",
+        "Es werden weniger IP-Adressen benötigt"
+      ],
+      "explanation": "Umgesetzt wird sie z. B. mit VLANs und Firewall-Regeln zwischen Zonen für Produktion, Büro, Gäste und Geräteverwaltung."
+    },
+    {
+      "section": "2.3",
+      "question": "Was unterscheidet ein IPS von einem IDS?",
+      "options": [
+        "Das IPS blockiert verdächtige Aktivitäten zusätzlich automatisch",
+        "Das IPS erkennt nichts, es protokolliert nur",
+        "Das IDS blockiert, das IPS meldet nur",
+        "Es gibt keinen Unterschied"
+      ],
+      "explanation": "Ein Intrusion-Detection-System erkennt und meldet, ein Intrusion-Prevention-System greift zusätzlich ein."
+    },
+    {
+      "section": "2.3",
+      "question": "Was ist ein DDoS-Angriff?",
+      "options": [
+        "Ein Angriff, der Dienste durch eine Flut von Anfragen lahmlegt",
+        "Ein gefälschter E-Mail-Absender",
+        "Das Verschlüsseln von Daten zur Erpressung",
+        "Ein Fehler im Backup"
+      ],
+      "explanation": "Distributed Denial of Service: Viele Systeme überlasten einen Dienst gleichzeitig."
+    },
+    {
+      "section": "2.3",
+      "question": "Wie hoch war laut Bitkom-Hochrechnung der Schaden für deutsche Unternehmen durch Datendiebstahl, Spionage und Sabotage im Jahr 2023?",
+      "options": [
+        "Rund 206 Milliarden Euro",
+        "Rund 2 Millionen Euro",
+        "Rund 20 Milliarden Euro",
+        "Rund 2 Billionen Euro"
+      ],
+      "explanation": "Die Zahl zeigt, wie wichtig Schutzmaßnahmen auch für automatisierte Netzwerke sind."
+    },
+    {
+      "section": "2.3",
+      "question": "Was gehört zu regelmäßigen Sicherheitsüberprüfungen und Audits?",
+      "options": [
+        "Fest eingeplante Prüfungen, automatisierte Schwachstellenanalyse mit manuellen Tests und ein Plan zur Behebung",
+        "Einmal prüfen und danach nie wieder",
+        "Nur die Passwörter der Gäste ändern",
+        "Schwachstellen geheim halten und nicht dokumentieren"
+      ],
+      "explanation": "Prüfungen z. B. vierteljährlich einplanen, gefundene Schwachstellen dokumentieren und gezielt beheben."
+    },
+    {
+      "section": "2.3",
+      "question": "Richtig oder falsch? Sicherheitslösungen wie Firewalls müssen nach der Einrichtung nicht mehr aktualisiert werden.",
+      "options": [
+        "Falsch",
+        "Richtig"
+      ],
+      "explanation": "Falsch. Sie müssen regelmäßig aktualisiert werden, um gegen neue Bedrohungen geschützt zu sein."
+    },
+    {
+      "section": "2.4",
+      "question": "Was bezeichnet Remote-Automatisierung?",
+      "options": [
+        "Aufgaben auf Computern und Systemen auszuführen, die sich nicht vor Ort befinden",
+        "Automatisierung nur im Homeoffice",
+        "Das Fernsteuern von Fernsehern",
+        "Die Automatisierung ohne Netzwerk"
+      ],
+      "explanation": "Entfernte Geräte werden zentral verwaltet, überwacht und gewartet, ohne sich an jedem einzeln anmelden zu müssen."
+    },
+    {
+      "section": "2.4",
+      "question": "Warum ist RDP für automatisierte Skripte ungeeignet?",
+      "options": [
+        "Es ist ein grafischer Fernzugriff für die interaktive Bedienung",
+        "Es funktioniert nur unter Linux",
+        "Es ist zu schnell",
+        "Es verschlüsselt nichts"
+      ],
+      "explanation": "Für Skripte nutzt man SSH oder PowerShell-Remoting (WinRM), die Befehle direkt ausführen."
+    },
+    {
+      "section": "2.4",
+      "question": "Welches Protokoll ist die Grundlage für Bash-Skripte und Ansible beim Fernzugriff?",
+      "options": [
+        "SSH",
+        "RDP",
+        "SMTP",
+        "DNS"
+      ],
+      "explanation": "SSH bietet verschlüsselten Zugriff auf die Kommandozeile von Linux, Unix, Netzwerkgeräten und inzwischen auch Windows."
+    },
+    {
+      "section": "2.4",
+      "question": "Mit welchem Cmdlet führt man Befehle auf entfernten Windows-Servern aus?",
+      "options": [
+        "<code>Invoke-Command</code>",
+        "<code>Get-Content</code>",
+        "<code>Format-Table</code>",
+        "<code>Write-Warning</code>"
+      ],
+      "explanation": "<code>Invoke-Command -ComputerName …</code> nutzt PowerShell-Remoting (WinRM) und läuft auf allen angegebenen Servern gleichzeitig."
+    },
+    {
+      "section": "2.4",
+      "question": "Wofür wird Kubernetes eingesetzt?",
+      "options": [
+        "Bereitstellung, Skalierung und Verwaltung containerisierter Anwendungen",
+        "Grafischer Fernzugriff auf Windows",
+        "Rechtschreibprüfung",
+        "Backup von E-Mails"
+      ],
+      "explanation": "Kubernetes ist ein Orchestrierungswerkzeug für Container. Docker Swarm verwaltet Container-Cluster direkt mit Docker."
+    },
+    {
+      "section": "2.4",
+      "question": "Was bewirkt <code>-o BatchMode=yes</code> im Bash-Beispiel?",
+      "options": [
+        "Das Skript wartet nicht auf eine Passworteingabe, die Anmeldung erfolgt per SSH-Schlüssel",
+        "SSH läuft schneller",
+        "Alle Server werden neu gestartet",
+        "Die Ausgabe wird farbig"
+      ],
+      "explanation": "Ohne BatchMode würde ein Skript bei fehlendem Schlüssel hängen bleiben und auf eine Eingabe warten."
+    },
+    {
+      "section": "2.4",
+      "question": "Wozu dient <code>-o ConnectTimeout=5</code> im Bash-Beispiel?",
+      "options": [
+        "Bei nicht erreichbaren Servern wird nach fünf Sekunden abgebrochen",
+        "Die Verbindung bleibt genau fünf Minuten offen",
+        "Es werden höchstens fünf Server geprüft",
+        "Das Skript startet fünfmal"
+      ],
+      "explanation": "So blockiert ein ausgefallener Server das Skript nicht minutenlang, und die übrigen Server werden weiter geprüft."
+    },
+    {
+      "section": "2.4",
+      "question": "Was zeigt die Eigenschaft <code>PSComputerName</code> im PowerShell-Beispiel?",
+      "options": [
+        "Von welchem Server ein Ergebnis stammt",
+        "Den Namen des eigenen Rechners",
+        "Die PowerShell-Version",
+        "Die Anzahl der Fehler"
+      ],
+      "explanation": "<code>Invoke-Command</code> ergänzt jedes Ergebnis um <code>PSComputerName</code>, damit man die Ergebnisse vieler Server unterscheiden kann."
+    },
+    {
+      "section": "2.4",
+      "question": "Wo landen im PowerShell-Beispiel die Fehler nicht erreichbarer Server?",
+      "options": [
+        "In der Variable <code>$fehler</code> über <code>-ErrorVariable</code>",
+        "In der Datei server.txt",
+        "Nirgends, sie gehen verloren",
+        "Im Papierkorb"
+      ],
+      "explanation": "<code>-ErrorAction SilentlyContinue</code> unterdrückt die Anzeige, <code>-ErrorVariable fehler</code> sammelt die Fehler für die Meldung am Ende."
+    },
+    {
+      "section": "2.4",
+      "question": "Was macht Chaos Monkey bei Netflix?",
+      "options": [
+        "Es schaltet im laufenden Betrieb absichtlich zufällige Server ab",
+        "Es verteilt neue Softwareversionen",
+        "Es komprimiert Videos",
+        "Es verwaltet Passwörter"
+      ],
+      "explanation": "So wird geprüft, ob die Systeme Ausfälle verkraften, bevor ein echter Ausfall eintritt (Chaos Engineering). Neue Versionen verteilt Netflix mit Spinnaker."
+    },
+    {
+      "section": "2.4",
+      "question": "Wofür nutzt Netflix Spinnaker?",
+      "options": [
+        "Für Continuous Delivery, also das automatische Verteilen neuer Softwareversionen",
+        "Für das Abschalten von Servern",
+        "Für die Netzwerksegmentierung",
+        "Für die Rechnungsstellung"
+      ],
+      "explanation": "Spinnaker wurde von Netflix entwickelt und als Open Source veröffentlicht."
+    },
+    {
+      "section": "2.5",
+      "question": "Wie verwaltet im Beispiel ein international tätiges Unternehmen seine Router und Switches?",
+      "options": [
+        "Zentral mit Ansible, ohne dass ein Techniker vor Ort sein muss",
+        "Mit einem Techniker pro Standort, der täglich alles prüft",
+        "Gar nicht, die Geräte laufen mit Werkseinstellungen",
+        "Per RDP auf jedem einzelnen Gerät"
+      ],
+      "explanation": "So haben alle Geräte stets die aktuelle und sichere Konfiguration."
+    },
+    {
+      "section": "2.5",
+      "question": "Warum berücksichtigt das Finanzinstitut beim Patchen die Zeitzonen der Standorte?",
+      "options": [
+        "Damit Neustarts jeweils außerhalb der Geschäftszeiten erfolgen",
+        "Weil Puppet sonst nicht startet",
+        "Weil Patches nur nachts heruntergeladen werden dürfen",
+        "Damit alle Standorte gleichzeitig neu starten"
+      ],
+      "explanation": "Ein fester, zeitzonenbewusster Zeitplan schließt Sicherheitslücken schnell, ohne den Betrieb zu stören."
+    },
+    {
+      "section": "2.5",
+      "question": "Was passiert im Zabbix-Beispiel, wenn eine Leitung überlastet ist?",
+      "options": [
+        "Ein Skript leitet den Verkehr automatisch um und verringert die Last",
+        "Das Netzwerk wird komplett abgeschaltet",
+        "Ein Techniker wird per Brief informiert",
+        "Nichts, Zabbix zeigt nur Grafiken"
+      ],
+      "explanation": "Monitoring-Werkzeuge wie Zabbix oder Nagios können bei bekannten Problemen automatisch Gegenmaßnahmen starten."
+    },
+    {
+      "section": "2.6",
+      "question": "Warum empfiehlt sich eine schrittweise Einführung der Remote-Automatisierung?",
+      "options": [
+        "Sie senkt das Risiko und erleichtert die Fehlersuche",
+        "Weil große Projekte verboten sind",
+        "Weil Werkzeuge nur kleine Aufgaben können",
+        "Damit die Dokumentation entfällt"
+      ],
+      "explanation": "Mit kleinen, überschaubaren Projekten beginnen und dann erweitern."
+    },
+    {
+      "section": "2.6",
+      "question": "Wofür steht RBAC?",
+      "options": [
+        "Rollenbasierte Zugriffskontrolle (Role-Based Access Control)",
+        "Remote Backup and Copy",
+        "Router-Based Address Control",
+        "Regelbasierte Automatisierung von Cloud-Diensten"
+      ],
+      "explanation": "Rechte werden an Rollen gebunden, nicht an einzelne Personen. Zusammen mit MFA sichert das den Zugriff."
+    },
+    {
+      "section": "2.6",
+      "question": "Welche Werkzeuge werden für Echtzeit-Monitoring kombiniert genannt?",
+      "options": [
+        "Prometheus zur Datenerfassung und Grafana zur Darstellung",
+        "Word und Excel",
+        "Chaos Monkey und Spinnaker",
+        "Telnet und FTP"
+      ],
+      "explanation": "Prometheus sammelt Messwerte, Grafana stellt sie in Dashboards dar."
+    },
+    {
+      "section": "2.6",
+      "question": "Was bedeutet Verschlüsselung „im Ruhezustand“?",
+      "options": [
+        "Gespeicherte Daten werden verschlüsselt",
+        "Daten werden nur nachts verschlüsselt",
+        "Daten werden bei der Übertragung verschlüsselt",
+        "Daten werden nach dem Löschen verschlüsselt"
+      ],
+      "explanation": "Daten sollten bei der Übertragung (in Bewegung) und bei der Speicherung (im Ruhezustand) verschlüsselt sein."
+    },
+    {
+      "section": "2.6",
+      "question": "Wie vermeidest Du den Fallstrick „zu hohe Komplexität“?",
+      "options": [
+        "So einfach wie möglich bleiben und modular aufbauen",
+        "Noch mehr Skripte miteinander verknüpfen",
+        "Auf Tests verzichten",
+        "Nur eine Person darf das System verstehen"
+      ],
+      "explanation": "Modulare Komponenten lassen sich unabhängig voneinander warten und testen."
+    },
+    {
+      "section": "2.6",
+      "question": "Was hilft gegen Schwachstellen in Skripten?",
+      "options": [
+        "Regelmäßige Code-Reviews, Sicherheitsaudits und statische Code-Analyse",
+        "Skripte möglichst lang machen",
+        "Fehlermeldungen unterdrücken",
+        "Skripte nie wieder ändern"
+      ],
+      "explanation": "Schlecht geschriebene Skripte können ungewollte Aktionen ausführen oder sensible Daten preisgeben."
+    },
+    {
+      "section": "2.6",
+      "question": "Was ist ein Man-in-the-Middle-Angriff?",
+      "options": [
+        "Ein Angreifer fängt die Kommunikation über unsichere Netze ab und verändert sie",
+        "Ein Mitarbeiter missbraucht seinen Zugang",
+        "Ein Server fällt zufällig aus",
+        "Ein Skript läuft doppelt"
+      ],
+      "explanation": "Schutz bieten Ende-zu-Ende-Verschlüsselung, HTTPS und SSH sowie das Prüfen von Hostschlüsseln und Zertifikaten."
+    },
+    {
+      "section": "2.6",
+      "question": "Wie begegnet man Insider-Bedrohungen?",
+      "options": [
+        "Rollenbasierte Zugriffskontrolle, Zugriffsprotokolle überwachen und das Team sensibilisieren",
+        "Allen Mitarbeitenden Administratorrechte geben",
+        "Auf Protokollierung verzichten",
+        "Dienstleistern alle Passwörter schicken"
+      ],
+      "explanation": "Wer nur die nötigen Rechte hat und weiß, dass Zugriffe protokolliert werden, kann weniger Schaden anrichten."
+    },
+    {
+      "section": "2.6",
+      "question": "Richtig oder falsch? Unzureichende Dokumentation verlängert bei Problemen die Ursachensuche.",
+      "options": [
+        "Richtig",
+        "Falsch"
+      ],
+      "explanation": "Richtig. Ohne Dokumentation geht der Überblick verloren. Abhilfe: jeden Schritt zentral dokumentieren, z. B. in Confluence oder einem GitHub-Wiki."
+    },
+    {
+      "section": "2.7",
+      "question": "Ein Skript greift mit einfachen Passwörtern auf zentrale Ressourcen zu. Welcher Fallstrick liegt vor?",
+      "options": [
+        "Unsichere Fernzugriffe",
+        "Zu hohe Komplexität",
+        "Unzureichende Dokumentation",
+        "Mangelnde Schulung"
+      ],
+      "explanation": "Lösung: SSH-Schlüssel oder Zertifikate statt Passwörtern, Dienstkonten mit minimalen Rechten, VPN und Zugangsdaten im Passwort-Tresor."
+    },
+    {
+      "section": "2.7",
+      "question": "Was ist eine sinnvolle Maßnahme für ein neues, noch nicht geschultes Teammitglied?",
+      "options": [
+        "Zunächst in der Testumgebung arbeiten und Änderungen per Code-Review freigeben lassen",
+        "Sofort volle Rechte auf alle Produktivserver geben",
+        "Die Skripte ohne Einarbeitung übernehmen lassen",
+        "Auf Schulung verzichten, um Zeit zu sparen"
+      ],
+      "explanation": "Strukturierte Einarbeitung und schrittweise erweiterte Rechte verhindern, dass Fehlbedienungen alle Remote-Server gleichzeitig treffen."
+    },
+    {
+      "section": "2.7",
+      "question": "Was ist ein Runbook?",
+      "options": [
+        "Eine Anleitung mit festen Schritten für den Umgang mit Störungen",
+        "Ein Laufband im Serverraum",
+        "Ein Virenscanner",
+        "Eine Liste aller Passwörter"
+      ],
+      "explanation": "Ein Runbook hilft, auch bei Personalwechsel oder unter Zeitdruck richtig zu reagieren."
+    },
+    {
+      "section": "2.7",
+      "question": "Welche gemeinsame Ursache haben die vier Szenarien der Übung?",
+      "options": [
+        "Die Automatisierung wurde gebaut, aber nicht für den Dauerbetrieb abgesichert",
+        "Die Server waren zu langsam",
+        "Es wurde die falsche Programmiersprache gewählt",
+        "Es gab zu viele Backups"
+      ],
+      "explanation": "Dokumentation, Einfachheit, Schulung und sichere Zugänge gehören von Anfang an zur Planung."
+    },
+    {
+      "section": "2.7",
+      "question": "Was ist laut Fazit für erfolgreiche Netzwerk- und Remote-Automatisierung entscheidend?",
+      "options": [
+        "Präzise Zielsetzung, passende Werkzeuge und strenge Sicherheitsmaßnahmen",
+        "Möglichst viele Werkzeuge gleichzeitig einsetzen",
+        "Auf Planung verzichten, um schneller zu starten",
+        "Sicherheit erst nach dem ersten Vorfall berücksichtigen"
+      ],
+      "explanation": "Automatisierung bringt Effizienz, weniger Fehler und geringere Kosten – aber nur mit sorgfältiger Planung und Sicherheit."
+    }
+  ]
+}
