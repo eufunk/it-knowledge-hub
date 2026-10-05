@@ -75,7 +75,7 @@ Material aus `IT_Administration_und_Automatisierung/System_und_Prozessautomatisi
 - [ ] `npm audit`: Warnungen ansehen und bewerten, sichere Updates einspielen (kein `--force` ohne Prüfung)
 - [ ] Pre-Commit-Hook (`.githooks/pre-commit`): Lint und Tests vor jedem Commit
 - [ ] Prüfskript für die Nachverfolgbarkeit der Anforderungen (F-Kennungen in Code und Tests)
-- [ ] Commit-Push nach GitHub besprechen (bisher nichts gepusht – Sicherung!)
+- [x] Commit-Push nach GitHub besprechen – erledigt 2026-10-05, Stand `fccf776` gepusht
 
 ## Block 7 – Plan abschließen (≈ 15 min)
 - [ ] Plan abhaken, Unerledigtes nach [todo.md](todo.md) bzw. in den nächsten Plan

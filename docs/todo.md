@@ -41,7 +41,7 @@ Erledigte Punkte werden abgehakt und mit Datum versehen, nicht gelöscht.
 - [ ] Windows blockiert seit 2026-10-04 per Application-Control-Richtlinie (vermutlich „Intelligente App-Steuerung“) die native Next.js-Datei `node_modules/@next/swc-win32-x64-msvc/next-swc.win32-x64-msvc.node`. Folge: `next dev` mit Turbopack startet nicht. Übergangslösung: `npx next dev --webpack`. Klären: Ausnahme in Windows-Sicherheit möglich? `npm run build` läuft weiterhin mit Turbopack (geprüft 2026-10-04) – betroffen ist nur der Dev-Server.
 - [ ] `npm audit` meldet seit dem Setup Warnungen – prüfen und sichere Updates einspielen (siehe plan_04.10.26.md)
 - [ ] Automatische Browser-Tests mit Playwright (Klickpfade, Screenshots mobil/Desktop), damit die Optik ohne manuelles Prüfen abgesichert ist
-- [ ] Regelmäßig nach GitHub pushen (bisher nur lokale Commits – keine Sicherung außerhalb von OneDrive)
+- [ ] Regelmäßig nach GitHub pushen (zuletzt 2026-10-05: Stand `fccf776` gesichert; gepusht wird weiterhin nur auf Anweisung)
 - [ ] Automatische Testläufe auf GitHub (CI), sobald das Hosting entschieden ist
 - [x] `npm run build` war am 2026-10-03 einmal langsam (7,5 min für 12 Seiten). Erneuter Build am selben Tag mit 26 Seiten: 28 s. Markdown-Rendern ist schnell (< 1 s je Kapitel), Ursache war vermutlich die OneDrive-Synchronisierung. Bei erneutem Auftreten zuerst OneDrive pausieren.
 
