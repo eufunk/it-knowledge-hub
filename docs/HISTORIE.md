@@ -4,6 +4,9 @@
 
 ---
 
+## 2026-10-05
+- Kapitel 04 „PowerShell Basics für Administratoren“ überarbeitet (Freigabe per Word-Entwurf): 8 Aspekte der PowerShell, „Deine ersten Schritte“ mit Installationslinks, Syntax mit Beispielen für aussagekräftige Cmdlet-Namen, Modultypen und Vorteile von `Import-Module`, Parameter-Beispiel mit Erklärung, Fehlerbehandlungs-Mechanismen inkl. `-ErrorVariable`, Breakpoint-Arten, „Lernen aus Fehlern“, Übung Lückentext mit Lösung, „Fazit zu Modul 2“. Korrigiert gegenüber der Vorlage: `100MB` ohne Leerzeichen, Lückentext-Lösung (34 statt 33 Lücken), `try`/`catch`/`finally` als Schlüsselwörter, Hinweis zu `Get-EventLog`. Wissenstest 50 → 93 Fragen, Abschnitte neu gegliedert (4.1–4.14).
+
 ## 2026-10-04
 - Wissenstest Kapitel 03: 5 Fragen aus der Vorlage aufgenommen (Shebang, Variablen, `pwd`, `echo`); die fast gleiche eigene `pwd`-Frage dafür entfernt (92).
 - Kapitel 03 „Grundlagen von Bash und Shell-Scripting“ überarbeitet (Freigabe per Word-Entwurf): neuer Abschnitt „Auffrischung der Grundlagen“ (Programmiergrundlagen, Datenstrukturen, APIs und Bibliotheken, Betriebssystemkenntnisse), „Interaktion mit der Befehlszeile“ (Shell und IDE, Eingabe/Ausgabe/Rückmeldung), Pfade, Vergleichsoperatoren, drei `if`-Beispiele, Schleifen, Kommentare, eigener Abschnitt „Mehrzeilige Bash-Skripte“ und Übung „Verständnis bestehender Skripte“ mit Lösung. Korrigiert gegenüber der Vorlage: Mac-Tastenkürzel (control statt ⌘), Zeichen-Vergleichsoperatoren nur in `(( … ))` bzw. alphabetisch in `[[ … ]]`, `env` in der Shebang-Zeile. Wissenstest 37 → 88 Fragen, Abschnitte neu gegliedert (3.1–3.9).

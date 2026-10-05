@@ -1,17 +1,19 @@
 {
   "sections": {
-    "4.1": "Definition PowerShell",
-    "4.2": "Cmdlets",
-    "4.3": "Aussagekräftige Cmdlet-Namen",
-    "4.4": "PowerShell-Skripte",
-    "4.5": "Alias",
+    "4.1": "Entdecke die PowerShell",
+    "4.2": "Deine ersten Schritte",
+    "4.3": "Syntax: Cmdlets, Namen, Parameter, Pipelines",
+    "4.4": "Alias",
+    "4.5": "PowerShell-Skripte",
     "4.6": "Shebang-Zeile in PowerShell?",
     "4.7": "Womit beginnt ein Skript?",
     "4.8": "Set-StrictMode",
     "4.9": "Parameter-Deklarationen",
-    "4.10": "Fehlerbehandlung und Debugging",
+    "4.10": "Fehlerbehandlung",
     "4.11": "Fehler finden und beheben",
-    "4.12": "Coding Challenge (PowerShell)"
+    "4.12": "Lernen aus Fehlern",
+    "4.13": "Coding Challenge (PowerShell)",
+    "4.14": "Fazit zu Modul 2"
   },
   "questions": [
     {
@@ -70,7 +72,115 @@
       "explanation": "Mit Providern kann man z. B. mit <code>Get-ChildItem HKLM:\\SOFTWARE</code> durch die Registry navigieren wie durch Ordner."
     },
     {
+      "section": "4.1",
+      "question": "Woraus besteht PowerShell laut Definition?",
+      "options": [
+        "Aus einer Befehlszeilenschnittstelle (CLI) und einer zugehörigen Skriptsprache",
+        "Nur aus einer grafischen Oberfläche für die Systemsteuerung",
+        "Aus einem Compiler für C#-Programme",
+        "Aus einem Webbrowser mit Skriptunterstützung"
+      ],
+      "explanation": "PowerShell ist ein Framework für Task-Automatisierung und Konfigurationsmanagement, bestehend aus einer CLI und einer Skriptsprache."
+    },
+    {
+      "section": "4.1",
+      "question": "Was sind Cmdlets technisch gesehen?",
+      "options": [
+        "Kleine .NET-Klassen, die jeweils eine bestimmte Aufgabe ausführen",
+        "Eigenständige .exe-Programme",
+        "Bash-Skripte mit der Endung <code>.sh</code>",
+        "Einträge in der Windows-Registry"
+      ],
+      "explanation": "Cmdlets sind spezialisierte .NET-Klassen, z. B. <code>Get-Process</code> oder <code>Set-Service</code>. Deshalb geben sie Objekte statt Text zurück."
+    },
+    {
+      "section": "4.1",
+      "question": "Wofür steht Remoting in PowerShell?",
+      "options": [
+        "Befehle und Skripte auf entfernten Computern ausführen",
+        "Skripte automatisch löschen",
+        "Die Konsole fernsteuern, um Farben zu ändern",
+        "Module aus dem Internet entfernen"
+      ],
+      "explanation": "Mit Remoting (z. B. <code>Invoke-Command</code>, <code>Enter-PSSession</code>) verwaltest Du viele Maschinen gleichzeitig – ideal für große Netzwerke."
+    },
+    {
+      "section": "4.1",
+      "question": "Wann wurde die erste Version von PowerShell veröffentlicht?",
+      "options": [
+        "2006",
+        "1989",
+        "2016",
+        "2023"
+      ],
+      "explanation": "PowerShell erschien 2006. Später folgte das plattformübergreifende PowerShell Core, heute heißt die aktuelle Linie einfach PowerShell (Version 7)."
+    },
+    {
+      "section": "4.1",
+      "question": "Richtig oder falsch? <code>Get-EventLog</code> steht in PowerShell 7 genauso zur Verfügung wie in Windows PowerShell 5.1.",
+      "options": [
+        "Falsch",
+        "Richtig"
+      ],
+      "explanation": "Falsch. <code>Get-EventLog</code> gibt es nur in Windows PowerShell 5.1. In PowerShell 7 liest man Ereignisprotokolle mit <code>Get-WinEvent</code>."
+    },
+    {
+      "section": "4.1",
+      "question": "Mit welchen Produkten ist PowerShell besonders eng integriert?",
+      "options": [
+        "Azure, Microsoft 365, Exchange und SharePoint",
+        "Nur mit Linux-Paketmanagern",
+        "Ausschließlich mit Druckertreibern",
+        "Mit keinem anderen Produkt"
+      ],
+      "explanation": "PowerShell ist tief in Microsoft-Produkte eingebunden, was die Automatisierung in diesen Umgebungen stark erleichtert."
+    },
+    {
       "section": "4.2",
+      "question": "Warum startet man PowerShell für Verwaltungsaufgaben am besten als Administrator?",
+      "options": [
+        "Um vollen Zugriff auf alle Funktionen zu haben",
+        "Weil PowerShell sonst nicht startet",
+        "Damit das Fenster blau wird",
+        "Weil nur dann Get-Help funktioniert"
+      ],
+      "explanation": "Viele Verwaltungsaufgaben, z. B. Dienste ändern, brauchen erhöhte Rechte. Ohne Administratorrechte schlagen solche Befehle fehl."
+    },
+    {
+      "section": "4.2",
+      "question": "Was musst Du unter Linux oder macOS tun, bevor Du PowerShell nutzen kannst?",
+      "options": [
+        "Sie herunterladen und installieren",
+        "Nichts, sie ist immer vorinstalliert",
+        "Den Rechner auf Windows umstellen",
+        "Die Bash deinstallieren"
+      ],
+      "explanation": "Unter Windows ist PowerShell vorinstalliert. Unter Linux und macOS installierst Du PowerShell 7 nach der Anleitung von Microsoft und startest sie mit <code>pwsh</code>."
+    },
+    {
+      "section": "4.2",
+      "question": "Welcher Befehl ist ein guter Startpunkt, um zu lernen, wie Befehle verwendet werden?",
+      "options": [
+        "<code>Get-Help</code>",
+        "<code>Remove-Item</code>",
+        "<code>Stop-Computer</code>",
+        "<code>Clear-Host</code>"
+      ],
+      "explanation": "<code>Get-Help</code> zeigt Beschreibung, Syntax und Beispiele, z. B. <code>Get-Help Get-Command</code>."
+    },
+    {
+      "section": "4.2",
+      "question": "Woran erkennst Du, dass eine PowerShell-Sitzung mit Administratorrechten läuft?",
+      "options": [
+        "Im Fenstertitel steht „Administrator“",
+        "Die Schrift ist größer",
+        "Die Eingabeaufforderung beginnt mit <code>$</code>",
+        "Das Fenster ist immer grün"
+      ],
+      "explanation": "Läuft die Sitzung mit erhöhten Rechten, steht „Administrator“ im Fenstertitel."
+    },
+    {
+      "section": "4.3",
       "question": "Nach welchem Schema sind Cmdlet-Namen aufgebaut?",
       "options": [
         "Verb-Nomen, z. B. <code>Get-Service</code>",
@@ -81,7 +191,7 @@
       "explanation": "Das Verb sagt, was getan wird, das Nomen, womit. Dadurch lassen sich Befehle leicht erraten und finden."
     },
     {
-      "section": "4.2",
+      "section": "4.3",
       "question": "Welches Cmdlet zeigt die Eigenschaften und Methoden eines Objekts an?",
       "options": [
         "<code>Get-Member</code>",
@@ -92,7 +202,7 @@
       "explanation": "Zum Beispiel zeigt <code>Get-Process | Get-Member</code> alle Eigenschaften eines Prozesses, etwa <code>WorkingSet64</code>."
     },
     {
-      "section": "4.2",
+      "section": "4.3",
       "question": "Wie findet man alle Befehle, die mit Diensten arbeiten?",
       "options": [
         "<code>Get-Command -Noun Service</code>",
@@ -103,7 +213,7 @@
       "explanation": "<code>Get-Command</code> sucht Befehle nach Verb, Nomen oder Platzhaltern, z. B. <code>Get-Command *firewall*</code>."
     },
     {
-      "section": "4.2",
+      "section": "4.3",
       "question": "Was bewirkt der allgemeine Parameter <code>-WhatIf</code>?",
       "options": [
         "Er zeigt an, was der Befehl ändern würde, ohne es auszuführen",
@@ -114,7 +224,7 @@
       "explanation": "Vor jeder Nachfrage steht <code>-Confirm</code>, ausführliche Meldungen liefert <code>-Verbose</code>."
     },
     {
-      "section": "4.2",
+      "section": "4.3",
       "question": "Wo gehört <code>Format-Table</code> in einer Pipeline hin?",
       "options": [
         "Ganz ans Ende, nur für die Ausgabe auf dem Bildschirm",
@@ -180,7 +290,137 @@
       "explanation": "Beispiele sind <code>Test-Path</code> und <code>Test-Connection</code>. <code>Check</code> ist kein zugelassenes Verb."
     },
     {
+      "section": "4.3",
+      "question": "Was bezeichnet Syntax in einer Programmiersprache?",
+      "options": [
+        "Die Regeln, wie Schlüsselwörter, Operatoren und andere Elemente korrekt angeordnet werden",
+        "Die Geschwindigkeit eines Programms",
+        "Die Farbe der Konsole",
+        "Die Anzahl installierter Module"
+      ],
+      "explanation": "Nur wenn die Syntax stimmt, kann der Computer den Code richtig interpretieren und ausführen."
+    },
+    {
+      "section": "4.3",
+      "question": "Was beschreibt im Cmdlet <code>Get-Service</code> das Nomen?",
+      "options": [
+        "Das Objekt, auf das sich die Aktion bezieht: Service",
+        "Die Aktion: Get",
+        "Den Parameter",
+        "Den Rückgabewert <code>$true</code>"
+      ],
+      "explanation": "Das Verb (Get) beschreibt die Aktion, das Nomen (Service) das Objekt."
+    },
+    {
+      "section": "4.3",
+      "question": "Welcher Name ist aussagekräftiger?",
+      "options": [
+        "<code>Get-UserDetails</code>",
+        "<code>Get-UD</code>",
+        "<code>Get-Data</code>",
+        "<code>Get-X</code>"
+      ],
+      "explanation": "Abkürzungen wie <code>UD</code> und allgemeine Begriffe wie <code>Data</code> sind schwer verständlich. <code>Get-UserDetails</code> sagt genau, was zurückkommt."
+    },
+    {
+      "section": "4.3",
+      "question": "Was ist in <code>Get-WinEvent -LogName Application</code> der Wert des Parameters?",
+      "options": [
+        "<code>Application</code>",
+        "<code>-LogName</code>",
+        "<code>Get-WinEvent</code>",
+        "<code>WinEvent</code>"
+      ],
+      "explanation": "<code>-LogName</code> ist der Parameter, <code>Application</code> sein Wert."
+    },
+    {
+      "section": "4.3",
+      "question": "Warum schreibt <code>Where-Object { $_.WorkingSet -gt 100 MB }</code> einen Fehler?",
+      "options": [
+        "Weil <code>MB</code> direkt an der Zahl stehen muss: <code>100MB</code>",
+        "Weil <code>-gt</code> in PowerShell nicht existiert",
+        "Weil <code>$_</code> nicht in Where-Object erlaubt ist",
+        "Weil Prozesse keine Eigenschaft WorkingSet haben"
+      ],
+      "explanation": "PowerShell kennt <code>KB</code>, <code>MB</code>, <code>GB</code>, <code>TB</code> und <code>PB</code> als Zahlensuffix ohne Leerzeichen. Mit Leerzeichen meldet der Parser „Unerwartetes Token“."
+    },
+    {
+      "section": "4.3",
+      "question": "Was steht in einem <code>Where-Object</code>-Skriptblock für das Objekt, das gerade durch die Pipeline läuft?",
+      "options": [
+        "<code>$_</code>",
+        "<code>$this</code>",
+        "<code>$args</code>",
+        "<code>$input0</code>"
+      ],
+      "explanation": "<code>$_</code> (auch <code>$PSItem</code>) ist das aktuelle Pipeline-Objekt, z. B. in <code>{ $_.WorkingSet -gt 100MB }</code>."
+    },
+    {
+      "section": "4.3",
+      "question": "Richtig oder falsch? Die Pipeline in PowerShell gibt die Ausgabe eines Cmdlets als Eingabe an das nächste weiter.",
+      "options": [
+        "Richtig",
+        "Falsch"
+      ],
+      "explanation": "Richtig. So lassen sich mehrere Cmdlets zu komplexen Abfragen verketten, z. B. <code>Get-Process | Where-Object … | Sort-Object …</code>."
+    },
+    {
       "section": "4.4",
+      "question": "Für welches Cmdlet ist <code>ls</code> in Windows PowerShell ein Alias?",
+      "options": [
+        "<code>Get-ChildItem</code>",
+        "<code>Get-Location</code>",
+        "<code>Get-Item</code>",
+        "<code>Get-Content</code>"
+      ],
+      "explanation": "Auch <code>dir</code> und <code>gci</code> stehen für <code>Get-ChildItem</code>. <code>Get-Alias ls</code> zeigt das an."
+    },
+    {
+      "section": "4.4",
+      "question": "Warum sollte man in Skripten keine Aliase verwenden?",
+      "options": [
+        "Sie sind schwer lesbar und nicht überall gleich, unter Linux ruft z. B. <code>ls</code> das Linux-Programm auf",
+        "Aliase funktionieren in Skripten grundsätzlich nicht",
+        "Aliase sind langsamer als Cmdlets",
+        "Aliase benötigen Administratorrechte"
+      ],
+      "explanation": "In der Konsole sparen Aliase Tipparbeit, im Skript geht Lesbarkeit vor. VS Code ersetzt sie per Umschalt + Alt + E automatisch."
+    },
+    {
+      "section": "4.4",
+      "question": "Für welches Cmdlet steht der Alias <code>%</code>?",
+      "options": [
+        "<code>ForEach-Object</code>",
+        "<code>Where-Object</code>",
+        "<code>Measure-Object</code>",
+        "<code>Select-Object</code>"
+      ],
+      "explanation": "<code>?</code> steht für <code>Where-Object</code>, <code>%</code> für <code>ForEach-Object</code>."
+    },
+    {
+      "section": "4.4",
+      "question": "Wie bleibt ein selbst angelegter Alias auch nach dem Schließen der Sitzung erhalten?",
+      "options": [
+        "Man trägt ihn in das eigene Profil ein, dessen Pfad <code>$PROFILE</code> enthält",
+        "Man legt ihn mit <code>Set-Alias -Permanent</code> an",
+        "Man startet PowerShell als Administrator",
+        "Gar nicht, Aliase gehen immer verloren"
+      ],
+      "explanation": "Das Profil ist ein Skript, das bei jedem Start von PowerShell automatisch ausgeführt wird."
+    },
+    {
+      "section": "4.4",
+      "question": "Für welches Cmdlet ist <code>dir</code> ein Alias?",
+      "options": [
+        "<code>Get-ChildItem</code>",
+        "<code>Set-Location</code>",
+        "<code>Get-Content</code>",
+        "<code>Remove-Item</code>"
+      ],
+      "explanation": "<code>dir</code>, <code>ls</code> und <code>gci</code> sind Aliase für <code>Get-ChildItem</code>, das den Inhalt eines Verzeichnisses auflistet."
+    },
+    {
+      "section": "4.5",
       "question": "Welche Dateiendung haben PowerShell-Skripte?",
       "options": [
         "<code>.ps1</code>",
@@ -191,7 +431,7 @@
       "explanation": "<code>.psm1</code> ist die Endung für Module, <code>.sh</code> für Bash-Skripte und <code>.bat</code> für cmd-Stapeldateien."
     },
     {
-      "section": "4.4",
+      "section": "4.5",
       "question": "Wie startet man das Skript <code>bericht.ps1</code> im aktuellen Ordner?",
       "options": [
         "<code>.\\bericht.ps1</code>",
@@ -202,7 +442,7 @@
       "explanation": "Der Pfad <code>.\\</code> ist Pflicht. So wird verhindert, dass versehentlich ein Skript statt eines gleichnamigen Befehls läuft."
     },
     {
-      "section": "4.4",
+      "section": "4.5",
       "question": "Welche Ausführungsrichtlinie erlaubt lokale Skripte, verlangt für Skripte aus dem Internet aber eine Signatur?",
       "options": [
         "<code>RemoteSigned</code>",
@@ -213,7 +453,7 @@
       "explanation": "<code>RemoteSigned</code> ist die gängige Empfehlung. <code>Restricted</code> verbietet alle Skripte, <code>AllSigned</code> verlangt für alle eine Signatur."
     },
     {
-      "section": "4.4",
+      "section": "4.5",
       "question": "Ist die Ausführungsrichtlinie (Execution Policy) eine Sicherheitsgrenze?",
       "options": [
         "Nein, sie schützt vor versehentlichem Ausführen und lässt sich mit Rechten auf dem System umgehen",
@@ -224,7 +464,7 @@
       "explanation": "Skripte aus unbekannten Quellen sollte man deshalb immer erst lesen, bevor man sie ausführt."
     },
     {
-      "section": "4.4",
+      "section": "4.5",
       "question": "Was passiert bei einem Doppelklick auf eine <code>.ps1</code>-Datei im Explorer?",
       "options": [
         "Sie wird im Editor geöffnet, nicht ausgeführt",
@@ -236,47 +476,25 @@
     },
     {
       "section": "4.5",
-      "question": "Für welches Cmdlet ist <code>ls</code> in Windows PowerShell ein Alias?",
+      "question": "Welcher Editor wird für neue PowerShell-Skripte empfohlen?",
       "options": [
-        "<code>Get-ChildItem</code>",
-        "<code>Get-Location</code>",
-        "<code>Get-Item</code>",
-        "<code>Get-Content</code>"
+        "Visual Studio Code mit PowerShell-Erweiterung",
+        "Die PowerShell ISE, weil sie PowerShell 7 am besten unterstützt",
+        "Microsoft Paint",
+        "Der Windows-Rechner"
       ],
-      "explanation": "Auch <code>dir</code> und <code>gci</code> stehen für <code>Get-ChildItem</code>. <code>Get-Alias ls</code> zeigt das an."
+      "explanation": "VS Code mit PowerShell-Erweiterung unterstützt auch PowerShell 7. Die ISE funktioniert nur mit Windows PowerShell 5.1 und wird nicht mehr weiterentwickelt."
     },
     {
       "section": "4.5",
-      "question": "Warum sollte man in Skripten keine Aliase verwenden?",
+      "question": "Mit welchem Cmdlet passt Du die Ausführungsrichtlinie an?",
       "options": [
-        "Sie sind schwer lesbar und nicht überall gleich, unter Linux ruft z. B. <code>ls</code> das Linux-Programm auf",
-        "Aliase funktionieren in Skripten grundsätzlich nicht",
-        "Aliase sind langsamer als Cmdlets",
-        "Aliase benötigen Administratorrechte"
+        "<code>Set-ExecutionPolicy</code>",
+        "<code>Get-Help</code>",
+        "<code>Set-StrictMode</code>",
+        "<code>Import-Module</code>"
       ],
-      "explanation": "In der Konsole sparen Aliase Tipparbeit, im Skript geht Lesbarkeit vor. VS Code ersetzt sie per Umschalt + Alt + E automatisch."
-    },
-    {
-      "section": "4.5",
-      "question": "Für welches Cmdlet steht der Alias <code>%</code>?",
-      "options": [
-        "<code>ForEach-Object</code>",
-        "<code>Where-Object</code>",
-        "<code>Measure-Object</code>",
-        "<code>Select-Object</code>"
-      ],
-      "explanation": "<code>?</code> steht für <code>Where-Object</code>, <code>%</code> für <code>ForEach-Object</code>."
-    },
-    {
-      "section": "4.5",
-      "question": "Wie bleibt ein selbst angelegter Alias auch nach dem Schließen der Sitzung erhalten?",
-      "options": [
-        "Man trägt ihn in das eigene Profil ein, dessen Pfad <code>$PROFILE</code> enthält",
-        "Man legt ihn mit <code>Set-Alias -Permanent</code> an",
-        "Man startet PowerShell als Administrator",
-        "Gar nicht, Aliase gehen immer verloren"
-      ],
-      "explanation": "Das Profil ist ein Skript, das bei jedem Start von PowerShell automatisch ausgeführt wird."
+      "explanation": "Zum Beispiel <code>Set-ExecutionPolicy RemoteSigned -Scope CurrentUser</code> – nur für den eigenen Benutzer."
     },
     {
       "section": "4.6",
@@ -312,6 +530,17 @@
       "explanation": "Zusätzlich braucht die Datei das Ausführrecht: <code>chmod +x skript.ps1</code>."
     },
     {
+      "section": "4.6",
+      "question": "Wofür sorgt die Zeile <code>#!/usr/bin/env pwsh</code> unter Linux?",
+      "options": [
+        "Das Skript wird direkt mit PowerShell 7 (<code>pwsh</code>) ausgeführt",
+        "Das Skript wird in Bash-Code umgewandelt",
+        "Das Skript läuft nur unter Windows",
+        "Die Zeile löscht die Umgebungsvariablen"
+      ],
+      "explanation": "Die Shebang-Zeile ist besonders nützlich, wenn das Skript direkt von der Kommandozeile oder als Cronjob gestartet wird. Unter Windows wird sie als Kommentar ignoriert."
+    },
+    {
       "section": "4.7",
       "question": "Welche Regel gilt für den <code>param()</code>-Block eines Skripts?",
       "options": [
@@ -332,6 +561,50 @@
         "Er verschlüsselt das Skript"
       ],
       "explanation": "Das ist die kommentarbasierte Hilfe. <code>Get-Help .\\skript.ps1 -Full</code> zeigt Beschreibung, Parameter und Beispiele."
+    },
+    {
+      "section": "4.7",
+      "question": "Welche Dateiendung hat ein Script Module?",
+      "options": [
+        "<code>.psm1</code>",
+        "<code>.psd1</code>",
+        "<code>.dll</code>",
+        "<code>.ps1xml</code>"
+      ],
+      "explanation": "Script Modules enthalten PowerShell-Code in <code>.psm1</code>-Dateien. <code>.psd1</code> ist das Manifest, <code>.dll</code> ein Binary Module."
+    },
+    {
+      "section": "4.7",
+      "question": "Was enthält ein Manifest Module (<code>.psd1</code>)?",
+      "options": [
+        "Metadaten über das Modul wie Version, Autor und Abhängigkeiten",
+        "Kompilierten C#-Code",
+        "Ein Bash-Skript",
+        "Die Hilfe aller Windows-Cmdlets"
+      ],
+      "explanation": "Das Manifest beschreibt das Modul. Binary Modules (<code>.dll</code>) enthalten .NET-Code, Script Modules (<code>.psm1</code>) PowerShell-Code."
+    },
+    {
+      "section": "4.7",
+      "question": "Warum importiert man benötigte Module am Anfang eines Skripts?",
+      "options": [
+        "Fehlende Module fallen sofort auf und alle Abhängigkeiten sind auf einen Blick sichtbar",
+        "Weil Import-Module nur in der ersten Zeile erlaubt ist",
+        "Damit das Skript schneller gelöscht werden kann",
+        "Weil Module sonst die Ausführungsrichtlinie ändern"
+      ],
+      "explanation": "So stehen alle Cmdlets während der gesamten Ausführung bereit, das Skript ist leichter wartbar, und ein fehlendes Modul fällt vor den ersten Änderungen auf."
+    },
+    {
+      "section": "4.7",
+      "question": "Was ist ein Dynamic Module?",
+      "options": [
+        "Ein Modul, das zur Laufzeit erzeugt und nicht als Datei gespeichert wird",
+        "Ein Modul, das sich selbst aktualisiert",
+        "Ein Modul mit der Endung <code>.psd1</code>",
+        "Ein Modul nur für Linux"
+      ],
+      "explanation": "Dynamic Modules entstehen zur Laufzeit, z. B. mit <code>New-Module</code>."
     },
     {
       "section": "4.8",
@@ -365,6 +638,17 @@
         "Nein, beide machen genau dasselbe"
       ],
       "explanation": "Eine fehlende Datei ist ein Laufzeitfehler, den nur eine Fehlerbehandlung abfängt. Ein Tippfehler im Variablennamen ist ein Programmierfehler."
+    },
+    {
+      "section": "4.8",
+      "question": "Welche Stufe von <code>Set-StrictMode</code> verbietet zusätzlich den Zugriff auf Array-Elemente außerhalb des gültigen Bereichs?",
+      "options": [
+        "<code>-Version 3.0</code>",
+        "<code>-Version 1.0</code>",
+        "<code>-Off</code>",
+        "<code>-Version 0.5</code>"
+      ],
+      "explanation": "Version 3.0 ergänzt die Prüfung von Array-Grenzen. <code>Latest</code> nutzt immer die strengste verfügbare Version."
     },
     {
       "section": "4.9",
@@ -409,6 +693,50 @@
         "Die kommentarbasierte Hilfe"
       ],
       "explanation": "Im Code fragt man dann mit <code>$PSCmdlet.ShouldProcess()</code>, ob die Aktion wirklich ausgeführt werden soll."
+    },
+    {
+      "section": "4.9",
+      "question": "Mit welchem Schlüsselwort werden Skript-Parameter definiert?",
+      "options": [
+        "<code>param</code>",
+        "<code>input</code>",
+        "<code>args</code>",
+        "<code>define</code>"
+      ],
+      "explanation": "Im <code>param (...)</code>-Block stehen die Parameter, jeweils mit Datentyp und Namen."
+    },
+    {
+      "section": "4.9",
+      "question": "Welchen Datentyp erwartet <code>[int]$Age</code>?",
+      "options": [
+        "Eine Ganzzahl ohne Nachkommastellen",
+        "Eine Zeichenkette",
+        "Einen Wahrheitswert",
+        "Ein Datum"
+      ],
+      "explanation": "<code>[int]</code> steht für Integer: positive, negative Zahlen oder null, ohne Dezimalstellen."
+    },
+    {
+      "section": "4.9",
+      "question": "Welche Werte kann ein <code>[bool]</code>-Parameter annehmen?",
+      "options": [
+        "<code>$true</code> oder <code>$false</code>",
+        "Beliebigen Text",
+        "Nur Zahlen von 1 bis 10",
+        "Nur Datumswerte"
+      ],
+      "explanation": "Ein boolescher Wert kennt nur wahr und falsch. Für Ja/Nein-Schalter ist <code>[switch]</code> oft praktischer, weil <code>-IsAdmin</code> allein genügt."
+    },
+    {
+      "section": "4.9",
+      "question": "Welcher Vorteil ergibt sich aus Parametern in einem Skript?",
+      "options": [
+        "Das Skript arbeitet mit unterschiedlichen Eingaben, ohne dass der Code geändert werden muss",
+        "Das Skript braucht keine Dateiendung mehr",
+        "Fehler können nicht mehr auftreten",
+        "Das Skript läuft automatisch als Administrator"
+      ],
+      "explanation": "Parameter machen Skripte flexibel und wiederverwendbar."
     },
     {
       "section": "4.10",
@@ -456,6 +784,59 @@
     },
     {
       "section": "4.10",
+      "question": "Was passiert bei einem abbrechenden Fehler (terminating error)?",
+      "options": [
+        "Die Ausführung stoppt sofort, <code>try/catch</code> kann ihn abfangen",
+        "Das Skript läuft einfach weiter",
+        "Der Fehler wird nie angezeigt",
+        "PowerShell startet neu"
+      ],
+      "explanation": "Abbrechende Fehler stoppen die Ausführung. Nicht abbrechende Fehler geben nur eine Meldung aus, das Skript läuft weiter."
+    },
+    {
+      "section": "4.10",
+      "question": "Wozu dient der Parameter <code>-ErrorVariable</code>?",
+      "options": [
+        "Fehler eines Cmdlets in einer eigenen Variable zu speichern",
+        "Alle Fehler dauerhaft zu unterdrücken",
+        "Die Fehlermeldung zu übersetzen",
+        "Den Strict Mode einzuschalten"
+      ],
+      "explanation": "Zum Beispiel <code>-ErrorVariable fehler</code> – der Name wird ohne <code>$</code> angegeben, danach steht der Fehler in <code>$fehler</code>."
+    },
+    {
+      "section": "4.10",
+      "question": "Was enthält <code>$Error[0]</code>?",
+      "options": [
+        "Den zuletzt aufgetretenen Fehler der Sitzung",
+        "Den ersten Fehler seit Windows-Start",
+        "Den Exit-Code des letzten Programms",
+        "Eine leere Liste"
+      ],
+      "explanation": "<code>$Error</code> ist eine automatische Variable mit den letzten Fehlern. Der neueste steht an erster Stelle."
+    },
+    {
+      "section": "4.10",
+      "question": "Richtig oder falsch? <code>try</code>, <code>catch</code> und <code>finally</code> sind Cmdlets wie <code>Get-Process</code>.",
+      "options": [
+        "Falsch",
+        "Richtig"
+      ],
+      "explanation": "Falsch. Es sind Schlüsselwörter der Sprache – wie <code>if</code> oder <code>foreach</code>. Cmdlets folgen dem Verb-Nomen-Schema."
+    },
+    {
+      "section": "4.10",
+      "question": "Welcher Wert für <code>-ErrorAction</code> fragt den Benutzer, wie es nach einem Fehler weitergehen soll?",
+      "options": [
+        "<code>Inquire</code>",
+        "<code>Stop</code>",
+        "<code>Ignore</code>",
+        "<code>SilentlyContinue</code>"
+      ],
+      "explanation": "<code>Inquire</code> fragt nach. <code>Stop</code> macht den Fehler abbrechend, <code>SilentlyContinue</code> unterdrückt die Anzeige, <code>Ignore</code> ignoriert ihn vollständig."
+    },
+    {
+      "section": "4.11",
       "question": "Mit welcher Taste setzt man in VS Code einen Haltepunkt?",
       "options": [
         "F9",
@@ -510,7 +891,71 @@
       "explanation": "<code>Invoke-ScriptAnalyzer -Path .\\skript.ps1</code> meldet z. B. Aliase oder nicht zugelassene Verben. VS Code nutzt das Modul automatisch."
     },
     {
+      "section": "4.11",
+      "question": "Welche drei Arten von Breakpoints kennt PowerShell?",
+      "options": [
+        "Zeile, Variable und Befehl",
+        "Datei, Ordner und Laufwerk",
+        "Start, Mitte und Ende",
+        "Farbe, Schrift und Größe"
+      ],
+      "explanation": "Mit <code>Set-PSBreakpoint</code> hält das Skript an einer Zeile (<code>-Line</code>), beim Zugriff auf eine Variable (<code>-Variable</code>) oder beim Aufruf eines Befehls (<code>-Command</code>)."
+    },
+    {
+      "section": "4.11",
+      "question": "Wann erscheinen die Meldungen von <code>Write-Verbose</code>?",
+      "options": [
+        "Nur, wenn das Skript mit <code>-Verbose</code> gestartet wird",
+        "Immer, wie bei <code>Write-Host</code>",
+        "Nie, sie werden nur in eine Datei geschrieben",
+        "Nur unter Linux"
+      ],
+      "explanation": "So bleiben ausführliche Ablaufinformationen im normalen Betrieb verborgen und können bei Bedarf eingeschaltet werden."
+    },
+    {
+      "section": "4.11",
+      "question": "Wie setzt man in der PowerShell ISE einen Breakpoint?",
+      "options": [
+        "Durch Klicken in den linken Rand neben dem Code",
+        "Durch Doppelklick auf den Fenstertitel",
+        "Mit Strg + Alt + Entf",
+        "Gar nicht, die ISE kennt keine Breakpoints"
+      ],
+      "explanation": "Die ISE bietet eine visuelle Umgebung: Klick in den Rand setzt oder entfernt einen Haltepunkt, danach geht man Schritt für Schritt durch das Skript."
+    },
+    {
       "section": "4.12",
+      "question": "Was gehört zur Analyse nach einem behobenen Fehler?",
+      "options": [
+        "Ursache bestimmen, Lösungsweg festhalten und Erkenntnisse dokumentieren",
+        "Das Skript sofort löschen",
+        "Den Fehler verschweigen",
+        "Die Ausführungsrichtlinie auf Bypass setzen"
+      ],
+      "explanation": "Wer Ursache, Lösungsstrategie und Erkenntnisse dokumentiert, hilft sich selbst und dem Team bei künftigen Problemen."
+    },
+    {
+      "section": "4.12",
+      "question": "Welche Maßnahme beugt Fehlern vor?",
+      "options": [
+        "Eingaben validieren, z. B. mit Prüfattributen",
+        "Alle Fehlermeldungen unterdrücken",
+        "Möglichst lange Funktionen schreiben",
+        "Auf Kommentare verzichten"
+      ],
+      "explanation": "Validierung, spezifische <code>catch</code>-Blöcke und modularer Code machen Skripte robuster und erleichtern die Fehlersuche."
+    },
+    {
+      "section": "4.12",
+      "question": "Richtig oder falsch? Das Ziel beim Skripten ist, von Anfang an völlig fehlerfreie Skripte zu schreiben.",
+      "options": [
+        "Falsch",
+        "Richtig"
+      ],
+      "explanation": "Falsch. Fehlerfreie Skripte sind nahezu unmöglich. Ziel ist, aus jedem Fehler zu lernen und das Wissen für künftige Skripte zu nutzen."
+    },
+    {
+      "section": "4.13",
       "question": "Welche Prozess-Eigenschaft verwendet die Musterlösung für den belegten Arbeitsspeicher?",
       "options": [
         "<code>WorkingSet64</code>",
@@ -521,7 +966,7 @@
       "explanation": "<code>WorkingSet64</code> ist der physische Arbeitsspeicher in Byte. Diesen Wert zeigt auch der Task-Manager an."
     },
     {
-      "section": "4.12",
+      "section": "4.13",
       "question": "Welchen Wert hat die PowerShell-Konstante <code>1MB</code>?",
       "options": [
         "1.048.576",
@@ -532,7 +977,7 @@
       "explanation": "1 MB = 1024 × 1024 Byte. Damit rechnet <code>[long]$MinMemory * 1MB</code> Megabyte in Byte um."
     },
     {
-      "section": "4.12",
+      "section": "4.13",
       "question": "Warum steht in der Musterlösung <code>[long]$MinMemory * 1MB</code>?",
       "options": [
         "Die Umrechnung in Byte ergibt große Zahlen, <code>[long]</code> verhindert einen Überlauf",
@@ -543,7 +988,7 @@
       "explanation": "<code>[int]</code> reicht nur bis etwa 2,1 Milliarden, also etwa 2 GB in Byte. <code>[long]</code> reicht weit darüber hinaus."
     },
     {
-      "section": "4.12",
+      "section": "4.13",
       "question": "Was passiert beim Aufruf <code>.\\Get-HighMemoryProcess.ps1 -MinMemory -5</code>?",
       "options": [
         "<code>ValidateRange</code> lehnt den Wert mit einer Fehlermeldung ab",
@@ -554,7 +999,7 @@
       "explanation": "<code>[ValidateRange(0, 1048576)]</code> erlaubt nur Werte von 0 MB bis 1 TB."
     },
     {
-      "section": "4.12",
+      "section": "4.13",
       "question": "Wie sortiert die Musterlösung die Prozesse so, dass der größte Verbraucher oben steht?",
       "options": [
         "<code>Sort-Object -Property WorkingSet64 -Descending</code>",
@@ -563,6 +1008,28 @@
         "<code>Group-Object WorkingSet64</code>"
       ],
       "explanation": "Ohne <code>-Descending</code> würde aufsteigend sortiert, der kleinste Prozess stünde oben."
+    },
+    {
+      "section": "4.14",
+      "question": "In welchen Umgebungen wird Bash traditionell eingesetzt?",
+      "options": [
+        "Unix und Linux",
+        "Nur Windows",
+        "Nur in Microsoft 365",
+        "Nur auf Smartphones"
+      ],
+      "explanation": "Bash ist in Unix- und Linux-Umgebungen zu Hause. PowerShell bietet eine umfassende Lösung für Windows und darüber hinaus."
+    },
+    {
+      "section": "4.14",
+      "question": "Was zeichnet PowerShell gegenüber der Bash besonders aus?",
+      "options": [
+        "Cmdlets, Pipelines mit Objekten und die enge Integration in Microsoft-Technologien",
+        "Sie verarbeitet ausschließlich Text",
+        "Sie läuft nur auf Linux",
+        "Sie kennt keine Skripte"
+      ],
+      "explanation": "PowerShell arbeitet objektorientiert, ist plattformübergreifend verfügbar und fügt sich nahtlos in Microsoft-Umgebungen ein."
     }
   ]
 }
