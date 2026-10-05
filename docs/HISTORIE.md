@@ -5,6 +5,7 @@
 ---
 
 ## 2026-10-05
+- Wissenstest „Automatisierung lokaler Wartungsaufgaben“: zwei Statistik-Fragen umformuliert („Welcher Anteil …“ statt „Wie viele …“) und unpassende Antworten wie „Alle Unternehmen“ ersetzt.
 - Neuer Kurs „Netzwerkautomatisierung und Tools“ (`netzwerkautomatisierung-und-tools`) mit Modul 1 „Automatisierung lokaler Wartungsaufgaben“: ein Kapitel aus `Netzwerkautomatisierung_und_Tools.docx` (Grundprinzipien, RPA/IPA, Vorteile und Herausforderungen, Planung in fünf Schritten mit Python-Beispielen, Automatisierung im Alltag, Übung, Coding Challenge Backup in Python), neu geschriebener Wissenstest mit 61 Fragen, Platzhalter-Kursbild in Grün. Statista-Grafiken als Tabellen übernommen.
 - Kapitel 04 „PowerShell Basics für Administratoren“ überarbeitet (Freigabe per Word-Entwurf): 8 Aspekte der PowerShell, „Deine ersten Schritte“ mit Installationslinks, Syntax mit Beispielen für aussagekräftige Cmdlet-Namen, Modultypen und Vorteile von `Import-Module`, Parameter-Beispiel mit Erklärung, Fehlerbehandlungs-Mechanismen inkl. `-ErrorVariable`, Breakpoint-Arten, „Lernen aus Fehlern“, Übung Lückentext mit Lösung, „Fazit zu Modul 2“. Korrigiert gegenüber der Vorlage: `100MB` ohne Leerzeichen, Lückentext-Lösung (34 statt 33 Lücken), `try`/`catch`/`finally` als Schlüsselwörter, Hinweis zu `Get-EventLog`. Wissenstest 50 → 93 Fragen, Abschnitte neu gegliedert (4.1–4.14).
 

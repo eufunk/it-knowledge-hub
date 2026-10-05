@@ -182,14 +182,14 @@
     },
     {
       "section": "1.2",
-      "question": "Wie viele Unternehmen messen der Prozessautomatisierung laut Befragung eine große oder sehr große Bedeutung zu?",
+      "question": "Welcher Anteil der befragten Unternehmen misst der Prozessautomatisierung eine „sehr große“ oder „große“ Bedeutung bei?",
       "options": [
         "Knapp drei Viertel (73 Prozent)",
-        "Etwa ein Zehntel",
-        "Genau die Hälfte",
-        "Alle Unternehmen"
+        "Rund die Hälfte (50 Prozent)",
+        "Etwa ein Viertel (25 Prozent)",
+        "Weniger als ein Zehntel (8 Prozent)"
       ],
-      "explanation": "73 Prozent der befragten Unternehmen halten Prozessautomatisierung für wichtig, vielerorts ist sie in den strategischen Zielen verankert."
+      "explanation": "In der Unternehmensbefragung halten 73 Prozent die Prozessautomatisierung für sehr wichtig oder wichtig. Vielerorts ist sie auch in den strategischen Zielen verankert."
     },
     {
       "section": "1.3",
@@ -521,12 +521,12 @@
     },
     {
       "section": "1.5",
-      "question": "Wie viele Befragte haben in den letzten zwölf Monaten kein einziges Mal ihre Daten gesichert?",
+      "question": "Welcher Anteil der Befragten hat in den letzten zwölf Monaten kein einziges Mal seine Daten gesichert?",
       "options": [
         "16 Prozent",
-        "1 Prozent",
-        "50 Prozent",
-        "90 Prozent"
+        "4 Prozent",
+        "35 Prozent",
+        "60 Prozent"
       ],
       "explanation": "16 Prozent sicherten gar nicht, ein Viertel nur ein- oder zweimal – ein starkes Argument für automatische Backups."
     },
