@@ -188,12 +188,12 @@ Quelle: `System_und_Prozessautomatisierung_Grundlagen.docx` (Kapitel; Kapitel 01
 | Anhang | 10 Glossar | – |
 
 ### 5.8 Inhalt des zweiten Kurses
-Kurs `netzwerkautomatisierung-und-tools` („Netzwerkautomatisierung und Tools“). Quelle: `Netzwerkautomatisierung_und_Tools.docx` (Stand Oktober 2026), Kapitel 1 und 2 am 2026-10-05 nach Markdown übernommen; Wissenstests gibt es im Dokument nicht, sie wurden neu geschrieben. Der Lösungsvorschlag zur Übung in Kapitel 2 (im Dokument eigener Abschnitt 2.8) steht eingeklappt direkt unter der Übung. Die beiden Statista-Grafiken des Dokuments sind als Tabellen mit Quellenangabe übernommen, nicht als Bild (fremdes Material, Text im Bild). Weitere Module folgen, sobald das Dokument sie enthält.
+Kurs `netzwerkautomatisierung-und-tools` („Netzwerkautomatisierung und Tools“). Quelle: `Netzwerkautomatisierung_und_Tools.docx` (Stand Oktober 2026), Kapitel 1 und 2 am 2026-10-05 nach Markdown übernommen; Wissenstests gibt es im Dokument nicht, sie wurden neu geschrieben. Der Lösungsvorschlag zur Übung in Kapitel 2 (im Dokument eigener Abschnitt 2.8) steht eingeklappt direkt unter der Übung. Die beiden Statista-Grafiken des Dokuments sind als Tabellen mit Quellenangabe übernommen, nicht als Bild (fremdes Material, Text im Bild). Modul 2 wird angelegt, sobald das Dokument seine Inhalte enthält – keine leeren Platzhalter-Kapitel.
 
 | Modul | Kapitel | Fragen |
 |---|---|---|
-| 1 Automatisierung lokaler Wartungsaufgaben | 01 Automatisierung lokaler Wartungsaufgaben | 61 |
-| 2 Automatisierung in Netzwerken und bei Remote-Aufgaben | 02 Automatisierung in Netzwerken und bei Remote-Aufgaben | 59 |
+| 1 Automatisierung lokaler und netzwerkübergreifender Aufgaben | 01 Automatisierung lokaler Wartungsaufgaben · 02 Automatisierung in Netzwerken und bei Remote-Aufgaben | 61 · 59 |
+| 2 Tools und Frameworks für Automatisierung (geplant, siehe `docs/todo.md`) | 03 Auswahlkriterien für Automatisierungstools · 04 Einsatz von Automatisierungsansätzen in verteilten Systemen | – |
 
 ## 6. Technische Entscheidungen
 

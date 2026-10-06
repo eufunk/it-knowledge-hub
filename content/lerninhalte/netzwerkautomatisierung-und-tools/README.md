@@ -5,10 +5,8 @@ duration: "2 Stunden"
 image: "/images/kurse/netzwerkautomatisierung-und-tools.svg"
 level: "Einsteiger"
 modules:
-  - title: "Automatisierung lokaler Wartungsaufgaben"
-    chapters: ["automatisierung-lokaler-wartungsaufgaben"]
-  - title: "Automatisierung in Netzwerken und bei Remote-Aufgaben"
-    chapters: ["automatisierung-in-netzwerken-und-remote-aufgaben"]
+  - title: "Automatisierung lokaler und netzwerkübergreifender Aufgaben"
+    chapters: ["automatisierung-lokaler-wartungsaufgaben", "automatisierung-in-netzwerken-und-remote-aufgaben"]
 ---
 
-Kurs „Netzwerkautomatisierung und Tools“. Quelle: Netzwerkautomatisierung_und_Tools.docx (Stand Oktober 2026), übernommen am 2026-10-05. Modul 2 am 2026-10-05 ergänzt. Weitere Module folgen.
+Kurs „Netzwerkautomatisierung und Tools“. Quelle: Netzwerkautomatisierung_und_Tools.docx (Stand Oktober 2026), übernommen am 2026-10-05. Kapitel 2 am 2026-10-05 ergänzt, beide Kapitel seit 2026-10-06 in Modul 1. Modul 2 „Tools und Frameworks für Automatisierung“ folgt.

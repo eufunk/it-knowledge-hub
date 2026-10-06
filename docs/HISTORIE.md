@@ -4,6 +4,9 @@
 
 ---
 
+## 2026-10-06
+- Kurs „Netzwerkautomatisierung und Tools“ neu gegliedert: Modul 1 heißt jetzt „Automatisierung lokaler und netzwerkübergreifender Aufgaben“ und enthält beide Kapitel (vorher je ein Modul pro Kapitel). Kapitel-Adressen und Lernfortschritt bleiben unverändert. Modul 2 „Tools und Frameworks für Automatisierung“ ist geplant (siehe ToDo).
+
 ## 2026-10-05
 - Kurs „Netzwerkautomatisierung und Tools“: Modul 2 „Automatisierung in Netzwerken und bei Remote-Aufgaben“ ergänzt (SDN, NFV, KI/ML, Automatisierungsframeworks mit Ansible-Beispiel, Sicherheit, Remote-Automatisierung mit Bash- und PowerShell-Beispielen, Praxisbeispiele, Erfolgsfaktoren und Fallstricke, Übung mit eingeklapptem Lösungsvorschlag, Fazit), neu geschriebener Wissenstest mit 59 Fragen. Kursbeschreibung und -dauer (2 Stunden) angepasst.
 - Wissenstest „Automatisierung lokaler Wartungsaufgaben“: zwei Statistik-Fragen umformuliert („Welcher Anteil …“ statt „Wie viele …“) und unpassende Antworten wie „Alle Unternehmen“ ersetzt.
