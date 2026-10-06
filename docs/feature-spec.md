@@ -44,7 +44,13 @@ Das MVP liefert **einen vollständig nutzbaren Kurs** von der Übersicht bis zur
 
 ### 4.2 Kursübersicht `/lerninhalte`
 - **F3** Überschrift „Deine Kurse“, darunter Grid aus Kurskacheln (Desktop 3 Spalten, Tablet 2, Mobil 1).
-- **F27** Kursgruppen: Kurse mit demselben `group` im Frontmatter stehen in der Übersicht unter einer gemeinsamen Zwischenüberschrift (Gruppentitel und Anzahl Kurse), jede Gruppe mit eigenem Grid und eigenem Sprungziel (`/lerninhalte#<gruppen-slug>`). Die Gruppen erscheinen in der Reihenfolge ihres ersten Kurses (nach Slug sortiert). Kurse ohne `group` folgen am Ende unter „Weitere Kurse“; gibt es gar keine Gruppen, entfällt die Zwischenüberschrift. Kurs-Adressen und Lernfortschritt hängen nicht von der Gruppe ab. Aktuell: Gruppe „IT Administration und Automation“ mit beiden Kursen.
+- **F27** Kursgruppen: Kurse mit demselben `group` im Frontmatter stehen in der Übersicht unter einer gemeinsamen Zwischenüberschrift (Gruppentitel und Anzahl Kurse), jede Gruppe mit eigenem Grid und eigenem Sprungziel (`/lerninhalte#<gruppen-slug>`). Die Gruppen erscheinen in der Reihenfolge ihres ersten Kurses (Kursreihenfolge siehe 5.1). Kurse ohne `group` folgen am Ende unter „Weitere Kurse“; gibt es gar keine Gruppen, entfällt die Zwischenüberschrift. Kurs-Adressen und Lernfortschritt hängen nicht von der Gruppe ab. Aktuell: Gruppe „IT Administration und Automation“ mit beiden Kursen.
+- **F28** Kursfreigabe: Ein Kurs mit `release` (Datum `JJJJ-MM-TT`) im Frontmatter ist erst ab diesem Tag sichtbar (Kursübersicht, Startseite) und erreichbar (Kursseite, Kapitel, Wissenstests). Vorher führt der Aufruf zur Kursübersicht (Prüfung in `proxy.ts`). Kurse ohne `release` sind sofort freigegeben. Vereinbarung: In einer Kursgruppe wird pro Woche ein neuer Kurs freigeschaltet, jeweils montags; jeder neue Kurs bekommt dazu `release` = Freigabe des vorigen Kurses + 7 Tage. Konten mit Tester-Merkmal (`tester` in der Datenbank, z. B. `testuser`) sehen alle Kurse unabhängig vom Datum. Das Merkmal wird nur über `npm run db:seed` gesetzt, nicht über die Oberfläche. Kursübersicht und Startseite werden deshalb pro Aufruf auf dem Server erzeugt; Kursseiten, Kapitel und Wissenstests bleiben statisch.
+
+  | Kurs | `order` | `release` |
+  |---|---|---|
+  | System- und Prozessautomatisierung | 1 | 2026-10-05 |
+  | Netzwerkautomatisierung und Tools | 2 | 2026-10-12 |
 - **F4** Kurskachel:
   - Weiße Karte mit Bild oben (16:9) und Text darunter – kein Text auf dem Bild
   - Badge oben rechts auf dem Bild: Fortschrittskreis + `NN% Fortschritt`, bei 100 % Häkchen + `Abgeschlossen` (grün)
@@ -97,7 +103,7 @@ Angelehnt an den Referenz-Screenshot der Kursansicht, aber im eigenen Design.
   - Passwörter nur als Hash mit zufälligem Salz (`scrypt`), Vergleich in konstanter Zeit.
   - Sitzungs-Token zufällig (256 Bit); in der Datenbank nur dessen Hash. Cookie `httpOnly`, `SameSite=Lax`, in Produktion `Secure`.
   - Änderungen am Fortschritt werden nur von derselben Herkunft (Origin) angenommen und nur für angemeldete Nutzer.
-  - Ein Testkonto (`testuser`) wird nur über das Entwicklungsskript `npm run db:seed` angelegt, nie automatisch.
+  - Ein Testkonto (`testuser`) wird nur über das Entwicklungsskript `npm run db:seed` angelegt, nie automatisch. Das Skript setzt bei ihm das Tester-Merkmal (F28).
 - **F26** Zugangsschutz: Ohne Anmeldung sind nur Startseite (`/`), „Über uns“, Anmelden und Registrieren erreichbar. Alle Seiten unter `/lerninhalte` (Kursübersicht, Kursseite, Kapitel, Wissenstests) verlangen eine gültige Sitzung; sonst geht es zu `/anmelden?weiter=<aufgerufene Seite>` und nach der Anmeldung zurück. Die Prüfung erfolgt zentral in `proxy.ts`; Schnittstellen und Server Actions prüfen die Anmeldung zusätzlich selbst. Nach dem Abmelden auf einer geschützten Seite geht es zur Startseite. Die Startseite zeigt die Kurse als Vorschau mit Hinweis auf Anmeldung/Registrierung.
 
 ## 5. Inhaltsmodell
@@ -119,7 +125,8 @@ Slug des Kapitels = Dateiname ohne Nummer und Endung (`01-einfuehrung-systemauto
 Regeln für das Einlesen:
 - Nur Ordner mit `README.md` sind Kurse, andere Ordner werden ignoriert.
 - Nur Dateien nach dem Muster `NN-slug.md` (Kleinbuchstaben, Ziffern, Bindestriche) sind Kapitel, andere Dateien werden ignoriert.
-- Kurse werden nach Slug sortiert, Kapitel numerisch nach Präfix (`10-…` nach `02-…`).
+- Kurse werden nach `order` sortiert (Kurse ohne `order` danach), bei gleicher oder fehlender Angabe nach Slug; Kapitel numerisch nach Präfix (`10-…` nach `02-…`).
+- `order` muss eine ganze Zahl, `release` ein gültiges Datum `JJJJ-MM-TT` sein, sonst bricht der Build ab.
 - Fehlt ein Pflichtfeld im Frontmatter (Kurs: `title`, `description`, `duration`, `image`; Kapitel: `title`), bricht der Build mit einer Fehlermeldung ab, die die Datei nennt.
 - Jedes Kapitel ohne `anhang: true` muss genau einem Modul zugeordnet sein; ein Modul darf nur vorhandene Kapitel nennen. Sonst bricht der Build ab. Ohne `modules` im Kurs bilden alle Kapitel ein Modul „Kursinhalt“.
 - Ein Wissenstest muss mindestens 10 Fragen mit je mindestens 2 Antworten und einer Erklärung haben, sonst bricht der Build ab.
@@ -133,6 +140,8 @@ duration: "1 Woche"
 image: "/images/kurse/system-und-prozessautomatisierung.svg"
 level: "Einsteiger"
 group: "IT Administration und Automation"   # optional, Kursgruppe in der Übersicht (F27)
+order: 1                                    # optional, Reihenfolge der Kurse
+release: "2026-10-05"                       # optional, Freigabedatum (F28)
 modules:
   - title: "Grundlagen der Automatisierung"
     chapters: ["einfuehrung-systemautomatisierung", "ueberwachen-wiederkehrender-systemablaeufe"]
@@ -171,11 +180,11 @@ Wichtigste Typen: `Course` (mit `modules: CourseModule[]`, `lessons`, `appendix`
 ### 5.6 Datenbank
 | Tabelle | Spalten |
 |---|---|
-| `users` | `id`, `username` (eindeutig, Kleinbuchstaben), `password_hash`, `created_at` |
+| `users` | `id`, `username` (eindeutig, Kleinbuchstaben), `password_hash`, `created_at`, `tester` (0/1, sieht alle Kurse, F28) |
 | `sessions` | `token_hash` (Primärschlüssel), `user_id`, `created_at`, `expires_at` |
 | `progress` | `user_id`, `course_slug`, `step_id`, `completed_at` – Primärschlüssel aus den ersten drei |
 
-Schritt-IDs sind dieselben wie im Browser (`<kapitel>` bzw. `<kapitel>/wissenstest`). Das Schema wird beim ersten Zugriff angelegt.
+Schritt-IDs sind dieselben wie im Browser (`<kapitel>` bzw. `<kapitel>/wissenstest`). Das Schema wird beim ersten Zugriff angelegt; fehlt in einer älteren Datenbank die Spalte `tester`, wird sie dabei ergänzt (Standard 0).
 
 ### 5.7 Inhalt des ersten Kurses
 Quelle: `System_und_Prozessautomatisierung_Grundlagen.docx` (Kapitel; Kapitel 01 am 2026-10-03, Kapitel 02 und 03 am 2026-10-04, Kapitel 04 am 2026-10-05 überarbeitet und erweitert, Freigabe-Entwürfe `Kapitel01_…_Entwurf.docx` bis `Kapitel04_…_Entwurf.docx`) und `Systemautomatisierung_Quiz.html` (410 Fragen), einmalig nach Markdown bzw. JSON übernommen. Danach sind die Dateien im Repository die maßgebliche Quelle.
@@ -204,7 +213,7 @@ Kurs `netzwerkautomatisierung-und-tools` („Netzwerkautomatisierung und Tools�
 | Markdown | `gray-matter` + `remark` / `remark-gfm` / `rehype-pretty-code` | Frontmatter + GFM-Tabellen + Code-Highlighting |
 | Icons | `lucide-react` | Einheitlicher Linien-Stil, große Auswahl |
 | Schrift | Plus Jakarta Sans für Text, JetBrains Mono für kleine technische Beschriftungen (via `next/font/google`) | Gut lesbar, Mono-Akzente passen zum IT-Thema |
-| Rendering | Inhaltsseiten statisch (`generateStaticParams`); Anmeldung, Registrierung und Schnittstellen dynamisch | Inhalte bleiben schnell; Konten brauchen einen Node-Server |
+| Rendering | Inhaltsseiten statisch (`generateStaticParams`); Anmeldung, Registrierung, Schnittstellen sowie Kursübersicht und Startseite (Kursfreigabe F28 hängt von Datum und Konto ab) dynamisch | Inhalte bleiben schnell; Konten brauchen einen Node-Server |
 | Fortschritt | Ohne Anmeldung `localStorage`, mit Anmeldung Datenbank; Sitzung und Fortschritt lädt der Browser über `/api/sitzung` | Inhaltsseiten bleiben statisch, Konto-Daten kommen nachträglich |
 | Datenbank | SQLite über das in Node eingebaute `node:sqlite`, Datei `data/it-knowledge-hub.db` | Keine Zusatzdienste; kein natives Paket (Windows-Application-Control) |
 | Anmeldung | Eigene Umsetzung: Server Actions, `scrypt`, Sitzungen in der Datenbank | Keine externen Abhängigkeiten, überschaubarer Umfang |

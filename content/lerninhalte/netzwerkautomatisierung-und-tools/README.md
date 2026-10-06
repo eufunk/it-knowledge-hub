@@ -5,6 +5,8 @@ duration: "4 Stunden"
 image: "/images/kurse/netzwerkautomatisierung-und-tools.svg"
 level: "Einsteiger"
 group: "IT Administration und Automation"
+order: 2
+release: "2026-10-12"
 modules:
   - title: "Automatisierung lokaler und netzwerkübergreifender Aufgaben"
     chapters: ["automatisierung-lokaler-wartungsaufgaben", "automatisierung-in-netzwerken-und-remote-aufgaben"]

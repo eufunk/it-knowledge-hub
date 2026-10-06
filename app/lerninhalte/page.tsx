@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { CourseGrid } from "@/components/learning/CourseGrid";
 import { getAllCourses } from "@/lib/content/courses";
+import { getCurrentUser } from "@/lib/server/session";
 import { groupCourses } from "@/lib/utils/course-groups";
+import { localDate, visibleCourses } from "@/lib/utils/release";
 
 export const metadata: Metadata = {
   title: "Lerninhalte",
@@ -9,9 +11,10 @@ export const metadata: Metadata = {
 
 const courseCount = (count: number) => (count === 1 ? "1 Kurs" : `${count} Kurse`);
 
-// F3: Kursübersicht „Deine Kurse“, F27: gruppiert nach Kursgruppen
-export default function LerninhaltePage() {
-  const courses = getAllCourses();
+// F3: Kursübersicht „Deine Kurse“, F27: gruppiert nach Kursgruppen, F28: nur freigegebene Kurse (Tester: alle)
+// Wird pro Aufruf erzeugt, weil die Auswahl von Datum und Konto abhängt.
+export default async function LerninhaltePage() {
+  const courses = visibleCourses(getAllCourses(), await getCurrentUser(), localDate(new Date()));
   const groups = groupCourses(courses);
 
   return (

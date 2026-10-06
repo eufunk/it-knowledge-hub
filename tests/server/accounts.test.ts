@@ -10,6 +10,7 @@ import {
   deleteSession,
   getUserBySession,
   SESSION_DAYS,
+  setTester,
   UsernameTakenError,
   validateRegistration,
 } from "@/lib/server/accounts";
@@ -156,5 +157,29 @@ describe("Weiterleitung nach dem Anmelden", () => {
     expect(safeNextPath("/\\boese.example")).toBe("/lerninhalte");
     expect(safeNextPath("/anmelden")).toBe("/lerninhalte");
     expect(safeNextPath(undefined)).toBe("/lerninhalte");
+  });
+});
+
+describe("F28: Tester-Merkmal", () => {
+  it("ist bei neuen Konten aus und lässt sich setzen", async () => {
+    const user = await createUser("testuser", "testuser123");
+    expect(user.tester).toBe(false);
+    expect(setTester("TestUser", true)).toBe(true);
+    expect(setTester("gibt-es-nicht", true)).toBe(false);
+    expect(await authenticate("testuser", "testuser123")).toMatchObject({ tester: true });
+    const { token } = createSession(user.id);
+    expect(getUserBySession(token)).toMatchObject({ tester: true });
+  });
+
+  it("rüstet eine ältere Datenbank ohne Spalte tester nach", async () => {
+    closeDb();
+    const { DatabaseSync } = await import("node:sqlite");
+    const old = new DatabaseSync(process.env.IKH_DB_PATH!);
+    old.exec("CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL UNIQUE, password_hash TEXT NOT NULL, created_at TEXT NOT NULL)");
+    old.prepare("INSERT INTO users (username, password_hash, created_at) VALUES ('alt', 'x', '2026-10-01')").run();
+    old.close();
+    const columns = getDb().prepare("PRAGMA table_info(users)").all() as { name: string }[];
+    expect(columns.map((column) => column.name)).toContain("tester");
+    expect(getDb().prepare("SELECT tester FROM users WHERE username = 'alt'").get()).toEqual({ tester: 0 });
   });
 });

@@ -12,6 +12,8 @@ export const PASSWORD_MAX = 200;
 export interface User {
   id: number;
   username: string;
+  // F28: sieht alle Kurse unabhängig vom Freigabedatum
+  tester: boolean;
 }
 
 export interface RegistrationInput {
@@ -46,9 +48,9 @@ export class UsernameTakenError extends Error {
 
 export function findUser(username: string): (User & { passwordHash: string }) | null {
   const row = getDb()
-    .prepare("SELECT id, username, password_hash FROM users WHERE username = ?")
-    .get(normalizeUsername(username)) as { id: number; username: string; password_hash: string } | undefined;
-  return row ? { id: row.id, username: row.username, passwordHash: row.password_hash } : null;
+    .prepare("SELECT id, username, password_hash, tester FROM users WHERE username = ?")
+    .get(normalizeUsername(username)) as { id: number; username: string; password_hash: string; tester: number } | undefined;
+  return row ? { id: row.id, username: row.username, tester: row.tester === 1, passwordHash: row.password_hash } : null;
 }
 
 export async function createUser(username: string, password: string): Promise<User> {
@@ -59,7 +61,7 @@ export async function createUser(username: string, password: string): Promise<Us
     const result = getDb()
       .prepare("INSERT INTO users (username, password_hash, created_at) VALUES (?, ?, ?)")
       .run(name, passwordHash, new Date().toISOString());
-    return { id: Number(result.lastInsertRowid), username: name };
+    return { id: Number(result.lastInsertRowid), username: name, tester: false };
   } catch (error) {
     if (String(error).includes("UNIQUE")) throw new UsernameTakenError();
     throw error;
@@ -76,7 +78,7 @@ export async function authenticate(username: string, password: string): Promise<
     await verifyPassword(password, await dummyHash);
     return null;
   }
-  return (await verifyPassword(password, user.passwordHash)) ? { id: user.id, username: user.username } : null;
+  return (await verifyPassword(password, user.passwordHash)) ? { id: user.id, username: user.username, tester: user.tester } : null;
 }
 
 function tokenHash(token: string): string {
@@ -96,15 +98,23 @@ export function getUserBySession(token: string | undefined, now: Date = new Date
   if (!token) return null;
   const row = getDb()
     .prepare(
-      "SELECT users.id, users.username, sessions.expires_at FROM sessions JOIN users ON users.id = sessions.user_id WHERE sessions.token_hash = ?",
+      "SELECT users.id, users.username, users.tester, sessions.expires_at FROM sessions JOIN users ON users.id = sessions.user_id WHERE sessions.token_hash = ?",
     )
-    .get(tokenHash(token)) as { id: number; username: string; expires_at: string } | undefined;
+    .get(tokenHash(token)) as { id: number; username: string; tester: number; expires_at: string } | undefined;
   if (!row) return null;
   if (new Date(row.expires_at) <= now) {
     deleteSession(token);
     return null;
   }
-  return { id: row.id, username: row.username };
+  return { id: row.id, username: row.username, tester: row.tester === 1 };
+}
+
+// F28: Tester-Merkmal setzen (nur über scripts/db-seed.ts); false, wenn es das Konto nicht gibt
+export function setTester(username: string, tester: boolean): boolean {
+  const result = getDb()
+    .prepare("UPDATE users SET tester = ? WHERE username = ?")
+    .run(tester ? 1 : 0, normalizeUsername(username));
+  return Number(result.changes) > 0;
 }
 
 export function deleteSession(token: string | undefined): void {

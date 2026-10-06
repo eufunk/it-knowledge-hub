@@ -3,14 +3,12 @@ import path from "node:path";
 import matter from "gray-matter";
 import type { Course, CourseModule, Lesson, LessonMeta, Quiz, QuizQuestion } from "@/types/learning";
 import { QUIZ_LENGTH } from "@/lib/utils/quiz";
+import { CONTENT_DIR, isCourseDir, parseOrder, parseRelease, readCourseFrontmatter } from "./course-meta";
 import { markdownToHtml } from "./markdown";
 
-// F5: Kurse werden automatisch aus content/lerninhalte/* gelesen.
-export const CONTENT_DIR = path.join(process.cwd(), "content", "lerninhalte");
+export { CONTENT_DIR };
 
-const COURSE_FILE = "README.md";
 const QUIZ_DIR = "wissenstest";
-const SLUG = /^[a-z0-9-]+$/;
 const LESSON_FILE = /^(\d+)-([a-z0-9-]+)\.md$/;
 
 function requireString(data: Record<string, unknown>, key: string, file: string): string {
@@ -94,16 +92,11 @@ function buildModules(rawModules: unknown, lessons: LessonMeta[], file: string):
   return modules;
 }
 
-function isCourseDir(root: string, slug: string): boolean {
-  return SLUG.test(slug) && fs.existsSync(path.join(root, slug, COURSE_FILE));
-}
-
 export function getCourse(slug: string, root: string = CONTENT_DIR): Course | null {
   if (!isCourseDir(root, slug)) return null;
 
   const courseDir = path.join(root, slug);
-  const file = path.join(courseDir, COURSE_FILE);
-  const { data } = matter(fs.readFileSync(file, "utf8"));
+  const { data, file } = readCourseFrontmatter(root, slug);
   const lessons = readLessonMetas(courseDir);
 
   return {
@@ -114,22 +107,23 @@ export function getCourse(slug: string, root: string = CONTENT_DIR): Course | nu
     image: requireString(data, "image", file),
     level: optionalString(data, "level"),
     group: optionalString(data, "group"),
+    order: parseOrder(data.order, file),
+    release: parseRelease(data.release, file),
     lessons,
     modules: buildModules(data.modules, lessons, file),
     appendix: lessons.filter((lesson) => lesson.appendix),
   };
 }
 
-// Ordner ohne README.md sind keine Kurse und werden übersprungen.
+// Ordner ohne README.md sind keine Kurse und werden übersprungen. Reihenfolge: `order`, danach Slug.
 export function getAllCourses(root: string = CONTENT_DIR): Course[] {
   if (!fs.existsSync(root)) return [];
   return fs
     .readdirSync(root, { withFileTypes: true })
     .filter((entry) => entry.isDirectory() && isCourseDir(root, entry.name))
-    .map((entry) => entry.name)
-    .sort()
-    .map((slug) => getCourse(slug, root))
-    .filter((course): course is Course => course !== null);
+    .map((entry) => getCourse(entry.name, root))
+    .filter((course): course is Course => course !== null)
+    .sort((a, b) => (a.order ?? Infinity) - (b.order ?? Infinity) || a.slug.localeCompare(b.slug));
 }
 
 export async function getLesson(

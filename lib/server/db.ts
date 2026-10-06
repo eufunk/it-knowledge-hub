@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS users (
   id            INTEGER PRIMARY KEY AUTOINCREMENT,
   username      TEXT    NOT NULL UNIQUE,
   password_hash TEXT    NOT NULL,
-  created_at    TEXT    NOT NULL
+  created_at    TEXT    NOT NULL,
+  tester        INTEGER NOT NULL DEFAULT 0
 );
 
 CREATE TABLE IF NOT EXISTS sessions (
@@ -43,8 +44,18 @@ export function getDb(): DatabaseSync {
   const db = new DatabaseSync(file);
   db.exec("PRAGMA foreign_keys = ON; PRAGMA journal_mode = WAL; PRAGMA busy_timeout = 5000;");
   db.exec(SCHEMA);
+  migrate(db);
   current = { file, db };
   return db;
+}
+
+// Ältere Datenbanken nachrüsten (Spalten, die nach dem ersten Anlegen dazugekommen sind)
+function migrate(db: DatabaseSync): void {
+  const columns = db.prepare("PRAGMA table_info(users)").all() as { name: string }[];
+  // F28: Tester-Merkmal
+  if (!columns.some((column) => column.name === "tester")) {
+    db.exec("ALTER TABLE users ADD COLUMN tester INTEGER NOT NULL DEFAULT 0");
+  }
 }
 
 export function closeDb(): void {

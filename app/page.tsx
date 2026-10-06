@@ -3,9 +3,12 @@ import { SignInHint } from "@/components/konto/SignInHint";
 import { CourseGrid } from "@/components/learning/CourseGrid";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { getAllCourses } from "@/lib/content/courses";
+import { getCurrentUser } from "@/lib/server/session";
+import { localDate, visibleCourses } from "@/lib/utils/release";
 
-export default function Home() {
-  const courses = getAllCourses().slice(0, 3);
+// F28: Vorschau nur mit freigegebenen Kursen (Tester: alle); pro Aufruf erzeugt
+export default async function Home() {
+  const courses = visibleCourses(getAllCourses(), await getCurrentUser(), localDate(new Date())).slice(0, 3);
 
   return (
     <>

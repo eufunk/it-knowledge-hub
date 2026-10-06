@@ -1,6 +1,7 @@
-// Entwicklungsskript: legt das Testkonto an (F25 – nie automatisch, nur über `npm run db:seed`).
+// Entwicklungsskript: legt das Testkonto an (F25 – nie automatisch, nur über `npm run db:seed`)
+// und setzt das Tester-Merkmal, damit es alle Kurse unabhängig vom Freigabedatum sieht (F28).
 // Läuft direkt mit Node (Typen werden entfernt), daher relative Importe mit .ts-Endung.
-import { createUser, findUser } from "../lib/server/accounts.ts";
+import { createUser, findUser, setTester } from "../lib/server/accounts.ts";
 import { closeDb, databasePath } from "../lib/server/db.ts";
 
 const USERNAME = "testuser";
@@ -17,4 +18,6 @@ if (findUser(USERNAME)) {
   await createUser(USERNAME, PASSWORD);
   console.log(`Testkonto „${USERNAME}“ angelegt (${databasePath()}).`);
 }
+setTester(USERNAME, true);
+console.log(`Tester-Merkmal für „${USERNAME}“ gesetzt: sieht alle Kurse.`);
 closeDb();

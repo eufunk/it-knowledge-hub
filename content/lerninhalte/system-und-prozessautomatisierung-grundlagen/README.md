@@ -5,6 +5,8 @@ duration: "1 Woche"
 image: "/images/kurse/system-und-prozessautomatisierung.svg"
 level: "Einsteiger"
 group: "IT Administration und Automation"
+order: 1
+release: "2026-10-05"
 modules:
   - title: "Grundlagen der Automatisierung"
     chapters: ["einfuehrung-systemautomatisierung", "ueberwachen-wiederkehrender-systemablaeufe"]

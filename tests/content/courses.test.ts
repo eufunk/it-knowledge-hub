@@ -7,8 +7,8 @@ const ROOT = path.join(import.meta.dirname, "fixtures", "lerninhalte");
 const BROKEN = path.join(import.meta.dirname, "fixtures", "fehlerhaft");
 
 describe("F5: getAllCourses", () => {
-  it("liest alle Kursordner mit README.md, sortiert nach Slug", () => {
-    expect(getAllCourses(ROOT).map((course) => course.slug)).toEqual(["kurs-a", "kurs-b", "kurs-c"]);
+  it("liest alle Kursordner mit README.md, sortiert nach order und dann nach Slug", () => {
+    expect(getAllCourses(ROOT).map((course) => course.slug)).toEqual(["kurs-c", "kurs-a", "kurs-b"]);
   });
 
   it("liefert eine leere Liste, wenn der Inhaltsordner fehlt", () => {
@@ -28,6 +28,10 @@ describe("getCourse", () => {
       group: "Gruppe X",
     });
     expect(getCourse("kurs-b", ROOT)?.group).toBeUndefined();
+    // F28: Datum ohne Anführungszeichen (YAML-Date) wird als Text übernommen
+    expect(getCourse("kurs-b", ROOT)).toMatchObject({ release: "2999-01-01" });
+    expect(getCourse("kurs-c", ROOT)).toMatchObject({ order: 1 });
+    expect(getCourse("kurs-a", ROOT)?.release).toBeUndefined();
   });
 
   it("sortiert Kapitel numerisch nach Präfix und bildet den Slug ohne Nummer", () => {
@@ -53,6 +57,7 @@ describe("getCourse", () => {
 
   it("meldet fehlende Pflichtfelder mit Dateinamen", () => {
     expect(() => getCourse("kaputt", BROKEN)).toThrow(/Pflichtfeld "image"/);
+    expect(() => getCourse("freigabe-ungueltig", BROKEN)).toThrow(/"order" muss eine ganze Zahl|"release" muss ein Datum/);
   });
 });
 

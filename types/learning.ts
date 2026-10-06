@@ -26,6 +26,10 @@ export interface Course {
   level?: string;
   // F27: Kursgruppe in der Übersicht, z. B. „IT Administration und Automation“
   group?: string;
+  // Reihenfolge in Übersicht und Gruppe (kleinere Zahl zuerst)
+  order?: number;
+  // F28: Freigabedatum „JJJJ-MM-TT“; ohne Angabe sofort sichtbar
+  release?: string;
   // alle Kapitel inkl. Anhänge, sortiert nach Nummernpräfix
   lessons: LessonMeta[];
   modules: CourseModule[];
