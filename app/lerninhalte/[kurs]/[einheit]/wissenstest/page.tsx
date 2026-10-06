@@ -5,6 +5,7 @@ import { QuizRunner } from "@/components/learning/QuizRunner";
 import { StepCards, StepTopBar } from "@/components/learning/StepNavigation";
 import { getAllCourses, getCourse, getQuiz } from "@/lib/content/courses";
 import { getPlayerData } from "@/lib/content/player";
+import { courseBreadcrumbStart } from "@/lib/utils/course-groups";
 import { lessonHref, quizStepId } from "@/lib/utils/steps";
 
 // Kapitel ohne Wissenstest führen zu 404.
@@ -41,7 +42,7 @@ export default async function WissenstestPage({ params }: PageProps<"/lerninhalt
       topBar={
         <StepTopBar
           breadcrumb={[
-            { label: "Lerninhalte", href: "/lerninhalte" },
+            ...courseBreadcrumbStart(course),
             { label: course.title, href: courseHref },
             { label: lesson.title, href: lessonHref(course.slug, lesson.slug) },
             { label: "Wissenstest" },

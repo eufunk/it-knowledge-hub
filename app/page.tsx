@@ -49,7 +49,7 @@ export default function Home() {
             </ButtonLink>
           </div>
           <SignInHint />
-          <CourseGrid courses={courses} />
+          <CourseGrid courses={courses} headingLevel={3} />
         </section>
       )}
     </>

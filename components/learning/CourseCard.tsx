@@ -18,6 +18,8 @@ interface CourseCardProps {
   moduleCount: number;
   chapterCount: number;
   stepIds: string[];
+  // Überschriftenebene des Titels: h3 unter einer Zwischenüberschrift (Startseite, Kursgruppe), sonst h2
+  headingLevel?: 2 | 3;
 }
 
 // F4: Kurskachel – Bild oben, Text darunter, Fortschritt unten
@@ -31,7 +33,9 @@ export function CourseCard({
   moduleCount,
   chapterCount,
   stepIds,
+  headingLevel = 2,
 }: CourseCardProps) {
+  const Heading = headingLevel === 3 ? "h3" : "h2";
   const { percent } = useCourseProgress(slug, stepIds);
 
   return (
@@ -54,7 +58,7 @@ export function CourseCard({
 
       <div className="flex flex-1 flex-col p-5">
         {level && <p className="font-mono text-xs font-medium tracking-wider text-accent uppercase">{level}</p>}
-        <h2 className="mt-1.5 text-xl leading-snug font-bold tracking-tight">{title}</h2>
+        <Heading className="mt-1.5 text-xl leading-snug font-bold tracking-tight">{title}</Heading>
         <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">{description}</p>
 
         <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm font-medium text-muted">

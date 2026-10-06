@@ -113,6 +113,7 @@ export function getCourse(slug: string, root: string = CONTENT_DIR): Course | nu
     duration: requireString(data, "duration", file),
     image: requireString(data, "image", file),
     level: optionalString(data, "level"),
+    group: optionalString(data, "group"),
     lessons,
     modules: buildModules(data.modules, lessons, file),
     appendix: lessons.filter((lesson) => lesson.appendix),

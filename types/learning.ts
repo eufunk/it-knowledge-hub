@@ -24,6 +24,8 @@ export interface Course {
   duration: string;
   image: string;
   level?: string;
+  // F27: Kursgruppe in der Übersicht, z. B. „IT Administration und Automation“
+  group?: string;
   // alle Kapitel inkl. Anhänge, sortiert nach Nummernpräfix
   lessons: LessonMeta[];
   modules: CourseModule[];

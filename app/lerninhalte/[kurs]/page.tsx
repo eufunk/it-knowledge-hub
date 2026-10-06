@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { CourseOverview } from "@/components/learning/CourseOverview";
 import { Breadcrumb } from "@/components/ui/Breadcrumb";
 import { getAllCourses, getCourse } from "@/lib/content/courses";
+import { courseBreadcrumbStart } from "@/lib/utils/course-groups";
 import { formatCourseSize, plural } from "@/lib/utils/format";
 import { getCourseSteps } from "@/lib/utils/steps";
 
@@ -32,7 +33,7 @@ export default async function KursPage({ params }: PageProps<"/lerninhalte/[kurs
 
   return (
     <>
-      <Breadcrumb items={[{ label: "Lerninhalte", href: "/lerninhalte" }, { label: course.title }]} />
+      <Breadcrumb items={[...courseBreadcrumbStart(course), { label: course.title }]} />
 
       <header className="mt-6 grid items-center gap-8 overflow-hidden rounded-[24px] border border-line bg-surface p-6 sm:p-8 lg:grid-cols-[1fr_420px]">
         <div>

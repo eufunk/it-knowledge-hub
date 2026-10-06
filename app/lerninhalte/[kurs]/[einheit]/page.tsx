@@ -6,6 +6,7 @@ import { ReadAloudPlayer } from "@/components/learning/ReadAloudPlayer";
 import { ReadingProgress } from "@/components/learning/ReadingProgress";
 import { StepCards, StepTopBar } from "@/components/learning/StepNavigation";
 import { getAllCourses, getCourse, getLesson } from "@/lib/content/courses";
+import { courseBreadcrumbStart } from "@/lib/utils/course-groups";
 import { getPlayerData } from "@/lib/content/player";
 
 // Unbekannte Kapitel führen zu 404 statt zu einer Seite zur Laufzeit.
@@ -42,7 +43,7 @@ export default async function KapitelPage({ params }: PageProps<"/lerninhalte/[k
       topBar={
         <StepTopBar
           breadcrumb={[
-            { label: "Lerninhalte", href: "/lerninhalte" },
+            ...courseBreadcrumbStart(course),
             { label: course.title, href: courseHref },
             { label: lesson.title },
           ]}

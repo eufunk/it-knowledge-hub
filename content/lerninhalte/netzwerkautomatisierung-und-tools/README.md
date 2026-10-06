@@ -4,6 +4,7 @@ description: "Lokale Wartungsaufgaben, Netzwerk- und Remote-Automatisierung, Aus
 duration: "4 Stunden"
 image: "/images/kurse/netzwerkautomatisierung-und-tools.svg"
 level: "Einsteiger"
+group: "IT Administration und Automation"
 modules:
   - title: "Automatisierung lokaler und netzwerkübergreifender Aufgaben"
     chapters: ["automatisierung-lokaler-wartungsaufgaben", "automatisierung-in-netzwerken-und-remote-aufgaben"]

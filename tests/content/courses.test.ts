@@ -25,7 +25,9 @@ describe("getCourse", () => {
       duration: "1 Woche",
       image: "/images/kurse/a.jpg",
       level: "Einsteiger",
+      group: "Gruppe X",
     });
+    expect(getCourse("kurs-b", ROOT)?.group).toBeUndefined();
   });
 
   it("sortiert Kapitel numerisch nach Präfix und bildet den Slug ohne Nummer", () => {

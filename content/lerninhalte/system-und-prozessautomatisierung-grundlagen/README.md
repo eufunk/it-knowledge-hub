@@ -4,6 +4,7 @@ description: "Begriffe, Werkzeuge, Überwachung und Shell-Scripting – mit Prax
 duration: "1 Woche"
 image: "/images/kurse/system-und-prozessautomatisierung.svg"
 level: "Einsteiger"
+group: "IT Administration und Automation"
 modules:
   - title: "Grundlagen der Automatisierung"
     chapters: ["einfuehrung-systemautomatisierung", "ueberwachen-wiederkehrender-systemablaeufe"]

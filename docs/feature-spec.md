@@ -44,6 +44,7 @@ Das MVP liefert **einen vollständig nutzbaren Kurs** von der Übersicht bis zur
 
 ### 4.2 Kursübersicht `/lerninhalte`
 - **F3** Überschrift „Deine Kurse“, darunter Grid aus Kurskacheln (Desktop 3 Spalten, Tablet 2, Mobil 1).
+- **F27** Kursgruppen: Kurse mit demselben `group` im Frontmatter stehen in der Übersicht unter einer gemeinsamen Zwischenüberschrift (Gruppentitel und Anzahl Kurse), jede Gruppe mit eigenem Grid und eigenem Sprungziel (`/lerninhalte#<gruppen-slug>`). Die Gruppen erscheinen in der Reihenfolge ihres ersten Kurses (nach Slug sortiert). Kurse ohne `group` folgen am Ende unter „Weitere Kurse“; gibt es gar keine Gruppen, entfällt die Zwischenüberschrift. Kurs-Adressen und Lernfortschritt hängen nicht von der Gruppe ab. Aktuell: Gruppe „IT Administration und Automation“ mit beiden Kursen.
 - **F4** Kurskachel:
   - Weiße Karte mit Bild oben (16:9) und Text darunter – kein Text auf dem Bild
   - Badge oben rechts auf dem Bild: Fortschrittskreis + `NN% Fortschritt`, bei 100 % Häkchen + `Abgeschlossen` (grün)
@@ -53,7 +54,7 @@ Das MVP liefert **einen vollständig nutzbaren Kurs** von der Übersicht bis zur
 - **F5** Kurse werden automatisch aus `content/lerninhalte/*` gelesen – neuer Ordner = neuer Kurs, kein Code nötig.
 
 ### 4.3 Kursseite `/lerninhalte/[kurs]`
-- **F6** Kopfbereich: Bild, Titel, Beschreibung, Dauer, Anzahl Module und Kapitel.
+- **F6** Kopfbereich: Bild, Titel, Beschreibung, Dauer, Anzahl Module und Kapitel. Darüber Breadcrumb `Lerninhalte › Gruppe › Kurs` (Gruppe nur, wenn vorhanden, siehe F27).
 - **F7** Kapitel als Zeitleiste, gruppiert nach Modulen (Modulnummer und -titel als Zwischenüberschrift). Je Kapitel: nummerierter Punkt (grün mit Häkchen, wenn Kapitel und Wissenstest erledigt sind), Titel, Kurzbeschreibung, Dauer und Status von „Lesen“ und „Wissenstest“. Anhänge (z. B. Glossar) folgen nach den Modulen. Daneben (mobil darüber) eine Fortschrittskarte, die beim Scrollen stehen bleibt.
 - **F8** Button „Kurs starten“ bzw. „Weiterlernen“ (springt zum ersten nicht erledigten Lernschritt, siehe F13).
 
@@ -61,7 +62,7 @@ Das MVP liefert **einen vollständig nutzbaren Kurs** von der Übersicht bis zur
 Angelehnt an den Referenz-Screenshot der Kursansicht, aber im eigenen Design.
 - **F9** Markdown wird gerendert inkl. Überschriften, Listen, Tabellen (GFM und HTML), Codeblöcke mit Syntax-Highlighting, Bilder.
 - **F10** Am Ende eines Kapitels: Button „Als erledigt markieren“ (umschaltbar).
-- **F11** Kopfzeile über dem Inhalt mit Breadcrumb `Lerninhalte › Kurs › Kapitel` und Buttons „Zurück“ / „Weiter“. Die Reihenfolge der Lernschritte ist: Kapitel 1 → Wissenstest 1 → Kapitel 2 → … → Wissenstest 9 → Anhänge. Am Anfang ist „Zurück“ deaktiviert, nach dem letzten Schritt führt „Weiter“ zur Kursseite. Unter dem Inhalt zusätzlich Karten „Vorheriger“ / „Nächster“ Schritt.
+- **F11** Kopfzeile über dem Inhalt mit Breadcrumb `Lerninhalte › Gruppe › Kurs › Kapitel` (Gruppe nur, wenn der Kurs eine hat; sie verlinkt auf ihr Sprungziel in der Übersicht, siehe F27) und Buttons „Zurück“ / „Weiter“. Die Reihenfolge der Lernschritte ist: Kapitel 1 → Wissenstest 1 → Kapitel 2 → … → Wissenstest 9 → Anhänge. Am Anfang ist „Zurück“ deaktiviert, nach dem letzten Schritt führt „Weiter“ zur Kursseite. Unter dem Inhalt zusätzlich Karten „Vorheriger“ / „Nächster“ Schritt.
 - **F15** Seitenleiste „Kursinhalt“ links: Module aufklappbar, darin Kapitel aufklappbar mit den Einträgen „Kapitel lesen“ und „Wissenstest“, jeweils mit Status (offen / erledigt). Modul und Kapitel des aktuellen Schritts sind geöffnet, der aktuelle Eintrag ist hervorgehoben. Anhänge stehen am Ende. Oben Kursname und Fortschrittsbalken. Ab 1024 px dauerhaft sichtbar und ausblendbar; darunter als aufklappbarer Bereich „Kursinhalt“ über dem Inhalt.
 - **F16** Lesefortschritt: Unter dem Kapiteltitel zeigt ein schmaler Balken, wie weit das Kapitel gelesen ist (Scrollposition).
 - **F17** Wissenstest je Kapitel:
@@ -131,6 +132,7 @@ description: "…"
 duration: "1 Woche"
 image: "/images/kurse/system-und-prozessautomatisierung.svg"
 level: "Einsteiger"
+group: "IT Administration und Automation"   # optional, Kursgruppe in der Übersicht (F27)
 modules:
   - title: "Grundlagen der Automatisierung"
     chapters: ["einfuehrung-systemautomatisierung", "ueberwachen-wiederkehrender-systemablaeufe"]
