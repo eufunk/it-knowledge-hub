@@ -8,7 +8,7 @@ Erledigte Punkte werden abgehakt und mit Datum versehen, nicht gelöscht.
 ## Offene Entscheidungen
 - [ ] **Logo / Name der Plattform** – Ist „IT Knowledge Hub“ als Text-Logo in Ordnung oder wird ein eigenes Logo (SVG) erstellt? *(Bis dahin: Text-Logo als Platzhalter)*
 - [ ] **Kursbilder** für `system-und-prozessautomatisierung-grundlagen` und `netzwerkautomatisierung-und-tools` – eigene Bilder oder Stockfotos (z. B. Unsplash, Quelle und Lizenz notieren)? *(Bis dahin: Platzhalterbilder in Indigo bzw. Grün)*
-- [ ] **Kurs „Netzwerkautomatisierung und Tools“: Kapitel 04 „Einsatz von Automatisierungsansätzen in verteilten Systemen“** – zweites Kapitel in Modul 2 „Tools und Frameworks für Automatisierung“, mit Wissenstest; anlegen, sobald `Netzwerkautomatisierung_und_Tools.docx` den Inhalt enthält (Kapitel 03 „Auswahlkriterien für Automatisierungstools“ erledigt 2026-10-06)
+- [x] **Kurs „Netzwerkautomatisierung und Tools“: Kapitel 04 „Einsatz von Automatisierungsansätzen in verteilten Systemen“** – zweites Kapitel in Modul 2 „Tools und Frameworks für Automatisierung“, mit Wissenstest; anlegen, sobald `Netzwerkautomatisierung_und_Tools.docx` den Inhalt enthält (Kapitel 03 „Auswahlkriterien für Automatisierungstools“ erledigt 2026-10-06) – erledigt 2026-10-06
 - [ ] **Kurs „System- und Prozessautomatisierung“: Kapitel „Entwicklung komplexer PowerShell-Scripte“** – zweites Kapitel in Modul 3 „Fortgeschrittene Scripttechniken“, mit Wissenstest; Inhalt liefert die Nutzerin später (Struktur vereinbart 2026-10-06)
 - [ ] **Hosting** – Vercel oder GitHub Pages (statischer Export via `output: "export"`)? Danach Deployment einrichten.
 

@@ -1,0 +1,487 @@
+{
+  "sections": {
+    "4.1": "Vergleich der Ansätze",
+    "4.2": "Planung und Implementierung",
+    "4.3": "Übung: Strategien zuordnen",
+    "4.4": "Herausforderungen und Lösungsansätze",
+    "4.5": "Strategien umsetzen",
+    "4.6": "Proaktive Wartung",
+    "4.7": "Überwachung",
+    "4.8": "Erfolgsgeschichten"
+  },
+  "questions": [
+    {
+      "section": "4.1",
+      "question": "Was ist ein verteiltes System?",
+      "options": [
+        "Viele Rechner an mehreren Standorten, die über Netzwerke zusammenarbeiten und nach außen wie ein System wirken",
+        "Ein einzelner Server mit vielen Festplatten",
+        "Ein Netzwerk, das nur aus einem Switch besteht",
+        "Eine Software, die auf CD verteilt wird"
+      ],
+      "explanation": "Beispiele sind Streaming-Dienste, Onlineshops und Cloud-Plattformen."
+    },
+    {
+      "section": "4.1",
+      "question": "Was ist der Hauptfokus der Automatisierung in verteilten Systemen?",
+      "options": [
+        "Koordination und Verwaltung verteilter Knoten und Ressourcen",
+        "Lokale Geräte direkt vor Ort",
+        "Ausschließlich der Fernzugriff auf einzelne Rechner",
+        "Die Gestaltung von Benutzeroberflächen"
+      ],
+      "explanation": "Lokale Netzwerke konzentrieren sich auf Geräte vor Ort, Remote-Aufgaben auf Fernzugriff und -verwaltung."
+    },
+    {
+      "section": "4.1",
+      "question": "Welche Herausforderung ist typisch für die Automatisierung in lokalen Netzwerken?",
+      "options": [
+        "Begrenzte Skalierbarkeit und Abhängigkeit von lokalem Personal",
+        "Datenkonsistenz über viele Standorte",
+        "Hohe Latenz über das Internet",
+        "Netzwerkpartitionen zwischen Kontinenten"
+      ],
+      "explanation": "Datenkonsistenz und Netzwerkstabilität sind Herausforderungen verteilter Systeme, Latenz und Verbindungssicherheit die von Remote-Aufgaben."
+    },
+    {
+      "section": "4.1",
+      "question": "Welche Sicherheitsmaßnahmen stehen bei Remote-Aufgaben im Vordergrund?",
+      "options": [
+        "Sichere Authentifizierung, VPNs und verschlüsselte Verbindungen",
+        "Nur physische Zugangskontrolle zum Serverraum",
+        "Keine, weil Remote-Zugriffe immer sicher sind",
+        "Ausschließlich Virenschutz"
+      ],
+      "explanation": "Bei verteilten Systemen kommen rollenbasierte Zugriffskontrolle, Verschlüsselung und Netzwerksegmentierung hinzu."
+    },
+    {
+      "section": "4.1",
+      "question": "Welche Beispielaufgabe gehört zur Automatisierung in verteilten Systemen?",
+      "options": [
+        "Orchestrierung von Container-Clustern",
+        "Ein Backup des eigenen Arbeitsplatzrechners",
+        "Ein Patch auf dem Drucker im Büro",
+        "Ein einzelnes Remote-Software-Update"
+      ],
+      "explanation": "Weitere Beispiele: verteilte Datenverarbeitung und Multi-Site-Deployment."
+    },
+    {
+      "section": "4.1",
+      "question": "Was ist ein Single Point of Failure?",
+      "options": [
+        "Eine Komponente, deren Ausfall das ganze System lahmlegt",
+        "Ein besonders zuverlässiger Server",
+        "Ein einzelner Fehler im Log",
+        "Ein Messpunkt im Monitoring"
+      ],
+      "explanation": "Redundanz vermeidet Single Points of Failure, z. B. durch einen zweiten Server, der übernimmt."
+    },
+    {
+      "section": "4.1",
+      "question": "Was ist Latenz?",
+      "options": [
+        "Die Verzögerung, bis Daten am Ziel ankommen",
+        "Die Menge der übertragenen Daten",
+        "Die Zahl der Knoten im Netz",
+        "Ein Verschlüsselungsverfahren"
+      ],
+      "explanation": "Hohe Latenz ist ein typischer Nachteil von Remote-Aufgaben und verteilten Systemen."
+    },
+    {
+      "section": "4.2",
+      "question": "Worauf liegt bei der Zielsetzung in verteilten Systemen oft der Schwerpunkt?",
+      "options": [
+        "Auf Skalierbarkeit und Fehlertoleranz",
+        "Auf der Farbe der Oberfläche",
+        "Auf der Anzahl der Drucker",
+        "Auf möglichst wenigen Knoten"
+      ],
+      "explanation": "Weil viele Knoten an verschiedenen Standorten beteiligt sind."
+    },
+    {
+      "section": "4.2",
+      "question": "Warum ist die Prozessidentifikation in verteilten Systemen aufwendiger?",
+      "options": [
+        "Prozesse laufen oft auf mehreren Knoten gleichzeitig und müssen koordiniert werden",
+        "Weil es keine Prozesse gibt",
+        "Weil Prozesse nur nachts laufen",
+        "Weil nur ein Knoten automatisiert werden darf"
+      ],
+      "explanation": "Zusätzliche Komplexität und Koordinationsaufwand sind die Folge."
+    },
+    {
+      "section": "4.2",
+      "question": "Wofür wird Apache Kafka in verteilten Systemen eingesetzt?",
+      "options": [
+        "Für den Nachrichtenaustausch (Event-Streaming) zwischen Diensten",
+        "Für die Textverarbeitung",
+        "Für die Druckerverwaltung",
+        "Für die Gestaltung von Webseiten"
+      ],
+      "explanation": "Kubernetes und Docker Swarm orchestrieren Container, Kafka verteilt Nachrichten und Ereignisse."
+    },
+    {
+      "section": "4.2",
+      "question": "Warum ist Kompatibilität in verteilten Systemen besonders wichtig?",
+      "options": [
+        "Knoten können unterschiedliche Betriebssysteme oder Softwareversionen haben",
+        "Weil alle Knoten identisch sein müssen",
+        "Weil Kompatibilität die Latenz erhöht",
+        "Weil verteilte Systeme keine Software nutzen"
+      ],
+      "explanation": "Die ausgewählten Tools müssen mit allen beteiligten Systemen zusammenarbeiten."
+    },
+    {
+      "section": "4.2",
+      "question": "Welche Art der Skalierbarkeit ist für verteilte Systeme Pflicht?",
+      "options": [
+        "Horizontale Skalierbarkeit: neue Knoten problemlos hinzufügen und verwalten",
+        "Vertikale Skalierbarkeit: nur mehr Arbeitsspeicher in einem Server",
+        "Keine, verteilte Systeme wachsen nicht",
+        "Nur manuelle Skalierung"
+      ],
+      "explanation": "Ein einzelner Server lässt sich nicht beliebig vergrößern, zusätzliche Knoten schon."
+    },
+    {
+      "section": "4.2",
+      "question": "Warum ist die Planung von Redundanz in verteilten Systemen komplexer?",
+      "options": [
+        "Einzelne Knoten können jederzeit ausfallen, Failover-Mechanismen müssen das abfangen",
+        "Weil Redundanz verboten ist",
+        "Weil es nur einen Knoten gibt",
+        "Weil Redundanz die Kosten auf null senkt"
+      ],
+      "explanation": "Ziel ist, dass das Gesamtsystem trotz Ausfällen einzelner Teile verfügbar bleibt."
+    },
+    {
+      "section": "4.2",
+      "question": "Was ist eine Netzwerkpartition?",
+      "options": [
+        "Teile des Netzes sind voneinander getrennt und können nicht mehr kommunizieren",
+        "Eine Festplattenpartition auf einem Server",
+        "Ein besonders schnelles Netzwerk",
+        "Ein Teil des Firmengebäudes"
+      ],
+      "explanation": "Solche Szenarien gehören in den Testplan für verteilte Systeme."
+    },
+    {
+      "section": "4.2",
+      "question": "Was muss ein Pilotprojekt in verteilten Systemen oft umfassen, um repräsentativ zu sein?",
+      "options": [
+        "Mehrere Standorte oder Knoten",
+        "Nur einen einzelnen Rechner",
+        "Ausschließlich Testdaten ohne Netzwerk",
+        "Nur die Geschäftsleitung"
+      ],
+      "explanation": "Erst mehrere Standorte zeigen Probleme bei Koordination und Synchronisation."
+    },
+    {
+      "section": "4.3",
+      "question": "Welchem Ansatz ist „Einrichtung von SSH-Tunneln zur sicheren Fernwartung“ zuzuordnen?",
+      "options": [
+        "Remote-Aufgaben",
+        "Lokale Netzwerke",
+        "Verteilte Systeme",
+        "Keinem"
+      ],
+      "explanation": "SSH-Tunnel sichern den Zugriff auf entfernte Systeme."
+    },
+    {
+      "section": "4.3",
+      "question": "Welchem Ansatz ist „Implementierung von verteilten Transaktionsprotokollen“ zuzuordnen?",
+      "options": [
+        "Verteilte Systeme",
+        "Lokale Netzwerke",
+        "Remote-Aufgaben",
+        "Keinem"
+      ],
+      "explanation": "Datenkonsistenz über mehrere Knoten ist ein Kernproblem verteilter Systeme."
+    },
+    {
+      "section": "4.3",
+      "question": "Welchem Ansatz ist „Verwendung von Ansible für die Konfigurationsverwaltung im lokalen Netzwerk“ zuzuordnen?",
+      "options": [
+        "Lokale Netzwerke",
+        "Verteilte Systeme",
+        "Remote-Aufgaben",
+        "Keinem"
+      ],
+      "explanation": "Entscheidend ist der beschriebene Einsatzzweck: Geräte an einem Standort."
+    },
+    {
+      "section": "4.4",
+      "question": "Was kennzeichnet eine monolithische Architektur?",
+      "options": [
+        "Die gesamte Anwendung ist ein einziger großer Codeblock mit eng verbundenen Funktionen",
+        "Die Anwendung besteht aus vielen unabhängigen Diensten",
+        "Die Anwendung läuft nur in der Cloud",
+        "Die Anwendung hat keine Datenbank"
+      ],
+      "explanation": "Ein Monolith ist einfach zu starten, wird bei wachsender Größe aber schwer zu ändern."
+    },
+    {
+      "section": "4.4",
+      "question": "Was ist ein Vorteil der Microservices-Architektur?",
+      "options": [
+        "Dienste lassen sich einzeln entwickeln, testen, bereitstellen und skalieren",
+        "Sie braucht keinerlei Koordination",
+        "Alles ist ein einziger Codeblock",
+        "Sie ist immer einfacher als ein Monolith"
+      ],
+      "explanation": "Der Preis ist ein höherer Koordinationsaufwand zwischen den Diensten."
+    },
+    {
+      "section": "4.4",
+      "question": "Was war der Hauptfehler von XYZ Corp. bei der Umstellung auf Microservices?",
+      "options": [
+        "Die Komplexität der Migration wurde unterschätzt; es gab zu wenig Planung, Tests und keine Strategie für Datenkonsistenz",
+        "Das Unternehmen blieb beim Monolithen",
+        "Die Umstellung wurde zu gründlich getestet",
+        "Es wurden zu viele Indizes angelegt"
+      ],
+      "explanation": "Die Folge waren Performance-Probleme durch nicht optimierte Abfragen und inkonsistente Daten."
+    },
+    {
+      "section": "4.4",
+      "question": "Wie lassen sich unterschiedliche Technologien in verteilten Systemen gut verbinden?",
+      "options": [
+        "Über standardisierte Schnittstellen wie REST-APIs oder Message Queues wie RabbitMQ",
+        "Durch manuelles Kopieren der Daten",
+        "Indem alle Systeme dieselbe Programmiersprache nutzen müssen",
+        "Gar nicht"
+      ],
+      "explanation": "Standardisierte Wege machen die Kommunikation unabhängig von der Technik der einzelnen Dienste."
+    },
+    {
+      "section": "4.4",
+      "question": "Was bedeutet Eventual Consistency?",
+      "options": [
+        "Alle Kopien zeigen irgendwann denselben Wert, vorübergehend können sie sich unterscheiden",
+        "Alle Kopien sind zu jedem Zeitpunkt identisch",
+        "Daten werden nie synchronisiert",
+        "Nur eine Kopie der Daten existiert"
+      ],
+      "explanation": "Das Modell bietet hohe Verfügbarkeit und Geschwindigkeit, z. B. in Apache Cassandra oder Amazon DynamoDB."
+    },
+    {
+      "section": "4.4",
+      "question": "Wie funktioniert das Two-Phase Commit (2PC)?",
+      "options": [
+        "Ein Koordinator fragt alle Beteiligten, ob sie die Änderung durchführen können; nur bei Zustimmung aller wird sie überall übernommen",
+        "Jeder Knoten ändert die Daten sofort ohne Absprache",
+        "Die Änderung wird zweimal hintereinander gespeichert",
+        "Zwei Administratoren müssen jede Änderung freigeben"
+      ],
+      "explanation": "2PC sorgt für exakt gleiche Daten, ist aber langsamer, und ein ausgefallener Teilnehmer blockiert den Vorgang."
+    },
+    {
+      "section": "4.4",
+      "question": "Für welchen Vorgang ist starke Konsistenz wie bei 2PC besonders wichtig?",
+      "options": [
+        "Zahlungen, die genau einmal verbucht werden müssen",
+        "Like-Zähler unter einem Video",
+        "Produktbewertungen",
+        "Die Anzeige von Profilbildern"
+      ],
+      "explanation": "Bei Likes oder Bewertungen sind kurzzeitige Unterschiede akzeptabel, bei Geldbeträgen nicht."
+    },
+    {
+      "section": "4.4",
+      "question": "Was ist ein Pod in Kubernetes?",
+      "options": [
+        "Die kleinste Einheit mit einem oder mehreren Containern",
+        "Ein physischer Server",
+        "Eine Datenbank",
+        "Ein Netzwerkkabel"
+      ],
+      "explanation": "Kubernetes skaliert die Anzahl der Pod-Kopien (Replicas) je nach Last."
+    },
+    {
+      "section": "4.4",
+      "question": "Was bewirkt <code>kubectl autoscale deployment playlist-dienst --cpu-percent=70 --min=3 --max=20</code>?",
+      "options": [
+        "Kubernetes passt die Zahl der Pods zwischen 3 und 20 an, um etwa 70 % CPU-Auslastung zu halten",
+        "Es startet genau 70 Pods",
+        "Es begrenzt die CPU auf 3 bis 20 Prozent",
+        "Es löscht den Dienst nach 20 Minuten"
+      ],
+      "explanation": "Mit <code>kubectl get hpa</code> lässt sich der Zustand des Autoscalers anzeigen."
+    },
+    {
+      "section": "4.4",
+      "question": "Was ist Load Balancing?",
+      "options": [
+        "Die Verteilung eingehender Anfragen auf mehrere Instanzen",
+        "Das Wiegen von Serverhardware",
+        "Das Abschalten überlasteter Server",
+        "Das Speichern von Daten auf einer Festplatte"
+      ],
+      "explanation": "In Kubernetes übernimmt ein Service die Verteilung der Anfragen auf alle laufenden Pods."
+    },
+    {
+      "section": "4.4",
+      "question": "Was war der kritischste Fehler bei ABC Inc.?",
+      "options": [
+        "Unzureichend abgesicherte API-Endpunkte nach einer Einführung neuer Maßnahmen ohne Schulung",
+        "Zu viele Schulungen",
+        "Zu strenges Rate Limiting",
+        "Der Verzicht auf verteilte Systeme"
+      ],
+      "explanation": "Fehlkonfigurationen ungeschulten Personals führten zu Datenlecks."
+    },
+    {
+      "section": "4.4",
+      "question": "Was ist Rate Limiting?",
+      "options": [
+        "Die Begrenzung der Anfragen, die eine Person oder Anwendung in einem Zeitraum an einen Dienst senden darf",
+        "Die Begrenzung der Gehälter",
+        "Die Drosselung der Internetgeschwindigkeit für alle",
+        "Ein Bewertungssystem für Apps"
+      ],
+      "explanation": "Es verhindert Missbrauch und erschwert automatisierte Angriffe wie massenhaftes Passwortprobieren."
+    },
+    {
+      "section": "4.4",
+      "question": "Was sind Self-Healing-Mechanismen?",
+      "options": [
+        "Automatische Fehlererkennung und -behebung, die gestörte Teile selbstständig wiederherstellt",
+        "Antivirenprogramme",
+        "Manuelle Reparaturen durch Techniker",
+        "Regelmäßige Neuinstallation aller Server"
+      ],
+      "explanation": "Zusammen mit Redundanz und Replikation erhöhen sie die Fehlertoleranz."
+    },
+    {
+      "section": "4.5",
+      "question": "Welches Ziel ist für eine Automatisierungsstrategie gut formuliert?",
+      "options": [
+        "Bearbeitungszeit um 50 % senken",
+        "Alles irgendwie besser machen",
+        "Möglichst viele Tools kaufen",
+        "Mehr Software nutzen"
+      ],
+      "explanation": "Messbare Ziele lassen sich später überprüfen, z. B. auch eine Prozessgenauigkeit von 99 %."
+    },
+    {
+      "section": "4.5",
+      "question": "In welcher Reihenfolge erfolgt der Rollout einer Automatisierung?",
+      "options": [
+        "Pilotphase, schrittweise Skalierung, laufendes Monitoring",
+        "Sofort überall einführen, danach testen",
+        "Monitoring, dann Pilotphase, dann Planung",
+        "Skalierung vor der Pilotphase"
+      ],
+      "explanation": "Erst die Pilotergebnisse zeigen, ob die Ausweitung sinnvoll ist."
+    },
+    {
+      "section": "4.6",
+      "question": "Was unterscheidet proaktive von reaktiver Wartung?",
+      "options": [
+        "Proaktive Wartung behebt mögliche Probleme, bevor sie Störungen verursachen; reaktive erst danach",
+        "Reaktive Wartung ist immer günstiger",
+        "Proaktive Wartung findet nur nachts statt",
+        "Es gibt keinen Unterschied"
+      ],
+      "explanation": "Proaktive Wartung verringert ungeplante Ausfälle."
+    },
+    {
+      "section": "4.6",
+      "question": "Was nutzt die Thermografie beim Condition Monitoring?",
+      "options": [
+        "Infrarotkameras, die Temperaturunterschiede als Hinweis auf Überhitzung zeigen",
+        "Mikrofone für Geräusche",
+        "Waagen für das Gewicht",
+        "Logdateien von Webservern"
+      ],
+      "explanation": "Die Vibrationsanalyse erkennt dagegen Verschleiß an mechanischen Teilen."
+    },
+    {
+      "section": "4.6",
+      "question": "Was ist ein Beispiel für Predictive Maintenance in der IT?",
+      "options": [
+        "Eine Festplatte austauschen, deren SMART-Werte sich verschlechtern, bevor sie ausfällt",
+        "Einen Server nach dem Ausfall reparieren",
+        "Alle Festplatten jährlich ohne Prüfung tauschen",
+        "Ein Backup nach einem Datenverlust einspielen"
+      ],
+      "explanation": "Vorhersagemodelle, oft mit maschinellem Lernen, bestimmen den besten Wartungszeitpunkt."
+    },
+    {
+      "section": "4.7",
+      "question": "Welche Werkzeuge gehören zum Log-Management?",
+      "options": [
+        "ELK-Stack (Elasticsearch, Logstash, Kibana) und Splunk",
+        "PagerDuty und Opsgenie",
+        "New Relic und Dynatrace",
+        "Kubernetes und Docker Swarm"
+      ],
+      "explanation": "PagerDuty und Opsgenie alarmieren, New Relic und Dynatrace messen die Anwendungsleistung (APM)."
+    },
+    {
+      "section": "4.7",
+      "question": "Was ist der erste Schritt zur effektiven Überwachung?",
+      "options": [
+        "Metriken definieren",
+        "Alarme konfigurieren",
+        "Daten analysieren",
+        "Proaktiv handeln"
+      ],
+      "explanation": "Danach folgen Tools einrichten, Alarme konfigurieren, Daten analysieren und proaktiv handeln."
+    },
+    {
+      "section": "4.8",
+      "question": "Was macht das Netflix-Tool Chaos Monkey?",
+      "options": [
+        "Es fährt im laufenden Betrieb zufällig Instanzen herunter, um die Robustheit zu prüfen",
+        "Es überwacht die Bildqualität",
+        "Es verteilt Filme auf Server",
+        "Es sperrt verdächtige Nutzerkonten"
+      ],
+      "explanation": "Chaos Engineering übt Ausfälle, bevor sie unerwartet eintreten."
+    },
+    {
+      "section": "4.8",
+      "question": "Wie viel Ausfallzeit pro Jahr erlaubt eine Verfügbarkeit von 99,99 %?",
+      "options": [
+        "Rund 53 Minuten",
+        "Rund 53 Stunden",
+        "Rund 5 Minuten",
+        "Rund 3,6 Tage"
+      ],
+      "explanation": "365 × 24 × 60 Minuten × 0,01 % ≈ 53 Minuten."
+    },
+    {
+      "section": "4.8",
+      "question": "Was sind Multi-AZ-Deployments bei Amazon?",
+      "options": [
+        "Daten und Anwendungen werden über mehrere getrennte Rechenzentren (Availability Zones) repliziert, mit automatischem Failover",
+        "Mehrere Anwendungen auf einem Server",
+        "Die Verteilung von Paketen an mehrere Adressen",
+        "Mehrere Benutzerkonten pro Person"
+      ],
+      "explanation": "Fällt eine Zone aus, übernehmen die anderen."
+    },
+    {
+      "section": "4.8",
+      "question": "In welche Phasen teilt MapReduce die Datenverarbeitung?",
+      "options": [
+        "Map, Shuffle, Reduce",
+        "Plan, Do, Check, Act",
+        "Eingabe, Verarbeitung, Ausgabe",
+        "Start, Pause, Stopp"
+      ],
+      "explanation": "Große Aufgaben werden in kleine, parallel lösbare Teile zerlegt und am Ende zusammengeführt."
+    },
+    {
+      "section": "4.8",
+      "question": "Welches Google-System gilt als Vorbild für Kubernetes?",
+      "options": [
+        "Borg",
+        "Bigtable",
+        "MapReduce",
+        "Spinnaker"
+      ],
+      "explanation": "Borg verwaltet die Ressourcen der Google-Rechenzentren. Bigtable ist eine Datenbank, MapReduce ein Programmiermodell."
+    }
+  ]
+}
