@@ -249,7 +249,7 @@
         "Falsch",
         "Richtig"
       ],
-      "explanation": "Falsch. Zugangsdaten gehören nie direkt in den Code – auch interne Skripte werden kopiert, versioniert oder weitergegeben. Besser sind Umgebungsvariablen oder ein Passwort-Tresor (siehe Kapitel 8)."
+      "explanation": "Falsch. Zugangsdaten gehören nie direkt in den Code – auch interne Skripte werden kopiert, versioniert oder weitergegeben. Besser sind Umgebungsvariablen oder ein Passwort-Tresor (siehe Kapitel 5)."
     },
     {
       "section": "3.2",

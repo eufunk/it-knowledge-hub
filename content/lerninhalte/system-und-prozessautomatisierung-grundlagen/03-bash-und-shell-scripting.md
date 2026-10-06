@@ -73,7 +73,7 @@ Diese fünf Konzepte bilden das Fundament aller Programmiersprachen – auch der
 
 **4. Funktionen** sind wiederverwendbare Codeblöcke für eine bestimmte Aufgabe. Eine Funktion hat einen Namen, eventuell eine Liste von Parametern und einen Block von Anweisungen. Sie kann einen Wert zurückgeben und beliebig oft aufgerufen werden – innerhalb eines Programms oder sogar aus anderen Programmen heraus.
 
-**5. Fehlerbehandlung** bedeutet, Fehler während der Ausführung zu erkennen und kontrolliert darauf zu reagieren. Die meisten modernen Sprachen nutzen dafür ein `try ... catch`-System (in Python `try ... except`). So bricht das Programm nicht abrupt ab, sondern kann zum Beispiel eine Meldung ausgeben, aufräumen oder es erneut versuchen. In der Bash übernehmen diese Aufgabe Exit-Codes, `set -e` und `trap` (mehr dazu in Kapitel 9).
+**5. Fehlerbehandlung** bedeutet, Fehler während der Ausführung zu erkennen und kontrolliert darauf zu reagieren. Die meisten modernen Sprachen nutzen dafür ein `try ... catch`-System (in Python `try ... except`). So bricht das Programm nicht abrupt ab, sondern kann zum Beispiel eine Meldung ausgeben, aufräumen oder es erneut versuchen. In der Bash übernehmen diese Aufgabe Exit-Codes, `set -e` und `trap` (mehr dazu in Kapitel 5).
 
 ### Algorithmen und Datenstrukturen
 
@@ -108,7 +108,7 @@ Um eine API sinnvoll zu nutzen, liest Du zuerst ihre **Dokumentation**: Welche F
 
 Worauf Du bei der Integration achten solltest:
 
-- **Authentifizierung und Autorisierung:** Viele APIs verlangen einen API-Schlüssel oder ein Token. Diese Zugangsdaten gehören nie direkt in den Code (siehe Kapitel 8).
+- **Authentifizierung und Autorisierung:** Viele APIs verlangen einen API-Schlüssel oder ein Token. Diese Zugangsdaten gehören nie direkt in den Code (siehe Kapitel 5, „Sicherheitsaspekte in Linux-Skripten“).
 - **Leistung und Rate Limits:** Externe APIs begrenzen oft die Zahl der Anfragen. Caching und sparsame Abfragen vermeiden eine Überlastung.
 - **Fehlerbehandlung:** Netzwerkfehler, fehlerhafte Daten und Ausnahmen der API oder Bibliothek müssen abgefangen werden.
 - **Tests:** Teile des Skripts, die APIs oder Bibliotheken nutzen, mit Tests absichern, damit sie auch unter wechselnden Bedingungen korrekt arbeiten.

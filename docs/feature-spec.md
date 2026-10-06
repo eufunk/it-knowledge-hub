@@ -181,10 +181,8 @@ Quelle: `System_und_Prozessautomatisierung_Grundlagen.docx` (Kapitel; Kapitel 01
 | Modul | Kapitel | Fragen |
 |---|---|---|
 | 1 Grundlagen der Automatisierung | 01 Einführung in die Systemautomatisierung · 02 Überwachen wiederkehrender Systemabläufe | 65 · 69 |
-| 2 Skriptsprachen: Bash und PowerShell | 03 Grundlagen von Bash und Shell-Scripting · 04 PowerShell Basics für Administratoren | 92 · 93 |
-| 3 Fortgeschrittene Linux-Skripte | 05 Aufbau fortgeschrittener Linux-Skripte | 60 |
-| 4 Prozesse und Strategien | 06 Analyse und Identifikation automatisierbarer Prozesse · 07 Entwurf von Automatisierungsstrategien | 35 · 46 |
-| 5 Sicherheit und Fehlerbehandlung | 08 Sicherheitsaspekte bei der Automatisierung · 09 Erkennung und Handling von Fehlern in Skripten | 47 · 68 |
+| 2 Scriptsprachen für Automatisierung | 03 Grundlagen von Bash und Shell-Scripting · 04 PowerShell Basics für Administratoren | 92 · 93 |
+| 3 Fortgeschrittene Scripttechniken | 05 Aufbau fortgeschrittener Linux-Skripte · (geplant) Entwicklung komplexer PowerShell-Scripte, siehe `docs/todo.md` | 60 · – |
 | Anhang | 10 Glossar | – |
 
 ### 5.8 Inhalt des zweiten Kurses
@@ -239,8 +237,8 @@ Eigenes Design: heller, kühler Hintergrund, weiße Karten mit feinem Rahmen, du
 - **Sprache:** Oberfläche komplett Deutsch, `<html lang="de">`
 
 ## 8. Akzeptanzkriterien (MVP fertig, wenn …)
-- [x] `/lerninhalte` zeigt die Kachel des Kurses mit Bild, Titel, Beschreibung, „1 Woche“, „5 Module · 9 Kapitel“ und „0% Fortschritt“ – automatisch geprüft 2026-10-03 (HTML)
-- [x] Klick auf die Kachel öffnet die Kursseite mit 5 Modulen, 9 Kapiteln in richtiger Reihenfolge und dem Glossar als Anhang – automatisch geprüft 2026-10-03 (Loader-Tests, HTML)
+- [x] `/lerninhalte` zeigt die Kachel des Kurses mit Bild, Titel, Beschreibung, „1 Woche“, „5 Module · 9 Kapitel“ (Stand 2026-10-03; seit 2026-10-06 „3 Module · 5 Kapitel“) und „0% Fortschritt“ – automatisch geprüft 2026-10-03 (HTML)
+- [x] Klick auf die Kachel öffnet die Kursseite mit 5 Modulen, 9 Kapiteln (seit 2026-10-06: 3 Module, 5 Kapitel) in richtiger Reihenfolge und dem Glossar als Anhang – automatisch geprüft 2026-10-03 (Loader-Tests, HTML)
 - [ ] Seitenleiste im Kursplayer zeigt Module und Kapitel mit „Kapitel lesen“ und „Wissenstest“, aktueller Eintrag hervorgehoben
 - [x] Wissenstest: 10 Fragen, Rückmeldung mit Erklärung, bei mindestens 8 richtigen gilt er als erledigt – automatisch geprüft 2026-10-03 (Komponententest)
 - [x] Jedes Kapitel rendert Markdown inkl. Tabelle, Codeblock, Hinweisbox und eingeklappter Musterlösung korrekt – automatisch geprüft 2026-10-03 (Tests, HTML)
