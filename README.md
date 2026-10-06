@@ -2,7 +2,7 @@
 
 Zentrale Lernplattform für IT-Inhalte mit strukturierten Lerneinheiten, praxisnahen Übungen und verständlich aufbereiteten Grundlagen zu technischen und organisatorischen Themen.
 
-Kursgruppe **IT Administration und Automation** mit den Kursen **System- und Prozessautomatisierung** – 3 Module, 5 Kapitel, Glossar und 5 Wissenstests – und **Netzwerkautomatisierung und Tools** – 2 Module, 4 Kapitel und 4 Wissenstests.
+Kursgruppe **IT Administration und Automation** mit den Kursen **Einführung in System- und Prozessautomatisierung** – 3 Module, 5 Kapitel, Glossar und 5 Wissenstests – und **Netzwerkautomatisierung und Tools** – 2 Module, 4 Kapitel und 4 Wissenstests.
 
 ## Funktionen
 

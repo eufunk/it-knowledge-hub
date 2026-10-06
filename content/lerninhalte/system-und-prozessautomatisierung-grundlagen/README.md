@@ -1,5 +1,5 @@
 ---
-title: "System- und Prozessautomatisierung"
+title: "Einführung in System- und Prozessautomatisierung"
 description: "Begriffe, Werkzeuge, Überwachung und Shell-Scripting – mit Praxisbezug zu PowerShell und Bash: wiederkehrende IT-Aufgaben erkennen, planen, sicher automatisieren und Fehler beheben."
 duration: "1 Woche"
 image: "/images/kurse/system-und-prozessautomatisierung.svg"

@@ -49,7 +49,7 @@ Das MVP liefert **einen vollständig nutzbaren Kurs** von der Übersicht bis zur
 
   | Kurs | `order` | `release` |
   |---|---|---|
-  | System- und Prozessautomatisierung | 1 | 2026-10-05 |
+  | Einführung in System- und Prozessautomatisierung | 1 | 2026-10-05 |
   | Netzwerkautomatisierung und Tools | 2 | 2026-10-12 |
 - **F4** Kurskachel:
   - Weiße Karte mit Bild oben (16:9) und Text darunter – kein Text auf dem Bild
@@ -134,7 +134,7 @@ Regeln für das Einlesen:
 ### 5.2 Frontmatter Kurs (`README.md`)
 ```yaml
 ---
-title: "System- und Prozessautomatisierung"
+title: "Einführung in System- und Prozessautomatisierung"
 description: "…"
 duration: "1 Woche"
 image: "/images/kurse/system-und-prozessautomatisierung.svg"
