@@ -5,6 +5,7 @@
 ---
 
 ## 2026-10-06
+- Kurs „Netzwerkautomatisierung und Tools“: Modul 2 „Tools und Frameworks für Automatisierung“ mit Kapitel 03 „Auswahlkriterien für Automatisierungstools“ (Bedürfnisse, Anpassungsfähigkeit, Benutzerfreundlichkeit, Integration, Kosten, ROI, zukünftige Kosten, Toolvergleich, Übung mit eingeklapptem Lösungsvorschlag). Wissenstest mit 41 Fragen aus `Quiz/Netzwerkautomatisierung_Quiz.html`. ROI-Formelbilder als Text. Kursbeschreibung und -dauer (3 Stunden) angepasst.
 - Kurs „System- und Prozessautomatisierung“ neu gegliedert: Modul 2 heißt „Scriptsprachen für Automatisierung“, Modul 3 „Fortgeschrittene Scripttechniken“ (vorher „Skriptsprachen: Bash und PowerShell“ bzw. „Fortgeschrittene Linux-Skripte“). Module 4 „Prozesse und Strategien“ und 5 „Sicherheit und Fehlerbehandlung“ entfernt, mit ihren Kapiteln 06–09 und Wissenstests (`automatisierbare-prozesse-erkennen`, `automatisierungsstrategien`, `sicherheitsaspekte`, `fehlerbehandlung-in-skripten`); deren Adressen liefern jetzt 404, gespeicherter Fortschritt dazu wird ignoriert. Verweise in Kapitel 03 auf Kapitel 8 und 9 zeigen jetzt auf Kapitel 5. Kapitel „Entwicklung komplexer PowerShell-Scripte“ für Modul 3 geplant.
 - Kurs „Netzwerkautomatisierung und Tools“ neu gegliedert: Modul 1 heißt jetzt „Automatisierung lokaler und netzwerkübergreifender Aufgaben“ und enthält beide Kapitel (vorher je ein Modul pro Kapitel). Kapitel-Adressen und Lernfortschritt bleiben unverändert. Modul 2 „Tools und Frameworks für Automatisierung“ ist geplant (siehe ToDo).
 

@@ -1,0 +1,467 @@
+{
+  "sections": {
+    "3.1": "Bedürfnisse erkennen",
+    "3.2": "Anpassungsfähigkeit",
+    "3.3": "Benutzerfreundlichkeit",
+    "3.4": "Integration in die Infrastruktur",
+    "3.5": "Kosteneinsparungen",
+    "3.6": "Kosten und Nutzen",
+    "3.7": "Return on Investment (ROI)",
+    "3.8": "Zukünftige Kosten",
+    "3.9": "Vergleich von Tools",
+    "3.10": "Übung: Toolauswahl"
+  },
+  "questions": [
+    {
+      "section": "3.1",
+      "question": "Was ist der erste Schritt bei der Auswahl eines Automatisierungstools?",
+      "options": [
+        "Die eigenen Bedürfnisse kennen und die aktuellen Prozesse analysieren",
+        "Das günstigste Tool kaufen",
+        "Das Tool mit den meisten Funktionen auswählen",
+        "Einen Anbieter um eine Empfehlung bitten"
+      ],
+      "explanation": "Erst die Analyse zeigt, welche Aufgaben sich wiederholen, viel Zeit kosten oder häufig fehlerhaft sind."
+    },
+    {
+      "section": "3.1",
+      "question": "Welche Frage gehört zur Analyse der aktuellen Prozesse?",
+      "options": [
+        "Wo treten häufig Fehler auf, die durch Automatisierung verringert werden könnten?",
+        "Welche Farbe hat die Benutzeroberfläche des Tools?",
+        "Wie heißt der Hersteller?",
+        "Wie viele Mitarbeitende hat der Anbieter?"
+      ],
+      "explanation": "Weitere Fragen: Welche Aufgaben wiederholen sich? Welche Prozesse sind zeitaufwendig?"
+    },
+    {
+      "section": "3.1",
+      "question": "Welches Auswahlkriterium fragt, ob das Tool Schnittstellen zu vorhandenen Systemen wie CRM oder ERP bietet?",
+      "options": [
+        "Integration",
+        "Funktionalität",
+        "Benutzerfreundlichkeit",
+        "Skalierbarkeit"
+      ],
+      "explanation": "Skalierbarkeit fragt, ob das Tool mit dem Unternehmen mitwächst, Funktionalität nach den benötigten Funktionen."
+    },
+    {
+      "section": "3.1",
+      "question": "Was kennzeichnet eine Must-have-Anforderung?",
+      "options": [
+        "Ohne sie wäre das Tool keine sinnvolle Investition",
+        "Sie ist nützlich, aber nicht zwingend erforderlich",
+        "Sie hat keinen Einfluss auf die Kernprozesse",
+        "Sie wird erst nach fünf Jahren benötigt"
+      ],
+      "explanation": "Nice-to-have ist nützlich, aber nicht zwingend; optionale Anforderungen haben keinen direkten Einfluss auf die Kernprozesse."
+    },
+    {
+      "section": "3.1",
+      "question": "Wozu dient die Priorisierung der Anforderungen?",
+      "options": [
+        "Sich auf das Wesentliche zu konzentrieren und bei Bedarf bewusst Kompromisse einzugehen",
+        "Möglichst viele Anforderungen zu sammeln",
+        "Den Preis des Tools zu senken",
+        "Den Anbieter zu beeindrucken"
+      ],
+      "explanation": "Kaum ein Tool erfüllt alle Wünsche. Die Must-haves entscheiden."
+    },
+    {
+      "section": "3.1",
+      "question": "Warum sollte das Team in die Auswahl einbezogen werden?",
+      "options": [
+        "Abteilungen haben unterschiedliche Anforderungen, und wer mitentscheidet, nutzt das Tool später eher",
+        "Weil das Team die Lizenzen bezahlt",
+        "Weil die IT-Leitung nicht entscheiden darf",
+        "Damit die Auswahl länger dauert"
+      ],
+      "explanation": "Workshops oder Umfragen liefern wertvolle Hinweise und erhöhen die Akzeptanz."
+    },
+    {
+      "section": "3.2",
+      "question": "Was beschreibt die Anpassungsfähigkeit eines Automatisierungstools?",
+      "options": [
+        "Wie gut es sich an unterschiedliche Arbeitsumgebungen, Systeme und sich ändernde Prozesse anpasst",
+        "Wie schnell es installiert werden kann",
+        "Wie günstig die Lizenz ist",
+        "Wie viele Sprachen die Oberfläche unterstützt"
+      ],
+      "explanation": "Ein anpassungsfähiges Tool erlaubt es, flexibel auf Veränderungen zu reagieren."
+    },
+    {
+      "section": "3.2",
+      "question": "Was bedeutet Modularität bei einem Automatisierungstool?",
+      "options": [
+        "Es besteht aus unabhängigen Modulen; man nutzt nur, was man braucht, und ergänzt bei Bedarf weitere",
+        "Es läuft nur auf modularen Servern",
+        "Es kann nicht erweitert werden",
+        "Es besteht aus einem einzigen Programm"
+      ],
+      "explanation": "So zahlt und pflegt man nur die Funktionen, die man tatsächlich benötigt."
+    },
+    {
+      "section": "3.2",
+      "question": "Was zeichnet ein gut konfigurierbares Tool aus?",
+      "options": [
+        "Es lässt sich ohne Programmierkenntnisse an eigene Anforderungen anpassen",
+        "Es muss für jede Änderung neu programmiert werden",
+        "Es hat keine Einstellungen",
+        "Es kann nur vom Hersteller angepasst werden"
+      ],
+      "explanation": "Anpassungen gelingen dann schnell und ohne externe Entwicklerinnen und Entwickler."
+    },
+    {
+      "section": "3.3",
+      "question": "Welche drei Aspekte fasst die Norm DIN EN ISO 9241-11 unter Benutzerfreundlichkeit zusammen?",
+      "options": [
+        "Effektivität, Effizienz und Zufriedenheit",
+        "Preis, Leistung und Design",
+        "Sicherheit, Verfügbarkeit und Integrität",
+        "Geschwindigkeit, Speicher und CPU"
+      ],
+      "explanation": "Ein benutzerfreundliches Tool ist intuitiv bedienbar, schnell erlernbar und unterstützt die Nutzenden bei ihren Zielen."
+    },
+    {
+      "section": "3.3",
+      "question": "Was bedeutet Fehlertoleranz bei der Bewertung der Benutzerfreundlichkeit?",
+      "options": [
+        "Das Tool hilft, Fehler zu vermeiden, und erlaubt Korrekturen, ohne von vorn zu beginnen",
+        "Das Tool ignoriert alle Fehler",
+        "Das Tool zeigt keine Fehlermeldungen",
+        "Das Tool bricht bei jedem Fehler ab"
+      ],
+      "explanation": "Weitere Kriterien sind intuitive Bedienung, Konsistenz, Effizienz und Zugänglichkeit."
+    },
+    {
+      "section": "3.3",
+      "question": "Welches Kriterium der Benutzerfreundlichkeit betrifft Menschen mit Behinderungen?",
+      "options": [
+        "Zugänglichkeit (Barrierefreiheit)",
+        "Konsistenz",
+        "Effizienz",
+        "Modularität"
+      ],
+      "explanation": "Orientierung bieten z. B. die Richtlinien für barrierefreie Inhalte (WCAG)."
+    },
+    {
+      "section": "3.3",
+      "question": "Was ist der dritte Schritt zur Bewertung der Benutzerfreundlichkeit?",
+      "options": [
+        "Usability-Tests mit echten Nutzenden durchführen",
+        "Anforderungen definieren",
+        "Verbesserungen umsetzen",
+        "Das Tool kaufen"
+      ],
+      "explanation": "Reihenfolge: Anforderungen definieren, Testumgebung einrichten, Usability-Tests, Feedback analysieren, Verbesserungen umsetzen."
+    },
+    {
+      "section": "3.4",
+      "question": "Was gehört zur Bestandsaufnahme der vorhandenen Infrastruktur?",
+      "options": [
+        "Software erfassen, Hardware dokumentieren und Schnittstellen analysieren",
+        "Nur die Anzahl der Mitarbeitenden zählen",
+        "Nur die Lizenzkosten notieren",
+        "Alle alten Systeme abschalten"
+      ],
+      "explanation": "Erst mit diesem Überblick lässt sich die Kompatibilität eines neuen Tools bewerten."
+    },
+    {
+      "section": "3.4",
+      "question": "Welche Datenformate nennt das Kapitel als Beispiele, die ein Tool verarbeiten können sollte?",
+      "options": [
+        "JSON, XML und CSV",
+        "MP3, MP4 und AVI",
+        "DOCX, PPTX und XLSX",
+        "ZIP, RAR und 7Z"
+      ],
+      "explanation": "Daneben zählen unterstützte Schnittstellen (REST, SOAP) und Protokolle (z. B. HTTPS, SFTP, MQTT)."
+    },
+    {
+      "section": "3.4",
+      "question": "Wofür wird das Protokoll MQTT typischerweise verwendet?",
+      "options": [
+        "Für den Nachrichtenaustausch mit IoT-Geräten",
+        "Für den Druck von Dokumenten",
+        "Für die Anmeldung an Windows",
+        "Für das Versenden von E-Mails"
+      ],
+      "explanation": "MQTT ist ein schlankes Nachrichtenprotokoll, das sich besonders für vernetzte Geräte eignet."
+    },
+    {
+      "section": "3.4",
+      "question": "Was empfiehlt das Kapitel zu unverschlüsselten Protokollen wie HTTP oder FTP?",
+      "options": [
+        "Nur nutzen, wo es keine Alternative gibt; für Unternehmensdaten sind HTTPS bzw. SFTP Standard",
+        "Immer bevorzugen, weil sie schneller sind",
+        "Sie sind genauso sicher wie HTTPS",
+        "Sie sind für Passwörter besonders geeignet"
+      ],
+      "explanation": "Unverschlüsselte Übertragungen können mitgelesen und verändert werden."
+    },
+    {
+      "section": "3.4",
+      "question": "Welcher Punkt gehört zur Bewertung von Support und Dokumentation?",
+      "options": [
+        "Gibt es eine aktive Community oder Foren für den Austausch?",
+        "Wie viele Farben hat das Logo?",
+        "Wie alt ist der Anbieter?",
+        "Wie groß ist das Installationspaket?"
+      ],
+      "explanation": "Ebenso wichtig sind Schulungsunterlagen und ein zuverlässiger technischer Support."
+    },
+    {
+      "section": "3.5",
+      "question": "Was ist eine indirekte Kosteneinsparung durch Automatisierung?",
+      "options": [
+        "Weniger Nacharbeit durch geringere Fehlerquoten",
+        "Weniger Personalaufwand für Routineaufgaben",
+        "Ein günstigerer Lizenzpreis",
+        "Ein Rabatt des Anbieters"
+      ],
+      "explanation": "Direkte Einsparungen sind unmittelbar geringere Ausgaben wie weniger Personalaufwand."
+    },
+    {
+      "section": "3.5",
+      "question": "Ein Tool kostet 50.000 €, spart jährlich 20.000 € Personalkosten und 10.000 € Fehlerkorrekturen. Wann hat es sich amortisiert?",
+      "options": [
+        "Nach rund 1,7 Jahren",
+        "Nach 2,5 Jahren",
+        "Nach 5 Jahren",
+        "Nach 0,6 Jahren"
+      ],
+      "explanation": "50.000 € ÷ 30.000 € pro Jahr ≈ 1,7 Jahre."
+    },
+    {
+      "section": "3.6",
+      "question": "Welche Kostenart umfasst Wartung, Updates und Support?",
+      "options": [
+        "Betriebskosten",
+        "Anschaffungskosten",
+        "Implementierungskosten",
+        "Schulungskosten"
+      ],
+      "explanation": "Betriebskosten fallen laufend an und summieren sich über die Jahre."
+    },
+    {
+      "section": "3.6",
+      "question": "Was gilt für Miet- und Abonnementmodelle im Vergleich zum Kauf?",
+      "options": [
+        "Sie senken die Anfangsausgaben, können aber langfristig teurer sein",
+        "Sie sind immer günstiger",
+        "Sie sind immer teurer",
+        "Sie enthalten nie Updates"
+      ],
+      "explanation": "Deshalb die Gesamtkosten über den geplanten Nutzungszeitraum vergleichen."
+    },
+    {
+      "section": "3.6",
+      "question": "Wozu dient ein Pilotprojekt bei der Implementierung?",
+      "options": [
+        "Die Einführung im kleinen Rahmen zu testen und Probleme früh zu erkennen",
+        "Das Tool dauerhaft nur in einer Abteilung zu nutzen",
+        "Die Schulung zu ersetzen",
+        "Den Kaufpreis zu verhandeln"
+      ],
+      "explanation": "Weitere Schritte: Bedarfsanalyse, Ressourcenplanung und ein realistischer Zeitplan."
+    },
+    {
+      "section": "3.6",
+      "question": "Was ist ein Nachteil von Online-Kursen und Webinaren als Schulungsform?",
+      "options": [
+        "Sie sind weniger interaktiv",
+        "Sie sind immer teurer als externe Schulungen",
+        "Sie sind nicht flexibel",
+        "Sie erfordern eigene Fachkräfte im Unternehmen"
+      ],
+      "explanation": "Interne Schulungen brauchen eigene Fachkräfte, externe sind oft teurer."
+    },
+    {
+      "section": "3.6",
+      "question": "Welcher Posten gehört zu den versteckten Kosten?",
+      "options": [
+        "Zusätzliche Hardware oder Upgrades, die das Tool voraussetzt",
+        "Der Listenpreis der Lizenz",
+        "Die im Angebot genannte Wartungspauschale",
+        "Der Preis im Abonnement"
+      ],
+      "explanation": "Auch Prozessanpassungen und der Zeitaufwand für Einführung und Schulung sind oft versteckte Kosten."
+    },
+    {
+      "section": "3.7",
+      "question": "Wie wird der ROI berechnet?",
+      "options": [
+        "(Gewinn ÷ Investitionskosten) × 100",
+        "(Investitionskosten ÷ Gewinn) × 100",
+        "Umsatz − Gewinn",
+        "Gewinn × Investitionskosten"
+      ],
+      "explanation": "Als Gewinn zählt der Nettogewinn: Einnahmen abzüglich aller Investitionskosten."
+    },
+    {
+      "section": "3.7",
+      "question": "Ein Projekt kostet 20.000 € und bringt einen Umsatz von 26.000 €. Wie hoch ist der ROI?",
+      "options": [
+        "30 %",
+        "130 %",
+        "6 %",
+        "77 %"
+      ],
+      "explanation": "Nettogewinn 6.000 € ÷ 20.000 € × 100 = 30 %."
+    },
+    {
+      "section": "3.7",
+      "question": "Was bedeutet ein negativer ROI?",
+      "options": [
+        "Das Projekt bringt Verluste",
+        "Das Projekt ist besonders rentabel",
+        "Die Berechnung ist falsch",
+        "Das Projekt hat keine Kosten"
+      ],
+      "explanation": "Im Beispiel liegt der ROI nach dem ersten Jahr bei −40 %, nach zwei Jahren bei 20 %."
+    },
+    {
+      "section": "3.7",
+      "question": "Was ist der Amortisationspunkt?",
+      "options": [
+        "Der Zeitpunkt, an dem Einsparungen oder Zusatzgewinn die ursprünglichen Investitionskosten decken",
+        "Der Tag, an dem das Tool gekauft wird",
+        "Der Zeitpunkt, an dem die Lizenz abläuft",
+        "Der höchste mögliche ROI"
+      ],
+      "explanation": "Ab diesem Punkt erwirtschaftet die Investition einen Überschuss."
+    },
+    {
+      "section": "3.7",
+      "question": "Warum ist der ROI hilfreich, um Investitionen zu vergleichen?",
+      "options": [
+        "Er macht die Rentabilität unabhängig von Art und Umfang der Investition vergleichbar",
+        "Er zeigt die absolute Höhe des Gewinns in Euro",
+        "Er berücksichtigt nur die Anschaffungskosten",
+        "Er ist bei allen Projekten gleich"
+      ],
+      "explanation": "Als Prozentwert lassen sich kleine und große Projekte direkt nebeneinanderstellen."
+    },
+    {
+      "section": "3.8",
+      "question": "Welcher langfristige Kostenfaktor entsteht, weil sich Automatisierungstools ständig weiterentwickeln?",
+      "options": [
+        "Regelmäßige Schulung und Weiterbildung des Teams",
+        "Ein einmaliger Kaufpreis",
+        "Die Bestandsaufnahme der Hardware",
+        "Die Priorisierung der Anforderungen"
+      ],
+      "explanation": "Weitere langfristige Kosten sind Lizenz- und Wartungskosten sowie Anpassung und Integration."
+    },
+    {
+      "section": "3.8",
+      "question": "Was bedeutet Skalierbarkeit als langfristiger Nutzen?",
+      "options": [
+        "Prozesse wachsen mit, ohne dass proportional mehr Ressourcen nötig sind",
+        "Das Tool wird mit der Zeit kleiner",
+        "Die Kosten steigen genau im gleichen Maß wie die Nachfrage",
+        "Das Tool kann nur eine feste Datenmenge verarbeiten"
+      ],
+      "explanation": "Das ist besonders wertvoll, wenn das Unternehmen wächst und die Nachfrage steigt."
+    },
+    {
+      "section": "3.9",
+      "question": "Was ist horizontale Skalierbarkeit?",
+      "options": [
+        "Erweiterung durch zusätzliche Instanzen",
+        "Erweiterung durch mehr CPU und Arbeitsspeicher in einem System",
+        "Verkleinerung des Tools",
+        "Verteilung der Lizenzen auf mehrere Abteilungen"
+      ],
+      "explanation": "Vertikale Skalierbarkeit bedeutet mehr Ressourcen wie CPU und Arbeitsspeicher für ein System."
+    },
+    {
+      "section": "3.9",
+      "question": "Was gibt die Uptime eines Tools an?",
+      "options": [
+        "Wie oft das Tool verfügbar und betriebsbereit ist",
+        "Wie schnell es startet",
+        "Wie viele Updates es pro Jahr gibt",
+        "Wie lange die Lizenz läuft"
+      ],
+      "explanation": "Eine hohe Uptime ist besonders für kritische Geschäftsprozesse wichtig."
+    },
+    {
+      "section": "3.9",
+      "question": "Warum sind Tools mit Parallelverarbeitung oft effizienter?",
+      "options": [
+        "Sie führen mehrere Aufgaben gleichzeitig aus, was besonders bei großen Datenmengen Zeit spart",
+        "Sie brauchen keinen Arbeitsspeicher",
+        "Sie arbeiten nur nachts",
+        "Sie verarbeiten immer nur eine Aufgabe"
+      ],
+      "explanation": "Die Verarbeitungszeit ist ein zentrales Kriterium für Geschwindigkeit und Effizienz."
+    },
+    {
+      "section": "3.9",
+      "question": "Welche Methode empfiehlt das Kapitel, um mehrere Tools anhand gewichteter Kriterien zu vergleichen?",
+      "options": [
+        "Die Nutzwertanalyse",
+        "Den Münzwurf",
+        "Die Wahl des teuersten Tools",
+        "Ausschließlich Herstellerangaben"
+      ],
+      "explanation": "Kriterien gewichten (Summe 100 %), jedes Tool mit 1 bis 5 Punkten bewerten, gewichtete Punkte addieren und die besten Kandidaten im Pilotbetrieb prüfen."
+    },
+    {
+      "section": "3.10",
+      "question": "Was bedeutet die „agentenlose Architektur“ von Ansible?",
+      "options": [
+        "Auf den verwalteten Systemen muss keine zusätzliche Software installiert werden",
+        "Ansible braucht keine Netzwerkverbindung",
+        "Ansible wird ohne Benutzer betrieben",
+        "Ansible hat keine Oberfläche"
+      ],
+      "explanation": "Ansible verbindet sich z. B. per SSH mit den Zielsystemen."
+    },
+    {
+      "section": "3.10",
+      "question": "Welches der vorgestellten Tools ist vor allem ein Automatisierungsserver für CI/CD?",
+      "options": [
+        "Jenkins",
+        "Zapier",
+        "UiPath",
+        "Puppet"
+      ],
+      "explanation": "Jenkins lässt sich über eine umfangreiche Plugin-Bibliothek erweitern."
+    },
+    {
+      "section": "3.10",
+      "question": "Welche Kombination empfiehlt der Lösungsvorschlag für TechWave Solutions?",
+      "options": [
+        "Jenkins für CI/CD und Puppet für das Konfigurationsmanagement vieler Knoten",
+        "Zapier und UiPath",
+        "Nur UiPath",
+        "Nur Zapier"
+      ],
+      "explanation": "Gleichwertige Alternative: Jenkins mit Ansible, wenn ein einfacher Einstieg ohne Agenten wichtiger ist."
+    },
+    {
+      "section": "3.10",
+      "question": "Warum passen Zapier und UiPath zu GreenGrocer?",
+      "options": [
+        "Sie automatisieren Geschäftsprozesse und verbinden Web-Apps ohne umfangreiche Programmierkenntnisse",
+        "Sie sind auf CI/CD spezialisiert",
+        "Sie verwalten Tausende Server",
+        "Sie sind kostenlos und ohne Datenschutzfragen"
+      ],
+      "explanation": "Bei beiden sind Kosten und Datenschutz zu prüfen, besonders bei Cloud-Diensten außerhalb der EU."
+    },
+    {
+      "section": "3.10",
+      "question": "Warum scheiden Ansible, Puppet und Jenkins für GreenGrocer aus?",
+      "options": [
+        "Sie sind auf IT-Infrastruktur und Softwareentwicklung ausgerichtet und setzen technisches Wissen voraus",
+        "Sie sind zu billig",
+        "Sie unterstützen keine Server",
+        "Sie sind nur für Einzelhandel gedacht"
+      ],
+      "explanation": "GreenGrocer möchte Geschäftsprozesse ohne umfangreiche Programmierkenntnisse automatisieren."
+    }
+  ]
+}
