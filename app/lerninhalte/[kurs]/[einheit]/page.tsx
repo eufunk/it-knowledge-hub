@@ -82,7 +82,7 @@ export default async function KapitelPage({ params }: PageProps<"/lerninhalte/[k
 
       {/* Platz, damit der schwebende Vorlese-Player nichts verdeckt */}
       <div aria-hidden className="h-20" />
-      <ReadAloudPlayer targetIds={["kapitel-kopf", "kapitel-text"]} />
+      <ReadAloudPlayer targetIds={["kapitel-kopf", "kapitel-text"]} positionKey={`${course.slug}/${lesson.slug}`} />
     </CoursePlayer>
   );
 }

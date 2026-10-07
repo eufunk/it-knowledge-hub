@@ -84,6 +84,7 @@ Angelehnt an den Referenz-Screenshot der Kursansicht, aber im eigenen Design.
   - Übersprungen werden Codeblöcke, eingeklappte Musterlösungen und Elemente mit `data-vorlesen="nein"`.
   - Flüssiges Vorlesen: Abkürzungen werden ausgeschrieben („z. B.“ → „zum Beispiel“), der nächste Abschnitt wird vorab in die Warteschlange gelegt, Text wird nur bei Stimmen mit Längenbegrenzung (Google-Stimmen in Chrome) an Satzenden geteilt. Natürliche Stimmen stehen in der Auswahl oben und sind als „empfohlen“ markiert.
   - Der gerade gelesene Abschnitt (bei Tabellen die Zeile) wird hervorgehoben und in den sichtbaren Bereich gescrollt.
+  - Fortsetzen: Der Player merkt sich pro Kapitel im Browser, bei welchem Abschnitt zuletzt vorgelesen wurde (`localStorage`, Schlüssel `vorlesen-stelle:v1:<kurs>/<kapitel>`). Nach Neuladen, Seitenwechsel oder „Vorlesen beenden“ zeigt er „Weiter bei Abschnitt N von M“ und setzt dort fort. Der Abschnitt wird über seinen Textanfang wiedergefunden, damit Änderungen am Kapitel die Stelle nicht verschieben; fehlt er, gilt die gespeicherte Nummer. Wurde das Kapitel bis zum Ende vorgelesen, wird die Stelle gelöscht, und es beginnt wieder am Anfang. „Von vorn“ startet jederzeit beim ersten Abschnitt.
   - Beim Verlassen der Seite stoppt die Ausgabe. Unterstützt der Browser keine Sprachausgabe oder gibt es keine deutsche Stimme, zeigt der Player einen Hinweis statt der Bedienelemente.
 
 ### 4.5 Fortschritt

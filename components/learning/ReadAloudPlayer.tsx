@@ -1,8 +1,16 @@
 "use client";
 
-import { Pause, Play, Settings2, SkipBack, SkipForward, Square, Volume2 } from "lucide-react";
+import { Pause, Play, RotateCcw, Settings2, SkipBack, SkipForward, Square, Volume2 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { chunkLimit, chunkText, extractSegments, type SpeechSegment } from "@/lib/utils/speech";
+import {
+  clearPosition,
+  makePosition,
+  parsePosition,
+  readPositionRaw,
+  resolvePosition,
+  savePosition,
+} from "@/lib/utils/speech-position";
 import {
   isNaturalVoice,
   parseSettings,
@@ -48,12 +56,16 @@ const iconButton =
 
 // F20: Vorlese-Player für ein Kapitel (Web Speech API)
 // targetIds: Bereiche in Lesereihenfolge, z. B. Kopf (Titel, Kurzbeschreibung) und Kapiteltext
-export function ReadAloudPlayer({ targetIds }: { targetIds: string[] }) {
+// positionKey: Kennung des Kapitels („<kurs>/<kapitel>“), unter der die zuletzt vorgelesene Stelle gespeichert wird
+export function ReadAloudPlayer({ targetIds, positionKey }: { targetIds: string[]; positionKey: string }) {
   // null = noch unbekannt (Server und erstes Rendern), dann true/false im Browser
   const supported = useSyncExternalStore<boolean | null>(noopSubscribe, isSupported, () => null);
   const voices = useSyncExternalStore(subscribeVoices, getVoices, () => NO_VOICES);
   const settingsRaw = useSyncExternalStore(subscribeSettings, readSettingsRaw, () => null);
   const settings = useMemo(() => parseSettings(settingsRaw), [settingsRaw]);
+  // gespeicherte Stelle aus einem früheren Besuch (nur für Anzeige und ersten Start)
+  const savedRaw = useSyncExternalStore(noopSubscribe, () => readPositionRaw(positionKey), () => null);
+  const saved = useMemo(() => parsePosition(savedRaw), [savedRaw]);
   const voice = useMemo(() => pickVoice(voices, settings.voice), [voices, settings.voice]);
   const germanVoices = useMemo(
     () =>
@@ -67,6 +79,8 @@ export function ReadAloudPlayer({ targetIds }: { targetIds: string[] }) {
   const [index, setIndex] = useState(0);
   const [total, setTotal] = useState(0);
   const [settingsOpen, setSettingsOpen] = useState(false);
+  // false, solange die gespeicherte Stelle noch nicht übernommen oder verworfen wurde
+  const [resumed, setResumed] = useState(false);
 
   const segmentsRef = useRef<SpeechSegment[] | null>(null);
   // Abschnitt, der gerade gesprochen wird bzw. bei dem fortgesetzt wird
@@ -115,7 +129,9 @@ export function ReadAloudPlayer({ targetIds }: { targetIds: string[] }) {
     }
   };
 
+  // Kapitel zu Ende vorgelesen: Stelle löschen, beim nächsten Mal beginnt es wieder am Anfang.
   const finish = () => {
+    clearPosition(positionKey);
     tokenRef.current++;
     currentRef.current = 0;
     queuedRef.current = -1;
@@ -147,6 +163,7 @@ export function ReadAloudPlayer({ targetIds }: { targetIds: string[] }) {
         if (isFirst) {
           currentRef.current = segmentIndex;
           setIndex(segmentIndex);
+          savePosition(positionKey, makePosition(segmentIndex, list.length, segment.text));
           highlight(segment.element);
         }
         if (isLast) enqueue(segmentIndex + 1, token);
@@ -177,10 +194,27 @@ export function ReadAloudPlayer({ targetIds }: { targetIds: string[] }) {
     enqueue(segmentIndex, token);
   };
 
+  // Beim ersten Start auf der Seite an der gespeicherten Stelle fortsetzen.
+  const takeOverSaved = () => {
+    if (resumed) return;
+    setResumed(true);
+    if (saved) currentRef.current = resolvePosition(saved, segments().map((item) => item.text));
+  };
+
   const play = () => {
     if (segments().length === 0) return;
+    takeOverSaved();
     setStatus("playing");
     startAt(currentRef.current);
+  };
+
+  const restart = () => {
+    if (segments().length === 0) return;
+    setResumed(true);
+    clearPosition(positionKey);
+    currentRef.current = 0;
+    setStatus("playing");
+    startAt(0);
   };
 
   // Pausieren bricht ab und setzt später am Anfang des aktuellen Abschnitts neu an,
@@ -191,9 +225,12 @@ export function ReadAloudPlayer({ targetIds }: { targetIds: string[] }) {
     setStatus("paused");
   };
 
+  // Beenden behält die Stelle; „Vorlesen starten“ setzt dort fort, „Von vorn“ beginnt am Anfang.
   const stop = () => {
+    tokenRef.current++;
     window.speechSynthesis.cancel();
-    finish();
+    setStatus("idle");
+    highlight(null);
   };
 
   const jump = (delta: number) => {
@@ -230,7 +267,15 @@ export function ReadAloudPlayer({ targetIds }: { targetIds: string[] }) {
     );
   }
 
-  const label = status === "idle" && index === 0 ? "Kapitel vorlesen" : `Abschnitt ${index + 1} von ${total}`;
+  // Stelle, an der „Vorlesen starten“ fortsetzt, solange nicht vorgelesen wird
+  const resumeAt = !resumed && saved ? saved.index : index;
+  const resumeTotal = !resumed && saved ? saved.total : total;
+  const label =
+    status !== "idle"
+      ? `Abschnitt ${index + 1} von ${total}`
+      : resumeAt > 0
+        ? `Weiter bei Abschnitt ${resumeAt + 1} von ${resumeTotal}`
+        : "Kapitel vorlesen";
 
   return (
     <section
@@ -295,6 +340,11 @@ export function ReadAloudPlayer({ targetIds }: { targetIds: string[] }) {
         <span aria-live="polite" className="min-w-0 flex-1 truncate px-2 text-sm font-semibold sm:w-40 sm:flex-none">
           {label}
         </span>
+        {status !== "playing" && resumeAt > 0 && (
+          <button type="button" onClick={restart} aria-label="Von vorn vorlesen" title="Von vorn" className={iconButton}>
+            <RotateCcw aria-hidden className="size-4" />
+          </button>
+        )}
         {status !== "idle" && (
           <button type="button" onClick={stop} aria-label="Vorlesen beenden" className={iconButton}>
             <Square aria-hidden className="size-4" />

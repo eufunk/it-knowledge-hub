@@ -1,4 +1,4 @@
-import { act, fireEvent, render, screen } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ReadAloudPlayer } from "@/components/learning/ReadAloudPlayer";
 
@@ -57,8 +57,15 @@ function renderPlayer() {
     <pre><code>echo nicht vorlesen</code></pre>
     <table><thead><tr><th>Begriff</th><th>Erklärung</th></tr></thead><tbody><tr><td>Trigger</td><td>Startet den Ablauf</td></tr></tbody></table>`;
   document.body.appendChild(article);
-  render(<ReadAloudPlayer targetIds={["kapitel-text"]} />);
+  render(<ReadAloudPlayer targetIds={["kapitel-text"]} positionKey="kurs/kapitel" />);
   return article;
+}
+
+// Seite verlassen: Player entfernen, Inhalt leeren, Warteschlange verwerfen (der Speicher bleibt)
+function cleanupPage() {
+  cleanup();
+  document.body.innerHTML = "";
+  queue = [];
 }
 
 describe("F20: ReadAloudPlayer", () => {
@@ -111,7 +118,7 @@ describe("F20: ReadAloudPlayer", () => {
     article.id = "kapitel-text";
     article.innerHTML = "<p>Erster Absatz.</p>";
     document.body.append(header, article);
-    render(<ReadAloudPlayer targetIds={["kapitel-kopf", "kapitel-text"]} />);
+    render(<ReadAloudPlayer targetIds={["kapitel-kopf", "kapitel-text"]} positionKey="kurs/kopf" />);
 
     fireEvent.click(screen.getByRole("button", { name: "Vorlesen starten" }));
     finishCurrent();
@@ -140,6 +147,41 @@ describe("F20: ReadAloudPlayer", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "Vorlesen starten" }));
     expect(spoken[spoken.length - 1]).toBe("Ein Absatz, zum Beispiel mit Abkürzung.");
+  });
+
+  it("setzt nach erneutem Öffnen der Seite an der zuletzt vorgelesenen Stelle fort", () => {
+    renderPlayer();
+    fireEvent.click(screen.getByRole("button", { name: "Vorlesen starten" }));
+    finishCurrent();
+    fireEvent.click(screen.getByRole("button", { name: "Vorlesen beenden" }));
+    expect(screen.getByText("Weiter bei Abschnitt 2 von 4")).toBeInTheDocument();
+
+    // Seite verlassen und später neu öffnen
+    cleanupPage();
+    spoken.length = 0;
+    renderPlayer();
+    expect(screen.getByText("Weiter bei Abschnitt 2 von 4")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Vorlesen starten" }));
+    expect(spoken[0]).toBe("Ein Absatz, zum Beispiel mit Abkürzung.");
+  });
+
+  it("beginnt mit „Von vorn“ am Anfang und vergisst die Stelle nach dem Kapitelende", () => {
+    renderPlayer();
+    fireEvent.click(screen.getByRole("button", { name: "Vorlesen starten" }));
+    finishCurrent();
+    fireEvent.click(screen.getByRole("button", { name: "Pause" }));
+    spoken.length = 0;
+    fireEvent.click(screen.getByRole("button", { name: "Von vorn vorlesen" }));
+    expect(spoken[0]).toBe("Überschrift");
+
+    finishCurrent();
+    finishCurrent();
+    finishCurrent();
+    finishCurrent();
+    expect(window.localStorage.getItem("vorlesen-stelle:v1:kurs/kapitel")).toBeNull();
+    cleanupPage();
+    renderPlayer();
+    expect(screen.getByText("Kapitel vorlesen")).toBeInTheDocument();
   });
 
   it("übernimmt die gewählte Geschwindigkeit", () => {
