@@ -4,6 +4,9 @@
 
 ---
 
+## 2026-10-07
+- Kapitel 05 „Aufbau fortgeschrittener Linux-Skripte“ nach `01_System_und_Prozessautomatisierung_Grundlagen.docx` (Abschnitt 3.1) ergänzt: grep/awk/sed, Unix-Definition, Vergleich Linux/Windows/macOS, neuer Abschnitt „Breakpoints setzen, verwalten und entfernen“, `set -eux`, Reaktion auf Strg + C, Beispiele zu `exit` und `trap` mit Erklärtabellen, neuer Abschnitt „chmod“, Optionen von `ps aux`, Werkzeugübersicht und neue Übung „Erkläre das Skript“ mit eingeklapptem Lösungsvorschlag. Programmausgaben stehen jetzt getrennt vom Code. Korrigiert gegenüber der Vorlage: Nach Strg + C endet das Übungsskript bzw. `01_Uebungen_29.09/signal_cleanup.sh` wegen `set -e` doch (Exit-Code 130 bzw. 1), die Schleife läuft nur ohne `set -e` weiter (in Bash getestet). Dauer 35 → 50 Minuten. Wissenstest 60 → 72 Fragen aus `01_Systemautomatisierung_Quiz.html`, neue Abschnitte 5.8 „Übung“ und 5.9 „Coding Challenge“ (vorher 5.8); eine Frage zum Übungsskript allgemein formuliert.
+
 ## 2026-10-06
 - Kurs `system-und-prozessautomatisierung-grundlagen` umbenannt: „Einführung in System- und Prozessautomatisierung“ (vorher „System- und Prozessautomatisierung“). Adresse und Lernfortschritt unverändert.
 - Neu: Kursfreigabe (F28) und Kursreihenfolge. Kurse werden nach `order` statt nur nach Slug sortiert („System- und Prozessautomatisierung“ vor „Netzwerkautomatisierung und Tools“). Mit `release` ist ein Kurs erst ab diesem Tag sichtbar; „Netzwerkautomatisierung und Tools“ wird am 2026-10-12 freigegeben, danach pro Woche ein weiterer Kurs der Gruppe. Neues Tester-Merkmal (`users.tester`, gesetzt per `npm run db:seed` für `testuser`): Tester sehen alle Kurse. Kursübersicht und Startseite werden dafür pro Aufruf erzeugt (vorher statisch). Datenbank vor der Schemaänderung gesichert (`data/it-knowledge-hub.db.bak-2026-10-06`).

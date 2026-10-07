@@ -187,13 +187,13 @@ Wichtigste Typen: `Course` (mit `modules: CourseModule[]`, `lessons`, `appendix`
 Schritt-IDs sind dieselben wie im Browser (`<kapitel>` bzw. `<kapitel>/wissenstest`). Das Schema wird beim ersten Zugriff angelegt; fehlt in einer älteren Datenbank die Spalte `tester`, wird sie dabei ergänzt (Standard 0).
 
 ### 5.7 Inhalt des ersten Kurses
-Quelle: `System_und_Prozessautomatisierung_Grundlagen.docx` (Kapitel; Kapitel 01 am 2026-10-03, Kapitel 02 und 03 am 2026-10-04, Kapitel 04 am 2026-10-05 überarbeitet und erweitert, Freigabe-Entwürfe `Kapitel01_…_Entwurf.docx` bis `Kapitel04_…_Entwurf.docx`) und `Systemautomatisierung_Quiz.html` (410 Fragen), einmalig nach Markdown bzw. JSON übernommen. Danach sind die Dateien im Repository die maßgebliche Quelle.
+Quelle: `System_und_Prozessautomatisierung_Grundlagen.docx` (Kapitel; Kapitel 01 am 2026-10-03, Kapitel 02 und 03 am 2026-10-04, Kapitel 04 am 2026-10-05 überarbeitet und erweitert, Freigabe-Entwürfe `Kapitel01_…_Entwurf.docx` bis `Kapitel04_…_Entwurf.docx`; Kapitel 05 am 2026-10-07 aus `01_System_und_Prozessautomatisierung_Grundlagen.docx`, Abschnitt 3.1, ergänzt) und `Systemautomatisierung_Quiz.html` (410 Fragen; Kapitel 05 aus `01_Systemautomatisierung_Quiz.html`, 72 Fragen), nach Markdown bzw. JSON übernommen. Danach sind die Dateien im Repository die maßgebliche Quelle.
 
 | Modul | Kapitel | Fragen |
 |---|---|---|
 | 1 Grundlagen der Automatisierung | 01 Einführung in die Systemautomatisierung · 02 Überwachen wiederkehrender Systemabläufe | 65 · 69 |
 | 2 Scriptsprachen für Automatisierung | 03 Grundlagen von Bash und Shell-Scripting · 04 PowerShell Basics für Administratoren | 92 · 93 |
-| 3 Fortgeschrittene Scripttechniken | 05 Aufbau fortgeschrittener Linux-Skripte · (geplant) Entwicklung komplexer PowerShell-Scripte, siehe `docs/todo.md` | 60 · – |
+| 3 Fortgeschrittene Scripttechniken | 05 Aufbau fortgeschrittener Linux-Skripte · (geplant) Entwicklung komplexer PowerShell-Scripte, siehe `docs/todo.md` | 72 · – |
 | Anhang | 10 Glossar | – |
 
 ### 5.8 Inhalt des zweiten Kurses

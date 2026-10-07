@@ -1,13 +1,14 @@
 {
   "sections": {
     "5.1": "Linux-Skripte und Unix",
-    "5.2": "Debugging mit set und trap",
+    "5.2": "Debugging mit Breakpoints, set und trap",
     "5.3": "Fehlerbehandlung, exit und Signale",
     "5.4": "stderr",
     "5.5": "Performance",
     "5.6": "Sicherheit und Isolation",
     "5.7": "Befehle zur Fehlersuche",
-    "5.8": "Coding Challenge (Linux)"
+    "5.8": "Übung: Skript erklären",
+    "5.9": "Coding Challenge (Linux)"
   },
   "questions": [
     {
@@ -627,7 +628,139 @@
       "explanation": "Nach <code>false | true</code> zeigt <code>echo \"${PIPESTATUS[@]}\"</code> die Werte <code>1 0</code>."
     },
     {
+      "section": "5.1",
+      "question": "Wofür wird das Werkzeug <code>sed</code> in Bash-Skripten vor allem verwendet?",
+      "options": [
+        "Als Stream-Editor zum Suchen und Ersetzen von Text in Datenströmen oder Dateien",
+        "Zum Messen der Laufzeit eines Skripts",
+        "Zum Ändern der Prozesspriorität",
+        "Zum Anzeigen laufender Prozesse"
+      ],
+      "explanation": "<code>grep</code> sucht nach Mustern, <code>awk</code> verarbeitet Text spaltenweise, <code>sed</code> bearbeitet Text, z. B. mit <code>s/alt/neu/</code>."
+    },
+    {
+      "section": "5.1",
+      "question": "Welcher Paketmanager ist unter macOS am weitesten verbreitet?",
+      "options": [
+        "Homebrew (<code>brew</code>)",
+        "<code>winget</code>",
+        "<code>apt</code>",
+        "Chocolatey (<code>choco</code>)"
+      ],
+      "explanation": "Linux nutzt je nach Distribution z. B. apt, dnf oder pacman, Windows winget oder Chocolatey."
+    },
+    {
+      "section": "5.1",
+      "question": "Wie setzt man in PowerShell eine Umgebungsvariable für den laufenden Prozess?",
+      "options": [
+        "<code>$env:VARIABLE = \"wert\"</code>",
+        "<code>export VARIABLE=wert</code>",
+        "<code>set -x VARIABLE</code>",
+        "<code>env VARIABLE</code>"
+      ],
+      "explanation": "In der Bash setzt man sie mit <code>export VARIABLE=wert</code>, in cmd mit <code>set VARIABLE=wert</code>."
+    },
+    {
+      "section": "5.1",
+      "question": "Was gilt für die Groß- und Kleinschreibung in Pfaden unter macOS?",
+      "options": [
+        "Das Standard-Dateisystem APFS unterscheidet sie standardmäßig nicht",
+        "Sie wird immer unterschieden, wie unter Linux",
+        "Pfade dürfen nur Kleinbuchstaben enthalten",
+        "Sie hängt von der verwendeten Shell ab"
+      ],
+      "explanation": "Linux unterscheidet Groß- und Kleinschreibung, Windows und macOS (APFS) standardmäßig nicht. Skripte sollten sich darauf nicht verlassen."
+    },
+    {
+      "section": "5.2",
+      "question": "Wie baut man in einem Bash-Skript einen einfachen Breakpoint ein?",
+      "options": [
+        "Mit <code>read -r -p \"Weiter mit [Enter] ...\"</code> an der gewünschten Stelle",
+        "Mit <code>break</code> in der gewünschten Zeile",
+        "Mit <code>set -b</code> am Skriptanfang",
+        "Mit <code>exit 0</code> an der gewünschten Stelle"
+      ],
+      "explanation": "<code>read</code> wartet auf eine Eingabe. So hält das Skript an, und Du kannst Variablenwerte prüfen."
+    },
+    {
+      "section": "5.2",
+      "question": "Warum prüft man den Debug-Schalter mit <code>[[ \"${DEBUG_MODE:-0}\" == 1 ]]</code>?",
+      "options": [
+        "Fehlt die Variable, wird 0 eingesetzt, so funktioniert die Prüfung auch mit <code>set -u</code>",
+        "Damit DEBUG_MODE automatisch auf 1 gesetzt wird",
+        "Weil die Bash sonst keine Vergleiche erlaubt",
+        "Damit das Skript immer anhält"
+      ],
+      "explanation": "<code>${VAR:-wert}</code> liefert einen Standardwert, wenn die Variable leer oder nicht gesetzt ist. Gestartet wird der Debug-Modus mit <code>DEBUG_MODE=1 ./skript.sh</code>."
+    },
+    {
+      "section": "5.2",
+      "question": "Was gibt <code>set</code> ohne Optionen aus?",
+      "options": [
+        "Alle Variablen und Funktionen der Shell",
+        "Nur die aktiven Shell-Optionen",
+        "Die Liste aller Signale",
+        "Nichts, es setzt alle Optionen zurück"
+      ],
+      "explanation": "Die aktiven Optionen zeigen <code>set -o</code> und <code>echo $-</code>."
+    },
+    {
+      "section": "5.5",
+      "question": "Wofür steht das <code>x</code> in <code>ps aux</code>?",
+      "options": [
+        "Auch Prozesse ohne Kontrollterminal anzeigen, z. B. Dienste",
+        "Prozesse nach CPU-Last sortieren",
+        "Nur Prozesse des aktuellen Benutzers anzeigen",
+        "Die Ausgabe als Tabelle exportieren"
+      ],
+      "explanation": "<code>a</code> zeigt die Prozesse aller Benutzer, <code>u</code> liefert eine ausführliche Ausgabe mit Benutzer, CPU- und Speicheranteil."
+    },
+    {
+      "section": "5.6",
+      "question": "Welche Rechte setzt <code>chmod 744 dein_skript.sh</code>?",
+      "options": [
+        "Besitzer lesen, schreiben und ausführen, Gruppe und andere nur lesen",
+        "Alle dürfen lesen, schreiben und ausführen",
+        "Besitzer nur lesen, alle anderen alles",
+        "Besitzer lesen und ausführen, Gruppe und andere nichts"
+      ],
+      "explanation": "Jede Ziffer ist die Summe aus 4 (lesen), 2 (schreiben) und 1 (ausführen): 7 = rwx, 4 = r--."
+    },
+    {
+      "section": "5.6",
+      "question": "Was bewirkt <code>chmod u+x,g-w datei</code>?",
+      "options": [
+        "Der Besitzer erhält das Ausführrecht, die Gruppe verliert das Schreibrecht",
+        "Alle erhalten das Ausführrecht",
+        "Die Datei gehört danach der Gruppe w",
+        "Alle Rechte werden entfernt"
+      ],
+      "explanation": "In der symbolischen Schreibweise fügt + Rechte hinzu, - entfernt sie und = legt sie genau fest. u, g, o und a stehen für Besitzer, Gruppe, andere und alle."
+    },
+    {
       "section": "5.8",
+      "question": "Im Übungsskript steht <code>trap cleanup SIGINT SIGTERM</code>. Was passiert beim normalen Ende ohne Abbruch?",
+      "options": [
+        "<code>cleanup</code> wird nicht aufgerufen, die temporäre Datei bleibt liegen",
+        "<code>cleanup</code> wird automatisch aufgerufen",
+        "Das Skript endet mit einem Fehler",
+        "Die Datei wird vom Betriebssystem sofort gelöscht"
+      ],
+      "explanation": "Der Trap reagiert nur auf die genannten Signale. Mit <code>trap cleanup EXIT</code> läuft die Funktion bei jedem Ende."
+    },
+    {
+      "section": "5.8",
+      "question": "Ein Skript ohne <code>set -e</code> fängt <code>SIGINT</code> mit <code>trap cleanup SIGINT</code> ab, und <code>cleanup</code> enthält kein <code>exit</code>. Was passiert nach Strg + C während einer Schleife?",
+      "options": [
+        "Nach dem Aufräumen läuft die Schleife einfach weiter",
+        "Das Skript endet sofort ohne Aufräumen",
+        "Die Shell wird geschlossen",
+        "Das Signal wird ignoriert, nichts passiert"
+      ],
+      "explanation": "Die Bash setzt das Skript nach einem Trap fort. Im Übungsskript endet es nur, weil <code>set -e</code> wegen des unterbrochenen <code>sleep</code> abbricht. Eindeutig wird es mit <code>exit 130</code> im Trap."
+    },
+    {
+      "section": "5.9",
       "question": "Warum muss der Trap in der Musterlösung vor dem Breakpoint und der Schleife gesetzt werden?",
       "options": [
         "Ein Trap wirkt erst ab der Zeile, in der er gesetzt wird",
@@ -638,7 +771,7 @@
       "explanation": "Stünde der Trap nach der Schleife, würde Strg + C während der Schleife nicht abgefangen."
     },
     {
-      "section": "5.8",
+      "section": "5.9",
       "question": "Warum endet die Cleanup-Funktion der Musterlösung mit <code>exit 130</code>?",
       "options": [
         "Ohne <code>exit</code> setzt die Bash nach dem Trap das Skript fort, die Schleife liefe weiter",
@@ -649,7 +782,7 @@
       "explanation": "130 = 128 + 2 ist der übliche Code für einen Abbruch durch SIGINT."
     },
     {
-      "section": "5.8",
+      "section": "5.9",
       "question": "Wie testet man die Musterlösung automatisch, ohne am Breakpoint ENTER zu drücken?",
       "options": [
         "<code>echo | ./signal_cleanup.sh</code>: Das ENTER kommt über die Pipe",
@@ -660,7 +793,7 @@
       "explanation": "Ohne Eingabe liefert <code>read</code> einen Fehler, und <code>set -e</code> bricht das Skript ab."
     },
     {
-      "section": "5.8",
+      "section": "5.9",
       "question": "Welche Option in <code>set -eux</code> sorgt dafür, dass alle Befehle vor ihrer Ausführung angezeigt werden?",
       "options": [
         "<code>-x</code>",
