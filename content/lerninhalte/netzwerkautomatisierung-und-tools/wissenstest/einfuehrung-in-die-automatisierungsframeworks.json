@@ -1,0 +1,386 @@
+{
+  "sections": {
+    "10.1": "Was ist ein Framework?",
+    "10.2": "RPA",
+    "10.3": "Selenium",
+    "10.4": "Jenkins",
+    "10.5": "Ansible und Vergleich",
+    "10.6": "Übung: Framework auswählen"
+  },
+  "questions": [
+    {
+      "section": "10.1",
+      "question": "Was ist ein Automatisierungsframework?",
+      "options": [
+        "Ein Grundgerüst aus Werkzeugen, Regeln und Bausteinen, mit dem sich bestimmte Aufgaben einheitlich automatisieren lassen",
+        "Ein einzelnes Skript für eine Aufgabe",
+        "Eine Programmiersprache",
+        "Ein Server, auf dem Skripte gespeichert werden"
+      ],
+      "explanation": "Es übernimmt wiederkehrende Arbeit wie Ablaufsteuerung, Protokollierung und Fehlerbehandlung."
+    },
+    {
+      "section": "10.1",
+      "question": "Was unterscheidet ein Framework von einer Bibliothek?",
+      "options": [
+        "Das Framework gibt den Rahmen vor und ruft Deinen Code an vorgesehenen Stellen auf",
+        "Eine Bibliothek ist immer größer als ein Framework",
+        "Frameworks sind immer kostenpflichtig",
+        "Es gibt keinen Unterschied"
+      ],
+      "explanation": "Eine Bibliothek rufst Du dagegen selbst aus Deinem Code auf."
+    },
+    {
+      "section": "10.1",
+      "question": "Zu welcher Art von Framework gehört Apache Airflow?",
+      "options": [
+        "Workflow-Orchestrierung",
+        "RPA",
+        "Testautomatisierung",
+        "Konfigurationsmanagement"
+      ],
+      "explanation": "Airflow plant und überwacht mehrstufige, zeitgesteuerte Abläufe mit Abhängigkeiten."
+    },
+    {
+      "section": "10.1",
+      "question": "Welche Frameworks gehören zum Konfigurationsmanagement?",
+      "options": [
+        "Ansible, Puppet und Chef",
+        "Selenium und Playwright",
+        "UiPath und Blue Prism",
+        "Jenkins und GitLab CI"
+      ],
+      "explanation": "Sie richten Server und Geräte einheitlich ein und halten sie im gewünschten Zustand."
+    },
+    {
+      "section": "10.2",
+      "question": "Was automatisieren RPA-Frameworks?",
+      "options": [
+        "Regelbasierte Abläufe, die Menschen sonst an Benutzeroberflächen erledigen",
+        "Das Kompilieren von Programmcode",
+        "Die Konfiguration von Netzwerkkabeln",
+        "Die Verschlüsselung von Festplatten"
+      ],
+      "explanation": "Verbreitet sind sie im Finanzwesen, im Kundenservice und im Personalwesen."
+    },
+    {
+      "section": "10.2",
+      "question": "Was kennzeichnet Attended RPA?",
+      "options": [
+        "Der Roboter arbeitet zusammen mit einer Person auf deren Rechner und übernimmt Teilschritte",
+        "Der Roboter arbeitet völlig selbstständig auf einem Server",
+        "Der Roboter ersetzt die Benutzeroberfläche",
+        "Der Roboter läuft nur nachts"
+      ],
+      "explanation": "Bei Unattended RPA arbeitet der Roboter ohne menschliches Eingreifen, meist auf einem Server."
+    },
+    {
+      "section": "10.2",
+      "question": "Jede Nacht sollen eingegangene Rechnungen automatisch erfasst und verbucht werden. Welcher RPA-Typ passt?",
+      "options": [
+        "Unattended RPA",
+        "Attended RPA",
+        "Manuelle Bearbeitung",
+        "Selenium-Test"
+      ],
+      "explanation": "Der Ablauf braucht keinen Menschen und läuft zeitgesteuert."
+    },
+    {
+      "section": "10.2",
+      "question": "Was ist eine typische Schwäche von RPA?",
+      "options": [
+        "Ändert sich die Benutzeroberfläche, muss der Roboter angepasst werden",
+        "RPA funktioniert nur mit APIs",
+        "RPA kann keine Daten eingeben",
+        "RPA läuft nur unter Linux"
+      ],
+      "explanation": "Deshalb ist eine API, wenn vorhanden, fast immer die bessere Wahl."
+    },
+    {
+      "section": "10.2",
+      "question": "Welches RPA-Werkzeug ist in Windows 11 bereits enthalten?",
+      "options": [
+        "Power Automate Desktop",
+        "Blue Prism",
+        "UiPath",
+        "Selenium"
+      ],
+      "explanation": "UiPath und Blue Prism sind eigenständige, kostenpflichtige Plattformen."
+    },
+    {
+      "section": "10.3",
+      "question": "Wofür wird Selenium hauptsächlich eingesetzt?",
+      "options": [
+        "Zum automatischen Testen von Webanwendungen im Browser",
+        "Zum Konfigurieren von Servern",
+        "Zum Bauen von Software bei jedem Commit",
+        "Zum Planen nächtlicher Datenimporte"
+      ],
+      "explanation": "Selenium steuert einen Browser fern und unterstützt viele Programmiersprachen."
+    },
+    {
+      "section": "10.3",
+      "question": "Was bewirkt <code>find_element(By.ID, \"benutzer\")</code> in Selenium?",
+      "options": [
+        "Es sucht das Element der Seite mit der ID „benutzer“",
+        "Es legt einen neuen Benutzer an",
+        "Es öffnet ein neues Browserfenster",
+        "Es prüft das Passwort"
+      ],
+      "explanation": "Mit <code>send_keys</code> wird anschließend Text eingegeben, mit <code>click</code> geklickt."
+    },
+    {
+      "section": "10.3",
+      "question": "Wozu dient die Browser-Option <code>--headless=new</code>?",
+      "options": [
+        "Der Browser läuft ohne sichtbares Fenster, z. B. auf einem Server",
+        "Der Browser startet mit einer leeren Seite",
+        "Der Browser löscht alle Cookies",
+        "Der Browser lädt keine Bilder"
+      ],
+      "explanation": "So lassen sich Tests auch auf Servern ohne Bildschirm ausführen."
+    },
+    {
+      "section": "10.3",
+      "question": "Warum steht <code>browser.quit()</code> im Selenium-Beispiel in einem <code>finally</code>-Block?",
+      "options": [
+        "Damit der Browser auch dann geschlossen wird, wenn der Test fehlschlägt",
+        "Damit der Test schneller läuft",
+        "Weil Selenium sonst nicht startet",
+        "Damit das Ergebnis gespeichert wird"
+      ],
+      "explanation": "Sonst blieben bei jedem fehlgeschlagenen Test Browserprozesse zurück."
+    },
+    {
+      "section": "10.3",
+      "question": "Was ist der letzte Schritt im Selenium-Prozess?",
+      "options": [
+        "Ergebnisse analysieren und gefundene Fehler beheben",
+        "Testfälle definieren",
+        "Skripte erstellen",
+        "Browser installieren"
+      ],
+      "explanation": "Die Reihenfolge: Testfälle definieren, Skripte erstellen, Tests ausführen, Ergebnisse analysieren."
+    },
+    {
+      "section": "10.4",
+      "question": "Was ist Jenkins?",
+      "options": [
+        "Ein Open-Source-Automatisierungsserver für CI/CD",
+        "Ein RPA-Werkzeug",
+        "Ein Browser für Tests",
+        "Ein Datenbanksystem"
+      ],
+      "explanation": "Jenkins baut und testet Software bei jeder Änderung automatisch."
+    },
+    {
+      "section": "10.4",
+      "question": "Was unterscheidet Continuous Deployment von Continuous Delivery?",
+      "options": [
+        "Bei Continuous Deployment geht auch die Produktion ohne menschliche Freigabe automatisch live",
+        "Continuous Deployment testet nicht",
+        "Continuous Delivery arbeitet ohne Repository",
+        "Es gibt keinen Unterschied"
+      ],
+      "explanation": "Bei Continuous Delivery gibt eine Person die Auslieferung in die Produktion frei."
+    },
+    {
+      "section": "10.4",
+      "question": "Wie erfährt Jenkins von neuen Commits?",
+      "options": [
+        "Durch regelmäßiges Abfragen des Repositorys oder durch einen Webhook",
+        "Nur durch eine E-Mail der Entwicklerin",
+        "Gar nicht, Builds startet man immer von Hand",
+        "Durch einen Anruf"
+      ],
+      "explanation": "Ein Webhook ist eine Benachrichtigung, die GitHub oder GitLab bei jeder Änderung sendet."
+    },
+    {
+      "section": "10.4",
+      "question": "Was bewirkt <code>when { branch 'main' }</code> in der Stufe „Ausliefern“ des Jenkinsfiles?",
+      "options": [
+        "Die Stufe läuft nur, wenn die Änderung im Branch main liegt",
+        "Die Stufe läuft für alle Branches außer main",
+        "Der Branch main wird gelöscht",
+        "Es wird ein neuer Branch main angelegt"
+      ],
+      "explanation": "So werden Änderungen aus Feature Branches geprüft und getestet, aber nicht ausgeliefert."
+    },
+    {
+      "section": "10.4",
+      "question": "Wo steht die Pipeline-Beschreibung bei Jenkins üblicherweise?",
+      "options": [
+        "In einer Datei namens Jenkinsfile im Repository",
+        "In einer Excel-Tabelle",
+        "In der Windows-Registry",
+        "Im Browser-Cache"
+      ],
+      "explanation": "So wird die Pipeline zusammen mit dem Code versioniert."
+    },
+    {
+      "section": "10.5",
+      "question": "Was bedeutet „agentenlos“ bei Ansible?",
+      "options": [
+        "Auf den Zielsystemen muss keine zusätzliche Software laufen",
+        "Ansible braucht keine Netzwerkverbindung",
+        "Ansible arbeitet ohne Playbooks",
+        "Ansible braucht keine Anmeldung"
+      ],
+      "explanation": "Ansible verbindet sich mit Linux per SSH und mit Windows per WinRM oder SSH."
+    },
+    {
+      "section": "10.5",
+      "question": "Was steht im Ansible-Inventar?",
+      "options": [
+        "Die Server, auf die Playbooks angewendet werden, meist in Gruppen",
+        "Die einzelnen Konfigurationsschritte",
+        "Die Testergebnisse",
+        "Die Passwörter aller Benutzer"
+      ],
+      "explanation": "Die Konfigurationsschritte stehen im Playbook."
+    },
+    {
+      "section": "10.5",
+      "question": "Was bewirkt <code>ansible-playbook ... --check --diff</code>?",
+      "options": [
+        "Ein Probelauf, der zeigt, was sich ändern würde, ohne etwas zu ändern",
+        "Das Playbook wird doppelt ausgeführt",
+        "Alle Server werden neu gestartet",
+        "Das Playbook wird gelöscht"
+      ],
+      "explanation": "Erst danach folgt der echte Lauf ohne <code>--check</code>."
+    },
+    {
+      "section": "10.5",
+      "question": "Warum kann man ein Ansible-Playbook regelmäßig erneut laufen lassen?",
+      "options": [
+        "Weil Ansible idempotent arbeitet und nur Abweichungen korrigiert",
+        "Weil Ansible bei jedem Lauf alles neu installiert",
+        "Weil Playbooks nach einem Tag ablaufen",
+        "Weil Ansible sonst die Server vergisst"
+      ],
+      "explanation": "So bleiben die Server dauerhaft im gewünschten Zustand."
+    },
+    {
+      "section": "10.5",
+      "question": "Wie ergänzen sich Jenkins, Selenium und Ansible?",
+      "options": [
+        "Jenkins startet bei jeder Änderung die Selenium-Tests und liefert danach mit Ansible aus",
+        "Selenium steuert Jenkins über den Browser",
+        "Ansible ersetzt Jenkins und Selenium",
+        "Sie lassen sich nicht kombinieren"
+      ],
+      "explanation": "Jedes Framework übernimmt seinen Teil des Gesamtablaufs."
+    },
+    {
+      "section": "10.6",
+      "question": "Was ist der erste Schritt bei der Auswahl eines Automatisierungsframeworks?",
+      "options": [
+        "Die eigenen Anforderungen definieren",
+        "Das bekannteste Framework kaufen",
+        "Sofort eine Pilotphase starten",
+        "Alle Frameworks gleichzeitig einführen"
+      ],
+      "explanation": "Ein häufiger Fehler ist, die eigenen Anforderungen nicht gründlich genug zu klären."
+    },
+    {
+      "section": "10.6",
+      "question": "Welches Kriterium fragt, ob ein Framework mit größeren Datenmengen und komplexeren Abläufen mitwächst?",
+      "options": [
+        "Skalierbarkeit",
+        "Kompatibilität",
+        "Benutzerfreundlichkeit",
+        "Kosten"
+      ],
+      "explanation": "Viele Unternehmen starten klein und bauen ihre Automatisierung später aus."
+    },
+    {
+      "section": "10.6",
+      "question": "Was wird in der Pilotphase geprüft?",
+      "options": [
+        "Leistungsfähigkeit, Akzeptanz im Team und Integration in die Infrastruktur",
+        "Nur der Preis",
+        "Nur die Farbe der Oberfläche",
+        "Ob das Framework Open Source ist"
+      ],
+      "explanation": "Getestet werden ein oder zwei Favoriten an einer echten, aber unkritischen Aufgabe."
+    },
+    {
+      "section": "10.6",
+      "question": "Welche Kosten musst Du bei einem Open-Source-Framework trotzdem einplanen?",
+      "options": [
+        "Betrieb, Wartung und Einarbeitung",
+        "Lizenzgebühren pro Benutzer",
+        "Keine, Open Source kostet nie etwas",
+        "Nur die Kosten für den Download"
+      ],
+      "explanation": "Auch der eigene Aufwand gehört zu den Kosten."
+    },
+    {
+      "section": "10.6",
+      "question": "Was bedeutet ETL?",
+      "options": [
+        "Extract, Transform, Load: Daten holen, umwandeln, ablegen",
+        "Error, Test, Log",
+        "Execute, Transfer, Lock",
+        "Encrypt, Transmit, Login"
+      ],
+      "explanation": "Der tägliche Bericht im Szenario ist ein typischer ETL-Prozess."
+    },
+    {
+      "section": "10.6",
+      "question": "Warum passt Selenium nicht zum Berichtsszenario der Übung?",
+      "options": [
+        "Datenbank, CSV-Dateien und API lassen sich ohne Browser direkter und stabiler abfragen",
+        "Weil Selenium kein Python unterstützt",
+        "Weil Selenium nur nachts läuft",
+        "Weil Selenium keine Daten lesen kann"
+      ],
+      "explanation": "Selenium wäre nur nötig, wenn eine Quelle ausschließlich über eine Weboberfläche erreichbar ist."
+    },
+    {
+      "section": "10.6",
+      "question": "Was ist ein DAG in Apache Airflow?",
+      "options": [
+        "Eine Beschreibung des Ablaufs als Schritte mit Abhängigkeiten, die keine Kreise bilden",
+        "Eine Datenbank für Berichte",
+        "Ein Benutzerkonto",
+        "Ein Protokoll für E-Mails"
+      ],
+      "explanation": "DAG steht für Directed Acyclic Graph, gerichteter azyklischer Graph."
+    },
+    {
+      "section": "10.6",
+      "question": "Was spricht für ein einfaches Python-Skript mit Aufgabenplanung als Einstieg im Szenario?",
+      "options": [
+        "Es ist kostenlos, einfach und passt zu den Python-Kenntnissen des kleinen Teams",
+        "Es bietet automatisch eine Weboberfläche mit Rollen",
+        "Es skaliert besser als jedes Framework",
+        "Es braucht keine Zugangsdaten"
+      ],
+      "explanation": "Überwachung und Wiederholung bei Fehlern muss das Team dann aber selbst bauen."
+    },
+    {
+      "section": "10.6",
+      "question": "Wann lohnt sich im Szenario der Umstieg auf Apache Airflow?",
+      "options": [
+        "Wenn weitere Berichte und Abhängigkeiten hinzukommen und Überwachung und Wiederholung wichtig werden",
+        "Sobald der erste Bericht funktioniert",
+        "Wenn das Team kein Python kann",
+        "Nie, Airflow ist nur für Tests gedacht"
+      ],
+      "explanation": "Airflow bietet Zeitplanung, Wiederholungen, Benachrichtigungen und eine Weboberfläche."
+    },
+    {
+      "section": "10.6",
+      "question": "Warum startet der Bericht im Lösungsvorschlag schon um 8:30 Uhr?",
+      "options": [
+        "Damit er rechtzeitig vor 9 Uhr fertig ist, auch wenn ein Schritt wiederholt werden muss",
+        "Weil Airflow nur zu halben Stunden startet",
+        "Weil um 9 Uhr die Datenbank gesperrt ist",
+        "Weil E-Mails nur vor 9 Uhr versendet werden dürfen"
+      ],
+      "explanation": "Der Cron-Ausdruck <code>30 8 * * 1-5</code> bedeutet: werktags um 8:30 Uhr."
+    }
+  ]
+}

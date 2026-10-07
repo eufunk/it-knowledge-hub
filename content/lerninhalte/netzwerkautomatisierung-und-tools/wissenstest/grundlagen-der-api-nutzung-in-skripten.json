@@ -1,0 +1,508 @@
+{
+  "sections": {
+    "9.1": "APIs: Was sie sind",
+    "9.2": "Aufbau einer API",
+    "9.3": "Systeme verbinden",
+    "9.4": "HTTP und REST",
+    "9.5": "Automatisierung mit APIs",
+    "9.6": "Sicherheitsaspekte",
+    "9.7": "API-Nutzung absichern"
+  },
+  "questions": [
+    {
+      "section": "9.1",
+      "question": "Was ist eine API?",
+      "options": [
+        "Eine Schnittstelle, über die Anwendungen miteinander kommunizieren und Daten austauschen",
+        "Ein Programm zur Virenabwehr",
+        "Eine Programmiersprache für Webseiten",
+        "Ein Speicherformat für Datenbanken"
+      ],
+      "explanation": "Sie legt fest, welche Anfragen möglich sind, wie sie aussehen müssen und welche Antworten zurückkommen."
+    },
+    {
+      "section": "9.1",
+      "question": "Was entspricht im Restaurant-Vergleich der API-Dokumentation?",
+      "options": [
+        "Die Speisekarte",
+        "Die Küche",
+        "Das Essen",
+        "Die Rechnung"
+      ],
+      "explanation": "Die Bestellung entspricht der Anfrage, das Essen der Antwort. Wie die Küche intern arbeitet, musst Du nicht wissen."
+    },
+    {
+      "section": "9.1",
+      "question": "Über welches Protokoll arbeiten Web-APIs in der Regel?",
+      "options": [
+        "HTTP",
+        "FTP",
+        "SMTP",
+        "SNMP"
+      ],
+      "explanation": "Die Anwendung sendet eine HTTP-Anfrage an die API und erhält eine Antwort mit Daten oder einer Bestätigung."
+    },
+    {
+      "section": "9.1",
+      "question": "Was passiert, wenn Du Dich auf einer Website mit Deinem Google-Konto anmeldest?",
+      "options": [
+        "Die Website lässt Deine Identität über eine Google-API bestätigen, ohne Dein Passwort zu sehen",
+        "Die Website speichert Dein Google-Passwort",
+        "Google sendet der Website Deine E-Mails",
+        "Die Website erstellt ein neues Google-Konto"
+      ],
+      "explanation": "Genau dafür sind Verfahren wie OAuth 2.0 und OpenID Connect gemacht."
+    },
+    {
+      "section": "9.2",
+      "question": "Was ist ein Endpunkt einer API?",
+      "options": [
+        "Eine URL, die für eine bestimmte Funktion der API steht",
+        "Das Ende einer Antwort",
+        "Der letzte Server im Netzwerk",
+        "Ein Statuscode"
+      ],
+      "explanation": "Beispiel: <code>https://api.example.com/users</code> für Informationen über Nutzende."
+    },
+    {
+      "section": "9.2",
+      "question": "Wo stehen bei einer Anfrage Zusatzinformationen wie Anmeldedaten oder das Datenformat?",
+      "options": [
+        "Im Header",
+        "Im Body",
+        "Im Endpunkt",
+        "Im Statuscode"
+      ],
+      "explanation": "Beispiele sind <code>Authorization: Bearer &lt;Token&gt;</code> und <code>Content-Type: application/json</code>."
+    },
+    {
+      "section": "9.2",
+      "question": "Was enthält der Body einer POST-Anfrage?",
+      "options": [
+        "Die Daten der neuen Ressource, z. B. als JSON",
+        "Nur die URL",
+        "Den Statuscode",
+        "Die HTTP-Methode"
+      ],
+      "explanation": "Bei <code>GET</code> ist der Body meist leer, bei <code>POST</code> und <code>PUT</code> enthält er die Daten."
+    },
+    {
+      "section": "9.2",
+      "question": "In welcher Reihenfolge läuft ein API-Aufruf ab?",
+      "options": [
+        "Anfrage, Verarbeitung, Antwort",
+        "Antwort, Anfrage, Verarbeitung",
+        "Verarbeitung, Antwort, Anfrage",
+        "Anfrage, Antwort, Verarbeitung"
+      ],
+      "explanation": "Der Client fragt an, der Server verarbeitet und schickt Statuscode, Header und gegebenenfalls Daten zurück."
+    },
+    {
+      "section": "9.2",
+      "question": "Was meldet der Header <code>Location</code> in einer Antwort mit Statuscode 201?",
+      "options": [
+        "Die Adresse der neu angelegten Ressource",
+        "Den Standort des Servers",
+        "Die IP-Adresse des Clients",
+        "Die Sprache der Antwort"
+      ],
+      "explanation": "Im Beispiel lautet er <code>Location: /users/2</code>."
+    },
+    {
+      "section": "9.3",
+      "question": "Was bedeutet Interoperabilität bei Web-APIs?",
+      "options": [
+        "Sie verbinden Systeme unabhängig von deren Plattform und Programmiersprache",
+        "Sie funktionieren nur unter Windows",
+        "Sie brauchen keine Netzwerkverbindung",
+        "Sie können nur von einer Anwendung genutzt werden"
+      ],
+      "explanation": "Ein PowerShell-Skript unter Windows spricht mit derselben API wie ein Python-Skript unter Linux."
+    },
+    {
+      "section": "9.3",
+      "question": "Was ist der erste Schritt bei der Integration von Systemen über APIs?",
+      "options": [
+        "Den Bedarf ermitteln: welche Systeme, welche Daten, wie oft, in welche Richtung",
+        "Sofort mit dem Programmieren beginnen",
+        "Einen Server kaufen",
+        "Die API des Anbieters nachbauen"
+      ],
+      "explanation": "Danach folgen API-Auswahl, Sicherheit, Entwicklung und Test sowie Wartung."
+    },
+    {
+      "section": "9.4",
+      "question": "Welche HTTP-Methode ruft Daten ab, ohne etwas zu verändern?",
+      "options": [
+        "GET",
+        "POST",
+        "PUT",
+        "DELETE"
+      ],
+      "explanation": "POST legt an, PUT ersetzt, PATCH ändert teilweise, DELETE löscht."
+    },
+    {
+      "section": "9.4",
+      "question": "Was unterscheidet PATCH von PUT?",
+      "options": [
+        "PATCH ändert eine Ressource teilweise, PUT ersetzt sie vollständig",
+        "PATCH löscht, PUT legt an",
+        "PATCH ist veraltet, PUT ist neu",
+        "Es gibt keinen Unterschied"
+      ],
+      "explanation": "Mit PATCH genügt z. B. die neue E-Mail-Adresse, mit PUT werden alle Felder gesendet."
+    },
+    {
+      "section": "9.4",
+      "question": "Was bedeutet der Statuscode 201?",
+      "options": [
+        "Die Ressource wurde angelegt",
+        "Die Anfrage war fehlerhaft",
+        "Die Ressource wurde nicht gefunden",
+        "Der Server ist überlastet"
+      ],
+      "explanation": "Dein Skript sollte die neue ID oder Adresse aus der Antwort übernehmen."
+    },
+    {
+      "section": "9.4",
+      "question": "Was bedeutet der Statuscode 401?",
+      "options": [
+        "Nicht oder falsch angemeldet",
+        "Angemeldet, aber keine Berechtigung",
+        "Ressource nicht gefunden",
+        "Fehler auf dem Server"
+      ],
+      "explanation": "Bei 403 ist die Anmeldung gültig, aber die Berechtigung fehlt."
+    },
+    {
+      "section": "9.4",
+      "question": "Wie sollte ein Skript auf den Statuscode 429 reagieren?",
+      "options": [
+        "Warten, z. B. so lange, wie der Header <code>Retry-After</code> angibt, und dann erneut versuchen",
+        "Die Anfrage sofort in einer Schleife wiederholen",
+        "Das Token löschen",
+        "Den Server neu starten"
+      ],
+      "explanation": "429 bedeutet Too Many Requests: Das Rate Limit ist erreicht."
+    },
+    {
+      "section": "9.4",
+      "question": "Wer hat den Fehler bei einem Statuscode ab 500 verursacht?",
+      "options": [
+        "Der Server",
+        "Der Client, also das Skript",
+        "Das Netzwerkkabel",
+        "Der Browser"
+      ],
+      "explanation": "Codes ab 400 bedeuten einen Fehler auf Seiten des Clients, Codes ab 500 einen Fehler auf dem Server."
+    },
+    {
+      "section": "9.4",
+      "question": "Welcher Header gibt das Format der gesendeten Daten an?",
+      "options": [
+        "<code>Content-Type</code>",
+        "<code>Accept</code>",
+        "<code>Authorization</code>",
+        "<code>Location</code>"
+      ],
+      "explanation": "<code>Accept</code> nennt das gewünschte Antwortformat, <code>Authorization</code> enthält die Anmeldedaten."
+    },
+    {
+      "section": "9.4",
+      "question": "Was ist REST?",
+      "options": [
+        "Ein Architekturstil, der auf HTTP aufbaut",
+        "Ein eigenes Netzwerkprotokoll",
+        "Eine Programmiersprache",
+        "Ein Datenbanksystem"
+      ],
+      "explanation": "APIs, die den REST-Prinzipien folgen, heißen RESTful."
+    },
+    {
+      "section": "9.4",
+      "question": "Was bedeutet Zustandslosigkeit bei REST?",
+      "options": [
+        "Jede Anfrage enthält alle nötigen Informationen, der Server merkt sich zwischen Anfragen nichts über den Client",
+        "Der Server speichert keine Daten",
+        "Die API hat keinen Statuscode",
+        "Ressourcen können nicht geändert werden"
+      ],
+      "explanation": "Deshalb muss z. B. das Token bei jeder Anfrage mitgeschickt werden."
+    },
+    {
+      "section": "9.4",
+      "question": "Welche URL entspricht am besten den REST-Prinzipien?",
+      "options": [
+        "<code>/products/123</code>",
+        "<code>/getProduct?id=123</code>",
+        "<code>/deleteProduct/123</code>",
+        "<code>/products/123/loeschen</code>"
+      ],
+      "explanation": "URLs beschreiben Ressourcen, die Aktion ergibt sich aus der HTTP-Methode."
+    },
+    {
+      "section": "9.4",
+      "question": "Wie wählt ein Client bei REST das gewünschte Datenformat, z. B. JSON oder XML?",
+      "options": [
+        "Über den <code>Accept</code>-Header",
+        "Über die Dateiendung der URL",
+        "Über den Statuscode",
+        "Gar nicht, der Server entscheidet allein"
+      ],
+      "explanation": "Eine Ressource kann in verschiedenen Repräsentationen geliefert werden."
+    },
+    {
+      "section": "9.4",
+      "question": "Was kennzeichnet SOAP?",
+      "options": [
+        "Ein älteres, streng definiertes Protokoll mit XML-Nachrichten",
+        "Ein Architekturstil auf Basis von JSON",
+        "Eine Abfragesprache, bei der der Client die Felder wählt",
+        "Ein Verfahren zur Verschlüsselung"
+      ],
+      "explanation": "Die Abfragesprache, bei der der Client die Felder wählt, ist GraphQL."
+    },
+    {
+      "section": "9.5",
+      "question": "Warum eignen sich APIs besser zur Automatisierung als die Bedienung von Benutzeroberflächen?",
+      "options": [
+        "Sie liefern strukturierte Daten und ändern sich seltener als Oberflächen",
+        "Sie sind immer kostenlos",
+        "Sie brauchen keine Anmeldung",
+        "Sie funktionieren ohne Netzwerk"
+      ],
+      "explanation": "Oberflächen sind für Menschen gemacht, APIs für Programme."
+    },
+    {
+      "section": "9.5",
+      "question": "Warum musst Du automatisierte API-Abläufe dauerhaft überwachen?",
+      "options": [
+        "APIs ändern sich, z. B. durch neue Versionen des Anbieters",
+        "Weil APIs nach einem Monat ablaufen",
+        "Weil Überwachung die API schneller macht",
+        "Weil APIs nur nachts funktionieren"
+      ],
+      "explanation": "Läufe protokollieren, Fehler melden lassen und Ankündigungen des Anbieters verfolgen."
+    },
+    {
+      "section": "9.5",
+      "question": "Was bewirkt <code>curl -X POST ... -d '{...}'</code>?",
+      "options": [
+        "Sendet eine POST-Anfrage mit den angegebenen Daten im Body",
+        "Lädt eine Datei herunter",
+        "Prüft das Zertifikat des Servers",
+        "Löscht eine Ressource"
+      ],
+      "explanation": "Mit <code>-H</code> werden Header wie <code>Content-Type</code> und <code>Authorization</code> gesetzt."
+    },
+    {
+      "section": "9.5",
+      "question": "Was macht <code>Invoke-RestMethod</code> mit einer JSON-Antwort?",
+      "options": [
+        "Es wandelt sie automatisch in PowerShell-Objekte um",
+        "Es speichert sie als Datei",
+        "Es zeigt sie nur als Text an",
+        "Es verschlüsselt sie"
+      ],
+      "explanation": "Auf die Werte greifst Du dann mit Punktnotation zu, z. B. <code>$wetter.current.temperature_2m</code>."
+    },
+    {
+      "section": "9.5",
+      "question": "Wozu dient <code>ConvertTo-Json</code> im PowerShell-Beispiel?",
+      "options": [
+        "Es wandelt die Hashtable in JSON für den Body der Anfrage um",
+        "Es liest die Antwort aus",
+        "Es setzt den Authorization-Header",
+        "Es prüft den Statuscode"
+      ],
+      "explanation": "Zusätzlich wird <code>-ContentType 'application/json'</code> angegeben."
+    },
+    {
+      "section": "9.5",
+      "question": "Warum sollte ein API-Aufruf mit <code>requests</code> immer einen <code>timeout</code> haben?",
+      "options": [
+        "Damit das Skript bei einem hängenden Server nicht ewig wartet",
+        "Damit die Anfrage schneller ist",
+        "Weil der Server sonst keine Antwort schickt",
+        "Weil der Token sonst abläuft"
+      ],
+      "explanation": "Ohne <code>timeout</code> wartet <code>requests</code> unbegrenzt."
+    },
+    {
+      "section": "9.5",
+      "question": "Was bewirkt <code>antwort.raise_for_status()</code>?",
+      "options": [
+        "Es löst bei Statuscodes ab 400 eine Ausnahme aus",
+        "Es gibt den Statuscode als Text aus",
+        "Es wiederholt die Anfrage",
+        "Es wandelt die Antwort in JSON um"
+      ],
+      "explanation": "Bei falschem Token erscheint z. B. <code>401 Client Error: Unauthorized</code>."
+    },
+    {
+      "section": "9.5",
+      "question": "Woher liest das Skript <code>benutzer_anlegen.py</code> sein API-Token?",
+      "options": [
+        "Aus einer Umgebungsvariable",
+        "Aus einer Variable im Quellcode",
+        "Aus einem Kommentar",
+        "Aus dem Dateinamen"
+      ],
+      "explanation": "Zugangsdaten gehören nie in den Code, sonst landen sie im Repository."
+    },
+    {
+      "section": "9.6",
+      "question": "Was ist ein Nachteil von API-Schlüsseln?",
+      "options": [
+        "Sie gelten meist unbegrenzt und werden bei Diebstahl leicht missbraucht",
+        "Sie sind kompliziert umzusetzen",
+        "Sie funktionieren nur mit SOAP",
+        "Sie müssen bei jeder Anfrage neu erzeugt werden"
+      ],
+      "explanation": "API-Schlüssel eignen sich für einfache Anwendungen oder unkritische Daten."
+    },
+    {
+      "section": "9.6",
+      "question": "Was leistet OAuth 2.0?",
+      "options": [
+        "Eine Anwendung erhält ein zeitlich begrenztes Token für bestimmte Ressourcen, ohne das Passwort der Person zu kennen",
+        "Es verschlüsselt die gesamte Festplatte",
+        "Es ersetzt HTTPS",
+        "Es prüft Eingaben auf SQL-Injection"
+      ],
+      "explanation": "Für die Anmeldung selbst baut OpenID Connect auf OAuth 2.0 auf."
+    },
+    {
+      "section": "9.6",
+      "question": "Warum gehören keine Geheimnisse in ein JWT?",
+      "options": [
+        "Der Inhalt ist nur Base64-kodiert und für jeden lesbar, signiert heißt nicht verschlüsselt",
+        "Weil JWTs nach einer Sekunde ablaufen",
+        "Weil JWTs nur Zahlen enthalten dürfen",
+        "Weil JWTs öffentlich im Internet gespeichert werden"
+      ],
+      "explanation": "Die Signatur schützt vor Veränderung, nicht vor dem Mitlesen."
+    },
+    {
+      "section": "9.6",
+      "question": "Welche Option solltest Du bei API-Aufrufen nie verwenden?",
+      "options": [
+        "<code>verify=False</code> in Python bzw. <code>curl -k</code>",
+        "<code>timeout=10</code>",
+        "<code>-H \"Content-Type: application/json\"</code>",
+        "<code>raise_for_status()</code>"
+      ],
+      "explanation": "Diese Optionen schalten die Zertifikatsprüfung ab und öffnen Man-in-the-Middle-Angriffen die Tür."
+    },
+    {
+      "section": "9.6",
+      "question": "Welche TLS-Versionen gelten heute als sicher?",
+      "options": [
+        "TLS 1.2 und TLS 1.3",
+        "SSL 3.0 und TLS 1.0",
+        "Nur SSL 2.0",
+        "Alle Versionen gleichermaßen"
+      ],
+      "explanation": "Die Vorgänger SSL und TLS 1.0/1.1 gelten als unsicher."
+    },
+    {
+      "section": "9.6",
+      "question": "Was verhindern Prepared Statements?",
+      "options": [
+        "SQL-Injection",
+        "Denial-of-Service-Angriffe",
+        "Abgelaufene Zertifikate",
+        "Zu große JWTs"
+      ],
+      "explanation": "Abfragen werden mit Parametern gebaut statt aus Zeichenketten zusammengesetzt."
+    },
+    {
+      "section": "9.6",
+      "question": "Was ist Whitelisting bei der Eingabevalidierung?",
+      "options": [
+        "Nur ausdrücklich erlaubte Werte und Formate werden akzeptiert",
+        "Alle Eingaben werden akzeptiert, außer verbotenen",
+        "Eingaben werden weiß eingefärbt",
+        "Eingaben werden verschlüsselt gespeichert"
+      ],
+      "explanation": "Eine Positivliste ist sicherer als eine Liste verbotener Werte, weil sie auch unbekannte Angriffe abweist."
+    },
+    {
+      "section": "9.6",
+      "question": "Welche Ursache hatte der Datendiebstahl bei Yahoo Voices 2012?",
+      "options": [
+        "Eine SQL-Injection-Lücke",
+        "Ein abgelaufenes Zertifikat",
+        "Ein DoS-Angriff",
+        "Ein gestohlener Laptop"
+      ],
+      "explanation": "Rund 450.000 Zugangsdaten wurden gestohlen, die Passwörter waren unverschlüsselt gespeichert."
+    },
+    {
+      "section": "9.6",
+      "question": "Was ist mit übermäßiger Preisgabe von Daten gemeint?",
+      "options": [
+        "Eine API gibt mehr Daten zurück, als für die Funktion nötig sind",
+        "Eine API ist zu langsam",
+        "Eine API hat zu viele Endpunkte",
+        "Eine API speichert zu wenige Daten"
+      ],
+      "explanation": "Gegenmaßnahmen sind minimaler Datenzugriff, Datenmaskierung und ein API-Gateway."
+    },
+    {
+      "section": "9.6",
+      "question": "Was ist Rate Limiting?",
+      "options": [
+        "Die Zahl der Anfragen pro Person, Schlüssel oder IP-Adresse in einem Zeitraum begrenzen",
+        "Die Geschwindigkeit des Netzwerks messen",
+        "Die Größe von Antworten begrenzen",
+        "Anfragen nach Wichtigkeit sortieren"
+      ],
+      "explanation": "Wer die Grenze überschreitet, erhält den Statuscode 429."
+    },
+    {
+      "section": "9.7",
+      "question": "Welches Schutzziel stellt sicher, dass Daten bei der Übertragung nicht unbemerkt verändert werden?",
+      "options": [
+        "Integrität",
+        "Vertraulichkeit",
+        "Verfügbarkeit",
+        "Skalierbarkeit"
+      ],
+      "explanation": "Vertraulichkeit schützt vor unbefugtem Lesen, Verfügbarkeit sorgt für Erreichbarkeit."
+    },
+    {
+      "section": "9.7",
+      "question": "Wo bekommst Du kostenlos ein TLS-Zertifikat für einen öffentlich erreichbaren Server?",
+      "options": [
+        "Bei Let's Encrypt",
+        "Nur bei einer kostenpflichtigen Zertifizierungsstelle",
+        "Gar nicht, Zertifikate kosten immer Geld",
+        "Beim Internetanbieter des Clients"
+      ],
+      "explanation": "Let's Encrypt erneuert Zertifikate automatisch. Im Unternehmen gibt es oft eine eigene interne CA."
+    },
+    {
+      "section": "9.7",
+      "question": "Welche Rechte sollte das Token eines Berichtsskripts haben?",
+      "options": [
+        "Nur Leserechte",
+        "Volle Administratorrechte",
+        "Die Rechte der Person, die das Skript geschrieben hat",
+        "Schreibrechte auf alle Ressourcen"
+      ],
+      "explanation": "Jedes Skript bekommt ein eigenes Konto oder Token mit genau den Rechten, die es braucht."
+    },
+    {
+      "section": "9.7",
+      "question": "Was ermöglichte den Angriff auf Equifax 2017?",
+      "options": [
+        "Eine bekannte Schwachstelle in Apache Struts 2, für die das Update nicht eingespielt war",
+        "Ein schwaches Administratorpasswort",
+        "Eine SQL-Injection in einem Webformular",
+        "Ein Phishing-Angriff per E-Mail"
+      ],
+      "explanation": "Betroffen waren Daten von rund 147 Millionen Menschen. Aktuelle Software ist ein zentraler Schutz."
+    }
+  ]
+}
