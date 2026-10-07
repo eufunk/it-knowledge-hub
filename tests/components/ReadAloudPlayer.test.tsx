@@ -57,7 +57,7 @@ function renderPlayer() {
     <pre><code>echo nicht vorlesen</code></pre>
     <table><thead><tr><th>Begriff</th><th>Erklärung</th></tr></thead><tbody><tr><td>Trigger</td><td>Startet den Ablauf</td></tr></tbody></table>`;
   document.body.appendChild(article);
-  render(<ReadAloudPlayer targetId="kapitel-text" />);
+  render(<ReadAloudPlayer targetIds={["kapitel-text"]} />);
   return article;
 }
 
@@ -98,6 +98,26 @@ describe("F20: ReadAloudPlayer", () => {
     finishCurrent();
     expect(screen.getByText("Kapitel vorlesen")).toBeInTheDocument();
     expect(article.querySelector(".speaking")).toBeNull();
+  });
+
+  it("liest zuerst Titel und Kurzbeschreibung aus dem Kopf, dann den Kapiteltext", () => {
+    const header = document.createElement("header");
+    header.id = "kapitel-kopf";
+    header.innerHTML = `
+      <p data-vorlesen="nein">Modul 1 · Kapitel 01 · 50 Minuten</p>
+      <h1>Kapiteltitel</h1>
+      <p>Kurzbeschreibung des Kapitels.</p>`;
+    const article = document.createElement("article");
+    article.id = "kapitel-text";
+    article.innerHTML = "<p>Erster Absatz.</p>";
+    document.body.append(header, article);
+    render(<ReadAloudPlayer targetIds={["kapitel-kopf", "kapitel-text"]} />);
+
+    fireEvent.click(screen.getByRole("button", { name: "Vorlesen starten" }));
+    finishCurrent();
+    finishCurrent();
+    expect(spoken).toEqual(["Kapiteltitel", "Kurzbeschreibung des Kapitels.", "Erster Absatz."]);
+    expect(screen.getByText("Abschnitt 3 von 3")).toBeInTheDocument();
   });
 
   it("legt den nächsten Abschnitt schon in die Warteschlange, ohne abzubrechen", () => {

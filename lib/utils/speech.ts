@@ -101,11 +101,13 @@ function segment(element: Element): SpeechSegment[] {
   return text ? [{ element, text }] : [];
 }
 
-// Liest Überschriften, Absätze, Listenpunkte, Hinweisboxen und Tabellen; überspringt Code und eingeklappte Lösungen.
+// Liest Überschriften, Absätze, Listenpunkte, Hinweisboxen und Tabellen; überspringt Code, eingeklappte Lösungen
+// und Elemente mit data-vorlesen="nein" (z. B. die Zeile „Modul · Kapitel · Dauer“ im Kopfbereich).
 export function extractSegments(root: Element): SpeechSegment[] {
   const result: SpeechSegment[] = [];
   for (const child of Array.from(root.children)) {
     const tag = child.tagName.toLowerCase();
+    if (child.getAttribute("data-vorlesen") === "nein") continue;
     if (tag === "pre" || tag === "details" || tag === "figure" || tag === "hr") continue;
     if (child.matches("[data-rehype-pretty-code-figure]")) continue;
     if (tag === "table") result.push(...tableSegments(child));

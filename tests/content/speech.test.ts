@@ -41,6 +41,18 @@ describe("F20: Abschnitte zum Vorlesen", () => {
     expect(segments.map((segment) => segment.text)).toEqual(["Vorher", "Nachher"]);
   });
 
+  it("liest Titel und Kurzbeschreibung aus dem Kopfbereich, ohne die Zeile mit Modul und Dauer", () => {
+    const header = document.createElement("header");
+    header.innerHTML = `
+      <p data-vorlesen="nein">Modul 1 · Kapitel 01 · 50 Minuten</p>
+      <h1>Automatisierung lokaler Wartungsaufgaben</h1>
+      <p>Grundprinzipien, RPA und IPA.</p>`;
+    expect(extractSegments(header).map((segment) => segment.text)).toEqual([
+      "Automatisierung lokaler Wartungsaufgaben",
+      "Grundprinzipien, RPA und IPA.",
+    ]);
+  });
+
   it("liest Tabellen zeilenweise mit Spaltenüberschriften", () => {
     const segments = extractSegments(
       article(`

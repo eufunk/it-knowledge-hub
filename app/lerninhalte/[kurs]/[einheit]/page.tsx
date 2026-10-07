@@ -53,8 +53,8 @@ export default async function KapitelPage({ params }: PageProps<"/lerninhalte/[k
       }
     >
       <div id="kapitel" className="mt-6 rounded-[24px] border border-line bg-surface">
-        <header className="p-6 pb-6 sm:p-10 sm:pb-8">
-          <p className="font-mono text-sm text-accent">
+        <header id="kapitel-kopf" className="p-6 pb-6 sm:p-10 sm:pb-8">
+          <p data-vorlesen="nein" className="font-mono text-sm text-accent">
             {lesson.appendix ? "Anhang" : `Modul ${courseModule?.number} · Kapitel ${String(lesson.order).padStart(2, "0")}`}
             {lesson.duration && <span className="text-muted"> · {lesson.duration}</span>}
           </p>
@@ -82,7 +82,7 @@ export default async function KapitelPage({ params }: PageProps<"/lerninhalte/[k
 
       {/* Platz, damit der schwebende Vorlese-Player nichts verdeckt */}
       <div aria-hidden className="h-20" />
-      <ReadAloudPlayer targetId="kapitel-text" />
+      <ReadAloudPlayer targetIds={["kapitel-kopf", "kapitel-text"]} />
     </CoursePlayer>
   );
 }

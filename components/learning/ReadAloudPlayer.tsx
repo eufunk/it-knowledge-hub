@@ -47,7 +47,8 @@ const iconButton =
   "flex size-10 shrink-0 items-center justify-center rounded-xl text-muted transition-colors hover:bg-canvas hover:text-ink focus-visible:outline-2 focus-visible:outline-accent disabled:opacity-40 disabled:hover:bg-transparent";
 
 // F20: Vorlese-Player für ein Kapitel (Web Speech API)
-export function ReadAloudPlayer({ targetId }: { targetId: string }) {
+// targetIds: Bereiche in Lesereihenfolge, z. B. Kopf (Titel, Kurzbeschreibung) und Kapiteltext
+export function ReadAloudPlayer({ targetIds }: { targetIds: string[] }) {
   // null = noch unbekannt (Server und erstes Rendern), dann true/false im Browser
   const supported = useSyncExternalStore<boolean | null>(noopSubscribe, isSupported, () => null);
   const voices = useSyncExternalStore(subscribeVoices, getVoices, () => NO_VOICES);
@@ -95,8 +96,10 @@ export function ReadAloudPlayer({ targetId }: { targetId: string }) {
 
   const segments = (): SpeechSegment[] => {
     if (!segmentsRef.current) {
-      const root = document.getElementById(targetId);
-      segmentsRef.current = root ? extractSegments(root) : [];
+      segmentsRef.current = targetIds.flatMap((id) => {
+        const root = document.getElementById(id);
+        return root ? extractSegments(root) : [];
+      });
       setTotal(segmentsRef.current.length);
     }
     return segmentsRef.current;
