@@ -1,0 +1,697 @@
+{
+  "sections": {
+    "5.1": "Grundlagen und Begriffe",
+    "5.2": "Qualitätssicherung",
+    "5.3": "Sicherheitsaspekte",
+    "5.4": "Zentral oder verteilt, Auswahlkriterien",
+    "5.5": "Git, SVN und Mercurial",
+    "5.6": "Übung: VCS auswählen",
+    "5.7": "Ein VCS einführen",
+    "5.8": "Zusammenarbeit und Konflikte",
+    "5.9": "Coding Challenge (Python)"
+  },
+  "questions": [
+    {
+      "section": "5.1",
+      "question": "Was speichert ein Versionskontrollsystem zu jeder Änderung?",
+      "options": [
+        "Die Änderung selbst zusammen mit Autor, Zeitpunkt und Beschreibung",
+        "Nur die neueste Fassung der Datei",
+        "Nur den Dateinamen",
+        "Eine Sicherungskopie der ganzen Festplatte"
+      ],
+      "explanation": "So lässt sich nachvollziehen, wer was wann geändert hat, und jeder frühere Stand kann wiederhergestellt werden."
+    },
+    {
+      "section": "5.1",
+      "question": "Was ist ein Repository?",
+      "options": [
+        "Der Speicherort für Code und Dateien mit allen Versionen und dem Verlauf der Änderungen",
+        "Ein einzelner gespeicherter Stand des Codes",
+        "Ein Antrag, Änderungen zu übernehmen",
+        "Ein Server, auf dem nur die neueste Version liegt"
+      ],
+      "explanation": "Ein Repository kann lokal auf dem eigenen Rechner oder auf einem Server liegen."
+    },
+    {
+      "section": "5.1",
+      "question": "Was ist ein Commit?",
+      "options": [
+        "Ein gespeicherter Stand des Projekts zu einem bestimmten Zeitpunkt, mit beschreibender Nachricht",
+        "Das Zusammenführen zweier Branches",
+        "Ein paralleler Entwicklungsstrang",
+        "Das Herunterladen eines Repositorys"
+      ],
+      "explanation": "Ein Commit ist wie ein Schnappschuss des Projekts."
+    },
+    {
+      "section": "5.1",
+      "question": "Wozu dient ein Branch?",
+      "options": [
+        "Als paralleler Entwicklungsstrang, in dem Features oder Bugfixes entstehen, ohne den Hauptcode zu beeinflussen",
+        "Zum Löschen alter Versionen",
+        "Zum Sperren von Dateien",
+        "Zum Verschlüsseln des Repositorys"
+      ],
+      "explanation": "Der Hauptcode liegt meist im Branch main oder master."
+    },
+    {
+      "section": "5.1",
+      "question": "Was passiert bei einem Merge?",
+      "options": [
+        "Änderungen aus verschiedenen Branches werden zusammengeführt",
+        "Ein Branch wird gelöscht",
+        "Ein Commit wird rückgängig gemacht",
+        "Das Repository wird auf einen Server kopiert"
+      ],
+      "explanation": "Ein Merge kombiniert die Entwicklungsstränge und zeigt eventuelle Konflikte an."
+    },
+    {
+      "section": "5.1",
+      "question": "Wie heißt ein Antrag, Änderungen aus einem Branch zu übernehmen, auf GitHub?",
+      "options": [
+        "Pull Request",
+        "Merge Request",
+        "Commit Request",
+        "Push Request"
+      ],
+      "explanation": "GitLab spricht von Merge Request, GitHub und Bitbucket von Pull Request. Gemeint ist dasselbe."
+    },
+    {
+      "section": "5.1",
+      "question": "Wofür werden Hotfix Branches verwendet?",
+      "options": [
+        "Für dringende Fehlerbehebungen, ohne die laufende Entwicklung zu stören",
+        "Für neue Funktionen",
+        "Um eine stabile Version für die Veröffentlichung vorzubereiten",
+        "Für Experimente, die nie übernommen werden"
+      ],
+      "explanation": "Feature Branches dienen neuen Funktionen, Release Branches der Vorbereitung einer Veröffentlichung."
+    },
+    {
+      "section": "5.1",
+      "question": "Was bewirkt <code>git add backup.sh</code>?",
+      "options": [
+        "Die Änderung an backup.sh wird für den nächsten Commit vorgemerkt",
+        "Die Datei wird sofort auf den Server hochgeladen",
+        "Ein neuer Branch namens backup.sh entsteht",
+        "Die Datei wird aus dem Repository entfernt"
+      ],
+      "explanation": "Vorgemerkte Änderungen landen in der Staging Area. Erst <code>git commit</code> speichert sie als neuen Stand."
+    },
+    {
+      "section": "5.1",
+      "question": "Was bewirkt <code>git switch -c feature/logging</code>?",
+      "options": [
+        "Es legt den Branch feature/logging an und wechselt dorthin",
+        "Es löscht den Branch feature/logging",
+        "Es führt feature/logging in main zusammen",
+        "Es zeigt den Verlauf von feature/logging an"
+      ],
+      "explanation": "Mit <code>-c</code> (create) wird der Branch angelegt. Ohne <code>-c</code> wechselt <code>git switch</code> nur in einen bestehenden Branch."
+    },
+    {
+      "section": "5.2",
+      "question": "Wie hilft die Versionskontrolle, einen neu aufgetretenen Fehler zu finden?",
+      "options": [
+        "Jeder Commit hat Kennung, Autor, Datum und Beschreibung, so findet man die verantwortliche Änderung",
+        "Sie verhindert alle Fehler automatisch",
+        "Sie löscht fehlerhafte Dateien",
+        "Sie benachrichtigt den Hersteller der Software"
+      ],
+      "explanation": "Die verantwortliche Änderung lässt sich danach gezielt rückgängig machen."
+    },
+    {
+      "section": "5.2",
+      "question": "Welcher Git-Befehl zeigt, wer welche Zeile einer Datei zuletzt geändert hat?",
+      "options": [
+        "<code>git blame</code>",
+        "<code>git status</code>",
+        "<code>git merge</code>",
+        "<code>git tag</code>"
+      ],
+      "explanation": "<code>git log -p -- datei</code> zeigt den Verlauf einer Datei mit allen Änderungen."
+    },
+    {
+      "section": "5.2",
+      "question": "Wie macht <code>git revert</code> einen fehlerhaften Commit rückgängig?",
+      "options": [
+        "Durch einen neuen Gegen-Commit, der Verlauf bleibt erhalten",
+        "Es löscht den Commit spurlos aus dem Verlauf",
+        "Es setzt das ganze Repository zurück",
+        "Es benennt den Commit um"
+      ],
+      "explanation": "So bleibt nachvollziehbar, dass die Änderung zurückgenommen wurde."
+    },
+    {
+      "section": "5.2",
+      "question": "Was passiert bei Continuous Integration bei jedem Commit?",
+      "options": [
+        "Automatisierte Tests prüfen, ob die Änderung bestehende Funktionen beeinträchtigt",
+        "Der Code wird ausgedruckt",
+        "Alle Branches werden gelöscht",
+        "Der Commit wird erst nach einer Woche gespeichert"
+      ],
+      "explanation": "Probleme fallen dadurch sofort auf und nicht erst beim Einsatz."
+    },
+    {
+      "section": "5.2",
+      "question": "Welchen Nutzen haben Code-Reviews?",
+      "options": [
+        "Fehler werden früh erkannt, und Wissen verbreitet sich im Team",
+        "Sie ersetzen alle Tests",
+        "Sie machen den Code schneller",
+        "Sie verhindern, dass Branches entstehen"
+      ],
+      "explanation": "Teammitglieder prüfen den Code, bevor er in den Hauptzweig übernommen wird."
+    },
+    {
+      "section": "5.3",
+      "question": "Wie schützt Versionskontrolle vor Datenverlust?",
+      "options": [
+        "Sie speichert den gesamten Verlauf, sodass jeder frühere Stand wiederhergestellt werden kann",
+        "Sie verschlüsselt die Festplatte",
+        "Sie verhindert das Löschen von Dateien",
+        "Sie macht automatisch Backups der Datenbank"
+      ],
+      "explanation": "Geht etwas schief, greift man auf einen früheren Stand zurück."
+    },
+    {
+      "section": "5.3",
+      "question": "Was zeigte die Versionsgeschichte bei der OpenSSL-Lücke Heartbleed?",
+      "options": [
+        "Mit welcher Änderung der Fehler Ende 2011 in den Code gelangt war",
+        "Wer die Lücke ausgenutzt hatte",
+        "Dass der Fehler nie existiert hatte",
+        "Welche Webseiten betroffen waren"
+      ],
+      "explanation": "Die Lücke wurde 2014 bekannt. Der Verlauf machte nachvollziehbar, wann und wodurch sie entstanden war."
+    },
+    {
+      "section": "5.3",
+      "question": "Warum gehören Passwörter nie in ein Repository?",
+      "options": [
+        "Was einmal committet wurde, bleibt im Verlauf erhalten, auch wenn die Datei später gelöscht wird",
+        "Weil Git keine Sonderzeichen speichern kann",
+        "Weil Passwörter das Repository verlangsamen",
+        "Weil Commits nur Code enthalten dürfen"
+      ],
+      "explanation": "Zugangsdaten gehören in Umgebungsvariablen oder einen Passwort-Tresor. Dateien wie .env schließt man über .gitignore aus."
+    },
+    {
+      "section": "5.3",
+      "question": "Was erlauben Zugriffskontrollen in Plattformen wie Bitbucket?",
+      "options": [
+        "Festzulegen, wer ändern darf und wer nur lesen kann, z. B. mit geschützten Branches",
+        "Den Code automatisch zu übersetzen",
+        "Commits ohne Nachricht zu speichern",
+        "Das Repository offline zu nutzen"
+      ],
+      "explanation": "So bearbeiten nur autorisierte Personen kritische Bereiche."
+    },
+    {
+      "section": "5.4",
+      "question": "Was kennzeichnet ein zentrales Versionskontrollsystem?",
+      "options": [
+        "Ein zentraler Server speichert alle Versionen und ist die einzige Quelle der Wahrheit",
+        "Jeder Rechner hat eine vollständige Kopie des Repositorys",
+        "Es gibt keine Versionen, nur die aktuelle Datei",
+        "Es funktioniert ausschließlich offline"
+      ],
+      "explanation": "Beispiel ist Subversion. Fällt der Server aus, steht die Arbeit still."
+    },
+    {
+      "section": "5.4",
+      "question": "Welcher Vorteil ergibt sich daraus, dass bei einem verteilten VCS jeder eine vollständige Kopie hat?",
+      "options": [
+        "Man kann offline arbeiten, und die Daten sind mehrfach vorhanden",
+        "Das Repository wird kleiner",
+        "Es ist kein Merge mehr nötig",
+        "Niemand kann Änderungen sehen"
+      ],
+      "explanation": "Commits, Branches und Verlauf sind lokal verfügbar. Das erhöht Redundanz und Flexibilität."
+    },
+    {
+      "section": "5.4",
+      "question": "Welches der folgenden Systeme ist ein zentrales Versionskontrollsystem?",
+      "options": [
+        "Subversion (SVN)",
+        "Git",
+        "Mercurial",
+        "Sapling"
+      ],
+      "explanation": "Git und Mercurial sind verteilte Systeme."
+    },
+    {
+      "section": "5.4",
+      "question": "Was ist ein Nachteil eines zentralen Versionskontrollsystems?",
+      "options": [
+        "Der Server ist ein Single Point of Failure: Fällt er aus, steht die Arbeit still",
+        "Es gibt zu viele Kopien des Repositorys",
+        "Es ist nicht möglich, Dateien zu sperren",
+        "Es kennt keine Commits"
+      ],
+      "explanation": "Verteilte Systeme haben dieses Problem nicht, da jeder Rechner alle Daten hat."
+    },
+    {
+      "section": "5.4",
+      "question": "Warum skaliert Git auch bei großen Projekten gut?",
+      "options": [
+        "Jede Person hat eine vollständige lokale Kopie, viele Operationen laufen ohne Server",
+        "Weil es nur kleine Dateien speichert",
+        "Weil es alle Daten auf einem zentralen Server bündelt",
+        "Weil es keine Branches kennt"
+      ],
+      "explanation": "Bei SVN laufen dagegen alle Operationen über das zentrale Repository."
+    },
+    {
+      "section": "5.4",
+      "question": "Welches System hat laut Vergleich meist die flachere Lernkurve?",
+      "options": [
+        "SVN",
+        "Git",
+        "Beide gleich",
+        "Keines von beiden ist erlernbar"
+      ],
+      "explanation": "Git ist schwerer zu lernen, bietet aber mächtige Funktionen. Oberflächen wie GitHub und GitLab erleichtern den Umgang."
+    },
+    {
+      "section": "5.4",
+      "question": "Welche Sicherheitsfunktionen bieten Git-Plattformen wie GitHub oder GitLab?",
+      "options": [
+        "Fein abgestufte Zugriffsrechte, geschützte Branches, verschlüsselte Übertragung und signierte Commits",
+        "Automatische Virenprüfung jedes Rechners",
+        "Verschlüsselung aller Dateien auf der Festplatte des Teams",
+        "Gar keine, Git ist immer öffentlich"
+      ],
+      "explanation": "Git selbst verschlüsselt nichts. Die Übertragung läuft per SSH oder HTTPS, Rechte verwalten die Plattformen."
+    },
+    {
+      "section": "5.4",
+      "question": "Welche Kriterien sollte man bei der Auswahl eines Versionskontrollsystems prüfen?",
+      "options": [
+        "Skalierbarkeit, Lernkurve, Integration, Community und Sicherheitsfunktionen",
+        "Nur den Preis",
+        "Nur die Farbe der Oberfläche",
+        "Nur die Anzahl der Befehle"
+      ],
+      "explanation": "Wichtig ist außerdem, ob sich das System in IDEs und CI/CD-Werkzeuge einbinden lässt."
+    },
+    {
+      "section": "5.5",
+      "question": "Wer hat Git 2005 entwickelt?",
+      "options": [
+        "Linus Torvalds",
+        "Bill Gates",
+        "Brian Fox",
+        "Ken Thompson"
+      ],
+      "explanation": "Linus Torvalds hat auch den Linux-Kernel geschaffen. Git wurde für dessen Entwicklung gebaut."
+    },
+    {
+      "section": "5.5",
+      "question": "Wozu dient die Staging Area in Git?",
+      "options": [
+        "Änderungen werden vor dem Commit vorgemerkt und können gezielt zusammengestellt werden",
+        "Sie speichert gelöschte Dateien dauerhaft",
+        "Sie ist der zentrale Server",
+        "Sie verschlüsselt die Commits"
+      ],
+      "explanation": "Mit <code>git add</code> kommt eine Änderung in die Staging Area."
+    },
+    {
+      "section": "5.5",
+      "question": "Warum sind Commit, Branching und Merging in Git sehr schnell?",
+      "options": [
+        "Sie laufen lokal, ohne Verbindung zu einem Server",
+        "Weil Git keine Historie speichert",
+        "Weil Git nur Textdateien unterstützt",
+        "Weil ein Server die Arbeit übernimmt"
+      ],
+      "explanation": "Erst <code>git push</code> und <code>git pull</code> brauchen eine Verbindung."
+    },
+    {
+      "section": "5.5",
+      "question": "Welcher Befehl kopiert ein vorhandenes Repository samt Verlauf auf den eigenen Rechner?",
+      "options": [
+        "<code>git clone</code>",
+        "<code>git init</code>",
+        "<code>git commit</code>",
+        "<code>git tag</code>"
+      ],
+      "explanation": "<code>git init</code> legt dagegen ein neues, leeres Repository an."
+    },
+    {
+      "section": "5.5",
+      "question": "Was bewirken <code>git pull</code> und <code>git push</code>?",
+      "options": [
+        "Änderungen vom Server holen bzw. dorthin hochladen",
+        "Branches anlegen bzw. löschen",
+        "Dateien sperren bzw. freigeben",
+        "Commits verschlüsseln bzw. entschlüsseln"
+      ],
+      "explanation": "Alle anderen Git-Operationen laufen lokal."
+    },
+    {
+      "section": "5.5",
+      "question": "Was bedeuten atomare Commits in SVN?",
+      "options": [
+        "Eine Änderung wird entweder vollständig übernommen oder gar nicht",
+        "Jeder Commit enthält genau eine Datei",
+        "Commits werden auf mehrere Server verteilt",
+        "Commits können nicht rückgängig gemacht werden"
+      ],
+      "explanation": "So entstehen keine halb übernommenen Änderungen."
+    },
+    {
+      "section": "5.5",
+      "question": "Wozu dient das Sperren (Locking) von Dateien in SVN?",
+      "options": [
+        "Um Konflikte bei binären Dateien zu vermeiden, die sich nicht zusammenführen lassen",
+        "Um Dateien zu verschlüsseln",
+        "Um Dateien dauerhaft zu löschen",
+        "Um Commits zu beschleunigen"
+      ],
+      "explanation": "Mit <code>svn lock</code> bearbeitet nur eine Person die Datei zur gleichen Zeit."
+    },
+    {
+      "section": "5.5",
+      "question": "Was versioniert SVN zusätzlich zu Dateien?",
+      "options": [
+        "Verzeichnisse und damit die gesamte Projektstruktur",
+        "Die Arbeitszeit der Teammitglieder",
+        "Die Einstellungen des Betriebssystems",
+        "E-Mails zum Projekt"
+      ],
+      "explanation": "So lassen sich auch Umbenennungen und Verschiebungen von Ordnern nachverfolgen."
+    },
+    {
+      "section": "5.5",
+      "question": "Welches ältere System sollte Subversion ablösen?",
+      "options": [
+        "CVS",
+        "Git",
+        "Mercurial",
+        "FTP"
+      ],
+      "explanation": "Subversion wurde entwickelt, um die Schwächen von CVS (Concurrent Versions System) zu überwinden."
+    },
+    {
+      "section": "5.5",
+      "question": "Was zeichnet Mercurial besonders aus?",
+      "options": [
+        "Verteiltes Arbeiten mit einfacher Bedienung und hoher Leistung",
+        "Eine streng zentrale Architektur",
+        "Dass es nur unter Windows läuft",
+        "Dass es keine Branches kennt"
+      ],
+      "explanation": "Mercurial funktioniert ähnlich wie Git, legt aber besonderen Wert auf intuitive Befehle."
+    },
+    {
+      "section": "5.5",
+      "question": "Mit welchem Befehl stellt Mercurial eine Weboberfläche zum Durchsuchen des Verlaufs bereit?",
+      "options": [
+        "<code>hg serve</code>",
+        "<code>hg web --start</code>",
+        "<code>git serve</code>",
+        "<code>svn browse</code>"
+      ],
+      "explanation": "Die Weboberfläche ist bei Mercurial bereits eingebaut."
+    },
+    {
+      "section": "5.5",
+      "question": "Welches Unternehmen hat Mercurial für seinen sehr großen Quellcodebestand eingesetzt und erweitert?",
+      "options": [
+        "Facebook (heute Meta)",
+        "Netflix",
+        "Apple",
+        "SAP"
+      ],
+      "explanation": "Aus dieser Arbeit ist später das eigene System Sapling hervorgegangen."
+    },
+    {
+      "section": "5.6",
+      "question": "Ein weltweit verteiltes Open-Source-Team will offline committen und häufig branchen. Welches System passt am besten?",
+      "options": [
+        "Git",
+        "SVN",
+        "Ein Netzlaufwerk",
+        "CVS"
+      ],
+      "explanation": "Git ist verteilt, schnell beim Branching und hat mit GitHub und GitLab starke Plattformen für die Zusammenarbeit."
+    },
+    {
+      "section": "5.6",
+      "question": "Ein kleines Büroteam will alles zentral verwalten und arbeitet viel mit Binärdateien. Welches System passt laut Lösungsvorschlag?",
+      "options": [
+        "SVN",
+        "Git",
+        "Mercurial",
+        "Keines, Binärdateien lassen sich nicht versionieren"
+      ],
+      "explanation": "SVN bietet zentrale Verwaltung und das Sperren von Dateien. Mit Git LFS gibt es heute auch für Git Dateisperren."
+    },
+    {
+      "section": "5.6",
+      "question": "Welche Erweiterung hilft Git beim Umgang mit großen Binärdateien?",
+      "options": [
+        "Git LFS (Large File Storage)",
+        "Git Flow",
+        "Git Blame",
+        "Git Hooks"
+      ],
+      "explanation": "Git LFS speichert große Dateien außerhalb des eigentlichen Repositorys und unterstützt Dateisperren."
+    },
+    {
+      "section": "5.7",
+      "question": "Was sollte vor der Einführung eines Versionskontrollsystems analysiert werden?",
+      "options": [
+        "Teamgröße und -struktur, Art der Projekte und bestehende Arbeitsabläufe",
+        "Nur das Budget der IT-Abteilung",
+        "Nur die Anzahl der Server",
+        "Die Farben der Unternehmenswebseite"
+      ],
+      "explanation": "Ein kleines Team braucht oft weniger Funktionen als ein großes, verteiltes Team."
+    },
+    {
+      "section": "5.7",
+      "question": "Was legt <code>git config --global user.email \"anna@example.org\"</code> fest?",
+      "options": [
+        "Die E-Mail-Adresse, die in allen Commits als Autor eingetragen wird",
+        "Die Adresse, an die Fehlermeldungen geschickt werden",
+        "Das Passwort für den Server",
+        "Den Namen des Haupt-Branches"
+      ],
+      "explanation": "Zusammen mit <code>user.name</code> identifiziert sie die Person, die einen Commit erstellt hat."
+    },
+    {
+      "section": "5.7",
+      "question": "Was ist ein Git-Hook?",
+      "options": [
+        "Ein Skript, das bei Ereignissen wie Commit oder Push automatisch ausgeführt wird",
+        "Ein Branch für Fehlerkorrekturen",
+        "Ein gesperrter Commit",
+        "Ein Server für Repositorys"
+      ],
+      "explanation": "Hooks liegen im Ordner <code>.git/hooks</code>, z. B. <code>pre-commit</code>."
+    },
+    {
+      "section": "5.7",
+      "question": "Was passiert, wenn ein <code>pre-commit</code>-Hook mit einem Exit-Code ungleich 0 endet?",
+      "options": [
+        "Der Commit wird abgebrochen",
+        "Der Commit wird trotzdem gespeichert",
+        "Das Repository wird gelöscht",
+        "Der Hook wird beim nächsten Push wiederholt"
+      ],
+      "explanation": "Im Beispiel prüft der Hook die Syntax aller Shell-Skripte mit <code>bash -n</code> und verhindert so fehlerhafte Commits."
+    },
+    {
+      "section": "5.7",
+      "question": "Wozu dient der Eintrag <code>*.sh text eol=lf</code> in der Datei <code>.gitattributes</code>?",
+      "options": [
+        "Shell-Skripte werden immer mit Linux-Zeilenenden gespeichert",
+        "Shell-Skripte werden vom Repository ausgeschlossen",
+        "Shell-Skripte werden automatisch ausgeführt",
+        "Shell-Skripte werden verschlüsselt"
+      ],
+      "explanation": "Sonst wandelt Git unter Windows Zeilenenden oft in CRLF um, und das Skript bricht unter Linux ab."
+    },
+    {
+      "section": "5.7",
+      "question": "Welche Dateien gehören in die <code>.gitignore</code>?",
+      "options": [
+        "Dateien, die nie versioniert werden sollen, z. B. Logs, temporäre Dateien und .env",
+        "Alle Skripte des Projekts",
+        "Die Commit-Nachrichten",
+        "Die Liste der Branches"
+      ],
+      "explanation": "Was in <code>.gitignore</code> steht, nimmt Git nicht in Commits auf."
+    },
+    {
+      "section": "5.7",
+      "question": "Was ist Continuous Integration?",
+      "options": [
+        "Änderungen werden regelmäßig und automatisch in ein zentrales Repository integriert, gebaut und getestet",
+        "Das einmalige Zusammenführen aller Branches am Projektende",
+        "Ein manueller Test vor jedem Release",
+        "Die tägliche Sicherung des Servers"
+      ],
+      "explanation": "Ziel ist, Qualität und Stabilität durch häufiges Zusammenführen und Testen zu sichern."
+    },
+    {
+      "section": "5.7",
+      "question": "Welches der folgenden Werkzeuge ist ein CI-Werkzeug?",
+      "options": [
+        "Jenkins",
+        "Mercurial",
+        "Subversion",
+        "Jira"
+      ],
+      "explanation": "Weitere CI-Werkzeuge sind Travis CI, CircleCI, GitLab CI und GitHub Actions. Jira ist ein Issue-Tracker."
+    },
+    {
+      "section": "5.7",
+      "question": "Was passiert in einem CI-System, wenn ein Build oder Test fehlschlägt?",
+      "options": [
+        "Die verantwortliche Person wird sofort benachrichtigt",
+        "Der Fehler wird ignoriert",
+        "Das Repository wird gesperrt, bis ein Administrator es freigibt",
+        "Der Commit wird automatisch gelöscht"
+      ],
+      "explanation": "Sofortiges Feedback ist ein Kernmerkmal von CI."
+    },
+    {
+      "section": "5.8",
+      "question": "Welche Commit-Nachricht folgt der empfohlenen Struktur?",
+      "options": [
+        "[backup] Aufbewahrungsdauer auf 30 Tage erhöht",
+        "Änderungen",
+        "asdf",
+        "Viele Dinge geändert und repariert"
+      ],
+      "explanation": "Eine einheitliche Struktur wie „[Modul] Kurze Beschreibung“ erleichtert es allen, Änderungen nachzuvollziehen."
+    },
+    {
+      "section": "5.8",
+      "question": "Wann sollte man committen?",
+      "options": [
+        "Häufig, z. B. nach jeder abgeschlossenen Funktion oder jedem behobenen Fehler",
+        "Nur einmal am Ende des Projekts",
+        "Nur, wenn das Team zustimmt",
+        "Nur montags"
+      ],
+      "explanation": "Große Sammel-Commits mit vielen Änderungen sind schwer nachzuvollziehen."
+    },
+    {
+      "section": "5.8",
+      "question": "Wozu dienen Tags?",
+      "options": [
+        "Sie markieren Meilensteine und Versionen, z. B. v1.2.0",
+        "Sie sperren Dateien",
+        "Sie löschen alte Commits",
+        "Sie legen neue Branches an"
+      ],
+      "explanation": "Mit <code>git tag -a v1.2.0 -m \"…\"</code> wird ein Stand markiert, mit <code>git push --tags</code> hochgeladen."
+    },
+    {
+      "section": "5.8",
+      "question": "Was steht in einer Konfliktstelle zwischen <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code> und <code>=======</code>?",
+      "options": [
+        "Der Stand des aktuellen Branches",
+        "Der Stand des zusammengeführten Branches",
+        "Eine Fehlermeldung von Git",
+        "Die Commit-Nachricht"
+      ],
+      "explanation": "Oben, nach <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</code>, steht der Stand des aktuellen Branches. Unter <code>=======</code> bis <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> steht der Stand des zusammengeführten Branches."
+    },
+    {
+      "section": "5.8",
+      "question": "Wie schließt man einen Merge nach dem manuellen Lösen eines Konflikts ab?",
+      "options": [
+        "Markierungen entfernen, <code>git add</code> für die Datei, dann <code>git commit</code>",
+        "<code>git merge --abort</code>",
+        "Datei löschen und neu anlegen",
+        "<code>git tag</code>"
+      ],
+      "explanation": "<code>git merge --abort</code> bricht den Merge dagegen ab und stellt den alten Stand wieder her."
+    },
+    {
+      "section": "5.8",
+      "question": "Wann sollte man auf einen Rebase verzichten?",
+      "options": [
+        "Bei Branches, die bereits mit anderen geteilt werden",
+        "Bei eigenen, lokalen Branches",
+        "Bei leeren Repositorys",
+        "Nie, ein Rebase ist immer unproblematisch"
+      ],
+      "explanation": "Ein Rebase schreibt den Verlauf um. Bei geteilten Branches führt das zu doppelten Commits und Verwirrung."
+    },
+    {
+      "section": "5.8",
+      "question": "Was sollte man nach dem Lösen eines Konflikts als Nächstes tun?",
+      "options": [
+        "Den Code gründlich testen, bevor man committet und pusht",
+        "Sofort pushen",
+        "Den Branch löschen",
+        "Das Repository neu anlegen"
+      ],
+      "explanation": "So stellt man sicher, dass keine neuen Fehler entstanden sind."
+    },
+    {
+      "section": "5.8",
+      "question": "Wie helfen Issue-Tracker, Konflikte zu vermeiden?",
+      "options": [
+        "Aufgaben werden dokumentiert und zugewiesen, alle sehen, wer woran arbeitet",
+        "Sie führen Branches automatisch zusammen",
+        "Sie sperren alle Dateien",
+        "Sie ersetzen das Versionskontrollsystem"
+      ],
+      "explanation": "Beispiele sind GitHub Issues, GitLab Issues und Jira. Ein Branchname wie feature/42-nas-backup verweist direkt auf das Issue."
+    },
+    {
+      "section": "5.9",
+      "question": "Warum setzt die Musterlösung den ID-Zähler nach einem Revert nicht zurück?",
+      "options": [
+        "Damit jede Commit-ID eindeutig bleibt, wie bei einem echten VCS",
+        "Weil Python Zähler nicht zurücksetzen kann",
+        "Damit der Revert schneller ist",
+        "Damit gelöschte Commits wiederkommen"
+      ],
+      "explanation": "Nach einem Revert auf Commit 2 erhält der nächste Commit deshalb die ID 5 und nicht 3."
+    },
+    {
+      "section": "5.9",
+      "question": "Was bewirkt <code>self.commits[:position + 1]</code> in der Methode <code>revert</code>?",
+      "options": [
+        "Es behält alle Commits bis einschließlich des Ziel-Commits und verwirft die späteren",
+        "Es löscht nur den Ziel-Commit",
+        "Es kehrt die Reihenfolge der Commits um",
+        "Es fügt einen neuen Commit hinzu"
+      ],
+      "explanation": "Slicing liefert einen Teil der Liste. Die Obergrenze ist nicht enthalten, deshalb steht dort <code>position + 1</code>."
+    },
+    {
+      "section": "5.9",
+      "question": "Wie gibt <code>log()</code> in der Musterlösung den neuesten Commit zuerst aus?",
+      "options": [
+        "Mit <code>reversed(self.commits)</code>",
+        "Mit <code>sorted(self.commits)</code>",
+        "Mit <code>self.commits.pop()</code>",
+        "Mit <code>random.shuffle(self.commits)</code>"
+      ],
+      "explanation": "Die Liste speichert den ältesten Commit vorn. <code>reversed</code> durchläuft sie von hinten."
+    },
+    {
+      "section": "5.9",
+      "question": "Was verwendet Git statt fortlaufender Nummern als Commit-ID?",
+      "options": [
+        "Prüfsummen (Hashes) über den Inhalt",
+        "Das Datum des Commits",
+        "Den Namen der Person",
+        "Zufallszahlen"
+      ],
+      "explanation": "Die Kurzform eines Hashes sieht z. B. so aus: a211014."
+    }
+  ]
+}
