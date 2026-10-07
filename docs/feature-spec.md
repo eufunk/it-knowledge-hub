@@ -193,8 +193,8 @@ Quelle: `System_und_Prozessautomatisierung_Grundlagen.docx` (Kapitel; Kapitel 01
 | Modul | Kapitel | Fragen |
 |---|---|---|
 | 1 Grundlagen der Automatisierung | 01 Einführung in die Systemautomatisierung · 02 Überwachen wiederkehrender Systemabläufe | 65 · 69 |
-| 2 Scriptsprachen für Automatisierung | 03 Grundlagen von Bash und Shell-Scripting · 04 PowerShell Basics für Administratoren | 92 · 93 |
-| 3 Fortgeschrittene Scripttechniken | 05 Aufbau fortgeschrittener Linux-Skripte · (geplant) Entwicklung komplexer PowerShell-Scripte, siehe `docs/todo.md` | 72 · – |
+| 2 Skriptsprachen für Automatisierung | 03 Grundlagen von Bash und Shell-Scripting · 04 PowerShell Basics für Administratoren | 92 · 93 |
+| 3 Fortgeschrittene Skripttechniken | 05 Aufbau fortgeschrittener Linux-Skripte · (geplant) Entwicklung komplexer PowerShell-Skripte, siehe `docs/todo.md` | 72 · – |
 | Anhang | 10 Glossar | – |
 
 ### 5.8 Inhalt des zweiten Kurses
@@ -204,7 +204,7 @@ Kurs `netzwerkautomatisierung-und-tools` („Netzwerkautomatisierung und Tools�
 |---|---|---|
 | 1 Automatisierung lokaler und netzwerkübergreifender Aufgaben | 01 Automatisierung lokaler Wartungsaufgaben · 02 Automatisierung in Netzwerken und bei Remote-Aufgaben | 61 · 59 |
 | 2 Tools und Frameworks für Automatisierung | 03 Auswahlkriterien für Automatisierungstools · 04 Einsatz von Automatisierungsansätzen in verteilten Systemen | 41 · 43 |
-| 3 Versionskontrolle und Scriptmanagement | 05 Einsatz von Versionskontrollsystemen für Skriptcodes · 06 Best Practices für das Skriptmanagement | 62 · 45 |
+| 3 Versionskontrolle und Skriptmanagement | 05 Einsatz von Versionskontrollsystemen für Skriptcodes · 06 Best Practices für das Skriptmanagement | 62 · 45 |
 | 4 Debugging und Performance | 07 Debugging-Verfahren für Skripte · 08 Performance-Optimierung von Automatisierungsskripten | 43 · 44 |
 
 ## 6. Technische Entscheidungen
