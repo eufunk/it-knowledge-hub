@@ -197,13 +197,13 @@ Quelle: `System_und_Prozessautomatisierung_Grundlagen.docx` (Kapitel; Kapitel 01
 | Anhang | 10 Glossar | – |
 
 ### 5.8 Inhalt des zweiten Kurses
-Kurs `netzwerkautomatisierung-und-tools` („Netzwerkautomatisierung und Tools“). Quelle: `Netzwerkautomatisierung_und_Tools.docx` (Stand Oktober 2026), Kapitel 1 und 2 am 2026-10-05, Kapitel 3 und 4 am 2026-10-06, Kapitel 5 am 2026-10-07 (aus `02_Netzwerkautomatisierung_und_Tools.docx`) nach Markdown übernommen. Die Wissenstests der Kapitel 01 und 02 wurden neu geschrieben; die von Kapitel 03 bis 05 stammen aus `Quiz/Netzwerkautomatisierung_Quiz.html` bzw. `Quiz/02_Netzwerkautomatisierung_Quiz.html` (enthalten auch die je 12 Testfragen aus dem Dokument). Die ROI-Formelbilder des Dokuments stehen als Text im Kapitel. Der Lösungsvorschlag zur Übung in Kapitel 2 (im Dokument eigener Abschnitt 2.8) steht eingeklappt direkt unter der Übung. Die beiden Statista-Grafiken des Dokuments sind als Tabellen mit Quellenangabe übernommen, nicht als Bild (fremdes Material, Text im Bild). Die Lösungsvorschläge zu den Übungen in Kapitel 3 und 4 (im Dokument eigene Abschnitte 2.1.11 und 2.3.4) stehen ebenfalls eingeklappt unter der Übung.
+Kurs `netzwerkautomatisierung-und-tools` („Netzwerkautomatisierung und Tools“). Quelle: `Netzwerkautomatisierung_und_Tools.docx` (Stand Oktober 2026), Kapitel 1 und 2 am 2026-10-05, Kapitel 3 und 4 am 2026-10-06, Kapitel 5 und 6 am 2026-10-07 (aus `02_Netzwerkautomatisierung_und_Tools.docx`) nach Markdown übernommen. Die Wissenstests der Kapitel 01 und 02 wurden neu geschrieben; die von Kapitel 03 bis 06 stammen aus `Quiz/Netzwerkautomatisierung_Quiz.html` bzw. `Quiz/02_Netzwerkautomatisierung_Quiz.html` (enthalten auch die je 12 Testfragen aus dem Dokument). Die ROI-Formelbilder des Dokuments stehen als Text im Kapitel. Der Lösungsvorschlag zur Übung in Kapitel 2 (im Dokument eigener Abschnitt 2.8) steht eingeklappt direkt unter der Übung. Die beiden Statista-Grafiken des Dokuments sind als Tabellen mit Quellenangabe übernommen, nicht als Bild (fremdes Material, Text im Bild). Die Lösungsvorschläge zu den Übungen in Kapitel 3 und 4 (im Dokument eigene Abschnitte 2.1.11 und 2.3.4) stehen ebenfalls eingeklappt unter der Übung.
 
 | Modul | Kapitel | Fragen |
 |---|---|---|
 | 1 Automatisierung lokaler und netzwerkübergreifender Aufgaben | 01 Automatisierung lokaler Wartungsaufgaben · 02 Automatisierung in Netzwerken und bei Remote-Aufgaben | 61 · 59 |
 | 2 Tools und Frameworks für Automatisierung | 03 Auswahlkriterien für Automatisierungstools · 04 Einsatz von Automatisierungsansätzen in verteilten Systemen | 41 · 43 |
-| 3 Versionskontrolle und Scriptmanagement | 05 Einsatz von Versionskontrollsystemen für Skriptcodes | 62 |
+| 3 Versionskontrolle und Scriptmanagement | 05 Einsatz von Versionskontrollsystemen für Skriptcodes · 06 Best Practices für das Skriptmanagement | 62 · 45 |
 
 ## 6. Technische Entscheidungen
 

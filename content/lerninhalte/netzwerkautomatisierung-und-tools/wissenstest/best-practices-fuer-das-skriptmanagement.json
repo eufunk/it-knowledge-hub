@@ -1,0 +1,507 @@
+{
+  "sections": {
+    "6.1": "Organisation: Namen und Verzeichnisse",
+    "6.2": "Sicheres Skriptmanagement",
+    "6.3": "Automatisierung: Werkzeuge und Techniken",
+    "6.4": "Anwendungsfälle: Linter, CI/CD, Dokumentation",
+    "6.5": "Fallbeispiel TechCorp",
+    "6.6": "Übung: Skriptmanagement verbessern"
+  },
+  "questions": [
+    {
+      "section": "6.1",
+      "question": "Was umfasst Skriptmanagement?",
+      "options": [
+        "Die systematische Verwaltung, Organisation und Wartung von Skripten, vom Erstellen über Versionieren und Testen bis zum Verteilen und Überwachen",
+        "Nur das Schreiben neuer Skripte",
+        "Nur das Speichern von Skripten in einem Ordner",
+        "Nur die Auswahl einer Skriptsprache"
+      ],
+      "explanation": "Ziel ist, automatisierte Prozesse effizient, einheitlich und zuverlässig zu machen und Wartbarkeit und Sicherheit der Skripte zu verbessern."
+    },
+    {
+      "section": "6.1",
+      "question": "Welcher Aspekt des Skriptmanagements sorgt dafür, dass Probleme bei der Ausführung früh erkannt werden?",
+      "options": [
+        "Überwachung",
+        "Dokumentation",
+        "Versionierung",
+        "Verteilung"
+      ],
+      "explanation": "Die Überwachung beobachtet die Ausführung laufend. Dokumentation beschreibt die Skripte, Versionierung verfolgt Änderungen, Verteilung bringt sie auf die Zielsysteme."
+    },
+    {
+      "section": "6.1",
+      "question": "Welcher Aspekt des Skriptmanagements regelt die Bereitstellung und Aktualisierung der Skripte auf den Zielsystemen?",
+      "options": [
+        "Verteilung",
+        "Qualitätssicherung",
+        "Überwachung",
+        "Dokumentation"
+      ],
+      "explanation": "Qualitätssicherung bedeutet Tests und Code-Reviews, Überwachung beobachtet die laufende Ausführung."
+    },
+    {
+      "section": "6.1",
+      "question": "Welcher Dateiname für ein Skript ist am besten gewählt?",
+      "options": [
+        "<code>backup_home_taeglich.sh</code>",
+        "<code>skript1.sh</code>",
+        "<code>neu final (2).sh</code>",
+        "<code>backup_v3_alt_NEU.sh</code>"
+      ],
+      "explanation": "Der Name sagt, was das Skript tut, und enthält weder Leerzeichen noch Klammern oder Versionsvermerke."
+    },
+    {
+      "section": "6.1",
+      "question": "Warum sollten Dateinamen keine Zeichen wie <code>*</code>, <code>?</code> oder <code>|</code> enthalten?",
+      "options": [
+        "Sie sind in vielen Dateisystemen nicht erlaubt und machen auf der Kommandozeile Ärger",
+        "Sie verlängern den Dateinamen zu stark",
+        "Sie verhindern die Versionskontrolle mit Git",
+        "Sie machen das Skript langsamer"
+      ],
+      "explanation": "Auch Leerzeichen und Umlaute sollte man meiden, weil sie in Skripten und auf der Kommandozeile oft Probleme verursachen."
+    },
+    {
+      "section": "6.1",
+      "question": "Warum steht in <code>2026-10-07_speicherbericht.csv</code> das Datum im Format JJJJ-MM-TT am Anfang?",
+      "options": [
+        "Die alphabetische Sortierung ist dann zugleich die zeitliche",
+        "Weil Linux kein anderes Datumsformat erlaubt",
+        "Damit Git die Datei als neue Version erkennt",
+        "Weil Dateinamen mit einer Ziffer beginnen müssen"
+      ],
+      "explanation": "Das Format nach ISO 8601 sortiert sich automatisch chronologisch, bei <code>7.10.26</code> wäre das nicht der Fall."
+    },
+    {
+      "section": "6.1",
+      "question": "Wo gehören Versionsangaben für Skripte in einem Repository hin?",
+      "options": [
+        "In das Versionskontrollsystem, nicht in den Dateinamen",
+        "In den Dateinamen, z. B. <code>backup_v3.sh</code>",
+        "In einen eigenen Ordner pro Version",
+        "In eine separate Textdatei neben jedem Skript"
+      ],
+      "explanation": "Versionen und Datum im Namen sind nur sinnvoll, wo keine Versionskontrolle im Spiel ist, etwa bei Berichten, Exporten oder Sicherungen."
+    },
+    {
+      "section": "6.1",
+      "question": "Welches Namensschema nutzt <code>Get-DiskReport.ps1</code>?",
+      "options": [
+        "Das PowerShell-Schema Verb-Nomen",
+        "Das ISO-Datumsformat",
+        "Die Schreibweise mit Unterstrichen für Bash",
+        "Ein Schema mit Versionsnummer"
+      ],
+      "explanation": "PowerShell-Befehle und -Skripte folgen dem Muster Verb-Nomen, z. B. <code>Get-</code>, <code>Set-</code> oder <code>New-</code>."
+    },
+    {
+      "section": "6.1",
+      "question": "Was bedeutet hierarchische Ordnung bei der Verzeichnisstruktur?",
+      "options": [
+        "Mit allgemeinen Kategorien beginnen und mit jeder Ebene spezifischer werden",
+        "Alle Skripte in einem einzigen Ordner ablegen",
+        "Für jedes Skript einen eigenen Ordner anlegen",
+        "Ordner alphabetisch nach Autorin oder Autor benennen"
+      ],
+      "explanation": "Ein Beispiel ist Plattform > Aufgabenbereich > Skript, also etwa <code>linux/backup/backup_home.sh</code>."
+    },
+    {
+      "section": "6.1",
+      "question": "Was besagt das Prinzip der Relevanz bei der Verzeichnisstruktur?",
+      "options": [
+        "Verzeichnisse nur anlegen, wenn sie tatsächlich gebraucht werden",
+        "Die wichtigsten Skripte immer ganz oben ablegen",
+        "Nur relevante Skripte in die Versionskontrolle aufnehmen",
+        "Ordner nach ihrer Größe sortieren"
+      ],
+      "explanation": "Überflüssige Ordner schaffen Unübersichtlichkeit."
+    },
+    {
+      "section": "6.1",
+      "question": "Was gehört laut Beispiel-Repository nicht in den Ordner <code>config/</code>?",
+      "options": [
+        "Zugangsdaten",
+        "Konfigurationsdateien",
+        "Einstellungen für die Skripte",
+        "Vorgaben für verschiedene Umgebungen"
+      ],
+      "explanation": "Passwörter und Schlüssel gehören in einen Passwort-Tresor oder in geschützte Umgebungsvariablen, nicht ins Repository."
+    },
+    {
+      "section": "6.2",
+      "question": "Wie trägt ein Versionskontrollsystem zur Sicherheit bei?",
+      "options": [
+        "Jede Änderung wird protokolliert, sodass unerwünschte Änderungen auffallen",
+        "Es verschlüsselt automatisch alle Skripte",
+        "Es verhindert, dass Skripte Fehler enthalten",
+        "Es ersetzt jede Form von Zugriffskontrolle"
+      ],
+      "explanation": "Außerdem lassen sich Zugriffsrechte verwalten, z. B. mit geschützten Branches, und jede Kopie enthält den gesamten Verlauf."
+    },
+    {
+      "section": "6.2",
+      "question": "Ein Berichtsskript liest Daten aus einer Datenbank. Welche Rechte sollte sein Dienstkonto nach dem Least-Privilege-Prinzip erhalten?",
+      "options": [
+        "Nur Leserechte",
+        "Lese- und Schreibrechte",
+        "Administratorrechte, damit nichts fehlschlägt",
+        "Die Rechte der Person, die das Skript geschrieben hat"
+      ],
+      "explanation": "Jedes Konto erhält nur die Rechte, die es für seine Aufgabe wirklich braucht. Das begrenzt den Schaden bei Missbrauch."
+    },
+    {
+      "section": "6.2",
+      "question": "Was ist der Unterschied zwischen Authentifizierung und Autorisierung?",
+      "options": [
+        "Authentifizierung prüft, wer jemand ist; Autorisierung legt fest, was diese Person darf",
+        "Authentifizierung legt Rechte fest; Autorisierung prüft das Passwort",
+        "Beide Begriffe bedeuten dasselbe",
+        "Authentifizierung gilt für Personen, Autorisierung nur für Skripte"
+      ],
+      "explanation": "Zuerst wird die Identität geprüft, danach entscheidet das System anhand dieser Identität über die Rechte."
+    },
+    {
+      "section": "6.2",
+      "question": "Welche Methode gehört zur Autorisierung?",
+      "options": [
+        "Rollenbasierte Zugriffskontrolle (RBAC)",
+        "Passwortbasierte Anmeldung",
+        "Zwei-Faktor-Authentifizierung (2FA)",
+        "Ein Code aus einer Authentifizierungs-App"
+      ],
+      "explanation": "Passwort und 2FA prüfen die Identität, gehören also zur Authentifizierung. RBAC und ABAC regeln die Rechte."
+    },
+    {
+      "section": "6.2",
+      "question": "Was empfehlen BSI und NIST heute zum Wechsel von Passwörtern?",
+      "options": [
+        "Starke Passwörter verwenden und nur wechseln, wenn ein Passwort kompromittiert sein könnte",
+        "Alle 30 Tage einen Wechsel erzwingen",
+        "Passwörter nie wechseln, auch nicht nach einem Vorfall",
+        "Für jede Anmeldung ein neues Passwort vergeben"
+      ],
+      "explanation": "Regelmäßige Zwangswechsel führen oft zu schwachen, vorhersehbaren Passwörtern und werden deshalb nicht mehr empfohlen."
+    },
+    {
+      "section": "6.2",
+      "question": "Warum gelten SMS-Codes als schwächster zweiter Faktor?",
+      "options": [
+        "Sie lassen sich leichter abfangen als Codes aus einer App oder ein Sicherheitsschlüssel",
+        "Sie sind länger als andere Codes",
+        "Sie funktionieren nur ohne Passwort",
+        "Sie gelten nur für eine Minute"
+      ],
+      "explanation": "SMS-Codes sind besser als gar kein zweiter Faktor, Authentifizierungs-Apps und Sicherheitsschlüssel sind aber sicherer."
+    },
+    {
+      "section": "6.2",
+      "question": "Worauf beruhen Entscheidungen bei der attributbasierten Zugriffskontrolle?",
+      "options": [
+        "Auf Merkmalen der Person, der Ressource und der Umgebung, z. B. Abteilung oder Uhrzeit",
+        "Allein auf einer festen Rolle wie „Lesen“ oder „Entwickeln“",
+        "Auf der Länge des Passworts",
+        "Auf der Reihenfolge der Anmeldungen"
+      ],
+      "explanation": "Das ermöglicht sehr fein abgestufte Rechte. Feste Rollen sind das Kennzeichen von RBAC."
+    },
+    {
+      "section": "6.2",
+      "question": "Was kennzeichnet symmetrische Verschlüsselung?",
+      "options": [
+        "Derselbe Schlüssel ver- und entschlüsselt die Daten",
+        "Ein öffentlicher Schlüssel verschlüsselt, ein privater entschlüsselt",
+        "Die Daten werden nur bei der Übertragung geschützt",
+        "Sie ist immer langsamer als asymmetrische Verschlüsselung"
+      ],
+      "explanation": "Symmetrische Verfahren sind schnell, der Schlüssel muss aber sicher aufbewahrt und weitergegeben werden."
+    },
+    {
+      "section": "6.2",
+      "question": "Was ist der eigentliche Vorteil asymmetrischer Verschlüsselung?",
+      "options": [
+        "Der öffentliche Schlüssel darf jeder kennen, nur der private Schlüssel muss geheim bleiben",
+        "Sie ist schneller als symmetrische Verschlüsselung",
+        "Sie braucht überhaupt keine Schlüssel",
+        "Sie ist in jedem Fall sicherer als symmetrische Verschlüsselung"
+      ],
+      "explanation": "Asymmetrische Verfahren sind langsamer. In der Praxis werden beide Verfahren kombiniert."
+    },
+    {
+      "section": "6.2",
+      "question": "Was bedeutet Verschlüsselung „at rest“?",
+      "options": [
+        "Gespeicherte Daten werden verschlüsselt",
+        "Daten werden bei der Übertragung verschlüsselt",
+        "Nur ungenutzte Dateien werden verschlüsselt",
+        "Die Verschlüsselung läuft nachts, wenn die Systeme ruhen"
+      ],
+      "explanation": "Bei der Übertragung („in transit“) schützen z. B. SSH und HTTPS die Daten."
+    },
+    {
+      "section": "6.2",
+      "question": "Was bewirkt <code>gpg --symmetric --cipher-algo AES256 zugangsdaten.conf</code>?",
+      "options": [
+        "Die Datei wird mit einem Passwort verschlüsselt, es entsteht <code>zugangsdaten.conf.gpg</code>",
+        "Es wird ein neues Schlüsselpaar erzeugt",
+        "Die Datei wird signiert, bleibt aber lesbar",
+        "Die Datei wird entschlüsselt"
+      ],
+      "explanation": "Mit <code>gpg --decrypt</code> wird die Datei wieder entschlüsselt."
+    },
+    {
+      "section": "6.2",
+      "question": "Was ist meist der wirksamste Schutz für Passwörter, die ein Skript benötigt?",
+      "options": [
+        "Sie gar nicht ins Skript schreiben, sondern aus einem Passwort-Tresor oder geschützten Umgebungsvariablen laden",
+        "Das ganze Skript verschlüsseln und das Passwort darin lassen",
+        "Das Passwort in einem Kommentar verstecken",
+        "Das Skript in einem Ordner mit unauffälligem Namen ablegen"
+      ],
+      "explanation": "Meist muss nicht das Skript geheim bleiben, sondern die Zugangsdaten, die es verwendet."
+    },
+    {
+      "section": "6.2",
+      "question": "Wie arbeitet Static Application Security Testing?",
+      "options": [
+        "Es analysiert den Quellcode, ohne ihn auszuführen",
+        "Es testet eine laufende Anwendung von außen",
+        "Es überwacht den Netzwerkverkehr",
+        "Es prüft die Zugriffsprotokolle von Hand"
+      ],
+      "explanation": "Eine statische Analyse findet z. B. unsichere Befehle, fehlende Anführungszeichen oder Zugangsdaten im Code."
+    },
+    {
+      "section": "6.2",
+      "question": "Was prüft Dynamic Application Security Testing?",
+      "options": [
+        "Eine laufende Anwendung von außen, z. B. eine Weboberfläche oder API",
+        "Den Quellcode, ohne ihn auszuführen",
+        "Die Formatierung von Bash-Skripten",
+        "Die Prüfsummen gespeicherter Dateien"
+      ],
+      "explanation": "Für ein einzelnes Skript ohne Oberfläche ist die statische Analyse das passende Verfahren."
+    },
+    {
+      "section": "6.2",
+      "question": "Wofür wird Gitleaks eingesetzt?",
+      "options": [
+        "Um Passwörter und Schlüssel im Code und im gesamten Git-Verlauf zu finden",
+        "Um Merge-Konflikte automatisch zu lösen",
+        "Um den Netzwerkverkehr zu überwachen",
+        "Um Bash-Skripte einheitlich zu formatieren"
+      ],
+      "explanation": "Ein Geheimnis, das einmal committet wurde, bleibt im Verlauf, auch wenn es im aktuellen Stand gelöscht ist."
+    },
+    {
+      "section": "6.2",
+      "question": "Was überwachen Snort und Suricata?",
+      "options": [
+        "Den Netzwerkverkehr",
+        "Änderungen an Skriptdateien auf einem Server",
+        "Den Quellcode in einem Repository",
+        "Die Formatierung von PowerShell-Skripten"
+      ],
+      "explanation": "Sie sind netzwerkbasierte Intrusion-Detection-Systeme. Änderungen an Dateien erkennen hostbasierte Systeme wie AIDE oder Wazuh."
+    },
+    {
+      "section": "6.2",
+      "question": "Mit welchem Werkzeug erkennst Du unerwartete Änderungen an Skripten auf einem Server?",
+      "options": [
+        "AIDE",
+        "Snort",
+        "Prettier",
+        "Terraform"
+      ],
+      "explanation": "AIDE und Wazuh sind hostbasierte Systeme zur Integritätsprüfung. Snort überwacht den Netzwerkverkehr."
+    },
+    {
+      "section": "6.2",
+      "question": "Was meldet <code>sha256sum --check --quiet /root/skripte.sha256</code>?",
+      "options": [
+        "Nur die Dateien, deren Prüfsumme nicht mehr mit der gespeicherten übereinstimmt",
+        "Alle Dateien mit ihrer Prüfsumme",
+        "Die Rechte jeder Datei",
+        "Nur Dateien, die neu hinzugekommen sind"
+      ],
+      "explanation": "Mit <code>--quiet</code> erscheinen nur Abweichungen, z. B. <code>backup_home.sh: FAILED</code>."
+    },
+    {
+      "section": "6.2",
+      "question": "Warum sollte die Prüfsummendatei an einem Ort liegen, den nur root ändern kann?",
+      "options": [
+        "Sonst könnte ein Angreifer Skript und Prüfsumme gemeinsam ändern, und die Prüfung fiele nicht auf",
+        "Weil <code>sha256sum</code> sonst nicht startet",
+        "Damit die Prüfung schneller läuft",
+        "Weil Prüfsummendateien sehr groß werden"
+      ],
+      "explanation": "Die Prüfung ist nur so vertrauenswürdig wie die gespeicherten Vergleichswerte."
+    },
+    {
+      "section": "6.3",
+      "question": "Welches Werkzeug ist ein Automatisierungsserver für Continuous Integration und Deployment?",
+      "options": [
+        "Jenkins",
+        "Puppet",
+        "Gitleaks",
+        "Sphinx"
+      ],
+      "explanation": "Jenkins startet bei jeder Codeänderung Tests und Bereitstellungsschritte, die in Pipelines beschrieben sind."
+    },
+    {
+      "section": "6.3",
+      "question": "Was unterscheidet Puppet von Ansible?",
+      "options": [
+        "Puppet arbeitet mit einem Agenten auf den verwalteten Systemen, Ansible arbeitet agentenlos über SSH oder WinRM",
+        "Puppet nutzt YAML-Playbooks, Ansible nicht",
+        "Ansible ist nur für Windows, Puppet nur für Linux",
+        "Puppet kann keine Konfiguration verwalten"
+      ],
+      "explanation": "Puppet beschreibt den gewünschten Zustand deklarativ, ein Agent stellt ihn her und hält ihn aufrecht."
+    },
+    {
+      "section": "6.3",
+      "question": "Was passiert, wenn das Ansible-Playbook zum Verteilen der Skripte ein zweites Mal läuft?",
+      "options": [
+        "Es ändert nur, was vom gewünschten Zustand abweicht",
+        "Es kopiert alle Dateien erneut und überschreibt sie",
+        "Es bricht mit einem Fehler ab, weil der Ordner schon existiert",
+        "Es legt eine zweite Kopie jedes Skripts an"
+      ],
+      "explanation": "Ansible-Module sind idempotent. Deshalb haben nach jedem Lauf alle Server dieselbe Version."
+    },
+    {
+      "section": "6.3",
+      "question": "Was beschreibt Infrastructure as Code?",
+      "options": [
+        "Infrastruktur wird in deklarativen Dateien beschrieben statt von Hand eingerichtet",
+        "Code wird auf physischen Servern gespeichert",
+        "Jede Codeänderung wird automatisch getestet",
+        "Skripte werden aus Kommentaren dokumentiert"
+      ],
+      "explanation": "Werkzeuge dafür sind z. B. Terraform oder AWS CloudFormation."
+    },
+    {
+      "section": "6.4",
+      "question": "Was ist die Aufgabe eines Formatierers wie shfmt oder Prettier?",
+      "options": [
+        "Code automatisch in eine einheitliche Form bringen",
+        "Mögliche Fehler und unsichere Muster melden",
+        "Code verschlüsseln",
+        "Dokumentation aus Kommentaren erzeugen"
+      ],
+      "explanation": "Fehler und Stilprobleme meldet ein Linter. Formatierer und Linter ergänzen sich."
+    },
+    {
+      "section": "6.4",
+      "question": "Welcher Linter ist für Bash-Skripte gedacht?",
+      "options": [
+        "ShellCheck",
+        "PSScriptAnalyzer",
+        "ESLint",
+        "Black"
+      ],
+      "explanation": "PSScriptAnalyzer prüft PowerShell, ESLint JavaScript. Black ist ein Formatierer für Python."
+    },
+    {
+      "section": "6.4",
+      "question": "Was geht bei der kontinuierlichen Bereitstellung über die kontinuierliche Integration hinaus?",
+      "options": [
+        "Geprüfter Code wird automatisch in die Produktionsumgebung eingespielt",
+        "Änderungen werden automatisch getestet",
+        "Änderungen werden regelmäßig zusammengeführt",
+        "Code wird automatisch formatiert"
+      ],
+      "explanation": "Zusammenführen und automatisches Testen gehören schon zur kontinuierlichen Integration."
+    },
+    {
+      "section": "6.4",
+      "question": "Wann läuft der GitHub-Actions-Workflow mit <code>on: [push, pull_request]</code>?",
+      "options": [
+        "Bei jedem Push und jedem Pull Request",
+        "Nur einmal täglich",
+        "Nur wenn er von Hand gestartet wird",
+        "Nur beim Anlegen eines neuen Branches"
+      ],
+      "explanation": "Der Workflow prüft dann alle Shell-Skripte im Ordner <code>skripte</code> mit ShellCheck."
+    },
+    {
+      "section": "6.4",
+      "question": "Welches Werkzeug für automatische Bereitstellungen hat Netflix entwickelt und als Open Source veröffentlicht?",
+      "options": [
+        "Spinnaker",
+        "Jenkins",
+        "Ansible",
+        "SonarQube"
+      ],
+      "explanation": "Netflix hat seine Infrastruktur konsequent auf Automatisierung ausgerichtet."
+    },
+    {
+      "section": "6.4",
+      "question": "Wie erzeugen Werkzeuge wie Sphinx oder JSDoc Dokumentation?",
+      "options": [
+        "Aus Kommentaren im Code",
+        "Aus den Protokollen der Skriptausführung",
+        "Aus dem Git-Verlauf",
+        "Aus Bildschirmaufnahmen"
+      ],
+      "explanation": "So bleiben Dokumentation und Code auf demselben Stand. In PowerShell übernimmt das die kommentarbasierte Hilfe."
+    },
+    {
+      "section": "6.4",
+      "question": "Welches Werkzeug prüft laufende Webanwendungen von außen auf Schwachstellen?",
+      "options": [
+        "ZAP",
+        "Gitleaks",
+        "ShellCheck",
+        "Sphinx"
+      ],
+      "explanation": "ZAP hieß früher OWASP ZAP. Gitleaks sucht Geheimnisse im Code, ShellCheck prüft Bash-Skripte statisch."
+    },
+    {
+      "section": "6.5",
+      "question": "Wie löste TechCorp das Problem, dass auf verschiedenen Servern unterschiedliche Skriptversionen liefen?",
+      "options": [
+        "Mit einem zentralen Ansible-Playbook für Verteilung und Konfiguration",
+        "Mit Prometheus und Grafana",
+        "Mit JSDoc und Sphinx",
+        "Mit Verschlüsselung durch OpenSSL"
+      ],
+      "explanation": "Prometheus und Grafana dienten der Überwachung, JSDoc und Sphinx der Dokumentation, OpenSSL der Sicherheit."
+    },
+    {
+      "section": "6.5",
+      "question": "Womit überwacht TechCorp die Skriptausführung in Echtzeit?",
+      "options": [
+        "Mit Prometheus und Grafana",
+        "Mit Jenkins",
+        "Mit Git",
+        "Mit Puppet"
+      ],
+      "explanation": "Die Werkzeuge alarmieren bei Problemen, sodass sie behoben werden, bevor größerer Schaden entsteht."
+    },
+    {
+      "section": "6.6",
+      "question": "Bei CloudInnovators werden Skripte von Hand auf die Server kopiert. Welche Verbesserung passt am besten?",
+      "options": [
+        "Skripte in ein Git-Repository legen und per Ansible-Playbook verteilen",
+        "Die Skripte per E-Mail an alle Admins schicken",
+        "Auf jedem Server eine eigene Kopie pflegen lassen",
+        "Die Skripte in einen gemeinsamen Netzwerkordner ohne Versionskontrolle legen"
+      ],
+      "explanation": "Ergänzend prüft eine CI-Pipeline jede Änderung, und Tags markieren stabile Stände für einen schnellen Rückschritt."
+    },
+    {
+      "section": "6.6",
+      "question": "Bei SecureSoft hat jedes Teammitglied Zugriff auf alle Skripte. Welche Maßnahme packt das Problem an der Wurzel an?",
+      "options": [
+        "Rollen nach dem Least-Privilege-Prinzip vergeben",
+        "Allen Mitarbeitenden Administratorrechte geben",
+        "Die Skripte umbenennen",
+        "Ein zusätzliches Backup einrichten"
+      ],
+      "explanation": "Dazu kommen geschützte Branches, 2FA, ein Passwort-Tresor für Zugangsdaten und regelmäßige Rechteprüfungen."
+    }
+  ]
+}
