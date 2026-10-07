@@ -17,7 +17,8 @@ import {
 import { closeDb, getDb } from "@/lib/server/db";
 import { hashPassword, verifyPassword } from "@/lib/server/password";
 import { getAllProgress, mergeProgress, setStepCompleted } from "@/lib/server/progress";
-import { isValidStep, parseLocalProgress } from "@/lib/server/progress-input";
+import { isValidLesson, isValidStep, parseLocalProgress } from "@/lib/server/progress-input";
+import { deleteSpeechPosition, getSpeechPosition, saveSpeechPosition } from "@/lib/server/speech-positions";
 import { safeNextPath } from "@/lib/utils/redirect";
 
 let dir: string;
@@ -181,5 +182,40 @@ describe("F28: Tester-Merkmal", () => {
     const columns = getDb().prepare("PRAGMA table_info(users)").all() as { name: string }[];
     expect(columns.map((column) => column.name)).toContain("tester");
     expect(getDb().prepare("SELECT tester FROM users WHERE username = 'alt'").get()).toEqual({ tester: 0 });
+  });
+});
+
+describe("F20: Vorlese-Stelle im Konto", () => {
+  it("speichert, überschreibt und löscht die Stelle je Kapitel", async () => {
+    const user = await createUser("testuser", "testuser123");
+    expect(getSpeechPosition(user.id, KURS, "powershell-basics")).toBeNull();
+
+    saveSpeechPosition(user.id, KURS, "powershell-basics", { index: 3, total: 50, text: "Abschnitt" }, new Date("2026-10-07T10:00:00Z"));
+    saveSpeechPosition(user.id, KURS, "powershell-basics", { index: 7, total: 50, text: "Weiter" }, new Date("2026-10-07T10:05:00Z"));
+    expect(getSpeechPosition(user.id, KURS, "powershell-basics")).toEqual({
+      index: 7,
+      total: 50,
+      text: "Weiter",
+      updatedAt: Date.parse("2026-10-07T10:05:00Z"),
+    });
+    expect(getSpeechPosition(user.id, KURS, "glossar")).toBeNull();
+
+    deleteSpeechPosition(user.id, KURS, "powershell-basics");
+    expect(getSpeechPosition(user.id, KURS, "powershell-basics")).toBeNull();
+  });
+
+  it("trennt die Stellen verschiedener Konten", async () => {
+    const anna = await createUser("anna", "geheim-123");
+    const ben = await createUser("ben", "geheim-123");
+    saveSpeechPosition(anna.id, KURS, "glossar", { index: 1, total: 9, text: "a" });
+    expect(getSpeechPosition(ben.id, KURS, "glossar")).toBeNull();
+  });
+
+  it("akzeptiert nur vorhandene Kapitel, auch Anhänge", () => {
+    expect(isValidLesson(KURS, "powershell-basics")).toBe(true);
+    expect(isValidLesson(KURS, "glossar")).toBe(true);
+    expect(isValidLesson(KURS, "powershell-basics/wissenstest")).toBe(false);
+    expect(isValidLesson(KURS, "gibt-es-nicht")).toBe(false);
+    expect(isValidLesson("../etc", "x")).toBe(false);
   });
 });

@@ -6,11 +6,19 @@ import { chunkLimit, chunkText, extractSegments, type SpeechSegment } from "@/li
 import {
   clearPosition,
   makePosition,
+  newerPosition,
   parsePosition,
   readPositionRaw,
   resolvePosition,
   savePosition,
+  type SpeechPosition,
 } from "@/lib/utils/speech-position";
+import {
+  clearRemotePosition,
+  fetchRemotePosition,
+  flushRemotePosition,
+  queueRemotePosition,
+} from "@/lib/utils/speech-position-remote";
 import {
   isNaturalVoice,
   parseSettings,
@@ -63,9 +71,11 @@ export function ReadAloudPlayer({ targetIds, positionKey }: { targetIds: string[
   const voices = useSyncExternalStore(subscribeVoices, getVoices, () => NO_VOICES);
   const settingsRaw = useSyncExternalStore(subscribeSettings, readSettingsRaw, () => null);
   const settings = useMemo(() => parseSettings(settingsRaw), [settingsRaw]);
-  // gespeicherte Stelle aus einem früheren Besuch (nur für Anzeige und ersten Start)
+  // gespeicherte Stelle aus einem früheren Besuch (nur für Anzeige und ersten Start):
+  // im Browser und im Konto – die zuletzt gespeicherte gilt
   const savedRaw = useSyncExternalStore(noopSubscribe, () => readPositionRaw(positionKey), () => null);
-  const saved = useMemo(() => parsePosition(savedRaw), [savedRaw]);
+  const [remote, setRemote] = useState<SpeechPosition | null>(null);
+  const saved = useMemo(() => newerPosition(parsePosition(savedRaw), remote), [savedRaw, remote]);
   const voice = useMemo(() => pickVoice(voices, settings.voice), [voices, settings.voice]);
   const germanVoices = useMemo(
     () =>
@@ -96,6 +106,27 @@ export function ReadAloudPlayer({ targetIds, positionKey }: { targetIds: string[
     voiceRef.current = voice;
     rateRef.current = settings.rate;
   });
+
+  // Stelle aus dem Konto laden (gilt auf allen Geräten)
+  useEffect(() => {
+    let active = true;
+    void fetchRemotePosition(positionKey).then((position) => {
+      if (active) setRemote(position);
+    });
+    return () => {
+      active = false;
+    };
+  }, [positionKey]);
+
+  // Noch offene Stelle beim Verlassen der Seite ans Konto senden (auch beim Schließen des Tabs)
+  useEffect(() => {
+    const flush = () => flushRemotePosition(positionKey);
+    window.addEventListener("pagehide", flush);
+    return () => {
+      window.removeEventListener("pagehide", flush);
+      flush();
+    };
+  }, [positionKey]);
 
   // Beim Verlassen der Seite die Ausgabe stoppen und die Hervorhebung entfernen.
   useEffect(() => {
@@ -129,9 +160,14 @@ export function ReadAloudPlayer({ targetIds, positionKey }: { targetIds: string[
     }
   };
 
+  const forgetPosition = () => {
+    clearPosition(positionKey);
+    clearRemotePosition(positionKey);
+  };
+
   // Kapitel zu Ende vorgelesen: Stelle löschen, beim nächsten Mal beginnt es wieder am Anfang.
   const finish = () => {
-    clearPosition(positionKey);
+    forgetPosition();
     tokenRef.current++;
     currentRef.current = 0;
     queuedRef.current = -1;
@@ -163,7 +199,9 @@ export function ReadAloudPlayer({ targetIds, positionKey }: { targetIds: string[
         if (isFirst) {
           currentRef.current = segmentIndex;
           setIndex(segmentIndex);
-          savePosition(positionKey, makePosition(segmentIndex, list.length, segment.text));
+          const position = makePosition(segmentIndex, list.length, segment.text, Date.now());
+          savePosition(positionKey, position);
+          queueRemotePosition(positionKey, position);
           highlight(segment.element);
         }
         if (isLast) enqueue(segmentIndex + 1, token);
@@ -211,7 +249,7 @@ export function ReadAloudPlayer({ targetIds, positionKey }: { targetIds: string[
   const restart = () => {
     if (segments().length === 0) return;
     setResumed(true);
-    clearPosition(positionKey);
+    forgetPosition();
     currentRef.current = 0;
     setStatus("playing");
     startAt(0);
@@ -223,6 +261,7 @@ export function ReadAloudPlayer({ targetIds, positionKey }: { targetIds: string[
     tokenRef.current++;
     window.speechSynthesis.cancel();
     setStatus("paused");
+    flushRemotePosition(positionKey);
   };
 
   // Beenden behält die Stelle; „Vorlesen starten“ setzt dort fort, „Von vorn“ beginnt am Anfang.
@@ -231,6 +270,7 @@ export function ReadAloudPlayer({ targetIds, positionKey }: { targetIds: string[
     window.speechSynthesis.cancel();
     setStatus("idle");
     highlight(null);
+    flushRemotePosition(positionKey);
   };
 
   const jump = (delta: number) => {

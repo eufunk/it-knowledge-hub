@@ -1,4 +1,4 @@
-import { act, cleanup, fireEvent, render, screen } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ReadAloudPlayer } from "@/components/learning/ReadAloudPlayer";
 
@@ -68,8 +68,19 @@ function cleanupPage() {
   queue = [];
 }
 
+// Konto-Schnittstelle: GET liefert die gespeicherte Stelle (Standard: keine), POST nimmt Speicherungen an
+let remoteStelle: object | null = null;
+const fetchMock = vi.fn(async (_url: string, init?: RequestInit) =>
+  init?.method === "POST" ? new Response(null, { status: 204 }) : Response.json({ stelle: remoteStelle }),
+);
+const postedBodies = () =>
+  fetchMock.mock.calls.filter(([, init]) => init?.method === "POST").map(([, init]) => JSON.parse(String(init?.body)));
+
 describe("F20: ReadAloudPlayer", () => {
   beforeEach(() => {
+    remoteStelle = null;
+    fetchMock.mockClear();
+    vi.stubGlobal("fetch", fetchMock);
     queue = [];
     spoken.length = 0;
     synth.cancel.mockClear();
@@ -182,6 +193,30 @@ describe("F20: ReadAloudPlayer", () => {
     cleanupPage();
     renderPlayer();
     expect(screen.getByText("Kapitel vorlesen")).toBeInTheDocument();
+  });
+
+  it("setzt an der Stelle aus dem Konto fort, wenn sie neuer ist als die im Browser", async () => {
+    window.localStorage.setItem(
+      "vorlesen-stelle:v1:kurs/kapitel",
+      JSON.stringify({ index: 1, total: 4, text: "Ein Absatz, z. B. mit Abkürzung.", updatedAt: 1000 }),
+    );
+    remoteStelle = { index: 2, total: 4, text: "Tabelle mit einer Zeile.", updatedAt: 5000 };
+    renderPlayer();
+    await waitFor(() => expect(screen.getByText("Weiter bei Abschnitt 3 von 4")).toBeInTheDocument());
+    fireEvent.click(screen.getByRole("button", { name: "Vorlesen starten" }));
+    expect(spoken[0]).toBe("Tabelle mit einer Zeile.");
+  });
+
+  it("speichert die Stelle im Konto und löscht sie mit „Von vorn“", async () => {
+    renderPlayer();
+    await waitFor(() => expect(fetchMock).toHaveBeenCalled());
+    fireEvent.click(screen.getByRole("button", { name: "Vorlesen starten" }));
+    finishCurrent();
+    fireEvent.click(screen.getByRole("button", { name: "Pause" }));
+    expect(postedBodies().at(-1)).toMatchObject({ kurs: "kurs", kapitel: "kapitel", index: 1, total: 4 });
+
+    fireEvent.click(screen.getByRole("button", { name: "Von vorn vorlesen" }));
+    expect(postedBodies().some((body) => body.loeschen === true)).toBe(true);
   });
 
   it("übernimmt die gewählte Geschwindigkeit", () => {

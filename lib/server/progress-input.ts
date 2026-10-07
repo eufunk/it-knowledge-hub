@@ -15,6 +15,12 @@ export function isValidStep(courseSlug: unknown, stepId: unknown): courseSlug is
   return validSteps(courseSlug)?.has(stepId) ?? false;
 }
 
+// F20: Vorlese-Stelle nur für vorhandene Kapitel (auch Anhänge) speichern
+export function isValidLesson(courseSlug: unknown, lessonSlug: unknown): courseSlug is string {
+  if (typeof courseSlug !== "string" || typeof lessonSlug !== "string") return false;
+  return getCourse(courseSlug)?.lessons.some((lesson) => lesson.slug === lessonSlug) ?? false;
+}
+
 // Erwartet JSON wie {"kurs-slug": ["kapitel", "kapitel/wissenstest"]}; Ungültiges wird verworfen.
 export function parseLocalProgress(raw: unknown): ProgressByCourse {
   if (typeof raw !== "string" || raw.length > 100_000) return {};

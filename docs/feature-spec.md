@@ -85,6 +85,7 @@ Angelehnt an den Referenz-Screenshot der Kursansicht, aber im eigenen Design.
   - Flüssiges Vorlesen: Abkürzungen werden ausgeschrieben („z. B.“ → „zum Beispiel“), der nächste Abschnitt wird vorab in die Warteschlange gelegt, Text wird nur bei Stimmen mit Längenbegrenzung (Google-Stimmen in Chrome) an Satzenden geteilt. Natürliche Stimmen stehen in der Auswahl oben und sind als „empfohlen“ markiert.
   - Der gerade gelesene Abschnitt (bei Tabellen die Zeile) wird hervorgehoben und in den sichtbaren Bereich gescrollt.
   - Fortsetzen: Der Player merkt sich pro Kapitel im Browser, bei welchem Abschnitt zuletzt vorgelesen wurde (`localStorage`, Schlüssel `vorlesen-stelle:v1:<kurs>/<kapitel>`). Nach Neuladen, Seitenwechsel oder „Vorlesen beenden“ zeigt er „Weiter bei Abschnitt N von M“ und setzt dort fort. Der Abschnitt wird über seinen Textanfang wiedergefunden, damit Änderungen am Kapitel die Stelle nicht verschieben; fehlt er, gilt die gespeicherte Nummer. Wurde das Kapitel bis zum Ende vorgelesen, wird die Stelle gelöscht, und es beginnt wieder am Anfang. „Von vorn“ startet jederzeit beim ersten Abschnitt.
+  - Stelle im Konto: Angemeldet wird die Stelle zusätzlich in der Datenbank gespeichert (Tabelle `speech_positions`, Schnittstelle `/api/vorlesestelle`), damit es auf jedem Gerät und in jedem Browser an derselben Stelle weitergeht. Gespeichert wird höchstens alle 10 Sekunden während des Vorlesens sowie sofort bei Pause, „Vorlesen beenden“ und beim Verlassen der Seite. Liegen eine Stelle im Browser und eine im Konto vor, gilt die zuletzt gespeicherte. Kapitelende und „Von vorn“ löschen die Stelle auch im Konto. Ist der Server nicht erreichbar, gilt die Stelle im Browser.
   - Beim Verlassen der Seite stoppt die Ausgabe. Unterstützt der Browser keine Sprachausgabe oder gibt es keine deutsche Stimme, zeigt der Player einen Hinweis statt der Bedienelemente.
 
 ### 4.5 Fortschritt
@@ -184,6 +185,7 @@ Wichtigste Typen: `Course` (mit `modules: CourseModule[]`, `lessons`, `appendix`
 | `users` | `id`, `username` (eindeutig, Kleinbuchstaben), `password_hash`, `created_at`, `tester` (0/1, sieht alle Kurse, F28) |
 | `sessions` | `token_hash` (Primärschlüssel), `user_id`, `created_at`, `expires_at` |
 | `progress` | `user_id`, `course_slug`, `step_id`, `completed_at` – Primärschlüssel aus den ersten drei |
+| `speech_positions` | `user_id`, `course_slug`, `lesson_slug`, `position`, `total`, `text`, `updated_at` – Primärschlüssel aus den ersten drei; zuletzt vorgelesene Stelle je Kapitel (F20) |
 
 Schritt-IDs sind dieselben wie im Browser (`<kapitel>` bzw. `<kapitel>/wissenstest`). Das Schema wird beim ersten Zugriff angelegt; fehlt in einer älteren Datenbank die Spalte `tester`, wird sie dabei ergänzt (Standard 0).
 

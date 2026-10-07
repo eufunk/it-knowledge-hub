@@ -27,6 +27,18 @@ CREATE TABLE IF NOT EXISTS progress (
   completed_at TEXT    NOT NULL,
   PRIMARY KEY (user_id, course_slug, step_id)
 );
+
+-- F20: zuletzt vorgelesene Stelle je Kapitel
+CREATE TABLE IF NOT EXISTS speech_positions (
+  user_id     INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  course_slug TEXT    NOT NULL,
+  lesson_slug TEXT    NOT NULL,
+  position    INTEGER NOT NULL,
+  total       INTEGER NOT NULL,
+  text        TEXT    NOT NULL,
+  updated_at  TEXT    NOT NULL,
+  PRIMARY KEY (user_id, course_slug, lesson_slug)
+);
 `;
 
 // Pfad zentral; mit IKH_DB_PATH umlenkbar (Tests, andere Installationen)

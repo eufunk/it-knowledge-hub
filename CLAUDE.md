@@ -117,7 +117,7 @@ npx vitest run tests/content/courses.test.ts   # einzelne Testdatei
 | `content/lerninhalte/` | Kursinhalte (Markdown) | **ja**, das sind die Primärdaten |
 | `public/images/` | Kursbilder (Herkunft und Lizenz in der Commit-Nachricht oder in `docs/` notieren) | ja |
 | `localStorage` im Browser | Lernfortschritt ohne Anmeldung, ein Schlüssel pro Kurs (`progress:v1:<kurs>`); Vorlese-Einstellungen (`vorlesen:v1`) und zuletzt vorgelesene Stelle pro Kapitel (`vorlesen-stelle:v1:<kurs>/<kapitel>`) | nein, nur beim jeweiligen Browser |
-| `data/it-knowledge-hub.db` | Konten (Passwort-Hashes), Sitzungen, Fortschritt angemeldeter Nutzer | **nein** (gitignored) – Primärdaten, vor Schemaänderungen sichern |
+| `data/it-knowledge-hub.db` | Konten (Passwort-Hashes), Sitzungen, Fortschritt und Vorlese-Stellen angemeldeter Nutzer | **nein** (gitignored) – Primärdaten, vor Schemaänderungen sichern |
 
 - Jeder Zugriff auf `localStorage` steht in `try/catch` und fällt auf 0 % zurück (F14). Er kann in privaten Fenstern oder bei blockierten Website-Daten fehlschlagen.
 - Ändert sich das Format der gespeicherten Fortschrittsdaten, wird der Schlüssel versioniert (z. B. `progress:v2:<kurs>`), damit alte Daten nicht zu Fehlern führen.
