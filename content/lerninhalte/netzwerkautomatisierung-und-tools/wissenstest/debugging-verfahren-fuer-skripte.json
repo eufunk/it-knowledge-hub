@@ -1,0 +1,487 @@
+{
+  "sections": {
+    "7.1": "Grundlagen des Debuggings",
+    "7.2": "Breakpoints, Stepping und Tracing",
+    "7.3": "Konsole, Debugger, Logging und Assertions",
+    "7.4": "Fehlerursachen verstehen",
+    "7.5": "Fortgeschrittene Debugging-Werkzeuge",
+    "7.6": "Fehlerbehebung Schritt für Schritt",
+    "7.7": "Übung: Katharinas Debugging-Abenteuer",
+    "7.8": "Coding Challenge (Python)"
+  },
+  "questions": [
+    {
+      "section": "7.1",
+      "question": "Was ist Debugging?",
+      "options": [
+        "Der Prozess, Fehler in Software zu finden, zu analysieren und zu beheben",
+        "Das Schreiben neuer Funktionen",
+        "Das automatische Formatieren von Code",
+        "Das Verteilen von Skripten auf Server"
+      ],
+      "explanation": "Ziel ist, die Ursache eines Problems zu finden und zu beheben, damit die Software korrekt und zuverlässig funktioniert."
+    },
+    {
+      "section": "7.1",
+      "question": "Was fand das Team um Grace Hopper 1947 im Rechner Mark II?",
+      "options": [
+        "Eine Motte, die in einem Relais steckte",
+        "Einen Tippfehler im Programmcode",
+        "Einen defekten Monitor",
+        "Eine Maus im Kabelschacht"
+      ],
+      "explanation": "Die Motte wurde ins Logbuch geklebt: „First actual case of bug being found“. Das Wort „Bug“ für technische Fehler war schon vorher üblich."
+    },
+    {
+      "section": "7.1",
+      "question": "Welcher Nutzen des Debuggings gehört zum Lernprozess?",
+      "options": [
+        "Man versteht besser, wie die Teile des eigenen Programms zusammenarbeiten",
+        "Das Programm läuft automatisch schneller",
+        "Man braucht keine Tests mehr",
+        "Der Code wird automatisch dokumentiert"
+      ],
+      "explanation": "Weitere Nutzen sind Qualitätssicherung und Effizienzsteigerung, weil Fehler früh gefunden werden."
+    },
+    {
+      "section": "7.2",
+      "question": "Was passiert, wenn ein Programm im Debugging-Modus einen Breakpoint erreicht?",
+      "options": [
+        "Die Ausführung hält an, und Du kannst Variablen und Call Stack prüfen",
+        "Das Programm wird beendet",
+        "Die Zeile wird übersprungen",
+        "Der Code wird automatisch korrigiert"
+      ],
+      "explanation": "Danach setzt Du das Programm fort, bis zum nächsten Breakpoint oder bis zum Ende."
+    },
+    {
+      "section": "7.2",
+      "question": "Was macht Step Over?",
+      "options": [
+        "Führt die aktuelle Zeile aus und behandelt Funktionsaufrufe als Ganzes",
+        "Springt in die aufgerufene Funktion hinein",
+        "Läuft bis zum Ende der aktuellen Funktion",
+        "Beendet das Programm"
+      ],
+      "explanation": "Step Into springt in die Funktion hinein, Step Out läuft bis zu ihrem Ende und kehrt zur aufrufenden Stelle zurück."
+    },
+    {
+      "section": "7.2",
+      "question": "Du stehst in einer Funktion, die Du nicht weiter untersuchen musst. Welche Stepping-Art passt?",
+      "options": [
+        "Step Out",
+        "Step Into",
+        "Step Over",
+        "Neustart des Programms"
+      ],
+      "explanation": "Step Out setzt die Ausführung bis zum Ende der aktuellen Funktion fort und kehrt zur aufrufenden Stelle zurück."
+    },
+    {
+      "section": "7.2",
+      "question": "Wofür eignet sich Tracing besonders?",
+      "options": [
+        "Für komplexe Fehler, die nur unter bestimmten Bedingungen auftreten",
+        "Für Syntaxfehler, die der Editor schon markiert",
+        "Zum Formatieren von Code",
+        "Zum Verschlüsseln von Log-Dateien"
+      ],
+      "explanation": "Tracing verfolgt Programmfluss und Variablenwerte über längere Zeit, etwa durch Log-Ausgaben oder automatische Ablaufverfolgung."
+    },
+    {
+      "section": "7.2",
+      "question": "Was zeigt <code>bash -x skript.sh</code> an?",
+      "options": [
+        "Jede Zeile mit eingesetzten Werten, bevor sie ausgeführt wird",
+        "Nur die Syntaxfehler, ohne das Skript auszuführen",
+        "Die Laufzeit jeder Funktion",
+        "Den Speicherverbrauch des Skripts"
+      ],
+      "explanation": "Dieselbe Wirkung hat <code>set -x</code> im Skript. Eine reine Syntaxprüfung macht <code>bash -n</code>."
+    },
+    {
+      "section": "7.2",
+      "question": "Mit welchem Befehl schaltest Du in PowerShell eine Ablaufverfolgung Zeile für Zeile ein?",
+      "options": [
+        "<code>Set-PSDebug -Trace 1</code>",
+        "<code>Measure-Command</code>",
+        "<code>Set-StrictMode -Off</code>",
+        "<code>Get-Process -Id $PID</code>"
+      ],
+      "explanation": "<code>Set-PSDebug -Off</code> schaltet die Ablaufverfolgung wieder aus."
+    },
+    {
+      "section": "7.3",
+      "question": "Was solltest Du nach der Fehlersuche mit der Konsole tun?",
+      "options": [
+        "Die eingefügten Diagnoseausgaben wieder entfernen",
+        "Alle Kommentare löschen",
+        "Das Skript umbenennen",
+        "Die Konsole deinstallieren"
+      ],
+      "explanation": "Zusätzliche <code>print</code>-, <code>echo</code>- oder <code>Write-Host</code>-Ausgaben haben im fertigen Skript nichts mehr zu suchen."
+    },
+    {
+      "section": "7.3",
+      "question": "Was zeigt der Call Stack in einem Debugger?",
+      "options": [
+        "Die Kette der Funktionsaufrufe, die zur aktuellen Stelle geführt hat",
+        "Alle Variablen des Programms mit ihren Werten",
+        "Die Liste aller gesetzten Breakpoints",
+        "Den Speicherverbrauch jeder Funktion"
+      ],
+      "explanation": "So verstehst Du, auf welchem Weg das Programm an die aktuelle Stelle gelangt ist."
+    },
+    {
+      "section": "7.3",
+      "question": "Welche Debugger-Funktion zeigt laufend, wie sich ausgewählte Variablen während der Ausführung ändern?",
+      "options": [
+        "Variable Watch",
+        "Call Stack",
+        "Step Out",
+        "Hot-Swap"
+      ],
+      "explanation": "Mit Variable Watch beobachtest Du ausgewählte Variablen, ohne an jeder Stelle eine Ausgabe einzufügen."
+    },
+    {
+      "section": "7.3",
+      "question": "Welche Log-Level kennt das Python-Modul <code>logging</code>?",
+      "options": [
+        "DEBUG, INFO, WARNING, ERROR, CRITICAL",
+        "LOW, MEDIUM, HIGH",
+        "TRACE, NOTICE, ALERT",
+        "INFO, WARN, FAIL"
+      ],
+      "explanation": "Im Betrieb protokolliert man meist ab INFO, bei der Fehlersuche ab DEBUG."
+    },
+    {
+      "section": "7.3",
+      "question": "Was bewirkt <code>logging.basicConfig(level=logging.INFO)</code>?",
+      "options": [
+        "Meldungen ab Stufe INFO werden ausgegeben, DEBUG-Meldungen nicht",
+        "Nur INFO-Meldungen werden ausgegeben",
+        "Alle Meldungen werden unterdrückt",
+        "Nur Fehler werden ausgegeben"
+      ],
+      "explanation": "Der Level ist eine Untergrenze: INFO, WARNING, ERROR und CRITICAL erscheinen, DEBUG nicht."
+    },
+    {
+      "section": "7.3",
+      "question": "Warum sind Log-Dateien bei Skripten, die nachts per cron laufen, besonders wichtig?",
+      "options": [
+        "Niemand sieht die Konsole, das Log ist der einzige Nachweis des Ablaufs",
+        "Weil cron keine Fehler zulässt",
+        "Weil Logs das Skript schneller machen",
+        "Weil cron ohne Log-Datei nicht startet"
+      ],
+      "explanation": "Bei unbeaufsichtigten Skripten zeigt erst das Log, was passiert ist und wo ein Fehler auftrat."
+    },
+    {
+      "section": "7.3",
+      "question": "Was passiert, wenn in Python eine Assertion fehlschlägt?",
+      "options": [
+        "Das Programm bricht mit einem <code>AssertionError</code> und der angegebenen Meldung ab",
+        "Die Zeile wird übersprungen",
+        "Es erscheint nur eine Warnung im Log",
+        "Der Wert wird automatisch korrigiert"
+      ],
+      "explanation": "Assertions prüfen Annahmen, die an einer Stelle immer gelten müssen, und decken so logische Fehler früh auf."
+    },
+    {
+      "section": "7.3",
+      "question": "Warum solltest Du Benutzereingaben nicht mit <code>assert</code> prüfen?",
+      "options": [
+        "Mit <code>python -O</code> werden alle Assertions übersprungen",
+        "Weil <code>assert</code> nur für Zahlen funktioniert",
+        "Weil <code>assert</code> das Programm verlangsamt",
+        "Weil <code>assert</code> nur in Tests erlaubt ist"
+      ],
+      "explanation": "Eingaben prüft man mit <code>if</code> und einer gezielten Ausnahme, z. B. <code>raise ValueError(...)</code>."
+    },
+    {
+      "section": "7.3",
+      "question": "Wie prüfst Du die Syntax eines Bash-Skripts, ohne es auszuführen?",
+      "options": [
+        "<code>bash -n skript.sh</code>",
+        "<code>bash -x skript.sh</code>",
+        "<code>set -e</code>",
+        "<code>chmod +x skript.sh</code>"
+      ],
+      "explanation": "<code>bash -x</code> führt das Skript aus und zeigt dabei jede Zeile an."
+    },
+    {
+      "section": "7.3",
+      "question": "Was bewirkt <code>breakpoint()</code> in einem Python-Skript?",
+      "options": [
+        "Es startet an dieser Stelle den Debugger pdb",
+        "Es beendet das Skript",
+        "Es schreibt eine Meldung ins Log",
+        "Es prüft die Syntax der Datei"
+      ],
+      "explanation": "Im Debugger kannst Du dann Variablen prüfen und den Code schrittweise ausführen."
+    },
+    {
+      "section": "7.3",
+      "question": "Wozu dient <code>-ErrorAction Stop</code> vor einem <code>catch</code>-Block in PowerShell?",
+      "options": [
+        "Es macht aus einem nicht abbrechenden Fehler eine Ausnahme, die <code>catch</code> abfangen kann",
+        "Es unterdrückt alle Fehlermeldungen",
+        "Es beendet die PowerShell-Sitzung",
+        "Es schreibt Fehler in eine Log-Datei"
+      ],
+      "explanation": "Viele Cmdlets melden Fehler sonst nur und laufen weiter. Dann würde <code>catch</code> nie ausgelöst."
+    },
+    {
+      "section": "7.3",
+      "question": "Was bewirkt <code>Set-StrictMode -Version Latest</code> in PowerShell?",
+      "options": [
+        "Strengere Prüfung, z. B. Fehler beim Zugriff auf nicht gesetzte Variablen",
+        "Schnellere Ausführung",
+        "Automatische Formatierung des Codes",
+        "Ablaufverfolgung jeder Zeile"
+      ],
+      "explanation": "In Bash erfüllt <code>set -euo pipefail</code> einen ähnlichen Zweck."
+    },
+    {
+      "section": "7.4",
+      "question": "Was sind Anomalien in der Softwareentwicklung?",
+      "options": [
+        "Unerwartete Abweichungen vom normalen Verhalten eines Programms",
+        "Absichtlich eingebaute Testfehler",
+        "Kommentare im Code",
+        "Neue Funktionen"
+      ],
+      "explanation": "Besonders schwierig sind Anomalien, die unregelmäßig auftreten und sich schwer reproduzieren lassen."
+    },
+    {
+      "section": "7.4",
+      "question": "Welche Fehlerart erzeugt keine Fehlermeldung, liefert aber ein falsches Ergebnis?",
+      "options": [
+        "Logikfehler",
+        "Syntaxfehler",
+        "Laufzeitfehler",
+        "Netzwerkfehler"
+      ],
+      "explanation": "Logikfehler findest Du, indem Du den Code schrittweise durchgehst und Ergebnisse mit Erwartungen vergleichst."
+    },
+    {
+      "section": "7.4",
+      "question": "Zu welcher Fehlerart gehört eine Division durch null?",
+      "options": [
+        "Laufzeitfehler",
+        "Syntaxfehler",
+        "Logikfehler",
+        "Formatierungsfehler"
+      ],
+      "explanation": "Laufzeitfehler treten erst während der Ausführung auf, oft durch unerwartete Eingaben oder Zustände."
+    },
+    {
+      "section": "7.4",
+      "question": "Ein Python-Skript enthält in Zeile 20 einen Syntaxfehler. Was passiert beim Start?",
+      "options": [
+        "Keine einzige Zeile wird ausgeführt",
+        "Die Zeilen 1 bis 19 laufen, dann bricht es ab",
+        "Zeile 20 wird übersprungen",
+        "Das Skript läuft vollständig mit einer Warnung"
+      ],
+      "explanation": "Python prüft die gesamte Datei vor dem Start. Bash dagegen führt Befehle vor der fehlerhaften Stelle bereits aus."
+    },
+    {
+      "section": "7.4",
+      "question": "Warum lohnt sich <code>bash -n</code> vor dem ersten Lauf eines Bash-Skripts?",
+      "options": [
+        "Bash führt Befehle vor einem Syntaxfehler schon aus, das Skript kann halb durchlaufen",
+        "Weil Bash ohne Prüfung nicht startet",
+        "Weil <code>bash -n</code> das Skript schneller macht",
+        "Weil <code>bash -n</code> Logikfehler findet"
+      ],
+      "explanation": "Ein halb durchgelaufenes Skript kann z. B. Dateien schon kopiert oder gelöscht haben."
+    },
+    {
+      "section": "7.4",
+      "question": "Was ist der erste Schritt der Ursachenanalyse?",
+      "options": [
+        "Den Fehler reproduzieren und die genauen Schritte dokumentieren",
+        "Den Code komplett neu schreiben",
+        "Alle Log-Dateien löschen",
+        "Das Skript an alle Server verteilen"
+      ],
+      "explanation": "Danach folgen das Isolieren des problematischen Codes und die Analyse der Fehlermeldungen."
+    },
+    {
+      "section": "7.4",
+      "question": "Was ist der Hauptvorteil eines Code-Reviews bei der Fehlersuche?",
+      "options": [
+        "Ein frischer Blick findet Fehler, die der Autorin oder dem Autor nicht auffallen",
+        "Der Code wird automatisch schneller",
+        "Es ersetzt alle Tests",
+        "Es verhindert jede Art von Fehler"
+      ],
+      "explanation": "Außerdem sichert es die Qualität und verteilt Wissen im Team."
+    },
+    {
+      "section": "7.4",
+      "question": "Was geschieht im letzten Schritt eines Code-Reviews?",
+      "options": [
+        "Ein abschließender Blick prüft, ob alle Änderungen korrekt umgesetzt sind",
+        "Die Autorin oder der Autor beschreibt den Code",
+        "Die Reviewer geben erstes Feedback",
+        "Der Code wird gelöscht"
+      ],
+      "explanation": "Der Ablauf: Vorbereitung, Durchsicht, Feedback, Diskussion, Überarbeitung, Abschluss."
+    },
+    {
+      "section": "7.5",
+      "question": "Was ist ein Speicherleck?",
+      "options": [
+        "Objekte bleiben im Speicher, obwohl sie nicht mehr gebraucht werden",
+        "Daten werden versehentlich ins Internet übertragen",
+        "Der Speicher wird zu schnell freigegeben",
+        "Eine Datei wird beim Speichern beschädigt"
+      ],
+      "explanation": "Ein Heap-Dump zeigt den Speicher zu einem Zeitpunkt und hilft, solche Objekte zu finden."
+    },
+    {
+      "section": "7.5",
+      "question": "Welches Python-Modul zeigt, welche Codezeilen wie viel Speicher belegen?",
+      "options": [
+        "<code>tracemalloc</code>",
+        "<code>logging</code>",
+        "<code>unittest</code>",
+        "<code>cProfile</code>"
+      ],
+      "explanation": "<code>cProfile</code> misst dagegen die Laufzeit von Funktionen."
+    },
+    {
+      "section": "7.5",
+      "question": "Was misst ein Profiler?",
+      "options": [
+        "Wie viel Zeit ein Programm in welchen Funktionen verbringt",
+        "Wie viele Fehler ein Programm enthält",
+        "Wer den Code geschrieben hat",
+        "Wie gut der Code formatiert ist"
+      ],
+      "explanation": "So findest Du die Stellen, an denen sich eine Optimierung am meisten lohnt."
+    },
+    {
+      "section": "7.5",
+      "question": "Warum ist im Profiling-Beispiel die Suche in einer Menge (<code>set</code>) viel schneller als in einer Liste?",
+      "options": [
+        "Die Menge findet einen Eintrag direkt, die Liste wird der Reihe nach durchsucht",
+        "Eine Menge speichert weniger Daten",
+        "Listen sind in Python fehlerhaft",
+        "Die Menge wird auf der Grafikkarte durchsucht"
+      ],
+      "explanation": "Bei 100.000 Einträgen war die Prüfung mit der Menge fast tausendmal schneller."
+    },
+    {
+      "section": "7.5",
+      "question": "Womit misst Du in PowerShell die Laufzeit eines Befehls?",
+      "options": [
+        "<code>Measure-Command { ... }</code>",
+        "<code>Set-PSDebug -Trace 1</code>",
+        "<code>Get-Help</code>",
+        "<code>Set-PSBreakpoint</code>"
+      ],
+      "explanation": "In Bash misst <code>time befehl</code> die Laufzeit."
+    },
+    {
+      "section": "7.5",
+      "question": "Was ermöglicht Hot-Swap?",
+      "options": [
+        "Code während der Ausführung ändern, ohne das Programm neu zu starten",
+        "Ein Programm auf einen anderen Server verschieben",
+        "Zwei Programme gleichzeitig debuggen",
+        "Fehlermeldungen automatisch übersetzen"
+      ],
+      "explanation": "Meist lassen sich nur Methodeninhalte ändern. Bei Skripten spielt Hot-Swap kaum eine Rolle, weil ein Neustart nur Sekunden dauert."
+    },
+    {
+      "section": "7.5",
+      "question": "Wie sollte ein Remote-Debugger sicher erreichbar sein?",
+      "options": [
+        "Nur lokal lauschen lassen und über einen SSH-Tunnel verbinden",
+        "Den Debug-Port offen ins Internet stellen",
+        "Ohne Passwort im gesamten Firmennetz freigeben",
+        "Nur über unverschlüsseltes HTTP"
+      ],
+      "explanation": "Ein Debugger erlaubt vollen Zugriff auf das laufende Programm und seine Daten."
+    },
+    {
+      "section": "7.5",
+      "question": "Was ist ein Watchpoint?",
+      "options": [
+        "Ein Haltepunkt, der auslöst, sobald sich der Wert einer bestimmten Variable ändert",
+        "Ein Haltepunkt an einer bestimmten Zeile",
+        "Eine Uhr, die die Laufzeit misst",
+        "Ein Log-Eintrag mit Zeitstempel"
+      ],
+      "explanation": "In PowerShell setzt Du ihn mit <code>Set-PSBreakpoint -Variable</code>."
+    },
+    {
+      "section": "7.5",
+      "question": "Eine Schleife verarbeitet 10.000 Datensätze, der Fehler tritt nur bei einem bestimmten Wert auf. Was hilft am besten?",
+      "options": [
+        "Ein Conditional Breakpoint, der nur bei diesem Wert anhält",
+        "Ein normaler Breakpoint in der Schleife",
+        "Step Out",
+        "Hot-Swap"
+      ],
+      "explanation": "Ein normaler Breakpoint würde 10.000-mal anhalten."
+    },
+    {
+      "section": "7.6",
+      "question": "Welche Frage hilft beim Entwickeln von Hypothesen über eine Fehlerursache?",
+      "options": [
+        "Könnte eine kürzliche Änderung im Code den Fehler verursacht haben?",
+        "Wie heißt die Person, die den Fehler gemeldet hat?",
+        "Wie lang ist das Skript insgesamt?",
+        "Welche Farbe hat der Editor?"
+      ],
+      "explanation": "<code>git log</code> und <code>git diff</code> zeigen, was sich zuletzt geändert hat."
+    },
+    {
+      "section": "7.6",
+      "question": "Was gehört zur Umsetzung einer Fehlerkorrektur?",
+      "options": [
+        "Änderungen dokumentieren, den gesamten Code prüfen und aus dem Fehler lernen",
+        "Nur die fehlerhafte Zeile löschen",
+        "Die Tests deaktivieren, damit sie nicht stören",
+        "Das Skript sofort ohne Prüfung verteilen"
+      ],
+      "explanation": "Ein zusätzlicher Test sorgt dafür, dass derselbe Fehler nicht unbemerkt zurückkehrt."
+    },
+    {
+      "section": "7.7",
+      "question": "Welchen Schritt hat Katharina in der Übung ausgelassen?",
+      "options": [
+        "Das Code-Review durch ihren Kollegen Alex",
+        "Das Reproduzieren des Fehlers",
+        "Das Setzen von Breakpoints",
+        "Das Schreiben von Unit-Tests"
+      ],
+      "explanation": "Außerdem fehlten automatisierte Tests mit CI und eine Gesamtprüfung nach der Korrektur."
+    },
+    {
+      "section": "7.8",
+      "question": "Was prüft <code>with self.assertRaises(AssertionError):</code> im Unit-Test der Coding Challenge?",
+      "options": [
+        "Dass im Block genau ein <code>AssertionError</code> auftritt",
+        "Dass im Block kein Fehler auftritt",
+        "Dass das Ergebnis 0 ist",
+        "Dass die Liste sortiert ist"
+      ],
+      "explanation": "Der Test gilt als bestanden, wenn <code>compute_average([])</code> diesen Fehler auslöst."
+    },
+    {
+      "section": "7.8",
+      "question": "Warum verwendet der erste Test <code>assertAlmostEqual</code> statt <code>assertEqual</code>?",
+      "options": [
+        "Gleitkommaberechnungen können minimal ungenau sein",
+        "Weil <code>assertEqual</code> keine Zahlen vergleicht",
+        "Weil der Durchschnitt immer gerundet wird",
+        "Weil <code>assertEqual</code> veraltet ist"
+      ],
+      "explanation": "<code>assertAlmostEqual</code> vergleicht mit einer kleinen Toleranz."
+    }
+  ]
+}

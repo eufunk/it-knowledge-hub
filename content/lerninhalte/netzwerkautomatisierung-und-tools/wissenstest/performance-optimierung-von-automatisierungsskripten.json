@@ -1,0 +1,497 @@
+{
+  "sections": {
+    "8.1": "Warum Performance zählt",
+    "8.2": "Analyse und Messung",
+    "8.3": "Code-Optimierung",
+    "8.4": "Ressourcenmanagement",
+    "8.5": "Hardware-Upgrades",
+    "8.6": "Übung: Was muss optimiert werden?",
+    "8.7": "Häufige Fehler"
+  },
+  "questions": [
+    {
+      "section": "8.1",
+      "question": "Was beschreibt die Performance eines Skripts?",
+      "options": [
+        "Wie effizient und schnell es seine Aufgaben erledigt",
+        "Wie viele Zeilen Code es hat",
+        "Wie gut es dokumentiert ist",
+        "Wie viele Personen daran arbeiten"
+      ],
+      "explanation": "Ein performantes Skript braucht für dieselbe Aufgabe weniger Zeit und weniger Ressourcen."
+    },
+    {
+      "section": "8.1",
+      "question": "Was ist der Unterschied zwischen Effizienz und Produktivität?",
+      "options": [
+        "Effizienz: Aufgaben mit wenig Aufwand erledigen; Produktivität: wie viel Arbeit in einer bestimmten Zeit erledigt wird",
+        "Beide Begriffe bedeuten dasselbe",
+        "Effizienz misst die Arbeitsmenge, Produktivität den Ressourcenverbrauch",
+        "Effizienz gilt nur für Hardware, Produktivität nur für Software"
+      ],
+      "explanation": "Beide wirken sich direkt auf Betriebskosten und Wettbewerbsfähigkeit aus."
+    },
+    {
+      "section": "8.1",
+      "question": "Warum spart ein schnelleres Skript in der Cloud oft direkt Geld?",
+      "options": [
+        "Weil dort häufig nach genutzter Rechenzeit abgerechnet wird",
+        "Weil Cloud-Anbieter schnelle Skripte belohnen",
+        "Weil langsame Skripte in der Cloud verboten sind",
+        "Weil schnelle Skripte keine Lizenz brauchen"
+      ],
+      "explanation": "Weniger Ressourcenverbrauch macht zusätzliche Cloud-Ressourcen oder Hardware-Upgrades seltener nötig."
+    },
+    {
+      "section": "8.2",
+      "question": "Was ist ein Bottleneck?",
+      "options": [
+        "Ein Engpass, der die Performance am stärksten bremst",
+        "Ein besonders schneller Codeabschnitt",
+        "Ein Fehler in der Syntax",
+        "Ein Werkzeug zum Messen der Laufzeit"
+      ],
+      "explanation": "Die Performance-Analyse soll Engpässe finden, damit sie gezielt beseitigt werden können."
+    },
+    {
+      "section": "8.2",
+      "question": "Was zeigt ein Call-Graph?",
+      "options": [
+        "Welche Funktion welche andere aufruft",
+        "Die Laufzeit als Farbskala",
+        "Den Speicherverbrauch über die Zeit",
+        "Die Versionsgeschichte eines Skripts"
+      ],
+      "explanation": "Knoten sind die Funktionen, Kanten die Aufrufe: Ruft A die Funktion B auf, führt eine Kante von A nach B."
+    },
+    {
+      "section": "8.2",
+      "question": "Was stellt eine Heatmap in der Performance-Analyse dar?",
+      "options": [
+        "Werte wie die Laufzeit von Codeabschnitten als Farben",
+        "Die Temperatur des Prozessors",
+        "Die Aufrufbeziehungen zwischen Funktionen als Pfeile",
+        "Die Anzahl der Codezeilen je Datei"
+      ],
+      "explanation": "Eine verbreitete Variante ist der Flame Graph: Je breiter ein Balken, desto mehr Zeit entfällt auf die Funktion."
+    },
+    {
+      "section": "8.2",
+      "question": "Welche Kennzahl misst die Anzahl und Dauer von Lese- und Schreibzugriffen auf Datenträger und Netzwerk?",
+      "options": [
+        "I/O-Operationen",
+        "CPU-Auslastung",
+        "Ausführungszeit",
+        "Speichernutzung"
+      ],
+      "explanation": "Viele kleine Zugriffe bremsen ein Skript stark."
+    },
+    {
+      "section": "8.2",
+      "question": "Was bedeutet eine dauerhaft hohe CPU-Auslastung eines Skripts?",
+      "options": [
+        "Sie kann auf ineffizienten Code hinweisen, aber auch auf eine rechenintensive Aufgabe",
+        "Das Skript ist auf jeden Fall fehlerhaft",
+        "Das Skript ist besonders gut optimiert",
+        "Der Arbeitsspeicher ist voll"
+      ],
+      "explanation": "Erst ein Profiler zeigt, ob die Rechenzeit sinnvoll genutzt wird."
+    },
+    {
+      "section": "8.2",
+      "question": "Was ist Benchmarking?",
+      "options": [
+        "Die Leistung mit einer Referenz vergleichen, z. B. dem Stand vor einer Änderung",
+        "Den Code Zeile für Zeile durchgehen",
+        "Fehlermeldungen in Logs suchen",
+        "Den Code automatisch formatieren"
+      ],
+      "explanation": "Schritte: Basislinie festlegen, mehrfach messen, mit der Basislinie vergleichen."
+    },
+    {
+      "section": "8.2",
+      "question": "Warum führt <code>timeit</code> einen Codeabschnitt viele Male aus?",
+      "options": [
+        "Um Zufallsschwankungen bei der Messung auszugleichen",
+        "Um Fehler im Code zu finden",
+        "Um den Code zu optimieren",
+        "Um den Speicher zu leeren"
+      ],
+      "explanation": "Einzelne Messungen schwanken, etwa weil gerade andere Prozesse laufen."
+    },
+    {
+      "section": "8.2",
+      "question": "Wofür ist Apache JMeter gedacht?",
+      "options": [
+        "Für Lasttests von Webanwendungen, APIs und Servern mit vielen gleichzeitigen Zugriffen",
+        "Zum Messen einzelner Python-Funktionen",
+        "Zur Syntaxprüfung von Bash-Skripten",
+        "Zur Speicheranalyse von PowerShell"
+      ],
+      "explanation": "Für die Laufzeit einzelner Skripte eignen sich <code>timeit</code>, <code>Measure-Command</code> oder <code>time</code>."
+    },
+    {
+      "section": "8.2",
+      "question": "Was zeichnet den Profiler Py-Spy aus?",
+      "options": [
+        "Er beobachtet ein laufendes Python-Programm von außen, ohne es zu verändern",
+        "Er funktioniert nur für JavaScript",
+        "Er formatiert den Code automatisch",
+        "Er ersetzt den Python-Interpreter"
+      ],
+      "explanation": "Py-Spy erzeugt außerdem Flame Graphs."
+    },
+    {
+      "section": "8.2",
+      "question": "Was legt die Option <code>-s</code> bei <code>python -m timeit</code> fest?",
+      "options": [
+        "Die Vorbereitung, die nicht mitgemessen wird",
+        "Die Anzahl der Wiederholungen",
+        "Die Ausgabe in Sekunden",
+        "Den Speicherverbrauch"
+      ],
+      "explanation": "Im Beispiel wird die Liste bzw. Menge mit <code>-s</code> angelegt, gemessen wird nur die Suche."
+    },
+    {
+      "section": "8.2",
+      "question": "Was ist der erste Schritt beim Optimieren eines Skripts?",
+      "options": [
+        "Eine Ausgangsmessung als Basislinie",
+        "Den Code komplett umschreiben",
+        "Neue Hardware kaufen",
+        "Alle Schleifen entfernen"
+      ],
+      "explanation": "Ohne Basislinie lässt sich nicht beurteilen, ob eine Änderung etwas gebracht hat."
+    },
+    {
+      "section": "8.2",
+      "question": "Warum sollten Optimierungen einzeln umgesetzt werden?",
+      "options": [
+        "Damit die Wirkung jeder Änderung erkennbar bleibt",
+        "Weil Git nur eine Änderung pro Tag erlaubt",
+        "Weil mehrere Änderungen das Skript immer verlangsamen",
+        "Damit der Profiler nicht abstürzt"
+      ],
+      "explanation": "Nach jeder Änderung wird erneut gemessen und mit der Basislinie verglichen."
+    },
+    {
+      "section": "8.2",
+      "question": "Was musst Du nach einer Optimierung außer der Laufzeit noch prüfen?",
+      "options": [
+        "Ob das Skript noch dieselben Ergebnisse liefert",
+        "Ob der Code kürzer geworden ist",
+        "Ob die Kommentare noch stimmen",
+        "Ob der Dateiname noch passt"
+      ],
+      "explanation": "Eine schnellere, aber falsche Lösung ist keine Verbesserung."
+    },
+    {
+      "section": "8.3",
+      "question": "Was ist mit Redundanz bei der Code-Optimierung gemeint?",
+      "options": [
+        "Dieselbe Operation wird mehrfach ausgeführt, obwohl einmal genügen würde",
+        "Der Code wird auf mehreren Servern gespeichert",
+        "Es gibt eine Sicherungskopie des Skripts",
+        "Mehrere Personen arbeiten am selben Code"
+      ],
+      "explanation": "Typisch ist Arbeit in einer Schleife, deren Ergebnis sich bei jedem Durchlauf nicht ändert."
+    },
+    {
+      "section": "8.3",
+      "question": "Ein Skript liest in jeder Schleifenrunde dieselbe Konfigurationsdatei. Was ist die beste Lösung?",
+      "options": [
+        "Die Datei einmal vor der Schleife lesen und den Wert in einer Variable speichern",
+        "Die Datei in jeder Runde zweimal lesen, um sicherzugehen",
+        "Die Schleife parallelisieren",
+        "Mehr Arbeitsspeicher einbauen"
+      ],
+      "explanation": "Im Beispiel sank die Laufzeit so von 0,91 auf 0,002 Sekunden."
+    },
+    {
+      "section": "8.3",
+      "question": "Warum ist es in Bash langsam, für jede Zeile einer Datei ein externes Programm wie <code>tr</code> aufzurufen?",
+      "options": [
+        "Für jede Zeile wird ein neuer Prozess gestartet",
+        "Weil <code>tr</code> nur eine Zeile pro Sekunde verarbeitet",
+        "Weil Bash keine Schleifen kann",
+        "Weil Dateien in Bash nur einmal gelesen werden dürfen"
+      ],
+      "explanation": "Ein einzelner Aufruf wie <code>tr a-z A-Z &lt; hosts.txt</code> verarbeitet die ganze Datei auf einmal."
+    },
+    {
+      "section": "8.3",
+      "question": "Warum ist <code>$ergebnis += \"Server$i\"</code> in einer großen Schleife in Windows PowerShell 5.1 langsam?",
+      "options": [
+        "Bei jedem Durchlauf wird ein neues, größeres Array angelegt und alles hineinkopiert",
+        "Weil <code>+=</code> nur mit Zahlen funktioniert",
+        "Weil Zeichenketten in PowerShell verschlüsselt werden",
+        "Weil die Schleife doppelt durchlaufen wird"
+      ],
+      "explanation": "Besser ist es, die Ausgabe der Schleife direkt zuzuweisen: <code>$ergebnis = foreach (...) { ... }</code>."
+    },
+    {
+      "section": "8.3",
+      "question": "Welche Python-Datenstruktur eignet sich für die schnelle Prüfung, ob ein Wert enthalten ist?",
+      "options": [
+        "Menge (<code>set</code>)",
+        "Liste (<code>list</code>)",
+        "Tupel (<code>tuple</code>)",
+        "Zeichenkette (<code>str</code>)"
+      ],
+      "explanation": "Eine Menge findet einen Wert direkt, eine Liste prüft die Elemente nacheinander."
+    },
+    {
+      "section": "8.3",
+      "question": "Welche Datenstruktur ordnet in Python einem Schlüssel einen Wert zu, z. B. Hostname → IP-Adresse?",
+      "options": [
+        "Wörterbuch (<code>dict</code>)",
+        "Liste (<code>list</code>)",
+        "Menge (<code>set</code>)",
+        "NumPy-Array"
+      ],
+      "explanation": "In PowerShell entspricht das einer Hashtable (<code>@{}</code>), in Bash einem assoziativen Array."
+    },
+    {
+      "section": "8.3",
+      "question": "Was beschreibt die Big-O-Notation?",
+      "options": [
+        "Wie Laufzeit oder Speicherbedarf eines Algorithmus mit der Größe der Eingabe wachsen",
+        "Die genaue Laufzeit in Sekunden",
+        "Die Anzahl der Codezeilen",
+        "Die Programmiersprache eines Algorithmus"
+      ],
+      "explanation": "Sie zeigt, wie ein Algorithmus skaliert, nicht wie schnell er auf einem bestimmten Rechner ist."
+    },
+    {
+      "section": "8.3",
+      "question": "Ein Algorithmus hat die Komplexität O(n²). Was passiert, wenn sich die Datenmenge verdoppelt?",
+      "options": [
+        "Die Laufzeit vervierfacht sich ungefähr",
+        "Die Laufzeit verdoppelt sich",
+        "Die Laufzeit bleibt gleich",
+        "Die Laufzeit halbiert sich"
+      ],
+      "explanation": "Die Messung mit BubbleSort zeigte genau das: 0,05 s, 0,22 s, 0,89 s bei 1.000, 2.000 und 4.000 Werten."
+    },
+    {
+      "section": "8.3",
+      "question": "Welche Komplexität hat QuickSort im Mittel?",
+      "options": [
+        "O(n log n)",
+        "O(1)",
+        "O(n²)",
+        "O(log n)"
+      ],
+      "explanation": "Im ungünstigsten Fall braucht QuickSort allerdings O(n²)."
+    },
+    {
+      "section": "8.3",
+      "question": "Wie solltest Du in einem Skript eine Liste sortieren?",
+      "options": [
+        "Mit der eingebauten Funktion, z. B. <code>sorted()</code> oder <code>Sort-Object</code>",
+        "Mit einem selbst geschriebenen BubbleSort",
+        "Gar nicht, Sortieren ist zu langsam",
+        "Indem Du die Werte von Hand ordnest"
+      ],
+      "explanation": "Eingebaute Sortierfunktionen sind ausgereift und um ein Vielfaches schneller."
+    },
+    {
+      "section": "8.4",
+      "question": "Welche Ressource ist für den Datenaustausch mit Festplatten und Netzwerk zuständig?",
+      "options": [
+        "I/O (Input/Output)",
+        "CPU",
+        "RAM",
+        "GPU"
+      ],
+      "explanation": "Die CPU rechnet, der RAM hält die Daten, die gerade verarbeitet werden."
+    },
+    {
+      "section": "8.4",
+      "question": "Wie stellst Du in Python sicher, dass eine Datei auch bei einem Fehler wieder geschlossen wird?",
+      "options": [
+        "Mit <code>with open(...) as f:</code>",
+        "Mit <code>del f</code>",
+        "Mit <code>gc.collect()</code>",
+        "Gar nicht, Python schließt Dateien nie"
+      ],
+      "explanation": "In PowerShell gibt <code>.Dispose()</code> in einem <code>finally</code>-Block solche Ressourcen frei."
+    },
+    {
+      "section": "8.4",
+      "question": "Was bewirkt <code>del variable</code> in Python?",
+      "options": [
+        "Es entfernt den Namen; der Speicher wird erst frei, wenn kein Verweis mehr auf das Objekt besteht",
+        "Es gibt den Speicher sofort und garantiert frei",
+        "Es löscht die Datei von der Festplatte",
+        "Es beendet das Skript"
+      ],
+      "explanation": "<code>gc.collect()</code> von Hand ist nur in Sonderfällen nötig, etwa bei sich gegenseitig referenzierenden Objekten."
+    },
+    {
+      "section": "8.4",
+      "question": "Wofür eignet sich Multithreading in Python besonders?",
+      "options": [
+        "Für Aufgaben, die warten, z. B. Netzwerkabfragen",
+        "Für reine Rechenaufgaben",
+        "Für das Sortieren kleiner Listen",
+        "Für Syntaxprüfungen"
+      ],
+      "explanation": "Wegen des Global Interpreter Lock (GIL) führt in Standard-Python immer nur ein Thread gleichzeitig Python-Code aus."
+    },
+    {
+      "section": "8.4",
+      "question": "Wie beschleunigst Du in Python eine rechenintensive Aufgabe auf mehreren Prozessorkernen?",
+      "options": [
+        "Mit mehreren Prozessen, z. B. <code>ProcessPoolExecutor</code>",
+        "Mit <code>ThreadPoolExecutor</code>",
+        "Mit <code>lru_cache</code>",
+        "Mit <code>time.sleep()</code>"
+      ],
+      "explanation": "Threads helfen bei Rechenaufgaben wegen des GIL nicht."
+    },
+    {
+      "section": "8.4",
+      "question": "Was ist eine Race Condition?",
+      "options": [
+        "Ein Ergebnis, das von der zufälligen Reihenfolge paralleler Zugriffe auf dieselben Daten abhängt",
+        "Ein Wettbewerb um das schnellste Skript",
+        "Ein Fehler beim Sortieren",
+        "Eine besonders schnelle Schleife"
+      ],
+      "explanation": "Deshalb müssen parallele Teilaufgaben wirklich unabhängig sein."
+    },
+    {
+      "section": "8.4",
+      "question": "Zehn Serverabfragen warten je eine Sekunde. Wie lange dauerte es im Beispiel mit zehn Threads?",
+      "options": [
+        "Etwa 1 Sekunde",
+        "Etwa 10 Sekunden",
+        "Etwa 100 Sekunden",
+        "Etwa 0,1 Sekunden"
+      ],
+      "explanation": "Nacheinander dauerte es 10 Sekunden, weil jede Abfrage auf die vorherige wartete."
+    },
+    {
+      "section": "8.4",
+      "question": "Wie verarbeitest Du eine sehr große Log-Datei speichersparend?",
+      "options": [
+        "Zeile für Zeile lesen statt die ganze Datei auf einmal zu laden",
+        "Mit <code>readlines()</code> komplett einlesen",
+        "Die Datei vorher kopieren",
+        "Die Datei in eine Liste umwandeln"
+      ],
+      "explanation": "Im Beispiel: 0,2 MB Spitzenverbrauch zeilenweise, 44,7 MB beim Einlesen der ganzen Datei."
+    },
+    {
+      "section": "8.4",
+      "question": "Was bedeutet die Cache-Strategie LRU?",
+      "options": [
+        "Ist der Cache voll, wird der am längsten nicht genutzte Eintrag entfernt",
+        "Der neueste Eintrag wird immer zuerst gelöscht",
+        "Der Cache wird nie geleert",
+        "Einträge werden zufällig entfernt"
+      ],
+      "explanation": "LRU steht für Least Recently Used."
+    },
+    {
+      "section": "8.4",
+      "question": "Wann ist ein Cache ungeeignet?",
+      "options": [
+        "Wenn sich die Daten während der Laufzeit ändern, denn dann liefert er veraltete Werte",
+        "Wenn dieselben Daten oft gebraucht werden",
+        "Wenn die Abfrage langsam ist",
+        "Wenn das Skript in Python geschrieben ist"
+      ],
+      "explanation": "Bei Daten, die sich ändern können, braucht ein Cache eine begrenzte Gültigkeitsdauer."
+    },
+    {
+      "section": "8.4",
+      "question": "Was ist Batch-Verarbeitung bei I/O-Operationen?",
+      "options": [
+        "Viele kleine Zugriffe zu wenigen großen zusammenfassen",
+        "Jede Zeile einzeln in die Datenbank schreiben",
+        "Dateien vor dem Lesen verschlüsseln",
+        "Zugriffe zufällig verteilen"
+      ],
+      "explanation": "Beispiel: Datensätze gesammelt in die Datenbank schreiben statt einzeln."
+    },
+    {
+      "section": "8.5",
+      "question": "Wann hilft mehr Arbeitsspeicher (RAM)?",
+      "options": [
+        "Wenn das System Daten auf die Festplatte auslagern muss oder Out-of-Memory-Fehler auftreten",
+        "Wenn die CPU dauerhaft ausgelastet ist",
+        "Wenn ein Algorithmus O(n²) hat",
+        "Wenn das Skript Syntaxfehler enthält"
+      ],
+      "explanation": "Erst messen, dann kaufen: Mehr RAM hilft nicht bei einem CPU-Engpass."
+    },
+    {
+      "section": "8.5",
+      "question": "Warum ist eine SSD schneller als eine HDD?",
+      "options": [
+        "Sie speichert in Flash-Speicher ohne bewegliche Teile",
+        "Sie hat einen größeren Lesekopf",
+        "Sie dreht sich schneller",
+        "Sie nutzt den Arbeitsspeicher als Festplatte"
+      ],
+      "explanation": "Bei vielen Datei- und Datenbankzugriffen bringt eine SSD deutlich mehr Leistung."
+    },
+    {
+      "section": "8.6",
+      "question": "Ein Skript verursacht häufig Out-of-Memory-Fehler. Was ist die sinnvollste erste Maßnahme?",
+      "options": [
+        "Mit <code>tracemalloc</code> oder einer Heap-Analyse die Speicherfresser finden",
+        "Sofort mehr RAM kaufen",
+        "Das Skript parallelisieren",
+        "Die Log-Ausgaben entfernen"
+      ],
+      "explanation": "Danach Daten schrittweise verarbeiten und Caches begrenzen. Erst dann über mehr RAM nachdenken."
+    },
+    {
+      "section": "8.7",
+      "question": "Was ist Überoptimierung?",
+      "options": [
+        "Code bis ins kleinste Detail optimieren, bis er unlesbar und schwer wartbar wird",
+        "Ein Skript, das zu schnell läuft",
+        "Zu viele Tests nach einer Änderung",
+        "Ein Profiler, der zu viele Daten sammelt"
+      ],
+      "explanation": "Eine Kosten-Nutzen-Analyse hilft: Lohnt der Aufwand den Gewinn?"
+    },
+    {
+      "section": "8.7",
+      "question": "Was ist ein häufiger Fehler zu Beginn einer Performance-Optimierung?",
+      "options": [
+        "Ohne gründliche Analyse sofort mit Änderungen beginnen",
+        "Zuerst eine Basislinie messen",
+        "Einen Profiler einsetzen",
+        "Die Ergebnisse dokumentieren"
+      ],
+      "explanation": "Ohne Messung wird oft an Stellen optimiert, die kaum Laufzeit kosten."
+    },
+    {
+      "section": "8.7",
+      "question": "Was besagt Donald Knuths Satz „Premature optimization is the root of all evil“?",
+      "options": [
+        "Verfrühte Optimierung ohne Messung schadet mehr, als sie nützt",
+        "Optimierung ist grundsätzlich schädlich",
+        "Nur Profis dürfen Code optimieren",
+        "Code sollte nie verändert werden"
+      ],
+      "explanation": "Optimiere dort, wo Messungen einen Engpass zeigen."
+    },
+    {
+      "section": "8.7",
+      "question": "Warum gehört Monitoring zur Performance-Optimierung dazu?",
+      "options": [
+        "Wachsende Datenmengen können neue Engpässe verursachen, die sonst erst spät auffallen",
+        "Weil Monitoring das Skript schneller macht",
+        "Weil ohne Monitoring keine Tests möglich sind",
+        "Weil Monitoring den Code automatisch optimiert"
+      ],
+      "explanation": "Performance-Optimierung ist ein kontinuierlicher Prozess aus Messen, Verbessern und Überwachen."
+    }
+  ]
+}
