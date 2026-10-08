@@ -118,3 +118,16 @@ export function extractSegments(root: Element): SpeechSegment[] {
   }
   return result;
 }
+
+// F20 „Ab hier vorlesen“: Abschnitt, in dem ein Knoten liegt (bei Tabellen die Zeile, nicht die Einleitung).
+// Liegt er in keinem Abschnitt (z. B. in einem Codeblock), gilt der nächste Abschnitt danach; -1, wenn es keinen gibt.
+export function segmentIndexAt(segments: SpeechSegment[], node: Node): number {
+  let containing = -1;
+  segments.forEach((item, index) => {
+    if (item.element.contains(node)) containing = index;
+  });
+  if (containing >= 0) return containing;
+  return segments.findIndex(
+    (item) => (node.compareDocumentPosition(item.element) & Node.DOCUMENT_POSITION_FOLLOWING) !== 0,
+  );
+}

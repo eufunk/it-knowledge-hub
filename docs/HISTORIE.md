@@ -4,6 +4,9 @@
 
 ---
 
+## 2026-10-08
+- Vorlesen (F20): Neuer Knopf „Ab hier vorlesen“. Wird im Kapitel Text markiert, erscheint er unter der Markierung und startet das Vorlesen am Anfang des markierten Abschnitts (bei Tabellen an der Zeile) bzw. springt dorthin. Bei Markierungen in Codeblöcken beginnt es beim nächsten vorlesbaren Abschnitt.
+
 ## 2026-10-07
 - Kurs „Netzwerkautomatisierung und Tools“: Modul 5 „Automatisierung mit APIs und Frameworks“ aus `02_Netzwerkautomatisierung_und_Tools.docx` mit Kapitel 09 „Grundlagen der API-Nutzung in Skripten“ (Abschnitt 5.1: Aufbau von APIs, HTTP und REST, Aufrufe mit curl, PowerShell und Python, Sicherheitslücken und Absicherung, Übung) und Kapitel 10 „Einführung in die Automatisierungsframeworks“ (Abschnitt 5.3: RPA, Selenium, Jenkins, Ansible, Vergleich, Übung zur Auswahl mit eingeklapptem Lösungsvorschlag, „Fazit zu Modul 5“). Korrektur gegenüber der Vorlage: Die Einleitung von 5.3 spricht von „vier Frameworks im Einsatz“, gezeigt werden drei. Wissenstests mit 45 und 34 Fragen aus `02_Netzwerkautomatisierung_Quiz.html`. Kursdauer 10 Stunden.
 - Vorlesen (F20): Die zuletzt vorgelesene Stelle wird angemeldet zusätzlich im Konto gespeichert (neue Tabelle `speech_positions`, Schnittstelle `/api/vorlesestelle`) und gilt damit auf allen Geräten und Browsern. Die neuere von Browser- und Kontostelle gewinnt. Gesendet wird höchstens alle 10 Sekunden sowie bei Pause, Beenden und Verlassen der Seite. Datenbank vorher gesichert (`data/it-knowledge-hub.db.bak-2026-10-07`).

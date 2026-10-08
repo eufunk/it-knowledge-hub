@@ -61,6 +61,14 @@ function renderPlayer() {
   return article;
 }
 
+// Text eines Elements markieren, wie es der Browser beim Ziehen mit der Maus tut
+function markiere(element: Element) {
+  act(() => {
+    window.getSelection()?.selectAllChildren(element);
+    document.dispatchEvent(new Event("selectionchange"));
+  });
+}
+
 // Seite verlassen: Player entfernen, Inhalt leeren, Warteschlange verwerfen (der Speicher bleibt)
 function cleanupPage() {
   cleanup();
@@ -217,6 +225,32 @@ describe("F20: ReadAloudPlayer", () => {
 
     fireEvent.click(screen.getByRole("button", { name: "Von vorn vorlesen" }));
     expect(postedBodies().some((body) => body.loeschen === true)).toBe(true);
+  });
+
+  it("liest mit „Ab hier vorlesen“ ab dem Abschnitt der Markierung vor", () => {
+    const article = renderPlayer();
+    expect(screen.queryByRole("button", { name: "Ab hier vorlesen" })).toBeNull();
+
+    markiere(article.querySelector("tbody td:last-child")!);
+    fireEvent.click(screen.getByRole("button", { name: "Ab hier vorlesen" }));
+    expect(spoken).toEqual(["Trigger. Erklärung: Startet den Ablauf."]);
+    expect(screen.getByText("Abschnitt 4 von 4")).toBeInTheDocument();
+    expect(window.getSelection()?.isCollapsed).toBe(true);
+    expect(screen.queryByRole("button", { name: "Ab hier vorlesen" })).toBeNull();
+
+    // während des Vorlesens springt der Knopf zum markierten Abschnitt
+    markiere(article.querySelector("p")!);
+    fireEvent.click(screen.getByRole("button", { name: "Ab hier vorlesen" }));
+    expect(spoken[spoken.length - 1]).toBe("Ein Absatz, zum Beispiel mit Abkürzung.");
+  });
+
+  it("zeigt „Ab hier vorlesen“ nicht für Markierungen außerhalb des Kapitels", () => {
+    renderPlayer();
+    const outside = document.createElement("p");
+    outside.textContent = "Seitenleiste";
+    document.body.appendChild(outside);
+    markiere(outside);
+    expect(screen.queryByRole("button", { name: "Ab hier vorlesen" })).toBeNull();
   });
 
   it("übernimmt die gewählte Geschwindigkeit", () => {

@@ -2,7 +2,8 @@
 
 import { Pause, Play, RotateCcw, Settings2, SkipBack, SkipForward, Square, Volume2 } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
-import { chunkLimit, chunkText, extractSegments, type SpeechSegment } from "@/lib/utils/speech";
+import { createPortal } from "react-dom";
+import { chunkLimit, chunkText, extractSegments, segmentIndexAt, type SpeechSegment } from "@/lib/utils/speech";
 import {
   clearPosition,
   makePosition,
@@ -59,6 +60,23 @@ function getVoices(): SpeechSynthesisVoice[] {
 
 const noopSubscribe = () => () => {};
 
+// Knopf „Ab hier vorlesen“: So lange bleibt er nach dem Aufheben der Markierung noch klickbar,
+// weil ein Tippen auf dem Handy die Markierung schon vor dem Klick aufhebt.
+const FROM_HERE_HIDE_DELAY_MS = 400;
+const FROM_HERE_WIDTH = 180;
+
+// Position des Knopfs unter dem Ende der Markierung (über ihr, wenn unten der Player im Weg wäre)
+function fromHerePosition(range: Range): { top: number; left: number } {
+  const rects = typeof range.getClientRects === "function" ? Array.from(range.getClientRects()) : [];
+  const first = rects[0];
+  const last = rects[rects.length - 1];
+  if (!first || !last) return { top: 16, left: 16 };
+  const below = last.bottom + 8;
+  const top = below > window.innerHeight - 140 ? Math.max(first.top - 48, 8) : below;
+  const left = Math.min(Math.max(last.left, 8), Math.max(window.innerWidth - FROM_HERE_WIDTH - 8, 8));
+  return { top, left };
+}
+
 const iconButton =
   "flex size-10 shrink-0 items-center justify-center rounded-xl text-muted transition-colors hover:bg-canvas hover:text-ink focus-visible:outline-2 focus-visible:outline-accent disabled:opacity-40 disabled:hover:bg-transparent";
 
@@ -91,6 +109,10 @@ export function ReadAloudPlayer({ targetIds, positionKey }: { targetIds: string[
   const [settingsOpen, setSettingsOpen] = useState(false);
   // false, solange die gespeicherte Stelle noch nicht übernommen oder verworfen wurde
   const [resumed, setResumed] = useState(false);
+  // Position des Knopfs „Ab hier vorlesen“, solange Text im Kapitel markiert ist
+  const [fromHere, setFromHere] = useState<{ top: number; left: number } | null>(null);
+  const fromHereNodeRef = useRef<Node | null>(null);
+  const targetKey = targetIds.join(" ");
 
   const segmentsRef = useRef<SpeechSegment[] | null>(null);
   // Abschnitt, der gerade gesprochen wird bzw. bei dem fortgesetzt wird
@@ -138,6 +160,38 @@ export function ReadAloudPlayer({ targetIds, positionKey }: { targetIds: string[
       highlighted.current?.classList.remove("speaking");
     };
   }, []);
+
+  // Markierten Text im Kopf oder Kapiteltext verfolgen und den Knopf „Ab hier vorlesen“ daran ausrichten
+  useEffect(() => {
+    let hideTimer: ReturnType<typeof setTimeout> | undefined;
+    const update = () => {
+      const selection = window.getSelection();
+      const range = selection && !selection.isCollapsed && selection.rangeCount > 0 ? selection.getRangeAt(0) : null;
+      const node = range?.startContainer ?? null;
+      const inside = node !== null && targetKey.split(" ").some((id) => document.getElementById(id)?.contains(node));
+      if (!range || !node || !inside) {
+        hideTimer ??= setTimeout(() => {
+          hideTimer = undefined;
+          fromHereNodeRef.current = null;
+          setFromHere(null);
+        }, FROM_HERE_HIDE_DELAY_MS);
+        return;
+      }
+      clearTimeout(hideTimer);
+      hideTimer = undefined;
+      fromHereNodeRef.current = node;
+      setFromHere(fromHerePosition(range));
+    };
+    document.addEventListener("selectionchange", update);
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      clearTimeout(hideTimer);
+      document.removeEventListener("selectionchange", update);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, [targetKey]);
 
   const segments = (): SpeechSegment[] => {
     if (!segmentsRef.current) {
@@ -286,6 +340,20 @@ export function ReadAloudPlayer({ targetIds, positionKey }: { targetIds: string[
     if (status === "idle") setStatus("paused");
   };
 
+  // „Ab hier vorlesen“: am Anfang des markierten Abschnitts beginnen bzw. dorthin springen
+  const readFromHere = () => {
+    const node = fromHereNodeRef.current;
+    fromHereNodeRef.current = null;
+    setFromHere(null);
+    window.getSelection()?.removeAllRanges();
+    if (!node) return;
+    const target = segmentIndexAt(segments(), node);
+    if (target < 0) return;
+    setResumed(true);
+    setStatus("playing");
+    startAt(target);
+  };
+
   const changeSettings = (next: SpeechSettings) => {
     saveSettings(next);
     if (status === "playing") {
@@ -322,6 +390,21 @@ export function ReadAloudPlayer({ targetIds, positionKey }: { targetIds: string[
       aria-label="Vorlesen"
       className="fixed inset-x-3 bottom-3 z-40 sm:inset-x-auto sm:right-6 sm:bottom-6"
     >
+      {/* Portal: Der Knopf liegt im DOM direkt unter body, damit „fixed“ sicher am Fenster ausgerichtet ist */}
+      {fromHere &&
+        createPortal(
+          <button
+            type="button"
+            onMouseDown={(event) => event.preventDefault()}
+            onClick={readFromHere}
+            style={{ top: fromHere.top, left: fromHere.left }}
+            className="fixed z-50 flex items-center gap-2 rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-accent/30 transition-colors hover:bg-accent-strong focus-visible:outline-3 focus-visible:outline-offset-2 focus-visible:outline-accent"
+          >
+            <Play aria-hidden className="size-4" />
+            Ab hier vorlesen
+          </button>,
+          document.body,
+        )}
       {settingsOpen && (
         <div className="mb-2 rounded-2xl border border-line bg-surface p-4 shadow-xl">
           <p className="font-mono text-xs font-medium tracking-wider text-muted uppercase">Geschwindigkeit</p>

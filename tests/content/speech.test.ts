@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { chunkLimit, chunkText, extractSegments, speakableText } from "@/lib/utils/speech";
+import { chunkLimit, chunkText, extractSegments, segmentIndexAt, speakableText } from "@/lib/utils/speech";
 import { parseSettings, pickVoice } from "@/lib/utils/speech-settings";
 
 function article(html: string): HTMLElement {
@@ -122,5 +122,37 @@ describe("F20: Einstellungen und Stimmenwahl", () => {
     expect(parseSettings("kaputt")).toEqual({ rate: 1, voice: null });
     expect(parseSettings('{"rate": 7, "voice": 3}')).toEqual({ rate: 1, voice: null });
     expect(parseSettings('{"rate": 1.25, "voice": "Katja"}')).toEqual({ rate: 1.25, voice: "Katja" });
+  });
+});
+
+describe("F20: Ab hier vorlesen", () => {
+  const root = article(`
+    <h2>Titel</h2>
+    <p>Ein <strong>wichtiger</strong> Absatz.</p>
+    <pre><code>echo code</code></pre>
+    <table><thead><tr><th>Begriff</th><th>Erklärung</th></tr></thead><tbody><tr><td>Trigger</td><td>Startet</td></tr></tbody></table>
+  `);
+  const segments = extractSegments(root);
+
+  it("findet den Abschnitt, in dem die Markierung liegt, auch in hervorgehobenem Text", () => {
+    const strong = root.querySelector("strong")!.firstChild!;
+    expect(segmentIndexAt(segments, strong)).toBe(1);
+  });
+
+  it("findet bei Tabellen die Zeile statt der Einleitung", () => {
+    const cell = root.querySelector("tbody td:last-child")!.firstChild!;
+    expect(segments[segmentIndexAt(segments, cell)].element.tagName).toBe("TR");
+  });
+
+  it("beginnt bei einer Markierung im Codeblock mit dem nächsten Abschnitt", () => {
+    const code = root.querySelector("code")!.firstChild!;
+    expect(segmentIndexAt(segments, code)).toBe(2);
+    expect(segments[2].text).toMatch(/^Tabelle/);
+  });
+
+  it("liefert -1 für Knoten nach dem letzten Abschnitt", () => {
+    const after = document.createElement("p");
+    root.appendChild(after);
+    expect(segmentIndexAt(segments, after)).toBe(-1);
   });
 });
